@@ -264,8 +264,29 @@ export default function Accommodation() {
   // Section reveal
   const [visible, setVisible] = useState(false);
 
+  const [signatureVisible, setSignatureVisible] = useState(false);
+
   // Prevent multiple clicks during transition
   const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    const signature = landscapeSignatureRef.current;
+    if (!signature) return;
+  
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setSignatureVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.2,
+        rootMargin: "0px 0px -12% 0px",
+      },
+    );
+  
+    observer.observe(signature);
+  
+    return () => observer.disconnect();
+  }, []);
 
   // ============================================================
   // SECTION INTERSECTION OBSERVER
@@ -274,22 +295,19 @@ export default function Accommodation() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-
+  
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
+        setVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.16,
-        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -12% 0px",
       },
     );
-
+  
     observer.observe(section);
-
+  
     return () => observer.disconnect();
   }, []);
   // ============================================================
@@ -459,7 +477,7 @@ export default function Accommodation() {
     <section
       ref={sectionRef}
       id="stay"
-      className={`relative overflow-hidden bg-[#f2eee3] px-5 py-24 sm:px-8 lg:px-14 xl:px-20 ${
+      className={`relative overflow-hidden bg-[#f2eee3] px-5 py-15 sm:px-8 lg:px-14 xl:px-20 ${
         visible ? "paciano-about-visible" : ""
       }`}
     >
@@ -491,9 +509,9 @@ export default function Accommodation() {
 
       {/* Intro */}
       <div className="relative z-10 mx-auto max-w-[1180px] text-center">
-        <div className="paciano-intro-reveal">
+      <div>
           {/* Small botanical sprout above OUR STAYS */}
-          <div className="mb-3 flex justify-center">
+          <div className="paciano-stay-step paciano-stay-step-1 mb-3 flex justify-center">
             {/* <svg
             width="34"
             height="30"
@@ -571,11 +589,13 @@ export default function Accommodation() {
 
           <div
             className="
-      flex
-      items-center
-      justify-center
-      gap-4
-    "
+            paciano-stay-step
+            paciano-stay-step-3
+            flex
+            items-center
+            justify-center
+            gap-4
+          "
           >
             <span
               className="
@@ -610,18 +630,23 @@ export default function Accommodation() {
           {/* MAIN HEADING */}
 
           <h2
-            className="
-      mt-[16px]
-      max-w-[950px]
-      font-cormorant
-      text-[43px]
-      leading-[.95]
-      tracking-[-.025em]
-      text-[#17251B]
-      sm:text-[52px]
-      lg:text-[60px]
-    "
-          >
+  className="
+  paciano-reveal
+    paciano-delay-2
+    mx-auto
+    mt-[16px]
+    max-w-[950px]
+    text-center
+    font-cormorant
+    text-[43px]
+    leading-[.95]
+    tracking-[-.025em]
+    text-[#17251B]
+    sm:text-[52px]
+    lg:text-[60px]
+  "
+>
+          
             Where Every Stay,
             <br />
             <span className="italic text-[#789541]">
@@ -632,18 +657,22 @@ export default function Accommodation() {
           {/* DESCRIPTION */}
 
           <p
-            className="
-      mt-5
-      max-w-[700px]
-      px-4
-      font-manrope
-      text-[12px]
-      leading-[1.8]
-      text-[#657067]
-      sm:text-[13px]
-      lg:text-[14px]
-    "
-          >
+  className="
+  paciano-stay-step
+  paciano-stay-step-4
+    mx-auto
+    mt-5
+    max-w-[700px]
+    px-4
+    text-center
+    font-manrope
+    text-[12px]
+    leading-[1.8]
+    text-[#657067]
+    sm:text-[13px]
+    lg:text-[14px]
+  "
+>
             Wake to misty mountains, unwind beside the river, and let nature set
             the pace. Our stays are crafted for quiet comfort, generous space
             and a deeper sense of belonging.
@@ -651,27 +680,33 @@ export default function Accommodation() {
         </div>
 
         {/* ======================================================
-    PACIANO STAY NAVIGATION
-    REFERENCE-MATCHED HORIZONTAL CAPSULE
-====================================================== */}
+                PACIANO STAY NAVIGATION
+                REFERENCE-MATCHED HORIZONTAL CAPSULE
+            ====================================================== */}
 
-        <div
-          className={`
-    relative
-    mt-10
-    sm:mt-11
-    lg:mt-12
-    w-full
-    transition-all
-    duration-[1400ms]
-    ease-[cubic-bezier(0.16,1,0.3,1)]
-    ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}
-  `}
-        >
+            <div
+            className={`
+              paciano-stay-step
+              paciano-stay-step-5
+              relative
+              mt-10
+              sm:mt-11
+              lg:mt-12
+              w-full
+              transition-all
+              duration-[1400ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${
+                visible
+                  ? "opacity-100 translate-y-0 blur-0"
+                  : "opacity-0 translate-y-8"
+              }
+            `}
+            >
           {/* ====================================================
-      CAPSULE
-      SAME WIDTH AS IMAGE BELOW
-  ==================================================== */}
+                  CAPSULE
+                  SAME WIDTH AS IMAGE BELOW
+              ==================================================== */}
 
           <div
             className="
@@ -708,19 +743,20 @@ export default function Accommodation() {
                 Reference-matched horizontal capsule
             ================================================== */}
 
-            <div
-              className="
-                relative
-                z-20
-                flex
-                min-h-[94px]
-                w-full
-                items-stretch
-                overflow-visible
-              "
-            >
+<div
+  className="
+    relative
+    z-20
+    flex
+    min-h-[94px]
+    w-full
+    items-stretch
+    overflow-visible
+    pl-[27px]
+  "
+>
               {/* Four stay navigation items */}
-              <div className="grid min-w-0 flex-1 grid-cols-4">
+              <div className="grid min-w-0 flex-1 grid-cols-[1fr_1fr_1fr_1.08fr]">
                 {stays.map((item, index) => {
                   const active = index === activeStay;
 
@@ -733,14 +769,26 @@ export default function Accommodation() {
 
                   return (
                     <div
-                      key={item.id}
-                      className="
-                        relative
-                        min-w-0
-                     
-                        last:border-r-0
-                      "
-                    >
+    key={item.id}
+    className={`
+      relative
+      min-w-0
+      transition-all
+      duration-[1000ms]
+      ease-[cubic-bezier(0.16,1,0.3,1)]
+      ${
+        visible
+          ? "opacity-100 translate-y-0 blur-0"
+          : "opacity-0 translate-y-6 blur-[2px]"
+      }
+     
+    `}
+    style={{
+      transitionDelay: visible
+        ? `${180 + index * 100}ms`
+        : "0ms",
+    }}
+  >
                       <button
                         type="button"
                         onClick={() => changeStay(index)}
@@ -764,6 +812,14 @@ export default function Accommodation() {
                           lg:px-5
                         "
                       >
+                        <span
+                          className={`
+                            flex
+                            items-center
+                            gap-4
+                           
+                          `}
+                        >
                         {/* Icon */}
                         <span
                           className={`
@@ -1012,6 +1068,7 @@ export default function Accommodation() {
                                 `}
                           />
                         </span>
+                        </span>
                       </button>
                     </div>
                   );
@@ -1040,7 +1097,7 @@ export default function Accommodation() {
                   });
                 }}
                 aria-label="Explore the Paciano collection"
-                className="
+                className={`
                   group
                   relative
                   flex
@@ -1051,9 +1108,20 @@ export default function Accommodation() {
                   justify-center
                   overflow-visible
                   outline-none
+                  transition-all
+                  duration-[1100ms]
+                  ease-[cubic-bezier(0.16,1,0.3,1)]
+                  ${
+                    visible
+                      ? "opacity-100 translate-x-0 blur-0"
+                      : "opacity-0 translate-x-8 blur-[2px]"
+                  }
                   sm:w-[275px]
-                  lg:w-[290px]
-                "
+                  lg:w-[260px]
+                `}
+                style={{
+                  transitionDelay: visible ? "620ms" : "0ms",
+                }}
               >
                 {/* Leaf is a separate transparent asset, so the CTA remains
                     fully clickable/animatable. */}
@@ -1191,6 +1259,8 @@ export default function Accommodation() {
 
           <div
             className={`
+              paciano-stay-step
+              paciano-stay-step-6
             relative
             mt-8
             transition-all
@@ -1356,17 +1426,18 @@ export default function Accommodation() {
               <div
                 key={`${activeStay}-${activeImage}`}
                 className="
-                absolute
-                left-7
-                sm:left-10
-                lg:left-14
-                bottom-9
-                sm:bottom-11
-                lg:bottom-14
-                max-w-[720px]
-                text-white
-                animate-[contentEnter_850ms_ease-out]
-              "
+                  absolute
+                  left-7
+                  sm:left-10
+                  lg:left-14
+                  bottom-9
+                  sm:bottom-11
+                  lg:bottom-14
+                  max-w-[720px]
+                  text-left
+                  text-white
+                  animate-[contentEnter_850ms_ease-out]
+                "
               >
                 <p
                   className="
@@ -1592,7 +1663,7 @@ export default function Accommodation() {
                 h-[54px]
                 w-[54px]
                 items-center
-                justify-center
+                justify-start
                 rounded-full
                 border
                 border-[#C5C5B8]/80
@@ -1855,7 +1926,7 @@ export default function Accommodation() {
       LEFT BOTANICAL LEAF
   ------------------------------------------------------ */}
 
-          <img
+          {/* <img
             src={belowleafCta}
             alt=""
             aria-hidden="true"
@@ -1883,39 +1954,48 @@ export default function Accommodation() {
 
       pointer-events-none
     "
-          />
+          /> */}
 
           {/* ------------------------------------------------------
       PACIANO SIGNATURE
   ------------------------------------------------------ */}
 
           <div
-            className="
-      absolute
-
-      left-1/2
-      bottom-[158px]
-
-      z-40
-
-      -translate-x-1/2
-
-      flex
-      flex-col
-      items-center
-
-      text-center
-
-      animate-[signatureFloat_7s_ease-in-out_infinite]
-    "
+            ref={landscapeSignatureRef}
+            className={`
+              absolute
+              left-1/2
+              bottom-[243px]
+              z-40
+              -translate-x-1/2
+              flex
+              flex-col
+              items-center
+              text-center
+            
+              transition-all
+              duration-[1400ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+            
+              ${
+                signatureVisible
+                  ? "opacity-100 translate-y-0 scale-100 blur-0"
+                  : "opacity-0 translate-y-8 scale-[0.94] blur-[4px]"
+              }           
+              
+            `}  
           >
+            <div className="animate-[signatureFloat_7s_ease-in-out_infinite]">
             <div
-              className="
-      mb-3
-      text-[#71883F]
-    "
-            >
-              <svg width="25" height="25" viewBox="0 0 40 40" fill="none">
+  className="
+    mb-3
+    flex
+    items-center
+    justify-center
+    text-[#71883F]
+  "
+>
+<svg width="32" height="32" viewBox="0 0 40 40" fill="none">
                 <path
                   d="M20 34C20 25 21 17 27 8"
                   stroke="currentColor"
@@ -1945,42 +2025,39 @@ export default function Accommodation() {
 
             <p
               className="
-        font-cormorant
-
-        text-[22px]
-        
-        sm:text-[24px]
-
-        leading-none
-
-        uppercase
-        tracking-[0.40em]
-
-        text-[#65715B]
-      "
+              font-cormorant
+              text-[29px]
+              sm:text-[25px]
+              leading-none
+              uppercase
+              tracking-[0.40em]
+              text-[#4F5E43]
+              drop-shadow-[0_1px_2px_rgba(255,255,255,0.35)]
+            "
             >
               PACIANO
             </p>
 
             <p
               className="
-        mt-[8px]
+                mt-[8px]
 
-        font-manrope
+                font-manrope
 
-        text-[9px]
-        sm:text-[9px]
+                text-[11px]
+                sm:text-[10px]
 
-        leading-none
+                leading-none
 
-        uppercase
-        tracking-[0.42em]
+                uppercase
+                tracking-[0.42em]
 
-        text-[#77806F]
-      "
+                text-[#59664D] drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]
+              "
             >
               STAY CLOSE TO NATURE
             </p>
+            </div>
           </div>
         </div>
 
@@ -2205,6 +2282,67 @@ export default function Accommodation() {
   }
 
 }
+
+.paciano-stay-step {
+  opacity: 0;
+  transform: translateY(42px);
+  filter: blur(2px);
+
+  transition:
+    opacity 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.35s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 1.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.paciano-about-visible .paciano-stay-step {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+
+/* ------------------------------------------------------------
+   STEP TIMING
+   ------------------------------------------------------------ */
+
+.paciano-stay-step-1 {
+  transition-delay: 0ms;
+}
+
+.paciano-stay-step-2 {
+  transition-delay: 220ms;
+}
+
+.paciano-stay-step-3 {
+  transition-delay: 460ms;
+}
+
+.paciano-stay-step-4 {
+  transition-delay: 760ms;
+}
+
+.paciano-stay-step-5 {
+  transition-delay: 1250ms;
+}
+
+.paciano-stay-step-6 {
+  transition-delay: 2050ms;
+}
+
+
+/* ------------------------------------------------------------
+   REDUCED MOTION
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .paciano-stay-step {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 
         `}
       </style>
