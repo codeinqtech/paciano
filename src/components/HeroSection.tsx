@@ -1,1541 +1,1170 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-import bannerImage from "@/images/hero4.png";
-import pacianoLogo from "@/images/paciano-logo.png";
-import pacianoMorningAudio from "@/assets/audio/paciano-morning-soothing.mp3";
+import heroImage from "@/images/hero6.png";
+import leafImage from "@/images/hh.png";
+import logoImage from "@/images/paciano-logo.png";
 
 export default function HeroSection() {
-  /* =========================================================
-     REFS
-  ========================================================= */
-
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  const imageRef = useRef<HTMLImageElement | null>(null);
-
-  const sunriseRef = useRef<HTMLDivElement | null>(null);
-
-  const atmosphereRef = useRef<HTMLDivElement | null>(null);
-
-  const heroContentRef = useRef<HTMLDivElement | null>(null);
-
-  const logoStageRef = useRef<HTMLDivElement | null>(null);
-
-  const logoGlowRef = useRef<HTMLDivElement | null>(null);
-
-  const soundBarsRef = useRef<HTMLSpanElement[]>([]);
-
-  const animationFrameRef = useRef<number | null>(null);
-
-  const isPlayingRef = useRef(false);
-
-  const [isPlaying, setIsPlaying] = useState(false);
-
-  const introOverlayRef = useRef<HTMLDivElement | null>(null);
-  const introLeftRef = useRef<HTMLDivElement | null>(null);
-  const introRightRef = useRef<HTMLDivElement | null>(null);
-  const introBeamRef = useRef<HTMLDivElement | null>(null);
-  const introCardRef = useRef<HTMLDivElement | null>(null);
-  
-  const logoLeftRef = useRef<HTMLDivElement | null>(null);
-  const logoRightRef = useRef<HTMLDivElement | null>(null);
-
-  /* =========================================================
-     HELPERS
-  ========================================================= */
-
-  const clamp = (value: number, min = 0, max = 1) =>
-    Math.min(Math.max(value, min), max);
-
-  const easeOutCubic = (value: number) => {
-    const t = clamp(value);
-
-    return 1 - Math.pow(1 - t, 3);
-  };
-
-  const easeInOutCubic = (value: number) => {
-    const t = clamp(value);
-
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  };
-
-  const easeInOutQuart = (value: number) => {
-    const t = clamp(value);
-
-    return t < 0.5 ? 8 * t * t * t * t : 1 - Math.pow(-2 * t + 2, 4) / 2;
-  };
-
-  /* =========================================================
-     AUDIO
-  ========================================================= */
+  const [intro, setIntro] = useState(false);
+  const [camera, setCamera] = useState(false);
+  const [logoOpen, setLogoOpen] = useState(false);
 
   useEffect(() => {
-    const audio = audioRef.current;
+    /*
+     * ----------------------------------------------------------
+     * HERO OPENING SEQUENCE
+     *
+     * 0ms     → dark cinematic opening
+     * 300ms   → logo begins
+     * 700ms   → logo mark opens
+     * 1100ms  → PACIANO appears
+     * 1500ms  → hero content
+     * 2000ms  → cinematic camera movement
+     * ----------------------------------------------------------
+     */
 
-    if (!audio) return;
+    const introTimer = window.setTimeout(() => {
+      setIntro(true);
+    }, 250);
 
-    audio.volume = 0.32;
-
-    const startAudio = async () => {
-      try {
-        await audio.play();
-
-        isPlayingRef.current = true;
-
-        setIsPlaying(true);
-
-        removeInteractionListeners();
-      } catch {
-        /*
-            Browser autoplay policy can
-            block audible autoplay.
-
-            This is not a code failure.
-          */
-
-        isPlayingRef.current = false;
-
-        setIsPlaying(false);
-      }
-    };
-
-    const handleInteraction = () => {
-      startAudio();
-    };
-
-    const removeInteractionListeners = () => {
-      window.removeEventListener("pointerdown", handleInteraction);
-
-      window.removeEventListener("touchstart", handleInteraction);
-
-      window.removeEventListener("keydown", handleInteraction);
-
-      window.removeEventListener("wheel", handleInteraction);
-    };
+    const logoTimer = window.setTimeout(() => {
+      setLogoOpen(true);
+    }, 700);
 
     /*
-      Try immediately on page load.
-    */
-
-    startAudio();
-
-    /*
-      Fallback when browser blocks
-      audible autoplay.
-    */
-
-    window.addEventListener("pointerdown", handleInteraction, {
-      once: true,
-      passive: true,
-    });
-
-    window.addEventListener("touchstart", handleInteraction, {
-      once: true,
-      passive: true,
-    });
-
-    window.addEventListener("keydown", handleInteraction, {
-      once: true,
-    });
-
-    window.addEventListener("wheel", handleInteraction, {
-      once: true,
-      passive: true,
-    });
+     * Very slow camera movement.
+     */
+    const cameraTimer = window.setTimeout(() => {
+      setCamera(true);
+    }, 1800);
 
     return () => {
-      removeInteractionListeners();
-    };
-  }, []);
-
-  /* =========================================================
-     AUDIO CONTROL
-  ========================================================= */
-
-  const toggleAudio = async () => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    if (isPlayingRef.current) {
-      audio.pause();
-
-      isPlayingRef.current = false;
-
-      setIsPlaying(false);
-
-      return;
-    }
-
-    try {
-      await audio.play();
-
-      isPlayingRef.current = true;
-
-      setIsPlaying(true);
-    } catch {
-      isPlayingRef.current = false;
-
-      setIsPlaying(false);
-    }
-  };
-
-  /* =========================================================
-     MASTER CINEMATIC SHOT
-
-     0.0 - 0.6
-       Dark cinematic landscape + subtle botanical shadows
-
-     0.6 - 1.1
-       Full coloured Paciano logo appears
-
-     0.85 - 1.5
-       Golden centre sun beam appears
-
-     1.7 - 3.0
-       Actual Paciano logo splits into two halves
-
-     2.1 - 3.6
-       Dark overlay doors open from the centre
-
-     2.5 - 3.7
-       Landscape sharpens
-
-     2.4 - 3.3
-       Logo halves fade into the revealed landscape
-
-     4.0 - 5.0
-       Hero copy appears
-
-     5.0+
-       Normal hero
-  ========================================================= */
-
-  useEffect(() => {
-    const image = imageRef.current;
-    const sunrise = sunriseRef.current;
-    const atmosphere = atmosphereRef.current;
-    const content = heroContentRef.current;
-    const logoStage = logoStageRef.current;
-    const logoGlow = logoGlowRef.current;
-    const logoLeft = logoLeftRef.current;
-    const logoRight = logoRightRef.current;
-    const introOverlay = introOverlayRef.current;
-    const introLeft = introLeftRef.current;
-    const introRight = introRightRef.current;
-    const introBeam = introBeamRef.current;
-    const introCard = introCardRef.current;
-
-    if (
-      !image ||
-      !sunrise ||
-      !atmosphere ||
-      !content ||
-      !logoStage ||
-      !logoGlow ||
-      !logoLeft ||
-      !logoRight ||
-      !introOverlay ||
-      !introLeft ||
-      !introRight ||
-      !introBeam ||
-      !introCard
-    ) {
-      return;
-    }
-
-    const startTime = performance.now();
-
-    /*
-      STORYBOARD-LOCKED TIMELINE
-
-      0.0–0.6   dark opening + A PLACE TO BELONG
-      0.6–1.2   actual coloured Paciano logo appears
-      1.2–1.8   thin top-centre light illuminates the logo
-      1.8–2.4   logo splits
-      2.4–3.0   logo halves move apart
-      3.0–3.8   two dark doors open and landscape is revealed
-      3.8–4.6   hero typography appears
-      4.6–5.2   cinematic atmosphere softly clears
-      5.2+      hero remains alive with continuous camera motion
-    */
-
-    const animate = (time: number) => {
-      const elapsed = time - startTime;
-
-      /* ---------------------------------------------------------
-         BANNER CAMERA
-         Continuous, very slow drift. This is independent of the
-         intro transition and therefore never "stops" after load.
-      --------------------------------------------------------- */
-
-      const motionCycle = 26000;
-      const phase = (elapsed % motionCycle) / motionCycle;
-      const s = Math.sin(phase * Math.PI * 2);
-
-      const cameraScale = 1.075 + (s + 1) * 0.010;
-      const cameraX = s * 0.38;
-      const cameraY = Math.cos(phase * Math.PI * 2) * 0.22;
-
-      image.style.transform = `
-        translate3d(${cameraX}%, ${cameraY}%, 0)
-        scale(${cameraScale})
-      `;
-
-      /* ---------------------------------------------------------
-         PHOTO RESOLVE
-      --------------------------------------------------------- */
-
-      const resolve = easeInOutCubic((elapsed - 2100) / 1700);
-      const blur = 1.7 * (1 - resolve);
-
-      image.style.filter = `
-        blur(${blur}px)
-        brightness(${0.78 + clamp(resolve) * 0.22})
-        saturate(${0.92 + clamp(resolve) * 0.08})
-        contrast(${1.02 + clamp(resolve) * 0.03})
-      `;
-
-      /* ---------------------------------------------------------
-         1. A PLACE TO BELONG
-         Present only during the dark opening.
-      --------------------------------------------------------- */
-
-      const titleIn = easeOutCubic(elapsed / 380);
-      const titleOut = easeInOutCubic((elapsed - 470) / 190);
-      const titleOpacity =
-        elapsed < 470
-          ? clamp(titleIn)
-          : 1 - clamp(titleOut);
-
-      introCard.style.opacity = `${titleOpacity}`;
-      introCard.style.transform = `
-        translate3d(0, ${8 - titleOpacity * 8}px, 0)
-      `;
-
-      /* ---------------------------------------------------------
-         2. PACIANO LOGO APPEARS
-      --------------------------------------------------------- */
-
-      const logoIn = easeOutCubic((elapsed - 600) / 600);
-      const logoReveal = clamp(logoIn);
-
-      logoStage.style.opacity = `${logoReveal}`;
-      logoStage.style.transform = `
-        translate3d(
-          0,
-          ${12 - logoReveal * 12}px,
-          0
-        )
-        scale(${0.92 + logoReveal * 0.08})
-      `;
-
-      /* ---------------------------------------------------------
-         3. SOFT GREEN HALO
-      --------------------------------------------------------- */
-
-      const haloIn = easeInOutCubic((elapsed - 680) / 500);
-      const haloOut = easeInOutCubic((elapsed - 1850) / 450);
-      const halo = clamp(haloIn) * (1 - clamp(haloOut));
-
-      logoGlow.style.opacity = `${halo * 0.62}`;
-      logoGlow.style.transform = `
-        translate(-50%, -50%)
-        scale(${0.82 + halo * 0.18})
-      `;
-
-      /* ---------------------------------------------------------
-         4. THIN TOP-CENTRE LIGHT
-         It does NOT travel. It simply fades in vertically in place,
-         matching the supplied reference frame.
-      --------------------------------------------------------- */
-
-      const beamIn = easeOutCubic((elapsed - 1200) / 330);
-      const beamOut = easeInOutCubic((elapsed - 1800) / 500);
-      const beam = clamp(beamIn) * (1 - clamp(beamOut));
-
-      introBeam.style.opacity = `${beam * 0.92}`;
-      introBeam.style.transform = `
-        translateX(-50%)
-        scaleY(${0.92 + beam * 0.08})
-      `;
-
-      /* ---------------------------------------------------------
-         5. LOGO SPLITS
-      --------------------------------------------------------- */
-
-      const split = clamp(easeInOutQuart((elapsed - 1800) / 600));
-      const logoDistance = split * 84;
-
-      const logoFade = clamp(
-        easeInOutCubic((elapsed - 2550) / 780)
-      );
-
-      const opacity = 1 - logoFade * 0.94;
-      const logoBlur = logoFade * 3;
-
-      logoLeft.style.opacity = `${opacity}`;
-      logoRight.style.opacity = `${opacity}`;
-      logoLeft.style.filter = `blur(${logoBlur}px)`;
-      logoRight.style.filter = `blur(${logoBlur}px)`;
-
-      logoLeft.style.transform = `
-        translate3d(-${logoDistance}px, 0, 0)
-      `;
-
-      logoRight.style.transform = `
-        translate3d(${logoDistance}px, 0, 0)
-      `;
-
-      /* ---------------------------------------------------------
-         6. DARK DOORS
-         The two panels themselves create the opening. There is
-         intentionally no full-screen black layer underneath them.
-      --------------------------------------------------------- */
-
-      const door = clamp(
-        easeInOutQuart((elapsed - 3000) / 800)
-      );
-
-      const panelDistance = door * 108;
-
-      introLeft.style.transform = `
-        translate3d(-${panelDistance}%, 0, 0)
-      `;
-
-      introRight.style.transform = `
-        translate3d(${panelDistance}%, 0, 0)
-      `;
-
-      /* Botanical overlay fades with the last part of the reveal. */
-      const atmosphereFade = clamp(
-        easeInOutCubic((elapsed - 3350) / 1100)
-      );
-
-      introOverlay.style.opacity = `${1 - atmosphereFade}`;
-
-      /* ---------------------------------------------------------
-         7. HERO CONTENT
-      --------------------------------------------------------- */
-
-      const copy = clamp(
-        easeOutCubic((elapsed - 3800) / 800)
-      );
-
-      content.style.opacity = `${copy}`;
-      content.style.transform = `
-        translate3d(
-          ${-16 + copy * 16}px,
-          ${16 - copy * 16}px,
-          0
-        )
-      `;
-
-      /* ---------------------------------------------------------
-         8. LANDSCAPE WARMTH
-      --------------------------------------------------------- */
-
-      const warmth = clamp(
-        easeInOutCubic((elapsed - 3000) / 1800)
-      );
-
-      sunrise.style.opacity = `${0.70 + warmth * 0.30}`;
-      atmosphere.style.opacity = `${1 - warmth * 0.34}`;
-
-      /* ---------------------------------------------------------
-         9. FINAL STATE
-         Never overwrite the banner transform: camera motion must
-         continue forever.
-      --------------------------------------------------------- */
-
-      if (elapsed >= 5200) {
-        content.style.opacity = "1";
-        content.style.transform = "translate3d(0,0,0)";
-
-        introOverlay.style.opacity = "0";
-        introCard.style.opacity = "0";
-
-        logoStage.style.opacity = "0";
-        logoLeft.style.opacity = "0";
-        logoRight.style.opacity = "0";
-        logoGlow.style.opacity = "0";
-        introBeam.style.opacity = "0";
-
-        image.style.filter = `
-          blur(0px)
-          brightness(1)
-          saturate(1)
-          contrast(1.04)
-        `;
-
-        sunrise.style.opacity = "1";
-        atmosphere.style.opacity = "0.64";
-      }
-
-      soundBarsRef.current.forEach((bar, index) => {
-        if (!bar) return;
-
-        if (isPlayingRef.current) {
-          const primary =
-            (Math.sin(time * 0.005 + index * 0.74) + 1) / 2;
-
-          const secondary =
-            (Math.sin(time * 0.003 + index * 1.13) + 1) / 2;
-
-          const scale =
-            0.58 + primary * 0.30 + secondary * 0.12;
-
-          bar.style.transform = `scaleY(${scale})`;
-        } else {
-          bar.style.transform = "scaleY(0.58)";
-        }
-      });
-
-      animationFrameRef.current =
-        requestAnimationFrame(animate);
-    };
-
-    animationFrameRef.current =
-      requestAnimationFrame(animate);
-
-    return () => {
-      if (animationFrameRef.current) {
-        cancelAnimationFrame(animationFrameRef.current);
-      }
+      window.clearTimeout(introTimer);
+      window.clearTimeout(logoTimer);
+      window.clearTimeout(cameraTimer);
     };
   }, []);
 
   return (
-    <>
-      <section
-        id="home"
-        className="
-      relative
-      h-screen
-      min-h-[680px]
-      w-full
-      overflow-visible
-      bg-[#07100a]
-    "
-      >
-     
-        {/* =====================================================
-          LANDSCAPE
-      ===================================================== */}
+    <section className="relative isolate h-screen min-h-[680px] w-full overflow-hidden bg-[#050a06] text-[#f5f0e7]">
+      <style>{`
+            @keyframes pacianoHeroDrift {
+  from {
+    transform: translate3d(0%, 0%, 0) scale(1.015);
+  }
 
+  to {
+    transform: translate3d(3.8%, 1.2%, 0) scale(1.06);
+  }
+}
+
+  @keyframes pacianoLogoReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(24px) scale(0.88);
+      filter: blur(8px);
+    }
+
+    55% {
+      opacity: 1;
+      transform: translateY(-3px) scale(1.02);
+      filter: blur(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes pacianoLogoGlow {
+    0%, 100% {
+      filter:
+        drop-shadow(0 8px 25px rgba(0,0,0,0.22))
+        brightness(0.96);
+    }
+
+    50% {
+      filter:
+        drop-shadow(0 10px 38px rgba(165,213,109,0.16))
+        brightness(1.04);
+    }
+  }
+
+  @keyframes pacianoEyebrow {
+    0% {
+      opacity: 0;
+      transform: translateY(12px);
+      letter-spacing: 0.15em;
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      letter-spacing: 0.38em;
+    }
+  }
+
+  @keyframes pacianoHeading {
+    0% {
+      opacity: 0;
+      transform: translateY(35px);
+      filter: blur(5px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  @keyframes pacianoDivider {
+    0% {
+      opacity: 0;
+      transform: scaleX(0.2);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scaleX(1);
+    }
+  }
+
+  @keyframes pacianoDiamond {
+    0%, 100% {
+      transform: rotate(45deg) scale(0.85);
+      opacity: 0.65;
+    }
+
+    50% {
+      transform: rotate(45deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes pacianoCopy {
+    0% {
+      opacity: 0;
+      transform: translateY(18px);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes pacianoCTA {
+    0% {
+      opacity: 0;
+      transform: translateY(22px) scale(0.96);
+    }
+
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes pacianoShimmer {
+    0% {
+      transform: translateX(-120%);
+      opacity: 0;
+    }
+
+    20% {
+      opacity: 0;
+    }
+
+    45% {
+      opacity: 0.35;
+    }
+
+    70% {
+      opacity: 0;
+    }
+
+    100% {
+      transform: translateX(120%);
+      opacity: 0;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+    @keyframes pacianoSunsetVeil {
+  0% {
+    opacity: 0;
+    background:
+      radial-gradient(
+        ellipse 18% 15% at 69% 43%,
+        rgba(5, 9, 6, 0) 0%,
+        rgba(5, 9, 6, 0) 100%
+      );
+  }
+
+  65% {
+    opacity: 0;
+    background:
+      radial-gradient(
+        ellipse 18% 15% at 71% 45%,
+        rgba(5, 9, 6, 0) 0%,
+        rgba(5, 9, 6, 0) 100%
+      );
+  }
+
+  78% {
+    opacity: 0.18;
+    background:
+      radial-gradient(
+        ellipse 20% 17% at 72% 47%,
+        rgba(5, 9, 6, 0.05) 0%,
+        rgba(5, 9, 6, 0.18) 48%,
+        rgba(5, 9, 6, 0) 100%
+      );
+  }
+
+  90% {
+    opacity: 0.45;
+    background:
+      radial-gradient(
+        ellipse 23% 19% at 73% 49%,
+        rgba(5, 9, 6, 0.12) 0%,
+        rgba(5, 9, 6, 0.32) 48%,
+        rgba(5, 9, 6, 0) 100%
+      );
+  }
+
+  100% {
+    opacity: 0.62;
+    background:
+      radial-gradient(
+        ellipse 26% 21% at 74% 51%,
+        rgba(5, 9, 6, 0.20) 0%,
+        rgba(5, 9, 6, 0.42) 48%,
+        rgba(5, 9, 6, 0) 100%
+      );
+  }
+}
+`}</style>
+      {/* =========================================================
+          BACKGROUND / CINEMATIC LANDSCAPE
+      ========================================================== */}
+
+      <div className="absolute inset-0 overflow-hidden">
+        {/* <img
+          src={heroImage}
+          alt="Paciano river valley at sunset"
+          className={[
+            "absolute inset-0",
+            "h-full w-full max-w-none",
+            "object-cover",
+            "object-center",
+            "brightness-[0.94] saturate-[0.86] contrast-[0.98]",
+            "transition-transform duration-[16000ms]",
+            "ease-[cubic-bezier(0.22,1,0.36,1)]",
+            camera
+              ? "translate-x-0 translate-y-[-0.2%] scale-[1.005]"
+              : "translate-x-0 translate-y-0 scale-100",
+          ].join(" ")}
+        /> */}
+        <img
+          src={heroImage}
+          alt="Paciano river valley at sunset"
+          //   className="
+          //     absolute
+          //     inset-0
+          //     h-full
+          //     w-full
+          //     max-w-none
+          //     object-cover
+          //     object-center
+          //     brightness-[0.94]
+          //     saturate-[0.86]
+          //     contrast-[0.98]
+          // "
+          className="
+  absolute
+  inset-0
+  h-full
+  w-full
+  max-w-none
+  object-cover
+  object-center
+"
+          style={{
+            animation: "pacianoHeroDrift 42s linear forwards",
+            transformOrigin: "center center",
+          }}
+        />
         <div
           className="
-          absolute
-          inset-0
-          overflow-hidden
-        "
+    pointer-events-none
+    absolute
+    inset-0
+    z-[1]
+  "
         >
-          <img
-            ref={imageRef}
-            src={bannerImage}
-            alt="Paciano riverside resort"
-            draggable={false}
-            className="
-            absolute
-            inset-0
-            h-full
-            w-full
-
-          
-
-            object-cover
-            object-[58%_center]
-
-            will-change-transform
-          "
-          />
-
-          {/* =================================================
-            LEFT / LEFT-MIDDLE CINEMATIC SHADOW
-        ================================================= */}
-
           <div
             className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[2]
-
-            bg-[radial-gradient(ellipse_42%_64%_at_26%_48%,rgba(2,10,6,0.52)_0%,rgba(2,10,6,0.38)_32%,rgba(2,10,6,0.18)_55%,transparent_78%)]
-          "
+      absolute
+      inset-0
+      opacity-0
+    "
+            style={{
+              animation: "pacianoSunsetVeil 42s linear forwards",
+            }}
           />
-
-          {/* =================================================
-            UPPER LEFT SHADOW
-
-            Keeps logo area dark.
-        ================================================= */}
-
-          <div
-            className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[2]
-
-            bg-[radial-gradient(ellipse_42%_48%_at_8%_12%,rgba(2,11,7,0.62)_0%,rgba(2,11,7,0.40)_42%,transparent_75%)]
-          "
-          />
-
-          {/* =================================================
-            SUNRISE WARMTH
-        ================================================= */}
-
-          <div
-            className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[3]
-
-            bg-[radial-gradient(ellipse_24%_28%_at_40%_43%,rgba(255,210,145,0.14)_0%,rgba(255,210,145,0.07)_28%,transparent_72%)]
-          "
-          />
-
-          {/* =================================================
-            ANIMATED SUNRISE
-        ================================================= */}
-
-          <div
-            ref={sunriseRef}
-            className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[3]
-
-            origin-center
-
-            bg-[radial-gradient(ellipse_30%_34%_at_40%_43%,rgba(255,205,130,0.12)_0%,rgba(255,205,130,0.06)_25%,transparent_68%)]
-
-            will-change-transform
-          "
-          />
-
-          {/* =================================================
-            ATMOSPHERE
-        ================================================= */}
-
-          <div
-            ref={atmosphereRef}
-            className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[4]
-
-            bg-[linear-gradient(180deg,rgba(3,12,7,0.12),transparent_38%,rgba(3,12,7,0.08))]
-          "
-          />
-
-                    {/* =================================================
-            PREMIUM LENS VIGNETTE
-            Very subtle edge falloff — no heavy black frame.
-          ================================================= */}
-
-          <div
-            className="
-              pointer-events-none
-              absolute inset-0
-              z-[5]
-              bg-[radial-gradient(ellipse_82%_74%_at_48%_44%,transparent_48%,rgba(0,0,0,0.08)_72%,rgba(0,0,0,0.30)_100%)]
-            "
-          />
-
-{/* =================================================
-            BOTTOM CINEMATIC DEPTH
-        ================================================= */}
-
-          <div
-            className="
-              pointer-events-none
-              absolute
-              inset-x-0
-              bottom-0
-              z-[4]
-              h-[24%]
-              bg-gradient-to-t
-              from-black/25
-              to-transparent
-            "
-          />
-
         </div>
 
-        {/* =====================================================
-          PACIANO CINEMATIC INTRO OVERLAY
+        {/* Very subtle overall cinematic tint */}
+        {/* <div className="absolute inset-0 bg-[#10160d]/[0.10]" /> */}
 
-          This sits ABOVE the landscape and BELOW the logo.
-          The dark doors open from the centre while the real
-          coloured Paciano logo splits above them.
-        ===================================================== */}
-
+        {/* Top darkness — only for navbar readability */}
         <div
-          ref={introOverlayRef}
           className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-[70]
-            overflow-hidden
+            absolute inset-x-0 top-0
+            h-[22%]
+            bg-gradient-to-b
+           from-[#030603]/45
+via-[#050905]/12
+            to-transparent
+            "
+        />
+
+        {/* Bottom cinematic fade
+      MUCH lighter than before */}
+        <div
+          className="
+    absolute inset-x-0 bottom-0
+    h-[18%]
+    bg-gradient-to-t
+   from-[#020603]/45
+via-[#020603]/10
+    to-transparent
+  "
+        />
+
+        {/* Very subtle left vignette */}
+        <div
+          className="
+      absolute inset-y-0 left-0
+      w-[12%]
+      bg-gradient-to-r
+      from-[#020603]/20
+      to-transparent
+    "
+        />
+
+        {/* Very subtle right vignette */}
+        <div
+          className="
+      absolute inset-y-0 right-0
+      w-[15%]
+      bg-gradient-to-l
+      from-[#020603]/15
+      to-transparent
+    "
+        />
+      </div>
+
+      {/* =========================================================
+    SOFT CENTER ATMOSPHERE
+    Keeps the hero image visible while gently separating
+    the central typography from the bright landscape.
+========================================================= */}
+      {/* <div
+        className="
+    pointer-events-none
+    absolute
+    inset-0
+    z-10
+
+    bg-[radial-gradient(ellipse_48%_38%_at_50%_50%,rgba(5,10,7,0.34)_0%,rgba(5,10,7,0.22)_32%,rgba(5,10,7,0.09)_55%,transparent_78%)]
+  "
+      /> */}
+
+      {/* =========================================================
+    SOFT CENTER ATMOSPHERE
+========================================================= */}
+      <div
+        className="
+    pointer-events-none
+    absolute
+    inset-0
+    z-10
+
+    bg-[radial-gradient(ellipse_44%_34%_at_50%_50%,rgba(8,12,9,0.08)_0%,rgba(8,12,9,0.045)_36%,rgba(8,12,9,0.015)_58%,transparent_76%)]
+  "
+      />
+
+      {/* =========================================================
+    RIGHT LEAF — MAIN FOREGROUND FRAME
+========================================================== */}
+
+      <div
+        className={`
+    pointer-events-none
+    absolute
+    inset-y-0
+    right-0
+    z-20
+
+    w-[42vw]
+    min-w-[480px]
+    max-w-[760px]
+
+    overflow-visible
+
+    transition-all
+    duration-[2200ms]
+    ease-[cubic-bezier(0.22,1,0.36,1)]
+
+    ${intro ? "translate-x-0 opacity-100" : "translate-x-[8%] opacity-0"}
+  `}
+      >
+        <img
+          src={leafImage}
+          alt=""
+          aria-hidden="true"
+          className={`
+      absolute
+      right-[1%]
+      top-[-8%]
+
+      h-[116%]
+      w-auto
+      max-w-none
+
+      object-contain
+      object-right-top
+
+      /* KEEP THE ORIGINAL LEAF COLOUR VISIBLE */
+      brightness-[0.78]
+      saturate-[0.95]
+      contrast-[1.04]
+      opacity-100
+
+      /* soft separation from the hero */
+      drop-shadow-[-18px_0_45px_rgba(0,0,0,0.28)]
+
+      transition-transform
+      duration-[16000ms]
+      ease-in-out
+
+      ${
+        camera
+          ? "translate-x-[0.15%] translate-y-[-0.15%] scale-[1.008]"
+          : "translate-x-0 translate-y-0 scale-100"
+      }
+    `}
+        />
+
+        {/* VERY LIGHT lower integration.
+      Do NOT make this dark — the leaf itself must remain visible. */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      inset-x-0
+      bottom-0
+      h-[18%]
+
+      bg-gradient-to-t
+      from-[#020603]/25
+      via-[#020603]/8
+      to-transparent
+    "
+        />
+      </div>
+      {/* =========================================================
+          LOGO
+      ========================================================== */}
+
+      {/* =========================================================
+    PACIANO BRAND MARK
+========================================================= */}
+
+      {/* <div
+        className={[
+          "absolute",
+          "left-1/2",
+          "top-[15%]",
+          "z-40",
+          "-translate-x-1/2",
+          "flex",
+          "items-center",
+          "justify-center",
+          "transition-all",
+          "duration-[1500ms]",
+          "ease-[cubic-bezier(0.22,1,0.36,1)]",
+          intro
+            ? "translate-y-0 scale-100 opacity-100"
+            : "translate-y-5 scale-[0.92] opacity-0",
+        ].join(" ")}
+      >
+        <img
+          src={logoImage}
+          alt="Paciano"
+          className="
+      h-auto
+      w-[190px]
+      object-contain
+
+      sm:w-[220px]
+      md:w-[250px]
+      lg:w-[128px]
+
+      brightness-[0.95]
+      saturate-[1.05]
+
+      drop-shadow-[0_8px_30px_rgba(0,0,0,0.25)]
+    "
+        />
+      </div> */}
+      {/* =========================================================
+    PACIANO CENTER BRAND MARK
+========================================================== */}
+
+      <div
+        className={[
+          "absolute",
+          "left-1/2",
+          "top-[13.5%]",
+          "z-40",
+          "-translate-x-1/2",
+          "flex",
+          "flex-col",
+          "items-center",
+          "justify-center",
+          "pointer-events-none",
+          "transition-all",
+          "duration-[1800ms]",
+          "ease-[cubic-bezier(0.22,1,0.36,1)]",
+          logoOpen ? "opacity-100" : "translate-y-6 opacity-0",
+        ].join(" ")}
+      >
+        <img
+          src={logoImage}
+          alt="Paciano"
+          className="
+      h-auto
+      w-[145px]
+      object-contain
+
+      sm:w-[160px]
+      md:w-[175px]
+      lg:w-[185px]
+
+      brightness-[0.98]
+      saturate-[1.02]
+    "
+          style={{
+            animation: logoOpen
+              ? "pacianoLogoReveal 1800ms cubic-bezier(0.22,1,0.36,1) both, pacianoLogoGlow 7s ease-in-out 2s infinite"
+              : "none",
+          }}
+        />
+
+        {/* very subtle luxury halo */}
+        <div
+          className="
+      pointer-events-none
+      absolute
+      -inset-8
+      -z-10
+      rounded-full
+      bg-[#a5d56d]/[0.035]
+      blur-3xl
+    "
+        />
+      </div>
+
+      {/* =========================================================
+          HERO CONTENT
+      ========================================================== */}
+
+      <div
+        className={`
+          relative
+          z-30
+
+          flex
+          h-full
+          items-center
+          justify-center
+
+          px-5
+          pb-12
+          pt-20
+
+          sm:px-8
+          md:px-12
+          lg:px-16
+
+          transition-all
+          duration-[1800ms]
+          ease-out
+
+          ${intro ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+        `}
+      >
+        <div
+          className="
+            flex
+            w-full
+            max-w-[1100px]
+            flex-col
+            items-center
+            text-center
+
+            mt-[90px]
+sm:mt-[85px]
+md:mt-[80px]
+lg:mt-[75px]
           "
         >
-          {/* -----------------------------------------------------
-             DARK BOTANICAL OPENING
+          {/* =====================================================
+              EYEBROW
+          ====================================================== */}
 
-             No full-screen black background is placed underneath the
-             doors. The doors themselves cover the landscape at the
-             beginning and reveal it naturally from the centre.
-          ----------------------------------------------------- */}
-
-          {/* Left botanical silhouette */}
-          <svg
+          <div
             className="
-              absolute
-              -left-[9vw]
-              -top-[14vh]
-              z-[5]
-              h-[76vh]
-              w-[40vw]
-              min-w-[320px]
-              max-w-[570px]
-              opacity-[0.34]
-            "
-            viewBox="0 0 520 820"
-            fill="none"
-            aria-hidden="true"
+    mb-5
+    flex
+    w-full
+    max-w-[470px]
+    items-center
+    justify-center
+    gap-4
+  "
+            style={{
+              animation: intro
+                ? "pacianoEyebrow 1400ms cubic-bezier(0.22,1,0.36,1) 900ms both"
+                : "none",
+            }}
           >
-            <defs>
-              <linearGradient id="pacianoLeafLFinal" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#5d6b4f" stopOpacity="0.78" />
-                <stop offset="0.48" stopColor="#2d4028" stopOpacity="0.62" />
-                <stop offset="1" stopColor="#111b13" stopOpacity="0.12" />
-              </linearGradient>
-            </defs>
+            <span className="h-px flex-1 bg-[#a6bf82]/55" />
 
-            <path
-              d="M150 860C171 670 186 432 319 116"
-              stroke="#7a876d"
-              strokeOpacity="0.22"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-
-            <path
-              d="M196 548C94 516 36 429 26 302C129 331 203 414 196 548Z"
-              fill="url(#pacianoLeafLFinal)"
-            />
-
-            <path
-              d="M245 450C342 398 405 306 432 191C327 219 262 307 245 450Z"
-              fill="url(#pacianoLeafLFinal)"
-            />
-
-            <path
-              d="M158 702C74 667 21 595 12 489C101 510 166 589 158 702Z"
-              fill="url(#pacianoLeafLFinal)"
-            />
-
-            <path
-              d="M277 316C337 284 379 229 398 160C333 170 288 218 277 316Z"
-              fill="url(#pacianoLeafLFinal)"
-            />
-          </svg>
-
-          {/* Top-right botanical silhouette */}
-          <svg
-            className="
-              absolute
-              -right-[9vw]
-              -top-[18vh]
-              z-[5]
-              h-[61vh]
-              w-[39vw]
-              min-w-[320px]
-              max-w-[580px]
-              rotate-[4deg]
-              opacity-[0.36]
-            "
-            viewBox="0 0 560 690"
-            fill="none"
-            aria-hidden="true"
-          >
-            <defs>
-              <linearGradient id="pacianoLeafRFinal" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0" stopColor="#617253" stopOpacity="0.82" />
-                <stop offset="0.48" stopColor="#31462b" stopOpacity="0.64" />
-                <stop offset="1" stopColor="#132017" stopOpacity="0.12" />
-              </linearGradient>
-            </defs>
-
-            <path
-              d="M652 -20C519 44 417 152 318 314"
-              stroke="#7b896f"
-              strokeOpacity="0.20"
-              strokeWidth="3"
-              strokeLinecap="round"
-            />
-
-            <path
-              d="M518 123C394 134 316 202 252 304C363 299 450 243 518 123Z"
-              fill="url(#pacianoLeafRFinal)"
-            />
-
-            <path
-              d="M431 195C354 125 275 105 171 117C237 210 322 251 431 195Z"
-              fill="url(#pacianoLeafRFinal)"
-            />
-
-            <path
-              d="M351 295C291 250 228 238 142 257C196 326 266 350 351 295Z"
-              fill="url(#pacianoLeafRFinal)"
-            />
-          </svg>
-
-          {/* Hairline at the right edge */}
-          <div
-            className="
-              absolute
-              right-[3.1%]
-              top-0
-              z-[8]
-              h-full
-              w-px
-              bg-white/25
-            "
-            aria-hidden="true"
-          />
-
-          {/* -----------------------------------------------------
-             TWO DARK DOORS
-
-             At t=0 they meet at the centre and fill the whole frame.
-             As they move apart, the actual landscape underneath is
-             revealed through the middle.
-          ----------------------------------------------------- */}
-
-          <div
-            ref={introLeftRef}
-            className="
-              absolute
-              inset-y-0
-              left-0
-              z-[7]
-              w-1/2
-              bg-[linear-gradient(90deg,#020604_0%,#020604_82%,rgba(2,6,4,0.96)_91%,rgba(2,6,4,0.28)_99%,transparent_100%)]
-              will-change-transform
-            "
-          />
-
-          <div
-            ref={introRightRef}
-            className="
-              absolute
-              inset-y-0
-              right-0
-              z-[7]
-              w-1/2
-              bg-[linear-gradient(270deg,#020604_0%,#020604_82%,rgba(2,6,4,0.96)_91%,rgba(2,6,4,0.28)_99%,transparent_100%)]
-              will-change-transform
-            "
-          />
-
-          {/* Subtle centre haze: atmosphere, not a flat glow */}
-          <div
-            className="
-              absolute
-              left-1/2
-              top-1/2
-              z-[4]
-              h-[58%]
-              w-[34%]
-              -translate-x-1/2
-              -translate-y-1/2
-              rounded-full
-              bg-[radial-gradient(ellipse_at_center,rgba(61,89,51,0.15)_0%,rgba(25,42,28,0.07)_34%,transparent_74%)]
-              blur-[24px]
-            "
-            aria-hidden="true"
-          />
-
-          {/* -----------------------------------------------------
-             A PLACE TO BELONG
-          ----------------------------------------------------- */}
-
-          <div
-            ref={introCardRef}
-            className="
-              absolute
-              left-1/2
-              top-[40%]
-              z-[12]
-              -translate-x-1/2
-              -translate-y-1/2
-              text-center
-              will-change-transform
-            "
-          >
-            <p
+            <span
               className="
                 whitespace-nowrap
-                font-cormorant
-                text-[13px]
+
+                text-[8px]
                 font-medium
                 uppercase
-                tracking-[0.54em]
-                text-white/82
-                sm:text-[15px]
+                tracking-[0.38em]
+
+                text-[#f1eadc]/90
+
+                sm:text-[9px]
+                md:text-[10px]
               "
             >
-              A PLACE TO BELONG
-            </p>
-
-            <span
-              className="
-                mx-auto
-                mt-4
-                block
-                h-px
-                w-[70px]
-                bg-white/55
-              "
-            />
-          </div>
-
-          {/* -----------------------------------------------------
-             THIN WARM VERTICAL LIGHT
-             Static in position; only its intensity breathes.
-          ----------------------------------------------------- */}
-
-          <div
-            ref={introBeamRef}
-            className="
-              absolute
-              left-1/2
-              top-0
-              z-[11]
-              h-[55%]
-              w-[2px]
-              -translate-x-1/2
-              origin-top
-              bg-[linear-gradient(180deg,rgba(255,232,170,0.02)_0%,rgba(255,228,155,0.28)_16%,rgba(255,218,135,0.82)_58%,rgba(255,203,112,0.14)_100%)]
-              opacity-0
-              will-change-transform
-            "
-            aria-hidden="true"
-          />
-
-          <div
-            className="
-              absolute
-              left-1/2
-              top-[18%]
-              z-[10]
-              h-[38%]
-              w-[90px]
-              -translate-x-1/2
-              bg-[radial-gradient(ellipse_at_center,rgba(255,220,151,0.11)_0%,rgba(255,220,151,0.04)_34%,transparent_72%)]
-              blur-[18px]
-            "
-            aria-hidden="true"
-          />
-        </div>
-
-        {/* =====================================================
-          HERO CONTENT
-
-          Starts invisible.
-
-          Timeline controls the reveal.
-      ===================================================== */}
-
-        <div
-          ref={heroContentRef}
-          className="
-          absolute
-          left-[5%]
-          top-1/2
-          z-20
-
-          w-[500px]
-
-          -translate-y-1/2
-
-          opacity-0
-
-          will-change-transform
-
-          lg:left-[6%]
-          xl:left-[7%]
-          2xl:left-[8%]
-
-          max-sm:left-[7%]
-          max-sm:right-[7%]
-          max-sm:w-auto
-        "
-        >
-          {/* EYEBROW */}
-
-          <div
-            className="
-            mb-5
-            flex
-            items-center
-            gap-3
-          "
-          >
-            <span
-              className="
-              h-px
-              w-[42px]
-              bg-[#9dbb47]
-            "
-            />
-
-            <span
-              className="
-              font-manrope
-              text-[10px]
-              font-medium
-              uppercase
-              tracking-[0.22em]
-              text-[#9dbb47]
-            "
-            >
-              Retreat. Reconnect. Rejuvenate.
+              A SANCTUARY IN THE HILLS
             </span>
+
+            <span className="h-px flex-1 bg-[#a6bf82]/55" />
           </div>
 
-          {/* TITLE */}
+          {/* =====================================================
+              MAIN HEADING
+          ====================================================== */}
+
+          {/* <h1 
+            className="
+              font-serif
+              font-normal
+              leading-[0.88]
+
+              tracking-[-0.045em]
+
+              text-[47px]
+              text-[#f6f0e5]
+
+              sm:text-[62px]
+              md:text-[78px]
+              lg:text-[96px]
+              xl:text-[108px]
+            "
+          >
+            {/* First line
+
+            <span
+              className="block"
+              style={{
+                animation: intro
+                  ? "pacianoHeading 1500ms cubic-bezier(0.22,1,0.36,1) 1200ms both"
+                  : "none",
+              }}
+            >
+              Where Nature
+            </span> */}
+
+          {/* Second line 
+
+            <span
+              className="
+    mt-1
+    block
+    font-serif
+    italic
+    text-[#a5d56d]
+  "
+              style={{
+                animation: intro
+                  ? "pacianoHeading 1700ms cubic-bezier(0.22,1,0.36,1) 1450ms both"
+                  : "none",
+              }}
+            >
+              Welcomes You.
+            </span>
+          </h1>*/}
 
           <h1
             className="
-            font-cormorant
-            text-[58px]
-            font-medium
-            leading-[0.88]
-            tracking-[-0.025em]
-            text-[#f7f4eb]
+                text-center
+                font-['Cormorant_Garamond']
+                font-medium
+                leading-[0.88]
+                tracking-[-0.025em]
 
-            sm:text-[64px]
-            lg:text-[70px]
-            xl:text-[76px]
+                text-[44px]
+                sm:text-[52px]
+                md:text-[60px]
+                lg:text-[68px]
+                xl:text-[76px]
 
-            max-sm:text-[47px]
-          "
+                max-w-[760px]
+                mx-auto
+            "
           >
-            <span className="block">Where Nature</span>
+            <span
+              className="block text-[#f5efe5]"
+              style={{
+                animation: intro
+                  ? "pacianoHeading 1500ms cubic-bezier(0.22,1,0.36,1) 1200ms both"
+                  : "none",
+              }}
+            >
+              Where Nature
+            </span>
 
             <span
               className="
-              mt-1
-              block
-              italic
-              text-[#9dbb47]
-            "
+      block
+      mt-1
+      italic
+      font-normal
+      text-[#a5d56d]
+    "
+              style={{
+                animation: intro
+                  ? "pacianoHeading 1700ms cubic-bezier(0.22,1,0.36,1) 1450ms both"
+                  : "none",
+              }}
             >
-              Welcomes You
+              Welcomes You.
             </span>
           </h1>
 
-          {/* DECORATIVE LINE */}
+          {/* =====================================================
+              SMALL DIAMOND DIVIDER
+          ====================================================== */}
 
+          {/* <div
+            className={`
+              my-6
+
+              flex
+              w-full
+              max-w-[330px]
+              items-center
+              gap-4
+
+              transition-all
+              delay-[700ms]
+              duration-[1200ms]
+
+              ${intro ? "scale-100 opacity-100" : "scale-[0.8] opacity-0"}
+            `}
+          > */}
           <div
             className="
-            mt-8
-            flex
-            items-center
-            gap-3
-          "
+    my-6
+    flex
+    w-full
+    max-w-[330px]
+    items-center
+    gap-4
+  "
+            style={{
+              animation: intro
+                ? "pacianoDivider 1300ms cubic-bezier(0.22,1,0.36,1) 2100ms both"
+                : "none",
+            }}
           >
-            <span
-              className="
-              h-px
-              w-[48px]
-              bg-[#9dbb47]/80
-            "
-            />
+            <span className="h-px flex-1 bg-[#9ab574]/45" />
 
+            {/* <span
+              className="
+                text-[11px]
+                text-[#a5d56d]
+              "
+            >  ◆
+            </span>*/}
             <span
               className="
-              h-[6px]
-              w-[6px]
-              rotate-45
-              bg-[#9dbb47]
-            "
-            />
+    text-[10px]
+    text-[#a5d56d]
+  "
+              style={{
+                animation: intro
+                  ? "pacianoDiamond 4s ease-in-out 3.2s infinite"
+                  : "none",
+              }}
+            >
+              ◆
+            </span>
 
-            <span
-              className="
-              h-px
-              w-[48px]
-              bg-[#9dbb47]/30
-            "
-            />
+            <span className="h-px flex-1 bg-[#9ab574]/45" />
           </div>
 
-          {/* DESCRIPTION */}
+          {/* =====================================================
+              DESCRIPTION
+          ====================================================== */}
 
           <p
             className="
-            mt-7
-            max-w-[420px]
+    relative
+    z-10
 
-            font-manrope
-            text-[14px]
-            font-normal
-            leading-[1.7]
-            text-white/80
+    max-w-[600px]
 
-            sm:text-[15px]
-          "
+    text-[12px]
+    leading-[1.75]
+    font-light
+    tracking-[0.01em]
+
+    text-white/95
+
+    sm:text-[13px]
+    md:text-[14px]
+
+    drop-shadow-[0_2px_10px_rgba(0,0,0,0.65)]
+  "
+            style={{
+              animation: intro
+                ? "pacianoCopy 1300ms cubic-bezier(0.22,1,0.36,1) 2400ms both"
+                : "none",
+            }}
           >
-            A quiet escape beside the river, surrounded by rolling hills, lush
-            tea gardens and the gentle rhythm of nature.
+            Rivers, forests, slow mornings and starlit nights —
+            <br className="hidden sm:block" />
+            at Paciano, every moment brings you closer to what truly matters.
           </p>
-
-          {/* ACTIONS */}
+          {/* =====================================================
+              CTA
+          ====================================================== */}
 
           <div
-            className="
-            mt-8
-            flex
-            items-center
-            gap-8
-
-            max-sm:flex-col
-            max-sm:items-start
-            max-sm:gap-5
-          "
+            style={{
+              animation: intro
+                ? "pacianoCTA 1400ms cubic-bezier(0.22,1,0.36,1) 2800ms both"
+                : "none",
+            }}
           >
-            {/* EXPLORE */}
-
-            <a
-              href="#experiences"
-              className="
-              group
-              flex
-              items-center
-              gap-3
-
-              font-manrope
-              text-[11px]
-              font-semibold
-              uppercase
-              tracking-[0.08em]
-              text-white
-            "
-            >
-              <span
-                className="
-                flex
-                h-[46px]
-                w-[46px]
-                shrink-0
-                items-center
-                justify-center
-
-                rounded-full
-
-                border
-                border-white/40
-
-                text-white
-
-                transition-all
-                duration-500
-
-                group-hover:border-[#8faa42]
-                group-hover:bg-[#8faa42]
-                group-hover:text-[#102619]
-              "
-              >
-                <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
-                  <path
-                    d="M5 12H18"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                  />
-
-                  <path
-                    d="M13 7L18 12L13 17"
-                    stroke="currentColor"
-                    strokeWidth="1.5"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-
-              <span>Explore the Experience</span>
-            </a>
-
-            {/* SOUND */}
-
             <button
               type="button"
-              onClick={toggleAudio}
+              //   className="
+              //     group
+
+              //     mt-7
+
+              //     flex
+              //     h-[55px]
+              //     min-w-[225px]
+              //     items-center
+              //     justify-between
+
+              //     rounded-full
+
+              //     border
+              //     border-white/35
+
+              //     bg-[#11180f]/35
+
+              //     px-7
+
+              //     text-[10px]
+              //     font-medium
+              //     uppercase
+              //     tracking-[0.28em]
+              //     text-white
+
+              //     backdrop-blur-md
+
+              //     shadow-[0_12px_45px_rgba(0,0,0,0.22)]
+
+              //     transition-all
+              //     duration-500
+
+              //     hover:border-[#b5d582]/70
+              //     hover:bg-[#1b2817]/65
+              //     hover:shadow-[0_18px_60px_rgba(0,0,0,0.38)]
+
+              //     sm:h-[58px]
+              //     sm:min-w-[250px]
+              //     sm:px-8
+              //   "
               className="
-              group
-              flex
-              items-center
-              gap-3
-              text-left
-            "
+  group
+  relative
+  mt-7
+
+  flex
+  h-[54px]
+  min-w-[220px]
+  items-center
+  justify-between
+
+  overflow-hidden
+  rounded-full
+
+  border
+  border-white/55
+
+  bg-[#182017]/60
+
+  px-7
+
+  text-[10px]
+  font-medium
+  uppercase
+  tracking-[0.28em]
+  text-white
+
+  backdrop-blur-md
+
+  shadow-[0_10px_35px_rgba(0,0,0,0.28)]
+
+  transition-all
+  duration-500
+
+  hover:border-[#b5d582]/80
+  hover:bg-[#1b2817]/75
+  hover:shadow-[0_15px_45px_rgba(0,0,0,0.38)]
+
+  sm:h-[57px]
+  sm:min-w-[235px]
+  sm:px-8
+"
             >
-              {/* BARS */}
+              <span
+                className="
+    pointer-events-none
+    absolute
+    inset-y-0
+    left-0
+    w-[35%]
+    -skew-x-12
+       bg-white/[0.055]
+  "
+                style={{
+                  animation: intro
+                    ? "pacianoShimmer 6s ease-in-out 4s infinite"
+                    : "none",
+                }}
+              />
+              <span>DISCOVER PACIANO</span>
 
               <span
                 className="
-                flex
-                h-[32px]
-                items-center
-                gap-[3px]
-              "
-              >
-                {[12, 22, 30, 18, 27, 14, 22].map((height, index) => (
-                  <span
-                    key={index}
-                    ref={(el) => {
-                      if (el) {
-                        soundBarsRef.current[index] = el;
-                      }
-                    }}
-                    className="
-                      w-[2px]
-                      rounded-full
-                      bg-[#9dbb47]
-                      origin-center
-                      will-change-transform
-                    "
-                    style={{
-                      height: `${height}px`,
-                    }}
-                  />
-                ))}
-              </span>
+                  text-lg
+                  font-light
 
-              {/* LABEL */}
+                  transition-transform
+                  duration-500
 
-              <span>
-                <span
-                  className="
-                  block
-                  font-manrope
-                  text-[11px]
-                  font-semibold
-                  uppercase
-                  tracking-[0.08em]
-                  text-white
+                  group-hover:translate-x-2
                 "
-                >
-                  Sounds of Nature
-                </span>
-
-                <span
-                  className="
-                  mt-1
-                  block
-                  font-manrope
-                  text-[9px]
-                  tracking-[0.03em]
-                  text-white/60
-                "
-                >
-                  River · Birds · Wind
-                </span>
-              </span>
-
-              {/* CONTROL */}
-
-              <span
-                className="
-                ml-1
-                flex
-                h-[34px]
-                w-[34px]
-                shrink-0
-                items-center
-                justify-center
-
-                rounded-full
-
-                border
-                border-white/30
-
-                text-white
-
-                transition-all
-                duration-500
-
-                group-hover:border-[#9dbb47]
-              "
               >
-                {isPlaying ? (
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <rect x="6" y="5" width="4" height="14" />
-
-                    <rect x="14" y="5" width="4" height="14" />
-                  </svg>
-                ) : (
-                  <svg
-                    width="12"
-                    height="12"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                  >
-                    <path d="M8 5L19 12L8 19V5Z" />
-                  </svg>
-                )}
+                →
               </span>
             </button>
           </div>
         </div>
+      </div>
 
-       
-{/* =====================================================
-  CINEMATIC PACIANO LOGO
-===================================================== */}
+      {/* =========================================================
+          RIGHT STORY
+      ========================================================== */}
 
-<div
-className="
-  pointer-events-none
-  absolute
-  inset-0
-  z-[80]
-  flex
-  items-center
-  justify-center
-  overflow-hidden
-"
->
-<div
-  ref={logoStageRef}
-  className="
-    relative
-    flex
-    h-[280px]
-    w-[420px]
-    items-center
-    justify-center
-    will-change-transform
-  "
->
-
-  {/* =================================================
-      SOFT GREEN ATMOSPHERE
-  ================================================= */}
-
-  <div
-    ref={logoGlowRef}
-    className="
-      pointer-events-none
-      absolute
-      left-1/2
-      top-1/2
-      h-[260px]
-      w-[260px]
-      -translate-x-1/2
-      -translate-y-1/2
-      rounded-full
-      bg-[radial-gradient(
-        circle,
-        rgba(118,190,83,0.28),
-        rgba(60,110,55,0.10)_38%,
-        transparent_72%
-      )]
-      opacity-0
-      blur-3xl
-    "
-  />
-
-  {/* =================================================
-      LEFT HALF OF ACTUAL LOGO
-  ================================================= */}
-
-  <div
-    ref={logoLeftRef}
-    className="
-      absolute
-      inset-0
-      flex
-      items-center
-      justify-center
-      overflow-hidden
-      will-change-transform
-    "
-    style={{
-      clipPath: "inset(0 50% 0 0)",
-    }}
-  >
-    <img
-      src={pacianoLogo}
-      alt="Paciano"
-      draggable={false}
-      className="
-        absolute
-        left-1/2
-        top-1/2
-        w-[225px]
-        max-w-none
-        -translate-x-1/2
-        -translate-y-1/2
-        object-contain
-      "
-    />
-  </div>
-
-  {/* =================================================
-      RIGHT HALF OF ACTUAL LOGO
-  ================================================= */}
-
-  <div
-    ref={logoRightRef}
-    className="
-      absolute
-      inset-0
-      flex
-      items-center
-      justify-center
-      overflow-hidden
-      will-change-transform
-    "
-    style={{
-      clipPath: "inset(0 0 0 50%)",
-    }}
-  >
-    <img
-      src={pacianoLogo}
-      alt="Paciano"
-      draggable={false}
-      className="
-        absolute
-        left-1/2
-        top-1/2
-        w-[225px]
-        max-w-none
-        -translate-x-1/2
-        -translate-y-1/2
-        object-contain
-      "
-    />
-  </div>
-
-</div>
-</div>
-
-        {/* =====================================================
-          AUDIO
-      ===================================================== */}
-
-        <audio
-          ref={audioRef}
-          src={pacianoMorningAudio}
-          autoPlay
-          loop
-          preload="auto"
-          playsInline
-        />
-
-        {/* =====================================================
-          CINEMATIC HERO → ABOUT TRANSITION
-      ===================================================== */}
-
-        <div
-          className="
-          pointer-events-none
+      <div
+        className="
           absolute
-          bottom-[-1px]
-          left-0
-          z-[30]
-         h-[115px]
-          w-full
+          bottom-[105px]
+          right-[4.5vw]
+          z-40
+
+          hidden
+          flex-col
+          items-center
+
+          md:flex
         "
-          aria-hidden="true"
+      >
+        <button
+          type="button"
+          className="
+            group
+
+            flex
+            h-[72px]
+            w-[72px]
+            items-center
+            justify-center
+
+            rounded-full
+
+            border
+            border-white/25
+
+            bg-[#11190f]/65
+
+            shadow-[0_15px_50px_rgba(0,0,0,0.4)]
+
+            backdrop-blur-md
+
+            transition-all
+            duration-700
+
+            hover:scale-110
+            hover:border-[#b5d582]/60
+            hover:bg-[#1b2917]/80
+          "
         >
-          {/* -----------------------------------------------
-            SOFT ATMOSPHERIC FADE
-
-            This makes the photograph disappear into
-            the cream rather than ending abruptly.
-        ----------------------------------------------- */}
-
-          <div
+          <span
             className="
-            absolute
-            inset-x-[-5%]
-            bottom-0
-            h-[105px]
+              ml-1
+              text-[16px]
+              text-white
 
-            bg-[radial-gradient(ellipse_at_50%_100%,rgba(236,230,216,0.95)_0%,rgba(236,230,216,0.72)_38%,rgba(236,230,216,0.30)_62%,transparent_82%)]
+              transition-transform
+              duration-500
 
-            blur-[14px]
-          "
-          />
-
-          {/* -----------------------------------------------
-            SINGLE ORGANIC CONTOUR
-
-            NOT a wave.
-            NOT repeated.
-            Just one gentle flowing edge.
-        ----------------------------------------------- */}
-
-          <svg
-            className="
-            absolute
-            bottom-0
-            left-0
-            h-[120px]
-            w-full
-          "
-            viewBox="0 0 1600 220"
-            preserveAspectRatio="none"
+              group-hover:scale-110
+            "
           >
-            <path
-              d="
-    M0,125
+            ▶
+          </span>
+        </button>
 
-    C170,113
-     285,110
-     405,118
+        <p
+          className="
+            mt-4
 
-    C530,127
-     625,139
-     735,140
+            text-center
+            text-[8px]
+            uppercase
+            leading-[1.8]
+            tracking-[0.30em]
+            text-white/90
+          "
+        >
+          WATCH
+          <br />
+          OUR STORY
+        </p>
+      </div>
 
-    C845,141
-     920,122
-     1025,112
+      {/* =========================================================
+          CENTER SCROLL
+      ========================================================== */}
 
-    C1140,101
-     1250,107
-     1365,119
+      <div
+        className="
+          absolute
+          bottom-7
+          left-1/2
+          z-40
 
-    C1465,130
-     1535,121
-     1600,111
+          hidden
+          -translate-x-1/2
+          flex-col
+          items-center
 
-    L1600,220
-    L0,220
-    Z
-  "
-              fill="#ece6d8"
-            />
-          </svg>
-        </div>
-      </section>
-    </>
+          md:flex
+        "
+      >
+        <span
+          className="
+            mb-2
+            text-xs
+            text-[#a5d56d]
+
+            animate-bounce
+          "
+        >
+          ◆
+        </span>
+
+        <p
+          className="
+            text-center
+            text-[8px]
+            uppercase
+            leading-[1.8]
+            tracking-[0.30em]
+            text-white/80
+          "
+        >
+          SCROLL
+          <br />
+          TO EXPLORE
+        </p>
+      </div>
+
+      {/* =========================================================
+          MOBILE SCROLL
+      ========================================================== */}
+
+      <div
+        className="
+          absolute
+          bottom-6
+          left-1/2
+          z-40
+
+          flex
+          -translate-x-1/2
+          flex-col
+          items-center
+
+          md:hidden
+        "
+      >
+        <span className="mb-2 text-xs text-[#a5d56d]">◆</span>
+
+        <span
+          className="
+            whitespace-nowrap
+            text-[8px]
+            uppercase
+            tracking-[0.30em]
+            text-white/80
+          "
+        >
+          Scroll to explore
+        </span>
+      </div>
+    </section>
   );
 }

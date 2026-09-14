@@ -272,7 +272,7 @@ export default function Accommodation() {
   useEffect(() => {
     const signature = landscapeSignatureRef.current;
     if (!signature) return;
-  
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setSignatureVisible(entry.isIntersecting);
@@ -282,9 +282,9 @@ export default function Accommodation() {
         rootMargin: "0px 0px -12% 0px",
       },
     );
-  
+
     observer.observe(signature);
-  
+
     return () => observer.disconnect();
   }, []);
 
@@ -295,7 +295,7 @@ export default function Accommodation() {
   useEffect(() => {
     const section = sectionRef.current;
     if (!section) return;
-  
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         setVisible(entry.isIntersecting);
@@ -305,9 +305,9 @@ export default function Accommodation() {
         rootMargin: "0px 0px -12% 0px",
       },
     );
-  
+
     observer.observe(section);
-  
+
     return () => observer.disconnect();
   }, []);
   // ============================================================
@@ -509,7 +509,7 @@ export default function Accommodation() {
 
       {/* Intro */}
       <div className="relative z-10 mx-auto max-w-[1180px] text-center">
-      <div>
+        <div>
           {/* Small botanical sprout above OUR STAYS */}
           <div className="paciano-stay-step paciano-stay-step-1 mb-3 flex justify-center">
             {/* <svg
@@ -630,7 +630,7 @@ export default function Accommodation() {
           {/* MAIN HEADING */}
 
           <h2
-  className="
+            className="
   paciano-reveal
     paciano-delay-2
     mx-auto
@@ -645,8 +645,7 @@ export default function Accommodation() {
     sm:text-[52px]
     lg:text-[60px]
   "
->
-          
+          >
             Where Every Stay,
             <br />
             <span className="italic text-[#789541]">
@@ -657,7 +656,7 @@ export default function Accommodation() {
           {/* DESCRIPTION */}
 
           <p
-  className="
+            className="
   paciano-stay-step
   paciano-stay-step-4
     mx-auto
@@ -672,7 +671,7 @@ export default function Accommodation() {
     sm:text-[13px]
     lg:text-[14px]
   "
->
+          >
             Wake to misty mountains, unwind beside the river, and let nature set
             the pace. Our stays are crafted for quiet comfort, generous space
             and a deeper sense of belonging.
@@ -684,8 +683,8 @@ export default function Accommodation() {
                 REFERENCE-MATCHED HORIZONTAL CAPSULE
             ====================================================== */}
 
-            <div
-            className={`
+        <div
+          className={`
               paciano-stay-step
               paciano-stay-step-5
               relative
@@ -702,7 +701,7 @@ export default function Accommodation() {
                   : "opacity-0 translate-y-8"
               }
             `}
-            >
+        >
           {/* ====================================================
                   CAPSULE
                   SAME WIDTH AS IMAGE BELOW
@@ -743,8 +742,8 @@ export default function Accommodation() {
                 Reference-matched horizontal capsule
             ================================================== */}
 
-<div
-  className="
+            <div
+              className="
     relative
     z-20
     flex
@@ -754,7 +753,7 @@ export default function Accommodation() {
     overflow-visible
     pl-[27px]
   "
->
+            >
               {/* Four stay navigation items */}
               <div className="grid min-w-0 flex-1 grid-cols-[1fr_1fr_1fr_1.08fr]">
                 {stays.map((item, index) => {
@@ -769,8 +768,8 @@ export default function Accommodation() {
 
                   return (
                     <div
-    key={item.id}
-    className={`
+                      key={item.id}
+                      className={`
       relative
       min-w-0
       transition-all
@@ -783,12 +782,12 @@ export default function Accommodation() {
       }
      
     `}
-    style={{
-      transitionDelay: visible
-        ? `${180 + index * 100}ms`
-        : "0ms",
-    }}
-  >
+                      style={{
+                        transitionDelay: visible
+                          ? `${180 + index * 100}ms`
+                          : "0ms",
+                      }}
+                    >
                       <button
                         type="button"
                         onClick={() => changeStay(index)}
@@ -820,9 +819,9 @@ export default function Accommodation() {
                            
                           `}
                         >
-                        {/* Icon */}
-                        <span
-                          className={`
+                          {/* Icon */}
+                          <span
+                            className={`
                             relative
                             z-10
                             flex
@@ -842,10 +841,10 @@ export default function Accommodation() {
                                 : "border-[#C6C7BC]/80 bg-[#F8F5ED]/55 text-[#7E867A] group-hover:border-[#9DA77F]/80 group-hover:bg-[#E9EAD9] group-hover:text-[#657547] group-hover:shadow-[0_5px_18px_rgba(92,105,67,0.10)]"
                             }
                           `}
-                        >
-                          <span
-                            aria-hidden="true"
-                            className={`
+                          >
+                            <span
+                              aria-hidden="true"
+                              className={`
                               pointer-events-none
                               absolute
                               inset-[5px]
@@ -859,123 +858,123 @@ export default function Accommodation() {
                                   : "border-[#B8BCAD]/30 group-hover:border-[#9BA77A]/45"
                               }
                             `}
-                          />
+                            />
 
-                          {index === 0 && (
-                            <svg
-                              viewBox="0 0 44 34"
-                              className="relative z-10 h-[27px] w-[34px]"
-                              fill="none"
-                            >
-                              <path
-                                d="M3 10 C9 5 15 5 21 10 C27 15 33 15 41 9"
-                                stroke="currentColor"
-                                strokeWidth="1.15"
-                              />
-                              <path
-                                d="M3 16 C9 11 15 11 21 16 C27 21 34 21 41 15"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                                opacity=".68"
-                              />
-                              <path
-                                d="M7 23 C13 19 19 19 24 23 C29 27 35 27 39 24"
-                                stroke="currentColor"
-                                strokeWidth=".75"
-                                opacity=".42"
-                              />
-                            </svg>
-                          )}
+                            {index === 0 && (
+                              <svg
+                                viewBox="0 0 44 34"
+                                className="relative z-10 h-[27px] w-[34px]"
+                                fill="none"
+                              >
+                                <path
+                                  d="M3 10 C9 5 15 5 21 10 C27 15 33 15 41 9"
+                                  stroke="currentColor"
+                                  strokeWidth="1.15"
+                                />
+                                <path
+                                  d="M3 16 C9 11 15 11 21 16 C27 21 34 21 41 15"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                  opacity=".68"
+                                />
+                                <path
+                                  d="M7 23 C13 19 19 19 24 23 C29 27 35 27 39 24"
+                                  stroke="currentColor"
+                                  strokeWidth=".75"
+                                  opacity=".42"
+                                />
+                              </svg>
+                            )}
 
-                          {index === 1 && (
-                            <svg
-                              viewBox="0 0 44 34"
-                              className="relative z-10 h-[29px] w-[31px] origin-bottom transition-transform duration-700 group-hover:-rotate-3"
-                              fill="none"
-                            >
-                              <path
-                                d="M21 29 C21 22 21 15 24 5"
-                                stroke="currentColor"
-                                strokeWidth="1.1"
-                              />
-                              <path
-                                d="M22 20 C16 19 12 15 12 10 C18 10 22 13 22 20Z"
-                                stroke="currentColor"
-                                strokeWidth="1.1"
-                              />
-                              <path
-                                d="M23 14 C24 9 28 6 33 7 C31 12 28 15 23 15Z"
-                                stroke="currentColor"
-                                strokeWidth="1.1"
-                                opacity=".75"
-                              />
-                            </svg>
-                          )}
+                            {index === 1 && (
+                              <svg
+                                viewBox="0 0 44 34"
+                                className="relative z-10 h-[29px] w-[31px] origin-bottom transition-transform duration-700 group-hover:-rotate-3"
+                                fill="none"
+                              >
+                                <path
+                                  d="M21 29 C21 22 21 15 24 5"
+                                  stroke="currentColor"
+                                  strokeWidth="1.1"
+                                />
+                                <path
+                                  d="M22 20 C16 19 12 15 12 10 C18 10 22 13 22 20Z"
+                                  stroke="currentColor"
+                                  strokeWidth="1.1"
+                                />
+                                <path
+                                  d="M23 14 C24 9 28 6 33 7 C31 12 28 15 23 15Z"
+                                  stroke="currentColor"
+                                  strokeWidth="1.1"
+                                  opacity=".75"
+                                />
+                              </svg>
+                            )}
 
-                          {index === 2 && (
-                            <svg
-                              viewBox="0 0 44 34"
-                              className="relative z-10 h-[28px] w-[35px] transition-transform duration-700 group-hover:-translate-y-0.5"
-                              fill="none"
-                            >
-                              <path
-                                d="M2 27 L13 14 L19 21 L28 7 L42 27"
-                                stroke="currentColor"
-                                strokeWidth="1.1"
-                              />
-                              <path
-                                d="M20 27 L28 17 L36 27"
-                                stroke="currentColor"
-                                strokeWidth=".8"
-                                opacity=".42"
-                              />
-                              <path
-                                d="M2 28 H42"
-                                stroke="currentColor"
-                                strokeWidth=".8"
-                                opacity=".45"
-                              />
-                            </svg>
-                          )}
+                            {index === 2 && (
+                              <svg
+                                viewBox="0 0 44 34"
+                                className="relative z-10 h-[28px] w-[35px] transition-transform duration-700 group-hover:-translate-y-0.5"
+                                fill="none"
+                              >
+                                <path
+                                  d="M2 27 L13 14 L19 21 L28 7 L42 27"
+                                  stroke="currentColor"
+                                  strokeWidth="1.1"
+                                />
+                                <path
+                                  d="M20 27 L28 17 L36 27"
+                                  stroke="currentColor"
+                                  strokeWidth=".8"
+                                  opacity=".42"
+                                />
+                                <path
+                                  d="M2 28 H42"
+                                  stroke="currentColor"
+                                  strokeWidth=".8"
+                                  opacity=".45"
+                                />
+                              </svg>
+                            )}
 
-                          {index === 3 && (
-                            <svg
-                              viewBox="0 0 44 34"
-                              className="relative z-10 h-[29px] w-[34px]"
-                              fill="none"
-                            >
-                              <circle
-                                cx="15"
-                                cy="9"
-                                r="3"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                              />
-                              <circle
-                                cx="29"
-                                cy="9"
-                                r="3"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                              />
-                              <path
-                                d="M7 29 C7 21 11 17 15 17 C20 17 22 21 22 29"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                              />
-                              <path
-                                d="M22 29 C22 21 24 17 29 17 C34 17 38 21 38 29"
-                                stroke="currentColor"
-                                strokeWidth="1"
-                              />
-                            </svg>
-                          )}
-                        </span>
+                            {index === 3 && (
+                              <svg
+                                viewBox="0 0 44 34"
+                                className="relative z-10 h-[29px] w-[34px]"
+                                fill="none"
+                              >
+                                <circle
+                                  cx="15"
+                                  cy="9"
+                                  r="3"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                />
+                                <circle
+                                  cx="29"
+                                  cy="9"
+                                  r="3"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                />
+                                <path
+                                  d="M7 29 C7 21 11 17 15 17 C20 17 22 21 22 29"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                />
+                                <path
+                                  d="M22 29 C22 21 24 17 29 17 C34 17 38 21 38 29"
+                                  stroke="currentColor"
+                                  strokeWidth="1"
+                                />
+                              </svg>
+                            )}
+                          </span>
 
-                        {/* Text is vertically centred against the icon */}
-                        <span className="flex min-w-0 flex-col items-start justify-center text-left">
-                          <span
-                            className={`
+                          {/* Text is vertically centred against the icon */}
+                          <span className="flex min-w-0 flex-col items-start justify-center text-left">
+                            <span
+                              className={`
                               whitespace-nowrap
                               font-cormorant
                               font-medium
@@ -991,12 +990,12 @@ export default function Accommodation() {
 
                               ${active ? "text-[#1F3026]" : "text-[#3A4840] group-hover:text-[#26382D]"}
                             `}
-                          >
-                            {item.name}
-                          </span>
+                            >
+                              {item.name}
+                            </span>
 
-                          <span
-                            className={`
+                            <span
+                              className={`
                               mt-[7px]
                               whitespace-nowrap
                               font-manrope
@@ -1013,16 +1012,16 @@ export default function Accommodation() {
                                   : "text-[#657067] group-hover:text-[#78855F]"
                               }
                             `}
-                          >
-                            {descriptors[index]}
+                            >
+                              {descriptors[index]}
+                            </span>
                           </span>
-                        </span>
 
-                        {/* Reference-style active/hover underline.
+                          {/* Reference-style active/hover underline.
                             It is deliberately below the content, never touching the icon. */}
-                        <span
-                          aria-hidden="true"
-                          className={`
+                          <span
+                            aria-hidden="true"
+                            className={`
                           pointer-events-none
                           absolute
                           bottom-[24px]
@@ -1044,9 +1043,9 @@ export default function Accommodation() {
                               : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
                           }
                         `}
-                        >
-                          <span
-                            className={`
+                          >
+                            <span
+                              className={`
                                   pointer-events-none
                                   absolute
                                   left-1/2
@@ -1066,8 +1065,8 @@ export default function Accommodation() {
                                       : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100"
                                   }
                                 `}
-                          />
-                        </span>
+                            />
+                          </span>
                         </span>
                       </button>
                     </div>
@@ -1690,7 +1689,7 @@ export default function Accommodation() {
                 viewBox="0 0 30 18"
                 fill="none"
                 aria-hidden="true"
-                className="relative z-10 h-[17px] w-[28px] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-1"
+                className="relative z-10 ml-[13px] h-[17px] w-[28px] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-x-1"
               >
                 <path
                   d="M27 9H5"
@@ -1830,7 +1829,7 @@ export default function Accommodation() {
     PACIANO LANDSCAPE — ROOM INTO THE MIST
 ======================================================== */}
 
-        <div
+        {/* <div
           className="
     relative
     left-1/2
@@ -1847,13 +1846,31 @@ export default function Accommodation() {
 
     bg-[#F4EDE1]
   "
+        > */}
+        <div
+          className="
+    relative
+    left-1/2
+    -translate-x-1/2
+
+    mt-0
+    w-screen
+
+    h-[250px]
+    sm:h-[230px]
+    lg:h-[245px]
+
+    overflow-hidden
+
+    bg-[#F4F0E7]
+  "
         >
           {/* ------------------------------------------------------
       MIST MOUNTAINS
       Full width and clearly visible
   ------------------------------------------------------ */}
 
-          <img
+          {/* <img
             src={mistMountains}
             alt=""
             aria-hidden="true"
@@ -1878,6 +1895,41 @@ export default function Accommodation() {
 
       z-10
     "
+          /> */}
+          <img
+            src={mistMountains}
+            alt=""
+            aria-hidden="true"
+            //           className="
+            //   absolute
+            //   inset-0
+
+            //   w-full
+            //   h-full
+
+            //   object-cover
+            //   object-center
+
+            //   opacity-[0.72]
+
+            //   mix-blend-multiply
+
+            //   animate-[mistDrift_32s_ease-in-out_infinite_alternate]
+
+            //   z-10
+            // "
+            className="
+      absolute
+      inset-0
+      w-full
+      h-full
+      object-cover
+      object-center
+      opacity-[0.42]
+      mix-blend-multiply
+      animate-[mistDrift_32s_ease-in-out_infinite_alternate]
+      z-10
+    "
           />
 
           {/* ------------------------------------------------------
@@ -1890,7 +1942,7 @@ export default function Accommodation() {
       inset-x-0
       top-0
 
-      h-[90px]
+   h-[105px]
 
       z-20
 
@@ -1905,7 +1957,7 @@ export default function Accommodation() {
       BOTTOM MIST
   ------------------------------------------------------ */}
 
-          <div
+          {/* <div
             className="
       absolute
       inset-x-0
@@ -1918,6 +1970,32 @@ export default function Accommodation() {
       bg-gradient-to-t
       from-[#F4EDE1]
       via-[#F4EDE1]/35
+      to-transparent
+    "
+          /> */}
+          <div
+            //           className="
+            //   pointer-events-none
+            //   absolute
+            //   inset-x-0
+            //   bottom-[-1px]
+            //   z-20
+            //   h-[115px]
+            //   bg-gradient-to-t
+            //   from-[#F4EDE1]
+            //   via-[#F4EDE1]/55
+            //   to-transparent
+            // "
+            className="
+      pointer-events-none
+      absolute
+      inset-x-0
+      bottom-0
+      z-20
+      h-[100px]
+      bg-gradient-to-t
+      from-[#F4F0E7]
+      via-[#F4F0E7]/75
       to-transparent
     "
           />
@@ -1965,7 +2043,7 @@ export default function Accommodation() {
             className={`
               absolute
               left-1/2
-              bottom-[243px]
+             bottom-[125px]
               z-40
               -translate-x-1/2
               flex
@@ -1983,48 +2061,48 @@ export default function Accommodation() {
                   : "opacity-0 translate-y-8 scale-[0.94] blur-[4px]"
               }           
               
-            `}  
+            `}
           >
             <div className="animate-[signatureFloat_7s_ease-in-out_infinite]">
-            <div
-  className="
+              <div
+                className="
     mb-3
     flex
     items-center
     justify-center
     text-[#71883F]
   "
->
-<svg width="32" height="32" viewBox="0 0 40 40" fill="none">
-                <path
-                  d="M20 34C20 25 21 17 27 8"
-                  stroke="currentColor"
-                  strokeWidth="1"
-                />
+              >
+                <svg width="32" height="32" viewBox="0 0 40 40" fill="none">
+                  <path
+                    d="M20 34C20 25 21 17 27 8"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                  />
 
-                <path
-                  d="
+                  <path
+                    d="
           M21 22
           C15 20 12 16 13 11
           C18 12 22 16 22 21
         "
-                  fill="currentColor"
-                />
+                    fill="currentColor"
+                  />
 
-                <path
-                  d="
+                  <path
+                    d="
           M24 17
           C25 12 29 9 34 10
           C32 15 29 18 24 18
         "
-                  fill="currentColor"
-                  opacity=".5"
-                />
-              </svg>
-            </div>
+                    fill="currentColor"
+                    opacity=".5"
+                  />
+                </svg>
+              </div>
 
-            <p
-              className="
+              <p
+                className="
               font-cormorant
               text-[29px]
               sm:text-[25px]
@@ -2034,12 +2112,12 @@ export default function Accommodation() {
               text-[#4F5E43]
               drop-shadow-[0_1px_2px_rgba(255,255,255,0.35)]
             "
-            >
-              PACIANO
-            </p>
+              >
+                PACIANO
+              </p>
 
-            <p
-              className="
+              <p
+                className="
                 mt-[8px]
 
                 font-manrope
@@ -2054,9 +2132,9 @@ export default function Accommodation() {
 
                 text-[#59664D] drop-shadow-[0_1px_2px_rgba(255,255,255,0.4)]
               "
-            >
-              STAY CLOSE TO NATURE
-            </p>
+              >
+                STAY CLOSE TO NATURE
+              </p>
             </div>
           </div>
         </div>

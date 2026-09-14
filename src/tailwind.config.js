@@ -48,6 +48,17 @@ export default {
             transform: "scale(1) translateY(0)",
           },
         },
+
+        /* ADD THIS */
+        "paciano-float": {
+          "0%, 100%": {
+            transform: "translateY(0px)",
+          },
+
+          "50%": {
+            transform: "translateY(-4px)",
+          },
+        },
       },
 
       animation: {
@@ -59,6 +70,9 @@ export default {
 
         "paciano-icon-arrive":
           "paciano-icon-arrive 1s cubic-bezier(.22,1,.36,1) forwards",
+
+        /* ADD THIS */
+        "paciano-float": "paciano-float 7s ease-in-out infinite",
       },
     },
   },
