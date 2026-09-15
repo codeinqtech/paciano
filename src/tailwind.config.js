@@ -72,7 +72,7 @@ export default {
           "paciano-icon-arrive 1s cubic-bezier(.22,1,.36,1) forwards",
 
         /* ADD THIS */
-        "paciano-float": "paciano-float 7s ease-in-out infinite",
+        "paciano-float": "paciano-float 8s ease-in-out infinite",
       },
     },
   },

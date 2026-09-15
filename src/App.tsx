@@ -4,6 +4,7 @@ import HeroSection from "./components/HeroSection";
 import AboutUs from "./components/AboutUs";
 import Accommodation from "./components/Accommodation";
 import DiningSection from "./components/DiningSection";
+import GuestStories from "./components/GuestStories";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCanadianMapleLeaf } from "@fortawesome/free-brands-svg-icons";
 import storyImage from "@/images/story.png";
@@ -1044,7 +1045,7 @@ export default function App() {
         {/* CHAPTER 04 — THE RIVER */}
         <DiningSection />
         {/* CHAPTER 05 — EXPERIENCES */}
-        {/* <ExperiencesSection /> */}
+        <GuestStories />
         {/* CHAPTER 06 — INDULGENCE */}
         {/* <IndulgenceSection /> */}
         {/* CHAPTER 07 — NIGHTFALL */}

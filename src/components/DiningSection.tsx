@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 import diningstory from "@/images/dining-story.png";
 import diningOne from "@/images/dining-1.png";
 import diningTwo from "@/images/dining-2.png";
-import diningFour from "@/images/culinary-delights.jpg";
+import diningFour from "@/images/story.png";
 import diningLeaf from "@/images/dining-leaf.png";
 import diningLeaf2 from "@/images/dining-leaf2.png";
 import diningLeaf3 from "@/images/dining-leaf3.png";
@@ -58,8 +58,8 @@ export default function DiningSection() {
         setIsVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.2,
-        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.12,
+        rootMargin: "0px 0px -12% 0px",
       },
     );
 
@@ -96,10 +96,12 @@ export default function DiningSection() {
     hidden = "translate-y-8 opacity-0",
     visible = "translate-y-0 opacity-100",
   ) => ({
-    className: `${isVisible ? visible : hidden}
+    className: `
+    ${isVisible ? visible : hidden}
     transition-all
     duration-[1100ms]
-    ease-[cubic-bezier(0.22,1,0.36,1)]`,
+    ease-[cubic-bezier(0.22,1,0.36,1)]
+  `,
     style: {
       transitionDelay: `${delay}ms`,
     },
@@ -132,7 +134,10 @@ export default function DiningSection() {
           <div className="relative z-20 max-w-[575px] lg:pb-[55px]">
             {/* EYEBROW */}
 
-            <div className={`flex items-center gap-4 ${reveal(100)}`}>
+            <div
+              className={`flex items-center gap-4 ${reveal(100).className}`}
+              style={reveal(100).style}
+            >
               {/* <span className="h-px w-12 shrink-0 bg-[#85875C]" /> */}
               <div
                 className=" 
@@ -199,20 +204,31 @@ export default function DiningSection() {
             ================================================= */}
 
             <h2
-              className="            
-            font-cormorant
+              className={`
+                font-cormorant
+                text-[45px]
+                leading-[0.91]
+                tracking-[-0.035em]
+                text-[#17251B]
+                sm:text-[65px]
+                lg:text-[72px]
+                xl:text-[67px]
 
-            text-[45px]
-            leading-[0.91]
-
-            tracking-[-0.035em]
-
-            text-[#17251B]
-
-            sm:text-[65px]
-            lg:text-[72px]
-            xl:text-[67px]
-          "
+                ${
+                  reveal(
+                    250,
+                    "translate-y-8 opacity-0",
+                    "translate-y-0 opacity-100",
+                  ).className
+                }
+              `}
+              style={
+                reveal(
+                  250,
+                  "translate-y-8 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).style
+              }
             >
               <span className="block">Dining, Inspired By</span>
 
@@ -239,19 +255,33 @@ export default function DiningSection() {
             ================================================= */}
 
             <p
-              className=" 
-            mt-[32px]
+              className={`
+                mt-[32px]
+                max-w-[400px]
 
-            max-w-[400px]
+                font-manrope
+                text-[12px]
+                leading-[1.85]
 
-            font-manrope
-            text-[12px]
-            leading-[1.85]
+                text-[#50584F]
 
-            text-[#50584F]
+                sm:text-[14px]
 
-            sm:text-[14px]
-          "
+                ${
+                  reveal(
+                    430,
+                    "translate-y-6 opacity-0",
+                    "translate-y-0 opacity-100",
+                  ).className
+                }
+              `}
+              style={
+                reveal(
+                  430,
+                  "translate-y-6 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).style
+              }
             >
               Seasonal ingredients, locally sourced. Thoughtfully prepared. At
               Paciano, dining is a celebration of the land — where the valley’s
@@ -264,11 +294,20 @@ export default function DiningSection() {
             ================================================= */}
 
             <div
-              className={`mt-[34px] ${reveal(
-                700,
-                "translate-y-6 opacity-0",
-                "translate-y-0 opacity-100",
-              )}`}
+              className={`mt-[34px] ${
+                reveal(
+                  620,
+                  "translate-y-6 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).className
+              }`}
+              style={
+                reveal(
+                  620,
+                  "translate-y-6 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).style
+              }
             >
               <button
                 type="button"
@@ -428,11 +467,20 @@ export default function DiningSection() {
           ================================================= */}
 
           <div
-            className={`relative min-w-0 lg:-mr-[4%] xl:-mr-[7%] ${reveal(
-              180,
-              "translate-x-10 opacity-0",
-              "translate-x-0 opacity-100",
-            )}`}
+            className={`relative min-w-0 lg:-mr-[4%] xl:-mr-[7%] ${
+              reveal(
+                350,
+                "translate-x-10 opacity-0",
+                "translate-x-0 opacity-100",
+              ).className
+            }`}
+            style={
+              reveal(
+                350,
+                "translate-x-10 opacity-0",
+                "translate-x-0 opacity-100",
+              ).style
+            }
           >
             <div className="relative ml-auto aspect-[1.54/1] w-full max-w-[920px] overflow-visible">
               {/* =============================================
@@ -559,118 +607,70 @@ export default function DiningSection() {
       </div>
 
       {/* =========================================================
-          BOTTOM FEATURE STRIP
+          PACIANO DINING SIGNATURE
       ========================================================== */}
 
-      <div className="relative z-20 mt-[120px] border-t border-[#D9D5C8] bg-[#F1EDE3]/70">
-        <div className="mx-auto grid max-w-[1780px] grid-cols-2 lg:grid-cols-4 lg:px-[7%]">
-          {/* FARM TO TABLE */}
+      <div
+        className={`
+        relative
+        z-20
+        mt-[48px]
+        mb-[34px]
+        flex
+        items-center
+        justify-center
+        gap-5
 
-          <div
-            className={`flex min-h-[105px] items-center justify-center gap-3 px-3 py-6 sm:min-h-[120px] sm:gap-4
-              transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]
-              ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
-            `}
-            style={{ transitionDelay: "1050ms" }}
-          >
-            <svg
-              viewBox="0 0 48 48"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="h-8 w-8 shrink-0 text-[#53645C] sm:h-9 sm:w-9"
-            >
-              <path d="M24 42C24 42 24 27 24 16" />
-              <path d="M24 27C17 27 12 23 11 16C18 15 23 19 24 27Z" />
-              <path d="M24 34C31 34 36 30 37 23C30 22 25 26 24 34Z" />
-              <path d="M24 20C29 20 33 16 34 10C28 10 24 14 24 20Z" />
-            </svg>
+        transition-all
+        duration-[1200ms]
+        ease-[cubic-bezier(0.22,1,0.36,1)]
 
-            <span className="font-['Cormorant_Garamond'] text-[14px] text-[#53615A] sm:text-[16px]">
-              Riverside Dining
-            </span>
-          </div>
+        ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
+      `}
+        style={{ transitionDelay: "950ms" }}
+      >
+        {/* LEFT HAIRLINE */}
 
-          {/* CURATED BEVERAGES */}
+        <span
+          className="
+      h-px
+      w-[55px]
+      bg-[#9A9A70]/55
 
-          <div
-            className={`flex min-h-[105px] items-center justify-center gap-3 border-l border-[#D1CEC1] px-3 py-6 sm:min-h-[120px] sm:gap-4
-    transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]
-    ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
-  `}
-            style={{ transitionDelay: "1150ms" }}
-          >
-            <svg
-              viewBox="0 0 48 48"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="h-8 w-8 shrink-0 text-[#53645C] sm:h-9 sm:w-9"
-            >
-              <path d="M16 7H32L29 22C28 27 20 27 19 22L16 7Z" />
-              <path d="M24 27V40" />
-              <path d="M16 40H32" />
-            </svg>
+      sm:w-[80px]
+      lg:w-[105px]
+    "
+        />
 
-            <span className="font-['Cormorant_Garamond'] text-[14px] text-[#53615A] sm:text-[16px]">
-              Chef's Selection
-            </span>
-          </div>
+        {/* SIGNATURE */}
 
-          {/* SEASONAL MENUS */}
+        <span
+          className="
+      font-manrope
+      text-[9px]
+      font-medium
+      uppercase
+      tracking-[0.38em]
+      text-[#7B8052]
 
-          <div
-            className={`flex min-h-[105px] items-center justify-center gap-3 border-t border-[#D1CEC1] px-3 py-6 sm:min-h-[120px] sm:gap-4 lg:border-t-0 lg:border-l
-    transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]
-    ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
-  `}
-            style={{ transitionDelay: "1250ms" }}
-          >
-            <svg
-              viewBox="0 0 48 48"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="h-8 w-8 shrink-0 text-[#53645C] sm:h-9 sm:w-9"
-            >
-              <path d="M24 42C24 42 24 27 24 16" />
-              <path d="M24 27C17 27 12 23 11 16C18 15 23 19 24 27Z" />
-              <path d="M24 34C31 34 36 30 37 23C30 22 25 26 24 34Z" />
-            </svg>
+      sm:text-[10px]
+    "
+        >
+          THE TASTE OF PACIANO
+        </span>
 
-            <span className="font-['Cormorant_Garamond'] text-[14px] text-[#53615A] sm:text-[16px]">
-              Local Flavours
-            </span>
-          </div>
+        {/* RIGHT HAIRLINE */}
 
-          {/* SETTINGS */}
+        <span
+          className="
+      h-px
+      w-[55px]
+      bg-[#9A9A70]/55
 
-          <div
-            className={`flex min-h-[105px] items-center justify-center gap-3 border-l border-t border-[#D1CEC1] px-3 py-6 sm:min-h-[120px] sm:gap-4 lg:border-t-0
-    transition-all duration-[1000ms] ease-[cubic-bezier(0.22,1,0.36,1)]
-    ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
-  `}
-            style={{ transitionDelay: "1350ms" }}
-          >
-            <svg
-              viewBox="0 0 48 48"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.5"
-              className="h-8 w-8 shrink-0 text-[#53645C] sm:h-9 sm:w-9"
-            >
-              <circle cx="16" cy="17" r="4" />
-              <circle cx="32" cy="17" r="4" />
-              <circle cx="24" cy="14" r="4" />
-              <path d="M9 35C9 29 12 25 16 25C20 25 23 29 23 35" />
-              <path d="M25 35C25 29 28 25 32 25C36 25 39 29 39 35" />
-            </svg>
-
-            <span className="font-['Cormorant_Garamond'] text-[14px] text-[#53615A] sm:text-[16px]">
-              Private Tables
-            </span>
-          </div>
-        </div>
+      sm:w-[80px]
+      lg:w-[105px]
+    "
+        />
       </div>
     </section>
   );
