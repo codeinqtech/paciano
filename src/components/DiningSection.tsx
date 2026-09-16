@@ -135,8 +135,20 @@ export default function DiningSection() {
             {/* EYEBROW */}
 
             <div
-              className={`flex items-center gap-4 ${reveal(100).className}`}
-              style={reveal(100).style}
+              className={`flex items-center gap-4 ${
+                reveal(
+                  100,
+                  "translate-y-5 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).className
+              }`}
+              style={
+                reveal(
+                  100,
+                  "translate-y-5 opacity-0",
+                  "translate-y-0 opacity-100",
+                ).style
+              }
             >
               {/* <span className="h-px w-12 shrink-0 bg-[#85875C]" /> */}
               <div
@@ -216,8 +228,8 @@ export default function DiningSection() {
 
                 ${
                   reveal(
-                    250,
-                    "translate-y-8 opacity-0",
+                    350,
+                    "translate-y-10 opacity-0",
                     "translate-y-0 opacity-100",
                   ).className
                 }
@@ -265,12 +277,12 @@ export default function DiningSection() {
 
                 text-[#50584F]
 
-                sm:text-[14px]
+                sm:text-[15px]
 
                 ${
                   reveal(
-                    430,
-                    "translate-y-6 opacity-0",
+                    600,
+                    "translate-y-7 opacity-0",
                     "translate-y-0 opacity-100",
                   ).className
                 }
@@ -296,15 +308,15 @@ export default function DiningSection() {
             <div
               className={`mt-[34px] ${
                 reveal(
-                  620,
-                  "translate-y-6 opacity-0",
+                  850,
+                  "translate-y-7 opacity-0",
                   "translate-y-0 opacity-100",
                 ).className
               }`}
               style={
                 reveal(
-                  620,
-                  "translate-y-6 opacity-0",
+                  850,
+                  "translate-y-7 opacity-0",
                   "translate-y-0 opacity-100",
                 ).style
               }
@@ -469,16 +481,18 @@ export default function DiningSection() {
           <div
             className={`relative min-w-0 lg:-mr-[4%] xl:-mr-[7%] ${
               reveal(
-                350,
-                "translate-x-10 opacity-0",
-                "translate-x-0 opacity-100",
+                250,
+                "translate-x-12 scale-[1.025] opacity-0",
+                "translate-x-0 scale-100 opacity-100",
               ).className
-            }`}
+            }
+              duration-[1900ms]
+            `}
             style={
               reveal(
-                350,
-                "translate-x-10 opacity-0",
-                "translate-x-0 opacity-100",
+                250,
+                "translate-x-12 scale-[1.025] opacity-0",
+                "translate-x-0 scale-100 opacity-100",
               ).style
             }
           >
@@ -564,11 +578,11 @@ export default function DiningSection() {
                 className={`absolute -bottom-[2px] left-[-5%] z-30 aspect-[1.06/1] w-[33%] min-w-[170px] overflow-visible sm:left-[-6%] sm:min-w-[190px] lg:left-[-8%] lg:w-[32%] ${
                   isVisible
                     ? "translate-y-0 scale-100 opacity-100"
-                    : "translate-y-12 scale-[0.96] opacity-0"
+                    : "translate-y-14 scale-[0.96] opacity-0"
                 }
                 transition-all
-                delay-[700ms]
-                duration-[1200ms]
+                delay-[950ms]
+                duration-[1700ms]
                 ease-[cubic-bezier(0.22,1,0.36,1)]`}
               >
                 <div className="h-full w-full animate-paciano-float">
@@ -627,19 +641,19 @@ export default function DiningSection() {
 
         ${isVisible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
       `}
-        style={{ transitionDelay: "950ms" }}
+        style={{ transitionDelay: "1250ms" }}
       >
         {/* LEFT HAIRLINE */}
 
         <span
           className="
-      h-px
-      w-[55px]
-      bg-[#9A9A70]/55
+          h-px
+          w-[55px]
+          bg-[#9A9A70]/55
 
-      sm:w-[80px]
-      lg:w-[105px]
-    "
+          sm:w-[80px]
+          lg:w-[105px]
+        "
         />
 
         {/* SIGNATURE */}

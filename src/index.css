@@ -23,6 +23,7 @@
   --font-cormorant: "Cormorant Garamond", serif;
   --font-lora: "Lora", serif;
   --font-manrope: "Manrope", sans-serif;
+  --font-brittany: "Brittany Signature", cursive;
 }
 
 :root {
@@ -30,6 +31,14 @@
   --paciano-deep: #102619;
   --paciano-cream: #eee9dc;
   --paciano-text: #f7f4eb;
+}
+
+@font-face {
+  font-family: "Brittany Signature";
+  src: url("./assets/fonts/BrittanySignatureRegular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 @keyframes paciano-organic-edge {

@@ -1294,7 +1294,7 @@ export default function AboutUs() {
 
             text-[#50584F]
 
-            sm:text-[14px]
+            sm:text-[15px]
           "
             >
               Paciano is more than a resort — it&apos;s a sanctuary where
@@ -2649,10 +2649,7 @@ export default function AboutUs() {
               }
             >
               {/* =====================================================
-              ${index === 1 ? "lg:translate-y-[22px]" : ""}
-${index === 2 ? "lg:translate-y-[26px]" : ""}
-${index === 3 ? "lg:translate-y-[22px]" : ""}
-${index === 4 ? "lg:translate-y-0" : ""}
+            
           ICON
       ===================================================== */}
 
