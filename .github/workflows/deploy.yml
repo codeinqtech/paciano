@@ -30,7 +30,7 @@ jobs:
         run: npm test --if-present
 
       - name: Build
-        run: npm run build -- --base=/paciano/design/tmp_1/
+        run: npm run build -- --base=/design/tmp_1/
 
       - name: Deploy to staging via FTP
         if: github.event_name == 'push'
