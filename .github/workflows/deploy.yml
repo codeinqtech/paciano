@@ -30,7 +30,9 @@ jobs:
         run: npm test --if-present
 
       - name: Build
-        run: npm run build -- --base=/design/tmp_1/
+        env:
+            FIGMA_PUBLIC_URL: ${{ vars.FIGMA_PUBLIC_URL }}
+        run: npm run build
 
       - name: Deploy to staging via FTP
         if: github.event_name == 'push'
