@@ -5,9 +5,11 @@ import AboutUs from "./components/AboutUs";
 import Accommodation from "./components/Accommodation";
 import DiningSection from "./components/DiningSection";
 import GuestStories from "./components/GuestStories";
+import Location from "./components/Location";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCanadianMapleLeaf } from "@fortawesome/free-brands-svg-icons";
 import storyImage from "@/images/story.png";
+import Footer from "./components/Footer";
 
 function LeafIcon() {
   return (
@@ -1047,9 +1049,9 @@ export default function App() {
         {/* CHAPTER 05 — EXPERIENCES */}
         <GuestStories />
         {/* CHAPTER 06 — INDULGENCE */}
-        {/* <IndulgenceSection /> */}
+        <Location/>
         {/* CHAPTER 07 — NIGHTFALL */}
-        {/* <NightfallSection /> */}
+        <Footer />
         {/* FINAL CHAPTER — YOUR ESCAPE */}
         {/* <EscapeCTASection /> */}
       </main>

@@ -436,7 +436,7 @@ via-[#020603]/10
           aria-hidden="true"
           className={`
       absolute
-      right-[1%]
+      right-[0%]
       top-[-8%]
 
       h-[116%]

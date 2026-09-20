@@ -1925,7 +1925,7 @@ export default function Accommodation() {
       h-full
       object-cover
       object-center
-      opacity-[0.42]
+      opacity-[1.42]
       mix-blend-multiply
       animate-[mistDrift_32s_ease-in-out_infinite_alternate]
       z-10

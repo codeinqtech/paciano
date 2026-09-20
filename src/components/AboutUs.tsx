@@ -6,9 +6,10 @@ import aboutConscious from "@/images/about-conscious-living.jpg";
 
 import riverside from "@/images/riverside-bliss.jpg";
 import teaGarden from "@/images/tea-garden-walks.jpg";
-import culinary from "@/images/culinary-delights.jpg";
+// import culinary from "@/images/culinary-delights.jpg";
+import culinary from "@/images/story.png";
 import wellness from "@/images/wellness-spa.jpg";
-import sustainable from "@/images/sustainable-stay.jpg";
+import sustainable from "@/images/sustainable-stay.png";
 
 /*
 |--------------------------------------------------------------------------
