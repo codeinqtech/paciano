@@ -32,6 +32,344 @@ const LocationSection: React.FC = () => {
 
   const featureIconRefs = useRef<(HTMLDivElement | null)[]>([]);
 
+  // useEffect(() => {
+  //   const element = sectionRef.current;
+  
+  //   if (!element) return;
+  
+  //   const observer = new IntersectionObserver(
+  //     ([entry]) => {
+  //       setIsVisible(entry.isIntersecting);
+  
+  //       if (!entry.isIntersecting) return;
+  
+  //       /* =====================================================
+  //          MASTER CINEMATIC TIMELINE
+  //          ===================================================== */
+  
+  //       const ease = "cubic-bezier(.22,1,.36,1)";
+  
+  //       /* -----------------------------------------------------
+  //          01 — LANDSCAPE
+  //          ----------------------------------------------------- */
+  
+  //         //  heroImageRef.current?.animate(
+  //         //   [
+  //         //     {
+  //         //       opacity: 0,
+  //         //       transform:
+  //         //         "translate3d(0, 18px, 0) scale(1.09)",
+  //         //     },
+          
+  //         //     {
+  //         //       opacity: 0.72,
+  //         //       transform:
+  //         //         "translate3d(-0.10%, -35px, 0) scale(1.08)",
+  //         //     },
+          
+  //         //     {
+  //         //       opacity: 1,
+  //         //       transform:
+  //         //         "translate3d(-0.28%, -78px, 0) scale(1.075)",
+  //         //     },
+  //         //   ],
+  //         //   {
+  //         //     duration: 4800,
+  //         //     easing: ease,
+  //         //     fill: "forwards",
+  //         //   }
+  //         // );
+  
+  //       /* -----------------------------------------------------
+  //          02 — SOFT ATMOSPHERIC GLOW
+  //          ----------------------------------------------------- */
+  
+  //       atmosphereRef.current?.animate(
+  //         [
+  //           {
+  //             opacity: 0,
+  //             transform: "scale(.92)",
+  //           },
+  //           {
+  //             opacity: 1,
+  //             transform: "scale(1)",
+  //           },
+  //         ],
+  //         {
+  //           duration: 2600,
+  //           delay: 350,
+  //           easing: ease,
+  //           fill: "forwards",
+  //         }
+  //       );
+  
+  //       /* -----------------------------------------------------
+  //          03 — OUR LOCATION
+  //          ----------------------------------------------------- */
+  
+  //       eyebrowRef.current?.animate(
+  //         [
+  //           {
+  //             opacity: 0,
+  //             transform: "translate3d(0, 18px, 0)",
+  //           },
+  //           {
+  //             opacity: 1,
+  //             transform: "translate3d(0, 0, 0)",
+  //           },
+  //         ],
+  //         {
+  //           duration: 1350,
+  //           delay: 650,
+  //           easing: ease,
+  //           fill: "forwards",
+  //         }
+  //       );
+  
+  //       /* -----------------------------------------------------
+  //         04 — HEADING
+  //         ----------------------------------------------------- */
+
+  //         headingRef.current?.animate(
+  //         [
+  //           {
+  //             opacity: 0,
+  //             transform: "translate3d(0, 34px, 0)",
+  //           },
+  //           {
+  //             opacity: 0.8,
+  //             transform: "translate3d(0, 5px, 0)",
+  //           },
+  //           {
+  //             opacity: 1,
+  //             transform: "translate3d(0, 0, 0)",
+  //           },
+  //         ],
+  //         {
+  //           duration: 1750,
+  //           delay: 1050,
+  //           easing: ease,
+  //           fill: "forwards",
+  //         }
+  //       );
+  
+  //       /* -----------------------------------------------------
+  //          05 — DESCRIPTION
+  //          ----------------------------------------------------- */
+  
+  //       descriptionRef.current?.animate(
+  //         [
+  //           {
+  //             opacity: 0,
+  //             transform: "translate3d(0, 25px, 0)",
+  //           },
+  //           {
+  //             opacity: 1,
+  //             transform: "translate3d(0, 0, 0)",
+  //           },
+  //         ],
+  //         {
+  //           duration: 1450,
+  //           delay: 1700,
+  //           easing: ease,
+  //           fill: "forwards",
+  //         }
+  //       );
+  
+  //       /* -----------------------------------------------------
+  //          06 — FEATURES
+  //          ----------------------------------------------------- */
+  
+  //          featuresRef.current?.animate(
+  //           [
+  //             {
+  //               opacity: 0,
+  //               transform: "translate3d(0, 24px, 0)",
+  //             },
+  //             {
+  //               opacity: 0.85,
+  //               transform: "translate3d(0, 5px, 0)",
+  //             },
+  //             {
+  //               opacity: 1,
+  //               transform: "translate3d(0, 0, 0)",
+  //             },
+  //           ],
+  //           {
+  //             duration: 1500,
+  //             delay: 2200,
+  //             easing: ease,
+  //             fill: "forwards",
+  //           }
+  //         );
+  
+  //       /* -----------------------------------------------------
+  //          07 — ICONS ONE BY ONE
+  //          ----------------------------------------------------- */
+  
+  //         //  featureIconRefs.current.forEach((icon, index) => {
+  //         //   if (!icon) return;
+          
+  //         //   icon.animate(
+  //         //     [
+  //         //       {
+  //         //         opacity: 0,
+  //         //         transform: "translate3d(0, 18px, 0) scale(.90)",
+  //         //       },
+  //         //       {
+  //         //         opacity: 0.75,
+  //         //         transform: "translate3d(0, 3px, 0) scale(1.015)",
+  //         //       },
+  //         //       {
+  //         //         opacity: 1,
+  //         //         transform: "translate3d(0, 0, 0) scale(1)",
+  //         //       },
+  //         //     ],
+  //         //     {
+  //         //       duration: 1450,
+  //         //       delay: 2350 + index * 280,
+  //         //       easing: ease,
+  //         //       fill: "forwards",
+  //         //     }
+  //         //   );
+  //         // });
+  //       /* -----------------------------------------------------
+  //          08 — CTA
+  //          ----------------------------------------------------- */
+  
+  //         //  ctaRef.current?.animate(
+  //         //   [
+  //         //     {
+  //         //       opacity: 0,
+  //         //       transform: "translate3d(0, 28px, 0) scale(.97)",
+  //         //     },
+  //         //     {
+  //         //       opacity: 0.85,
+  //         //       transform: "translate3d(0, 4px, 0) scale(1.01)",
+  //         //     },
+  //         //     {
+  //         //       opacity: 1,
+  //         //       transform: "translate3d(0, 0, 0) scale(1)",
+  //         //     },
+  //         //   ],
+  //         //   {
+  //         //     duration: 1550,
+  //         //     delay: 3900,
+  //         //     easing: ease,
+  //         //     fill: "forwards",
+  //         //   }
+  //         // );
+  
+  //       /* -----------------------------------------------------
+  //          09 — MAP CARD
+  //          ----------------------------------------------------- */
+  
+  //         //  mapCardRef.current?.animate(
+  //         //   [
+  //         //     {
+  //         //       opacity: 0,
+  //         //       transform:
+  //         //         "translate3d(0, 70px, 0) scale(.965)",
+  //         //     },
+  //         //     {
+  //         //       opacity: 0.75,
+  //         //       transform:
+  //         //         "translate3d(0, 10px, 0) scale(1.006)",
+  //         //     },
+  //         //     {
+  //         //       opacity: 1,
+  //         //       transform:
+  //         //         "translate3d(0, 0, 0) scale(1)",
+  //         //     },
+  //         //   ],
+  //         //   {
+  //         //     duration: 1900,
+  //         //     delay: 4700,
+  //         //     easing: ease,
+  //         //     fill: "forwards",
+  //         //   }
+  //         // );
+  
+  //       /* -----------------------------------------------------
+  //          10 — MAP IMAGE
+  //          ----------------------------------------------------- */
+  
+  //         //  mapImageRef.current?.animate(
+  //         //   [
+  //         //     {
+  //         //       transform: "scale(1.045)",
+  //         //     },
+  //         //     {
+  //         //       transform: "scale(1)",
+  //         //     },
+  //         //   ],
+  //         //   {
+  //         //     duration: 2400,
+  //         //     delay: 5000,
+  //         //     easing: ease,
+  //         //     fill: "forwards",
+  //         //   }
+  //         // );
+  
+  //       /* -----------------------------------------------------
+  //          11 — RIGHT SIDE LABEL
+  //          ----------------------------------------------------- */
+  
+  //       // sideRef.current?.animate(
+  //       //   [
+  //       //     {
+  //       //       opacity: 0,
+  //       //       transform: "translate3d(20px, 0, 0)",
+  //       //     },
+  //       //     {
+  //       //       opacity: 1,
+  //       //       transform: "translate3d(0, 0, 0)",
+  //       //     },
+  //       //   ],
+  //       //   {
+  //       //     duration: 900,
+  //       //     delay: 1750,
+  //       //     easing: ease,
+  //       //     fill: "forwards",
+  //       //   }
+  //       // );
+  
+  //       /* -----------------------------------------------------
+  //          12 — HANDWRITTEN MESSAGE
+  //          ----------------------------------------------------- */
+  
+  //       // scriptRef.current?.animate(
+  //       //   [
+  //       //     {
+  //       //       opacity: 0,
+  //       //       transform:
+  //       //         "translate3d(0, 18px, 0) rotate(-7deg)",
+  //       //     },
+  //       //     {
+  //       //       opacity: 1,
+  //       //       transform:
+  //       //         "translate3d(0, 0, 0) rotate(-3deg)",
+  //       //     },
+  //       //   ],
+  //       //   {
+  //       //     duration: 1100,
+  //       //     delay: 1850,
+  //       //     easing: ease,
+  //       //     fill: "forwards",
+  //       //   }
+  //       // );
+  //     },
+  //     {
+  //       threshold: 0.18,
+  //       rootMargin: "0px 0px -10% 0px",
+  //     }
+  //   );
+  
+  //   observer.observe(element);
+  
+  //   return () => observer.disconnect();
+  // }, []);
+
   useEffect(() => {
     const element = sectionRef.current;
   
@@ -40,324 +378,6 @@ const LocationSection: React.FC = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
-  
-        if (!entry.isIntersecting) return;
-  
-        /* =====================================================
-           MASTER CINEMATIC TIMELINE
-           ===================================================== */
-  
-        const ease = "cubic-bezier(.22,1,.36,1)";
-  
-        /* -----------------------------------------------------
-           01 — LANDSCAPE
-           ----------------------------------------------------- */
-  
-          //  heroImageRef.current?.animate(
-          //   [
-          //     {
-          //       opacity: 0,
-          //       transform:
-          //         "translate3d(0, 18px, 0) scale(1.09)",
-          //     },
-          
-          //     {
-          //       opacity: 0.72,
-          //       transform:
-          //         "translate3d(-0.10%, -35px, 0) scale(1.08)",
-          //     },
-          
-          //     {
-          //       opacity: 1,
-          //       transform:
-          //         "translate3d(-0.28%, -78px, 0) scale(1.075)",
-          //     },
-          //   ],
-          //   {
-          //     duration: 4800,
-          //     easing: ease,
-          //     fill: "forwards",
-          //   }
-          // );
-  
-        /* -----------------------------------------------------
-           02 — SOFT ATMOSPHERIC GLOW
-           ----------------------------------------------------- */
-  
-        atmosphereRef.current?.animate(
-          [
-            {
-              opacity: 0,
-              transform: "scale(.92)",
-            },
-            {
-              opacity: 1,
-              transform: "scale(1)",
-            },
-          ],
-          {
-            duration: 2600,
-            delay: 350,
-            easing: ease,
-            fill: "forwards",
-          }
-        );
-  
-        /* -----------------------------------------------------
-           03 — OUR LOCATION
-           ----------------------------------------------------- */
-  
-        eyebrowRef.current?.animate(
-          [
-            {
-              opacity: 0,
-              transform: "translate3d(0, 18px, 0)",
-            },
-            {
-              opacity: 1,
-              transform: "translate3d(0, 0, 0)",
-            },
-          ],
-          {
-            duration: 1350,
-            delay: 650,
-            easing: ease,
-            fill: "forwards",
-          }
-        );
-  
-        /* -----------------------------------------------------
-          04 — HEADING
-          ----------------------------------------------------- */
-
-          headingRef.current?.animate(
-          [
-            {
-              opacity: 0,
-              transform: "translate3d(0, 34px, 0)",
-            },
-            {
-              opacity: 0.8,
-              transform: "translate3d(0, 5px, 0)",
-            },
-            {
-              opacity: 1,
-              transform: "translate3d(0, 0, 0)",
-            },
-          ],
-          {
-            duration: 1750,
-            delay: 1050,
-            easing: ease,
-            fill: "forwards",
-          }
-        );
-  
-        /* -----------------------------------------------------
-           05 — DESCRIPTION
-           ----------------------------------------------------- */
-  
-        descriptionRef.current?.animate(
-          [
-            {
-              opacity: 0,
-              transform: "translate3d(0, 25px, 0)",
-            },
-            {
-              opacity: 1,
-              transform: "translate3d(0, 0, 0)",
-            },
-          ],
-          {
-            duration: 1450,
-            delay: 1700,
-            easing: ease,
-            fill: "forwards",
-          }
-        );
-  
-        /* -----------------------------------------------------
-           06 — FEATURES
-           ----------------------------------------------------- */
-  
-           featuresRef.current?.animate(
-            [
-              {
-                opacity: 0,
-                transform: "translate3d(0, 24px, 0)",
-              },
-              {
-                opacity: 0.85,
-                transform: "translate3d(0, 5px, 0)",
-              },
-              {
-                opacity: 1,
-                transform: "translate3d(0, 0, 0)",
-              },
-            ],
-            {
-              duration: 1500,
-              delay: 2200,
-              easing: ease,
-              fill: "forwards",
-            }
-          );
-  
-        /* -----------------------------------------------------
-           07 — ICONS ONE BY ONE
-           ----------------------------------------------------- */
-  
-          //  featureIconRefs.current.forEach((icon, index) => {
-          //   if (!icon) return;
-          
-          //   icon.animate(
-          //     [
-          //       {
-          //         opacity: 0,
-          //         transform: "translate3d(0, 18px, 0) scale(.90)",
-          //       },
-          //       {
-          //         opacity: 0.75,
-          //         transform: "translate3d(0, 3px, 0) scale(1.015)",
-          //       },
-          //       {
-          //         opacity: 1,
-          //         transform: "translate3d(0, 0, 0) scale(1)",
-          //       },
-          //     ],
-          //     {
-          //       duration: 1450,
-          //       delay: 2350 + index * 280,
-          //       easing: ease,
-          //       fill: "forwards",
-          //     }
-          //   );
-          // });
-        /* -----------------------------------------------------
-           08 — CTA
-           ----------------------------------------------------- */
-  
-          //  ctaRef.current?.animate(
-          //   [
-          //     {
-          //       opacity: 0,
-          //       transform: "translate3d(0, 28px, 0) scale(.97)",
-          //     },
-          //     {
-          //       opacity: 0.85,
-          //       transform: "translate3d(0, 4px, 0) scale(1.01)",
-          //     },
-          //     {
-          //       opacity: 1,
-          //       transform: "translate3d(0, 0, 0) scale(1)",
-          //     },
-          //   ],
-          //   {
-          //     duration: 1550,
-          //     delay: 3900,
-          //     easing: ease,
-          //     fill: "forwards",
-          //   }
-          // );
-  
-        /* -----------------------------------------------------
-           09 — MAP CARD
-           ----------------------------------------------------- */
-  
-          //  mapCardRef.current?.animate(
-          //   [
-          //     {
-          //       opacity: 0,
-          //       transform:
-          //         "translate3d(0, 70px, 0) scale(.965)",
-          //     },
-          //     {
-          //       opacity: 0.75,
-          //       transform:
-          //         "translate3d(0, 10px, 0) scale(1.006)",
-          //     },
-          //     {
-          //       opacity: 1,
-          //       transform:
-          //         "translate3d(0, 0, 0) scale(1)",
-          //     },
-          //   ],
-          //   {
-          //     duration: 1900,
-          //     delay: 4700,
-          //     easing: ease,
-          //     fill: "forwards",
-          //   }
-          // );
-  
-        /* -----------------------------------------------------
-           10 — MAP IMAGE
-           ----------------------------------------------------- */
-  
-          //  mapImageRef.current?.animate(
-          //   [
-          //     {
-          //       transform: "scale(1.045)",
-          //     },
-          //     {
-          //       transform: "scale(1)",
-          //     },
-          //   ],
-          //   {
-          //     duration: 2400,
-          //     delay: 5000,
-          //     easing: ease,
-          //     fill: "forwards",
-          //   }
-          // );
-  
-        /* -----------------------------------------------------
-           11 — RIGHT SIDE LABEL
-           ----------------------------------------------------- */
-  
-        // sideRef.current?.animate(
-        //   [
-        //     {
-        //       opacity: 0,
-        //       transform: "translate3d(20px, 0, 0)",
-        //     },
-        //     {
-        //       opacity: 1,
-        //       transform: "translate3d(0, 0, 0)",
-        //     },
-        //   ],
-        //   {
-        //     duration: 900,
-        //     delay: 1750,
-        //     easing: ease,
-        //     fill: "forwards",
-        //   }
-        // );
-  
-        /* -----------------------------------------------------
-           12 — HANDWRITTEN MESSAGE
-           ----------------------------------------------------- */
-  
-        // scriptRef.current?.animate(
-        //   [
-        //     {
-        //       opacity: 0,
-        //       transform:
-        //         "translate3d(0, 18px, 0) rotate(-7deg)",
-        //     },
-        //     {
-        //       opacity: 1,
-        //       transform:
-        //         "translate3d(0, 0, 0) rotate(-3deg)",
-        //     },
-        //   ],
-        //   {
-        //     duration: 1100,
-        //     delay: 1850,
-        //     easing: ease,
-        //     fill: "forwards",
-        //   }
-        // );
       },
       {
         threshold: 0.18,
@@ -369,103 +389,103 @@ const LocationSection: React.FC = () => {
   
     return () => observer.disconnect();
   }, []);
+  
+  // useEffect(() => {
+  //   if (!isVisible) return;
+  
+  //   const map = mapCardRef.current;
+  
+  //   if (!map) return;
+  
+  //   const animation = map.animate(
+  //     [
+  //       {
+  //         transform: "translate3d(0, 0, 0)",
+  //       },
+  //       {
+  //         transform: "translate3d(0, -6px, 0)",
+  //       },
+  //       {
+  //         transform: "translate3d(0, 0, 0)",
+  //       },
+  //     ],
+  //     {
+  //       duration: 7000,
+  //       easing: "ease-in-out",
+  //       iterations: Infinity,
+  //     }
+  //   );
+  
+  //   return () => animation.cancel();
+  // }, [isVisible]);
 
-  useEffect(() => {
-    if (!isVisible) return;
+  // useEffect(() => {
+  //   if (!isVisible) return;
   
-    const map = mapCardRef.current;
+  //   const image = heroImageRef.current;
   
-    if (!map) return;
+  //   if (!image) return;
   
-    const animation = map.animate(
-      [
-        {
-          transform: "translate3d(0, 0, 0)",
-        },
-        {
-          transform: "translate3d(0, -6px, 0)",
-        },
-        {
-          transform: "translate3d(0, 0, 0)",
-        },
-      ],
-      {
-        duration: 7000,
-        easing: "ease-in-out",
-        iterations: Infinity,
-      }
-    );
-  
-    return () => animation.cancel();
-  }, [isVisible]);
-
-  useEffect(() => {
-    if (!isVisible) return;
-  
-    const image = heroImageRef.current;
-  
-    if (!image) return;
-  
-    const animation = image.animate(
-      [
-        {
-          transform:
-            "translate3d(-0.28%, -78px, 0) scale(1.075)",
-        },
+  //   const animation = image.animate(
+  //     [
+  //       {
+  //         transform:
+  //           "translate3d(-0.28%, -78px, 0) scale(1.075)",
+  //       },
     
-        {
-          transform:
-            "translate3d(-0.55%, -88px, 0) scale(1.095)",
-        },
+  //       {
+  //         transform:
+  //           "translate3d(-0.55%, -88px, 0) scale(1.095)",
+  //       },
     
-        {
-          transform:
-            "translate3d(-0.28%, -78px, 0) scale(1.075)",
-        },
-      ],
-      {
-        duration: 28000,
-        easing: "ease-in-out",
-        iterations: Infinity,
-      }
-    );
+  //       {
+  //         transform:
+  //           "translate3d(-0.28%, -78px, 0) scale(1.075)",
+  //       },
+  //     ],
+  //     {
+  //       duration: 28000,
+  //       easing: "ease-in-out",
+  //       iterations: Infinity,
+  //     }
+  //   );
   
-    return () => animation.cancel();
-  }, [isVisible]);
+  //   return () => animation.cancel();
+  // }, [isVisible]);
 
-  useEffect(() => {
-    if (!isVisible) return;
+  // useEffect(() => {
+  //   if (!isVisible) return;
   
-    const animations = featureIconRefs.current
-      .map((icon, index) => {
-        if (!icon) return null;
+  //   const animations = featureIconRefs.current
+  //     .map((icon, index) => {
+  //       if (!icon) return null;
   
-        return icon.animate(
-          [
-            {
-              transform: "translate3d(0, 0, 0) scale(1)",
-            },
-            {
-              transform: "translate3d(0, -2px, 0) scale(1.025)",
-            },
-            {
-              transform: "translate3d(0, 0, 0) scale(1)",
-            },
-          ],
-          {
-            duration: 4200 + index * 450,
-            delay: index * 180,
-            easing: "ease-in-out",
-            iterations: Infinity,
-          }
-        );
-      })
-      .filter(Boolean);
+  //       return icon.animate(
+  //         [
+  //           {
+  //             transform: "translate3d(0, 0, 0) scale(1)",
+  //           },
+  //           {
+  //             transform: "translate3d(0, -2px, 0) scale(1.025)",
+  //           },
+  //           {
+  //             transform: "translate3d(0, 0, 0) scale(1)",
+  //           },
+  //         ],
+  //         {
+  //           duration: 4200 + index * 450,
+  //           delay: index * 180,
+  //           easing: "ease-in-out",
+  //           iterations: Infinity,
+  //         }
+  //       );
+  //     })
+  //     .filter(Boolean);
   
-    return () => {
-      animations.forEach((animation) => animation?.cancel());
-    };
-  }, [isVisible]);
+  //   return () => {
+  //     animations.forEach((animation) => animation?.cancel());
+  //   };
+  // }, [isVisible]);
 
   return (
     <section
@@ -1480,6 +1500,7 @@ style={{
 <div
 ref={ctaRef}
 className={`
+  mt-[35px]
   transform
   transition-all
   duration-[1450ms]
