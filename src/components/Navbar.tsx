@@ -7,8 +7,8 @@ const NAV_LINKS = [
   { label: "Stay", href: "#stay" },
   { label: "Experiences", href: "#experiences" },
   { label: "Dining", href: "#dining" },
-  { label: "Gallery", href: "#gallery" },
-  { label: "Offers", href: "#offers" },
+  // { label: "Gallery", href: "#gallery" },
+  // { label: "Offers", href: "#offers" },
   { label: "About Us", href: "#about" },
   { label: "Contact", href: "#contact" },
 ];
@@ -25,6 +25,7 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
   const [checkOut, setCheckOut] = useState("2026-10-17");
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
+  const [rooms, setRooms] = useState(1);
   const [pets, setPets] = useState(0);
 
   const handleCheckAvailability = () => {
@@ -43,6 +44,7 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
       checkOut,
       adults,
       children,
+      rooms,
       pets,
     });
     // Later we can connect this to your actual booking system.
@@ -185,9 +187,9 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
 
               <NavItem label="Dining" href="#dining" />
 
-              <NavItem label="Gallery" href="#gallery" />
+              {/* <NavItem label="Gallery" href="#gallery" />
 
-              <NavItem label="Offers" href="#offers" />
+              <NavItem label="Offers" href="#offers" /> */}
 
               <NavItem label="About Us" href="#about" />
 
@@ -339,8 +341,8 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
       </header>
 
       {/* =========================================================
-    PACIANO — LUXURY BOOKING MODAL
-========================================================= */}
+            PACIANO — LUXURY BOOKING MODAL
+        ========================================================= */}
       <BookingModal
         open={bookingOpen}
         onClose={() => setBookingOpen(false)}
@@ -352,6 +354,8 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
         setAdults={setAdults}
         children={children}
         setChildren={setChildren}
+        rooms={rooms}
+        setRooms={setRooms}
         pets={pets}
         setPets={setPets}
         onCheckAvailability={handleCheckAvailability}
@@ -381,6 +385,8 @@ function BookingModal({
   setAdults,
   children,
   setChildren,
+  rooms,
+  setRooms,
   pets,
   setPets,
   onCheckAvailability,
@@ -399,6 +405,9 @@ function BookingModal({
 
   children: number;
   setChildren: (value: number) => void;
+
+  rooms: number;
+  setRooms: (value: number) => void;
 
   pets: number;
   setPets: (value: number) => void;
@@ -1162,6 +1171,8 @@ function BookingModal({
                   setAdults={setAdults}
                   children={children}
                   setChildren={setChildren}
+                  rooms={rooms}
+                  setRooms={setRooms}
                   pets={pets}
                   setPets={setPets}
                 />
@@ -1953,11 +1964,309 @@ function LuxuryDateField({
   );
 }
 
+// function GuestSelector({
+//   adults,
+//   setAdults,
+//   children,
+//   setChildren,
+//   pets,
+//   setPets,
+// }: {
+//   adults: number;
+//   setAdults: (value: number) => void;
+//   children: number;
+//   setChildren: (value: number) => void;
+//   pets: number;
+//   setPets: (value: number) => void;
+// }) {
+//   const [open, setOpen] = useState(false);
+//   const guestButtonRef = useRef<HTMLButtonElement | null>(null);
+//   const guestPanelRef = useRef<HTMLDivElement | null>(null);
+//   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
+
+//   const totalGuests = adults + children;
+
+//   const updateCount = (
+//     current: number,
+//     setter: (value: number) => void,
+//     delta: number,
+//     minimum = 0,
+//   ) => {
+//     setter(Math.max(minimum, current + delta));
+//   };
+
+//   const updatePanelPosition = () => {
+//     const anchor = guestButtonRef.current;
+//     if (!anchor) return;
+
+//     const rect = anchor.getBoundingClientRect();
+//     const panelWidth = 300;
+//     const panelHeight = 300;
+//     const gap = 12;
+
+//     let left = rect.left + rect.width / 2 - panelWidth / 2;
+//     let top = rect.bottom + gap;
+
+//     if (left < 16) left = 16;
+//     if (left + panelWidth > window.innerWidth - 16) {
+//       left = window.innerWidth - panelWidth - 16;
+//     }
+
+//     // Prefer opening downward, but move above the field when needed.
+//     if (top + panelHeight > window.innerHeight - 16) {
+//       top = rect.top - panelHeight - gap;
+//     }
+
+//     if (top < 16) top = 16;
+
+//     setPanelPosition({ top, left });
+//   };
+
+//   const toggleGuests = () => {
+//     updatePanelPosition();
+//     setOpen((current) => !current);
+//   };
+
+//   useEffect(() => {
+//     if (!open) return;
+
+//     const handleOutsideClick = (event: MouseEvent) => {
+//       const target = event.target as Node;
+
+//       if (
+//         guestButtonRef.current?.contains(target) ||
+//         guestPanelRef.current?.contains(target)
+//       ) {
+//         return;
+//       }
+
+//       setOpen(false);
+//     };
+
+//     const handleEscape = (event: KeyboardEvent) => {
+//       if (event.key === "Escape") setOpen(false);
+//     };
+
+//     const handleViewportChange = () => updatePanelPosition();
+
+//     document.addEventListener("mousedown", handleOutsideClick);
+//     document.addEventListener("keydown", handleEscape);
+//     window.addEventListener("resize", handleViewportChange);
+//     window.addEventListener("scroll", handleViewportChange, true);
+
+//     return () => {
+//       document.removeEventListener("mousedown", handleOutsideClick);
+//       document.removeEventListener("keydown", handleEscape);
+//       window.removeEventListener("resize", handleViewportChange);
+//       window.removeEventListener("scroll", handleViewportChange, true);
+//     };
+//   }, [open]);
+
+//   return (
+//     <div
+//       className="
+//         relative
+//         min-h-[160px]
+//         border-[#173321]/15
+//         px-5
+//         py-7
+//         md:border-r
+//       "
+//     >
+//       <span
+//         className="
+//           block
+//           font-jost
+//           text-[11px]
+//           font-medium
+//           uppercase
+//           tracking-[0.28em]
+//           text-[#7d875d]
+//         "
+//       >
+//         Guests
+//       </span>
+
+//       <button
+//         type="button"
+//         ref={guestButtonRef}
+//         onClick={toggleGuests}
+//         className="
+//           group/guest
+//           mt-6
+//           flex
+//           w-full
+//           items-center
+//           justify-between
+//           pb-4
+//           text-left
+//           outline-none
+//         "
+//       >
+//         <span
+//           className="
+//             font-cormorant
+//             text-[25px]
+//             font-normal
+//             leading-none
+//             text-[#24372b]
+//             transition-colors
+//             duration-300
+//             group-hover/guest:text-[#667238]
+//           "
+//         >
+//           {adults} Adult{adults !== 1 ? "s" : ""}
+//         </span>
+
+//         <svg
+//           width="14"
+//           height="14"
+//           viewBox="0 0 24 24"
+//           fill="none"
+//           className={`
+//             text-[#536151]
+//             transition-transform
+//             duration-300
+//             ${open ? "rotate-180" : ""}
+//           `}
+//         >
+//           <path
+//             d="M6 9L12 15L18 9"
+//             stroke="currentColor"
+//             strokeWidth="1.4"
+//             strokeLinecap="round"
+//             strokeLinejoin="round"
+//           />
+//         </svg>
+//       </button>
+
+//       <div className="mt-7 h-px w-full bg-[#173321]/20" />
+
+//       <button
+//         type="button"
+//         onClick={toggleGuests}
+//         className="
+//           mt-3
+//           block
+//           font-lora
+//           text-[12px]
+//           italic
+//           text-[#68735f]
+//         "
+//       >
+//         More Options
+//       </button>
+
+//       {open &&
+//         createPortal(
+//           <div
+//             ref={guestPanelRef}
+//             className="
+//               fixed
+//               z-[9998]
+//               w-[300px]
+//               overflow-hidden
+//               rounded-[18px]
+//               border
+//               border-[#a7ae80]/55
+//               bg-[#f2eee3]/[0.99]
+//               shadow-[0_30px_80px_rgba(23,51,33,0.24)]
+//               backdrop-blur-xl
+//             "
+//             style={{
+//               top: `${panelPosition.top}px`,
+//               left: `${panelPosition.left}px`,
+//             }}
+//             role="dialog"
+//             aria-label="Select guests"
+//           >
+//             <div className="relative px-5 pb-4 pt-5">
+//               <div className="absolute left-5 top-0 h-px w-14 bg-[#8e9a5b]" />
+
+//               <div className="flex items-end justify-between">
+//                 <div>
+//                   <p className="font-jost text-[8px] font-medium uppercase tracking-[0.28em] text-[#7d875d]">
+//                     Your party
+//                   </p>
+//                   <h3 className="mt-1 font-cormorant text-[28px] leading-none tracking-[-0.015em] text-[#173321]">
+//                     Guests
+//                   </h3>
+//                 </div>
+
+//                 <span className="font-lora text-[13px] italic text-[#7b846f]">
+//                   {totalGuests} guest{totalGuests !== 1 ? "s" : ""}
+//                 </span>
+//               </div>
+
+//               <div className="mt-5 divide-y divide-[#173321]/10 border-y border-[#173321]/10">
+//                 <GuestCounter
+//                   label="Adults"
+//                   value={adults}
+//                   minimum={1}
+//                   onDecrease={() => updateCount(adults, setAdults, -1, 1)}
+//                   onIncrease={() => updateCount(adults, setAdults, 1, 1)}
+//                 />
+
+//                 <GuestCounter
+//                   label="Children"
+//                   value={children}
+//                   minimum={0}
+//                   onDecrease={() => updateCount(children, setChildren, -1)}
+//                   onIncrease={() => updateCount(children, setChildren, 1)}
+//                 />
+
+//                 <GuestCounter
+//                   label="Pets"
+//                   value={pets}
+//                   minimum={0}
+//                   onDecrease={() => updateCount(pets, setPets, -1)}
+//                   onIncrease={() => updateCount(pets, setPets, 1)}
+//                 />
+//               </div>
+
+//               <div className="mt-3 flex items-center justify-between">
+//                 <span className="font-lora text-[11px] italic text-[#7a836e]">
+//                   Pets are optional
+//                 </span>
+
+//                 <button
+//                   type="button"
+//                   onClick={() => setOpen(false)}
+//                   className="
+//                     rounded-full
+//                     border
+//                     border-[#7d8b56]/45
+//                     px-5
+//                     py-2
+//                     font-jost
+//                     text-[10px]
+//                     font-medium
+//                     uppercase
+//                     tracking-[0.24em]
+//                     text-[#52623a]
+//                     transition-all
+//                     duration-300
+//                     hover:bg-[#dce2ca]
+//                   "
+//                 >
+//                   Done
+//                 </button>
+//               </div>
+//             </div>
+//           </div>,
+//           document.body,
+//         )}
+//     </div>
+//   );
+// }
+
 function GuestSelector({
   adults,
   setAdults,
   children,
   setChildren,
+  rooms,
+  setRooms,
   pets,
   setPets,
 }: {
@@ -1965,13 +2274,20 @@ function GuestSelector({
   setAdults: (value: number) => void;
   children: number;
   setChildren: (value: number) => void;
+  rooms: number;
+  setRooms: (value: number) => void;
   pets: number;
   setPets: (value: number) => void;
 }) {
   const [open, setOpen] = useState(false);
+
   const guestButtonRef = useRef<HTMLButtonElement | null>(null);
   const guestPanelRef = useRef<HTMLDivElement | null>(null);
-  const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
+
+  const [panelPosition, setPanelPosition] = useState({
+    top: 0,
+    left: 0,
+  });
 
   const totalGuests = adults + children;
 
@@ -1989,26 +2305,38 @@ function GuestSelector({
     if (!anchor) return;
 
     const rect = anchor.getBoundingClientRect();
+
     const panelWidth = 300;
-    const panelHeight = 300;
+    const panelHeight = 350;
     const gap = 12;
 
     let left = rect.left + rect.width / 2 - panelWidth / 2;
     let top = rect.bottom + gap;
 
-    if (left < 16) left = 16;
+    if (left < 16) {
+      left = 16;
+    }
+
     if (left + panelWidth > window.innerWidth - 16) {
       left = window.innerWidth - panelWidth - 16;
     }
 
-    // Prefer opening downward, but move above the field when needed.
+    /*
+      Prefer opening below.
+      If there isn't enough space, open above.
+    */
     if (top + panelHeight > window.innerHeight - 16) {
       top = rect.top - panelHeight - gap;
     }
 
-    if (top < 16) top = 16;
+    if (top < 16) {
+      top = 16;
+    }
 
-    setPanelPosition({ top, left });
+    setPanelPosition({
+      top,
+      left,
+    });
   };
 
   const toggleGuests = () => {
@@ -2033,19 +2361,25 @@ function GuestSelector({
     };
 
     const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
     };
 
-    const handleViewportChange = () => updatePanelPosition();
+    const handleViewportChange = () => {
+      updatePanelPosition();
+    };
 
     document.addEventListener("mousedown", handleOutsideClick);
     document.addEventListener("keydown", handleEscape);
+
     window.addEventListener("resize", handleViewportChange);
     window.addEventListener("scroll", handleViewportChange, true);
 
     return () => {
       document.removeEventListener("mousedown", handleOutsideClick);
       document.removeEventListener("keydown", handleEscape);
+
       window.removeEventListener("resize", handleViewportChange);
       window.removeEventListener("scroll", handleViewportChange, true);
     };
@@ -2062,6 +2396,10 @@ function GuestSelector({
         md:border-r
       "
     >
+      {/* =========================================
+          LABEL
+      ========================================= */}
+
       <span
         className="
           block
@@ -2076,6 +2414,10 @@ function GuestSelector({
         Guests
       </span>
 
+      {/* =========================================
+          SUMMARY BUTTON
+      ========================================= */}
+
       <button
         type="button"
         ref={guestButtonRef}
@@ -2089,22 +2431,24 @@ function GuestSelector({
           justify-between
           pb-4
           text-left
-          outline-none          
+          outline-none
         "
       >
         <span
           className="
-            font-cormorant
-            text-[25px]
-            font-normal
-            leading-none
-            text-[#24372b]
-            transition-colors
-            duration-300
-            group-hover/guest:text-[#667238]
-          "
+          whitespace-nowrap
+          font-cormorant
+          text-[24px]
+          font-normal
+          leading-none
+          tracking-[-0.01em]
+          text-[#24372b]
+          transition-colors
+          duration-300
+          group-hover/guest:text-[#667238]
+        "
         >
-          {adults} Adult{adults !== 1 ? "s" : ""}
+          {adults} Adults · {rooms} Room{rooms !== 1 ? "s" : ""}
         </span>
 
         <svg
@@ -2113,6 +2457,7 @@ function GuestSelector({
           viewBox="0 0 24 24"
           fill="none"
           className={`
+            shrink-0
             text-[#536151]
             transition-transform
             duration-300
@@ -2129,7 +2474,15 @@ function GuestSelector({
         </svg>
       </button>
 
+      {/* =========================================
+          UNDERLINE
+      ========================================= */}
+
       <div className="mt-7 h-px w-full bg-[#173321]/20" />
+
+      {/* =========================================
+          MORE OPTIONS
+      ========================================= */}
 
       <button
         type="button"
@@ -2146,6 +2499,10 @@ function GuestSelector({
         More Options
       </button>
 
+      {/* =========================================
+          GUEST MODAL
+      ========================================= */}
+
       {open &&
         createPortal(
           <div
@@ -2154,12 +2511,18 @@ function GuestSelector({
               fixed
               z-[9998]
               w-[300px]
+
               overflow-hidden
+
               rounded-[18px]
+
               border
               border-[#a7ae80]/55
+
               bg-[#f2eee3]/[0.99]
+
               shadow-[0_30px_80px_rgba(23,51,33,0.24)]
+
               backdrop-blur-xl
             "
             style={{
@@ -2167,27 +2530,81 @@ function GuestSelector({
               left: `${panelPosition.left}px`,
             }}
             role="dialog"
-            aria-label="Select guests"
+            aria-label="Select guests and rooms"
           >
             <div className="relative px-5 pb-4 pt-5">
-              <div className="absolute left-5 top-0 h-px w-14 bg-[#8e9a5b]" />
+              {/* TOP ACCENT */}
+              <div
+                className="
+                  absolute
+                  left-5
+                  top-0
+                  h-px
+                  w-14
+                  bg-[#8e9a5b]
+                "
+              />
+
+              {/* =====================================
+                  HEADER
+              ===================================== */}
 
               <div className="flex items-end justify-between">
                 <div>
-                  <p className="font-jost text-[8px] font-medium uppercase tracking-[0.28em] text-[#7d875d]">
+                  <p
+                    className="
+                      font-jost
+                      text-[8px]
+                      font-medium
+                      uppercase
+                      tracking-[0.28em]
+                      text-[#7d875d]
+                    "
+                  >
                     Your party
                   </p>
-                  <h3 className="mt-1 font-cormorant text-[28px] leading-none tracking-[-0.015em] text-[#173321]">
+
+                  <h3
+                    className="
+                      mt-1
+                      font-cormorant
+                      text-[28px]
+                      leading-none
+                      tracking-[-0.015em]
+                      text-[#173321]
+                    "
+                  >
                     Guests
                   </h3>
                 </div>
 
-                <span className="font-lora text-[13px] italic text-[#7b846f]">
+                <span
+                  className="
+                    font-lora
+                    text-[13px]
+                    italic
+                    text-[#7b846f]
+                  "
+                >
                   {totalGuests} guest{totalGuests !== 1 ? "s" : ""}
                 </span>
               </div>
 
-              <div className="mt-5 divide-y divide-[#173321]/10 border-y border-[#173321]/10">
+              {/* =====================================
+                  COUNTERS
+              ===================================== */}
+
+              <div
+                className="
+                  mt-5
+                  divide-y
+                  divide-[#173321]/10
+                  border-y
+                  border-[#173321]/10
+                "
+              >
+                {/* ADULTS */}
+
                 <GuestCounter
                   label="Adults"
                   value={adults}
@@ -2196,6 +2613,8 @@ function GuestSelector({
                   onIncrease={() => updateCount(adults, setAdults, 1, 1)}
                 />
 
+                {/* CHILDREN */}
+
                 <GuestCounter
                   label="Children"
                   value={children}
@@ -2203,6 +2622,18 @@ function GuestSelector({
                   onDecrease={() => updateCount(children, setChildren, -1)}
                   onIncrease={() => updateCount(children, setChildren, 1)}
                 />
+
+                {/* ROOMS */}
+
+                <GuestCounter
+                  label="Rooms"
+                  value={rooms}
+                  minimum={1}
+                  onDecrease={() => updateCount(rooms, setRooms, -1, 1)}
+                  onIncrease={() => updateCount(rooms, setRooms, 1, 1)}
+                />
+
+                {/* PETS */}
 
                 <GuestCounter
                   label="Pets"
@@ -2213,8 +2644,19 @@ function GuestSelector({
                 />
               </div>
 
+              {/* =====================================
+                  FOOTER
+              ===================================== */}
+
               <div className="mt-3 flex items-center justify-between">
-                <span className="font-lora text-[11px] italic text-[#7a836e]">
+                <span
+                  className="
+                    font-lora
+                    text-[11px]
+                    italic
+                    text-[#7a836e]
+                  "
+                >
                   Pets are optional
                 </span>
 
@@ -2227,14 +2669,18 @@ function GuestSelector({
                     border-[#7d8b56]/45
                     px-5
                     py-2
+
                     font-jost
                     text-[10px]
                     font-medium
                     uppercase
                     tracking-[0.24em]
+
                     text-[#52623a]
+
                     transition-all
                     duration-300
+
                     hover:bg-[#dce2ca]
                   "
                 >
