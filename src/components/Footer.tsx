@@ -315,19 +315,35 @@ function FooterLink({
   );
 }
 
-export default function Footer() {
+type FooterProps = {
+  /** Pull footer over the contact location panorama with a raised 3D lip */
+  contactOverlap?: boolean;
+};
+
+export default function Footer({ contactOverlap = false }: FooterProps) {
   return (
     <>
       <footer
-        className="
+        className={`
         relative
-        z-20
-        -mt-[52px]
         overflow-hidden
         bg-[#09160F]
         text-[#F4EFE4]
-      "
+        ${contactOverlap ? "z-40 -mt-6 rounded-none shadow-[0_-32px_70px_rgba(0,0,0,0.55),0_-10px_28px_rgba(0,0,0,0.35)] sm:-mt-8 lg:-mt-10" : "z-20 -mt-[52px]"}
+      `}
       >
+        {contactOverlap ? (
+          <>
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 z-[60] h-8 bg-gradient-to-b from-black/50 to-transparent"
+              aria-hidden
+            />
+            <div
+              className="pointer-events-none absolute inset-x-0 top-0 z-[60] h-px bg-[#ffffff]/10"
+              aria-hidden
+            />
+          </>
+        ) : null}
         {/* ==========================================================
     CINEMATIC FOOTER ATMOSPHERE
 =========================================================== */}

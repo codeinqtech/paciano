@@ -4,20 +4,22 @@ import pacianoLogo from "@/images/paciano-logo.png";
 import bookingImage from "@/images/paciano-booking.png";
 
 const NAV_LINKS = [
-  { label: "Stay", href: "#stay" },
-  { label: "Experiences", href: "#experiences" },
-  { label: "Dining", href: "#dining" },
-  // { label: "Gallery", href: "#gallery" },
-  // { label: "Offers", href: "#offers" },
-  { label: "About Us", href: "#about" },
-  { label: "Contact", href: "#contact" },
+  { label: "Stay", href: "/#stay" },
+  { label: "Experiences", href: "/#experiences" },
+  { label: "Dining", href: "/#dining" },
+  { label: "About Us", href: "/#about" },
+  { label: "Contact", href: "/contact" },
 ];
 
 interface NavbarProps {
   scrolled?: boolean;
+  activeNav?: "home" | "contact";
 }
 
-export default function Navbar({ scrolled = false }: NavbarProps) {
+export default function Navbar({
+  scrolled = false,
+  activeNav = "home",
+}: NavbarProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [bookingOpen, setBookingOpen] = useState(false);
 
@@ -179,21 +181,21 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
                 xl:gap-10
               "
             >
-              <NavItem label="Home" href="#home" active />
+              <NavItem label="Home" href="/" active={activeNav === "home"} />
 
-              <NavItem label="Stay" href="#stay" />
+              <NavItem label="Stay" href="/#stay" />
 
-              <NavItem label="Experiences" href="#experiences" />
+              <NavItem label="Experiences" href="/#experiences" />
 
-              <NavItem label="Dining" href="#dining" />
+              <NavItem label="Dining" href="/#dining" />
 
-              {/* <NavItem label="Gallery" href="#gallery" />
+              <NavItem label="About Us" href="/#about" />
 
-              <NavItem label="Offers" href="#offers" /> */}
-
-              <NavItem label="About Us" href="#about" />
-
-              <NavItem label="Contact" href="#contact" />
+              <NavItem
+                label="Contact"
+                href="/contact"
+                active={activeNav === "contact"}
+              />
             </div>
           </nav>
 
@@ -365,6 +367,7 @@ export default function Navbar({ scrolled = false }: NavbarProps) {
       <MobileMenu
         open={menuOpen}
         onClose={() => setMenuOpen(false)}
+        activeNav={activeNav}
         onBooking={() => {
           setMenuOpen(false);
           setBookingOpen(true);
@@ -3048,9 +3051,7 @@ text-white/85
     duration-500
     ease-out
 
-    active
-  ? "text-[#a9b85f]"
-  : "hover:text-white"
+    ${active ? "text-[#a9b85f]" : "text-white/85 hover:text-white"}
   `}
     >
       {label}
@@ -3083,10 +3084,12 @@ function MobileMenu({
   open,
   onClose,
   onBooking,
+  activeNav = "home",
 }: {
   open: boolean;
   onClose: () => void;
   onBooking: () => void;
+  activeNav?: "home" | "contact";
 }) {
   return (
     <div
@@ -3152,13 +3155,23 @@ function MobileMenu({
 
         {/* LINKS */}
         <nav className="flex flex-col">
-          <MobileNavItem label="Home" href="#home" onClick={onClose} />
+          <MobileNavItem
+            label="Home"
+            href="/"
+            active={activeNav === "home"}
+            onClick={onClose}
+          />
 
           {NAV_LINKS.map((item) => (
             <MobileNavItem
               key={item.label}
               label={item.label}
               href={item.href}
+              active={
+                item.label === "Contact"
+                  ? activeNav === "contact"
+                  : false
+              }
               onClick={onClose}
             />
           ))}
@@ -3261,16 +3274,18 @@ function MobileNavItem({
   label,
   href,
   onClick,
+  active = false,
 }: {
   label: string;
   href: string;
   onClick: () => void;
+  active?: boolean;
 }) {
   return (
     <a
       href={href}
       onClick={onClick}
-      className="
+      className={`
         group
         flex
         items-center
@@ -3280,11 +3295,11 @@ function MobileNavItem({
         py-[17px]
         font-serif
         text-[24px]
-        text-[#173321]
         transition-colors
         duration-300
         hover:text-[#789f3b]
-      "
+        ${active ? "text-[#789f3b]" : "text-[#173321]"}
+      `}
     >
       <span>{label}</span>
 

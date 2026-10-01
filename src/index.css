@@ -160,3 +160,57 @@
 .animate-paciano-about-image {
   animation: paciano-about-image 18s ease-in-out infinite;
 }
+
+/* Contact page — underline form fields */
+.luxury-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(200, 167, 106, 0.35);
+  outline: none;
+  width: 100%;
+  padding: 10px 0 12px;
+  font-family: var(--font-jost);
+  font-size: 0.95rem;
+  color: #222222;
+  transition: border-color 0.3s ease;
+}
+
+.luxury-input::placeholder {
+  color: #6b6b6b;
+  font-weight: 300;
+  letter-spacing: 0.02em;
+}
+
+.luxury-input:focus {
+  border-bottom-color: #c8a76a;
+}
+
+textarea.luxury-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+@media (min-width: 1024px) {
+  textarea.luxury-input-inline {
+    resize: none;
+    min-height: 46px;
+    max-height: 46px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    line-height: 1.35;
+  }
+}
+
+@keyframes contact-mist-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-1.5%, 0, 0) scale(1.03);
+  }
+}
+
+.animate-contact-mist-drift {
+  animation: contact-mist-drift 32s ease-in-out infinite alternate;
+}
