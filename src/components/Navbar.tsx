@@ -2,18 +2,19 @@ import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import pacianoLogo from "@/images/paciano-logo.png";
 import bookingImage from "@/images/paciano-booking.png";
+import { homeHref, toAppPath } from "@/lib/appBase";
 
 const NAV_LINKS = [
-  { label: "Stay", href: "/#stay" },
-  { label: "Experiences", href: "/#experiences" },
-  { label: "Dining", href: "/#dining" },
-  { label: "About Us", href: "/#about" },
-  { label: "Contact", href: "/contact" },
+  { label: "Stay", href: toAppPath("/stay") },
+  { label: "Experiences", href: homeHref("#experiences") },
+  { label: "Dining", href: homeHref("#dining") },
+  { label: "About Us", href: homeHref("#about") },
+  { label: "Contact", href: toAppPath("/contact") },
 ];
 
 interface NavbarProps {
   scrolled?: boolean;
-  activeNav?: "home" | "contact";
+  activeNav?: "home" | "contact" | "stay";
 }
 
 export default function Navbar({
@@ -135,7 +136,7 @@ export default function Navbar({
               PACIANO LOGO
           ========================================= */}
           <a
-            href="/"
+            href={toAppPath("/")}
             className="
               group
               relative
@@ -181,19 +182,27 @@ export default function Navbar({
                 xl:gap-10
               "
             >
-              <NavItem label="Home" href="/" active={activeNav === "home"} />
+              <NavItem
+                label="Home"
+                href={toAppPath("/")}
+                active={activeNav === "home"}
+              />
 
-              <NavItem label="Stay" href="/#stay" />
+              <NavItem
+                label="Stay"
+                href={toAppPath("/stay")}
+                active={activeNav === "stay"}
+              />
 
-              <NavItem label="Experiences" href="/#experiences" />
+              <NavItem label="Experiences" href={homeHref("#experiences")} />
 
-              <NavItem label="Dining" href="/#dining" />
+              <NavItem label="Dining" href={homeHref("#dining")} />
 
-              <NavItem label="About Us" href="/#about" />
+              <NavItem label="About Us" href={homeHref("#about")} />
 
               <NavItem
                 label="Contact"
-                href="/contact"
+                href={toAppPath("/contact")}
                 active={activeNav === "contact"}
               />
             </div>
@@ -3089,7 +3098,7 @@ function MobileMenu({
   open: boolean;
   onClose: () => void;
   onBooking: () => void;
-  activeNav?: "home" | "contact";
+  activeNav?: "home" | "contact" | "stay";
 }) {
   return (
     <div
@@ -3157,7 +3166,7 @@ function MobileMenu({
         <nav className="flex flex-col">
           <MobileNavItem
             label="Home"
-            href="/"
+            href={toAppPath("/")}
             active={activeNav === "home"}
             onClick={onClose}
           />
@@ -3170,7 +3179,9 @@ function MobileMenu({
               active={
                 item.label === "Contact"
                   ? activeNav === "contact"
-                  : false
+                  : item.label === "Stay"
+                    ? activeNav === "stay"
+                    : false
               }
               onClick={onClose}
             />

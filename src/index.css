@@ -214,3 +214,228 @@ textarea.luxury-input {
 .animate-contact-mist-drift {
   animation: contact-mist-drift 32s ease-in-out infinite alternate;
 }
+
+/* Stay page (from stay-page design, scoped) */
+.stay-page .font-display {
+  font-family: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
+}
+
+.stay-page .page-container {
+  width: min(100% - 96px, 1320px);
+  margin-inline: auto;
+}
+
+.stay-page .section-title {
+  font-size: clamp(3.5rem, 4.25vw, 5.35rem);
+  line-height: 0.91;
+  letter-spacing: -0.045em;
+  font-weight: 400;
+}
+
+.stay-page .section-title em {
+  color: #55704f;
+  font-weight: 400;
+}
+
+.stay-page .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.27em;
+  line-height: 1.5;
+}
+
+.stay-page .hero-shade {
+  background: linear-gradient(
+    90deg,
+    #f8f5ee 0%,
+    rgba(248, 245, 238, 0.98) 15%,
+    rgba(248, 245, 238, 0.88) 32%,
+    rgba(248, 245, 238, 0.36) 53%,
+    rgba(12, 26, 17, 0.08) 75%,
+    rgba(12, 26, 17, 0.42) 100%
+  );
+}
+
+.stay-page .section-wave {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 82px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stay-page .pill-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 46px;
+  gap: 20px;
+  border: 1px solid #3f5b3f;
+  border-radius: 999px;
+  padding: 5px 6px 5px 19px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+  white-space: nowrap;
+  transition:
+    background-color 0.25s,
+    color 0.25s,
+    transform 0.25s;
+}
+
+.stay-page .pill-link:hover {
+  transform: translateY(-2px);
+}
+
+.stay-page .pill-solid {
+  background: #3f5b3f;
+  color: #fff;
+}
+
+.stay-page .pill-solid:hover {
+  background: #29442f;
+}
+
+.stay-page .pill-outline {
+  color: #314832;
+  background: rgba(248, 245, 238, 0.65);
+  border-color: #abb5a5;
+}
+
+.stay-page .pill-outline:hover {
+  background: #fff;
+}
+
+.stay-page .pill-icon {
+  display: flex;
+  width: 34px;
+  height: 34px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+  opacity: 0.85;
+}
+
+.stay-page .circle-arrow {
+  display: inline-flex;
+  width: 40px;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #c5c9bb;
+  border-radius: 50%;
+  color: #3b543d;
+  transition:
+    transform 0.2s,
+    background-color 0.2s;
+}
+
+.stay-page .circle-arrow:hover {
+  transform: translateY(-2px);
+  background: #e8ebdf;
+}
+
+.stay-page .booking-field {
+  min-width: 0;
+  border-right: 1px solid #dadbd0;
+  padding-right: 10px;
+}
+
+.stay-page .booking-field:last-child {
+  border-right: 0;
+}
+
+.stay-page .booking-input {
+  width: 100%;
+  min-width: 0;
+  margin-top: 11px;
+  border: 0;
+  background: transparent;
+  color: #5b655a;
+  font-size: 12px;
+  outline: none;
+  color-scheme: light;
+}
+
+.stay-page .scrollbar-hide {
+  scrollbar-width: none;
+}
+
+.stay-page .scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+@media (max-width: 1023px) {
+  .stay-page .page-container {
+    width: min(100% - 64px, 1320px);
+  }
+
+  .stay-page .hero-shade {
+    background: linear-gradient(
+      90deg,
+      #f8f5ee 0%,
+      rgba(248, 245, 238, 0.96) 27%,
+      rgba(248, 245, 238, 0.54) 67%,
+      rgba(12, 26, 17, 0.12) 100%
+    );
+  }
+}
+
+@media (max-width: 639px) {
+  .stay-page .page-container {
+    width: min(100% - 40px, 1320px);
+  }
+
+  .stay-page .hero .page-container {
+    min-height: 660px;
+    align-items: flex-end;
+    padding-bottom: 140px;
+  }
+
+  .stay-page .hero img {
+    object-position: 57% center;
+  }
+
+  .stay-page .hero-shade {
+    background: linear-gradient(
+      0deg,
+      #f8f5ee 0%,
+      rgba(248, 245, 238, 0.97) 23%,
+      rgba(248, 245, 238, 0.72) 50%,
+      rgba(0, 0, 0, 0.05) 100%
+    );
+  }
+
+  .stay-page .hero-copy h1 {
+    font-size: clamp(3.7rem, 12vw, 5rem);
+  }
+
+  .stay-page .hero-copy p {
+    font-size: 14px;
+  }
+
+  .stay-page .section-title {
+    font-size: clamp(3.35rem, 12vw, 4.4rem);
+  }
+
+  .stay-page .section-wave {
+    height: 46px;
+  }
+
+  .stay-page .booking-field {
+    border-right: 0;
+    border-bottom: 1px solid #dadbd0;
+    padding: 0 0 13px;
+  }
+
+  .stay-page .booking-field:last-child {
+    border-bottom: 0;
+  }
+}

@@ -33,7 +33,7 @@ jobs:
 
       - name: Build
         env:
-            FIGMA_PUBLIC_URL: ${{ vars.FIGMA_PUBLIC_URL }}
+          VITE_BASE_PATH: /design/tmp_1
         run: npm run build
 
       - name: Deploy to staging via FTP
@@ -45,3 +45,4 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           local-dir: ./dist/
           server-dir: /domains/codeinq.com/public_html/paciano/design/tmp_1/
+          dangerous-clean-slate: true
