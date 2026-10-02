@@ -8,7 +8,7 @@ import {
 import { Mail, MapPin, Phone, Sparkles } from "lucide-react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import bannerImg from "@/images/contact/banner.png";
+import bannerImg from "@/images/contact/contact-banner.png";
 import convImg1 from "@/images/contact/we-are-just-a-conversation-away1.png";
 import convImg2 from "@/images/contact/we-are-just-a-conversation-away2.png";
 import convOverlap from "@/images/contact/nestled-in-the-heart-of-nature.png";
@@ -16,6 +16,8 @@ import leafLeft from "@/images/location-left-leaves.png";
 import leafAccent from "@/images/dining-leaf2.png";
 import leafSoft from "@/images/dining-leaf3.png";
 import leafCorner from "@/images/button-leaf.png";
+import mistMountains from "@/images/paciano-mist-mountains.png";
+import contactLeafIcon from "@/images/contact/paciano-leaf-gold-transparent.png";
 import MistSectionBridge from "@/components/MistSectionBridge";
 
 const FOREST = "#0E2D20";
@@ -244,112 +246,630 @@ function SectionLabel({ children }: { children: ReactNode }) {
 
 function ContactHero() {
   const ref = useRef(null);
+
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start start", "end start"],
   });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", "14%"]
+  );
+
+  const scale = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [1.03, 1.08]
+  );
 
   return (
     <section
       ref={ref}
-      className="relative flex min-h-[100svh] w-full items-center justify-center overflow-hidden"
+      className="
+        relative
+        flex
+        min-h-[100svh]
+        w-full
+        items-center
+        justify-center
+        overflow-hidden
+      "
     >
-      <motion.div className="absolute inset-0 h-full w-full" style={{ y }}>
+
+      {/* =====================================================
+          HERO IMAGE
+      ====================================================== */}
+
+      <motion.div
+        className="absolute inset-0 h-full w-full"
+        style={{
+          y,
+          scale,
+        }}
+      >
         <img
           src={bannerImg}
-          alt="Paciano nature retreat"
-          className="h-full w-full object-cover"
-        />
-      </motion.div>
-
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(to bottom, rgba(14,45,32,0.6) 0%, rgba(14,45,32,0.35) 45%, rgba(14,45,32,0.75) 100%)",
-        }}
-      />
-
-      <div className="relative z-10 px-5 pb-16 pt-28 text-center sm:px-6 sm:pt-32">
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.15 }}
-          className="mb-5 font-jost text-[0.65rem] font-light uppercase tracking-[0.25em] sm:mb-7 sm:text-[0.72rem]"
-          style={{ color: GOLD }}
-        >
-          Get in Touch
-        </motion.p>
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.95, delay: 0.3 }}
-          className="font-cormorant font-light leading-[1.05] text-white"
-          style={{ fontSize: "clamp(2.25rem, 8vw, 6.5rem)" }}
-        >
-          Let Nature
-          <br />
-          Bring You Closer.
-        </motion.h1>
-        <motion.p
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, delay: 0.5 }}
-          className="mt-4 font-cormorant text-lg italic font-light text-white/80 sm:mt-6 sm:text-2xl"
-        >
-          We&apos;d love to hear from you.
-        </motion.p>
-      </div>
-
-      <motion.div
-        initial={{ opacity: 0, x: 12 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.9, delay: 0.85 }}
-        className="absolute right-6 top-1/2 z-10 hidden -translate-y-1/2 flex-col items-center gap-[1.35rem] md:flex lg:right-10 xl:right-12"
-      >
-        {["RIVER", "FOREST", "PEOPLE", "A SLOWER YOU"].map((w) => (
-          <span
-            key={w}
-            className="whitespace-nowrap font-jost text-[0.62rem] uppercase tracking-[0.24em] text-white/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)]"
-            style={{ color: "rgba(248, 240, 228, 0.92)" }}
-          >
-            {w}
-          </span>
-        ))}
-        <div
-          className="mt-1 h-14 w-px shrink-0"
-          style={{ background: "rgba(200,167,106,0.75)" }}
-        />
-      </motion.div>
-
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1, duration: 0.8 }}
-        className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 flex-col items-center gap-2 sm:bottom-10"
-      >
-        <span
-          className="font-jost uppercase text-white/50"
-          style={{ fontSize: "0.6rem", letterSpacing: "0.2em" }}
-        >
-          Scroll
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.6, ease: "easeInOut" }}
-          className="h-10 w-px"
+          alt="Paciano Dooars"
+          className="
+            h-full
+            w-full
+            object-cover
+            object-[50%_50%]
+            sm:object-[50%_50%]
+            lg:object-center
+          "
           style={{
-            background:
-              "linear-gradient(to bottom, rgba(200,167,106,0.85), transparent)",
+            filter:
+              "brightness(1.05) saturate(1.08) contrast(1.04)",
           }}
         />
       </motion.div>
 
+
+      {/* =====================================================
+          LEFT FOREGROUND LEAVES
+          transparent PNG
+      ====================================================== */}
+
+      <motion.img
+        src="/assets/contact-leaves.png"
+        alt=""
+        aria-hidden="true"
+        initial={{
+          opacity: 0,
+          x: -35,
+          y: -20,
+        }}
+        animate={{
+          opacity: 0.96,
+          x: 0,
+          y: 0,
+        }}
+        transition={{
+          duration: 1.6,
+          delay: 0.15,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="
+          pointer-events-none
+          absolute
+          left-[-35px]
+          top-[-25px]
+          z-[8]
+          w-[330px]
+          max-w-none
+          select-none
+          sm:left-[-45px]
+          sm:top-[-35px]
+          sm:w-[390px]
+          md:w-[430px]
+          lg:left-[-55px]
+          lg:top-[-45px]
+          lg:w-[470px]
+          xl:w-[520px]
+        "
+      />
+
+
+      {/* =====================================================
+          TOP CINEMATIC GRADE
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[2]
+        "
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(8,24,19,0.40) 0%, rgba(8,24,19,0.04) 24%, rgba(8,24,19,0.02) 55%, rgba(5,20,15,0.48) 100%)",
+        }}
+      />
+
+
+      {/* =====================================================
+          WARM GOLDEN ATMOSPHERE
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[3]
+        "
+        style={{
+          background:
+            "radial-gradient(circle at 17% 30%, rgba(255,196,86,0.18) 0%, rgba(255,178,72,0.08) 18%, transparent 42%)",
+        }}
+      />
+
+
+      {/* =====================================================
+          CENTER CINEMATIC COPY SHADOW
+
+          IMPORTANT:
+          This is NOT a black box.
+
+          It softly darkens only the area behind
+          the typography.
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[4]
+        "
+        style={{
+          background:
+            "radial-gradient(ellipse 43% 32% at 50% 51%, rgba(4,17,13,0.58) 0%, rgba(4,17,13,0.42) 30%, rgba(4,17,13,0.20) 55%, transparent 78%)",
+        }}
+      />
+
+
+      {/* =====================================================
+          SUBTLE CENTER LOWER SHADOW
+
+          Gives the text the same cinematic depth
+          as the reference.
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-[42%]
+          z-[4]
+          h-[360px]
+          w-[700px]
+          -translate-x-1/2
+          rounded-full
+          blur-[80px]
+        "
+        style={{
+          background:
+            "rgba(3,17,12,0.18)",
+        }}
+      />
+
+
+      {/* =====================================================
+          RIGHT EDGE VIGNETTE
+      ====================================================== */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[4]
+        "
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(5,20,15,0.08) 0%, transparent 25%, transparent 72%, rgba(5,20,15,0.28) 100%)",
+        }}
+      />
+
+
+      {/* =====================================================
+          HERO CONTENT
+      ====================================================== */}
+
+      <div
+        className="
+          relative
+          z-[10]
+          flex
+          w-full
+          max-w-[1400px]
+          flex-col
+          items-center
+          px-6
+          pb-16
+          pt-28
+          text-center
+          sm:px-10
+          sm:pb-20
+          sm:pt-32
+          lg:pb-24
+        "
+      >
+        {/* SOFT CINEMATIC SHADOW BEHIND COPY */}
+        <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-1/2
+          -z-10
+          h-[420px]
+          w-[820px]
+          -translate-x-1/2
+          -translate-y-1/2
+          rounded-full
+        "
+        style={{
+          background:
+            "radial-gradient(ellipse at center, rgba(0,0,0,0.58) 0%, rgba(0,0,0,0.40) 32%, rgba(0,0,0,0.20) 58%, transparent 82%)",
+          filter: "blur(32px)",
+        }}
+      />
+
+        {/* =================================================
+            EYEBROW
+        ================================================= */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 22,
+            filter: "blur(5px)",
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            duration: 1.8,
+            delay: 0.5,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="
+            mb-6
+            flex
+            items-center
+            justify-center
+            gap-5
+            font-jost
+            text-[0.58rem]
+            font-medium
+            uppercase
+            sm:mb-7
+            sm:gap-7
+            sm:text-[0.65rem]
+          "
+          style={{
+            color: "rgba(245,226,181,0.96)",
+          }}
+        >
+
+          {/* LEFT EYEBROW LINE */}
+
+          <span
+            className="
+              h-px
+              w-12
+              sm:w-16
+            "
+            style={{
+              background:
+                "linear-gradient(90deg, transparent, rgba(218,190,132,0.9))",
+            }}
+          />
+
+          <span
+            className="
+              font-jost
+              font-medium
+              uppercase
+              tracking-[0.34em]
+            "
+            style={{
+              fontSize: "0.70rem",
+            }}
+          >
+            Get In Touch
+          </span>
+
+          {/* RIGHT EYEBROW LINE */}
+
+          <span
+            className="
+              h-px
+              w-12
+              sm:w-16
+            "
+            style={{
+              background:
+                "linear-gradient(90deg, rgba(218,190,132,0.9), transparent)",
+            }}
+          />
+
+        </motion.div>
+
+
+        {/* =================================================
+            MAIN HEADING
+        ================================================= */}
+
+        <motion.h1
+           initial={{
+            opacity: 0,
+            y: 42,
+            filter: "blur(8px)",
+          }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            filter: "blur(0px)",
+          }}
+          transition={{
+            duration: 2.4,
+            delay: 1.25,
+            ease: [0.16, 1, 0.3, 1],
+          }}
+          className="
+            relative            
+            leading-[0.88]
+            tracking-[-0.025em]
+            text-white
+            text-center
+            font-['Cormorant_Garamond']
+            font-medium
+            text-[44px]
+            sm:text-[52px]
+            md:text-[60px]
+            lg:text-[68px]
+            xl:text-[76px]
+
+            max-w-[760px]
+            mx-auto
+          "
+          style={{           
+            textShadow:
+              "0 4px 30px rgba(0,0,0,0.30), 0 1px 8px rgba(0,0,0,0.18)",
+          }}
+        >
+
+          Let’s Begin
+
+          <br />
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 28,
+              filter: "blur(6px)",
+            }}
+            animate={{
+              opacity: 1,
+              y: 0,
+              filter: "blur(0px)",
+            }}
+            transition={{
+              duration: 3.2,
+              delay: 2.25,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+          <span
+            className="italic 
+            text-[44px]
+            sm:text-[52px]
+            md:text-[60px]
+            lg:text-[68px]
+            xl:text-[76px]
+            max-w-[760px]"
+            style={{
+              color: "#8faa42",
+              textShadow:
+                "0 4px 30px rgba(0,0,0,0.35)",
+            }}
+          >
+            Your Paciano Story.
+          </span>
+          </motion.div>
+
+        </motion.h1>
+
+
+       
+
+          {/* =====================================================
+              LOWER DIVIDER + GOLD LEAF
+          ====================================================== */}
+          <div className="my-7 flex items-center justify-center gap-7 sm:my-8 sm:gap-8">
+
+            {/* Left line */}
+            <motion.div
+              initial={{
+                opacity: 0,
+                scaleX: 0,
+              }}
+              animate={{
+                opacity: 1,
+                scaleX: 1,
+              }}
+              transition={{
+                duration: 2.8,
+                delay: 4.15,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="h-px w-16 origin-right sm:w-28 lg:w-36"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, rgba(211,177,108,0.9))",
+              }}
+            />
+
+            {/* GOLD LEAF */}
+            <motion.img
+              src={contactLeafIcon}
+              alt=""
+              aria-hidden="true"
+              initial={{
+                opacity: 0,
+                scale: 0.7,
+                rotate: -8,
+                y: 5,
+              }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                rotate: 0,
+                y: 0,
+              }}
+              transition={{
+                duration: 3.2,
+                delay: 4.25,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="
+                h-[30px]
+                w-[30px]
+                shrink-0
+                object-contain
+                sm:h-[48px]
+                sm:w-[48px]
+              "
+              style={{
+                filter:
+                  "drop-shadow(0 2px 5px rgba(0,0,0,0.25))",
+              }}
+            />
+
+            {/* Right line */}
+            <motion.div
+                initial={{
+                  opacity: 0,
+                  scaleX: 0,
+                }}
+                animate={{
+                  opacity: 1,
+                  scaleX: 1,
+                }}
+                transition={{
+                  duration: 2.8,
+                  delay: 4.15,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+              className="h-px w-16 origin-left sm:w-28 lg:w-36"
+              style={{
+                background:
+                  "linear-gradient(90deg, rgba(211,177,108,0.9), transparent)",
+              }}
+            />
+
+          </div>
+
+
+        {/* =================================================
+            SUPPORTING COPY
+        ================================================= */}
+
+        <motion.p
+         initial={{
+          opacity: 0,
+          y: 20,
+          filter: "blur(5px)",
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+          filter: "blur(0px)",
+        }}
+        transition={{
+          duration: 2.2,
+          delay: 5.4,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+          className="
+            mt-7
+            max-w-[570px]
+            font-cormorant
+            text-[1.15rem]
+            font-light
+            italic
+            leading-relaxed
+            text-white/90
+            sm:mt-8
+            sm:text-[1.45rem]
+          "
+        >
+          Tell us how you imagine your time at Paciano.
+          <br />
+          We&apos;re here to make it truly yours.
+        </motion.p>
+
+      </div>
+      {/* =====================================================
+          SCROLL INDICATOR
+      ====================================================== */}
+
+      <motion.div
+        initial={{
+          opacity: 0,
+        }}
+        animate={{
+          opacity: 1,
+        }}
+        transition={{
+          delay: 1.4,
+          duration: 1,
+        }}
+        className="
+          absolute
+          bottom-7
+          left-1/2
+          z-[10]
+          flex
+          -translate-x-1/2
+          flex-col
+          items-center
+          sm:bottom-9
+        "
+      >
+
+        <span
+          className="
+            mb-3
+            font-jost
+            text-[0.55rem]
+            font-light
+            uppercase
+            tracking-[0.3em]
+          "
+          style={{
+            color: "rgba(248,240,228,0.65)",
+          }}
+        >
+          Scroll
+        </span>
+
+        <motion.div
+          animate={{
+            height: ["0px", "42px", "0px"],
+            opacity: [0.35, 1, 0.35],
+          }}
+          transition={{
+            repeat: Infinity,
+            duration: 2.2,
+            ease: "easeInOut",
+          }}
+          className="w-px"
+          style={{
+            background:
+              "linear-gradient(to bottom, rgba(214,183,117,0.95), transparent)",
+          }}
+        />
+
+      </motion.div>
+
+
       <CreamJoinFromAbove />
+
     </section>
   );
 }
+
 
 function ContactInfoSection() {
   const contacts = [
