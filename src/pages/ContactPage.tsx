@@ -620,7 +620,7 @@ function ContactHero() {
             filter: "blur(0px)",
           }}
           transition={{
-            duration: 2.2,
+            duration: 2.4,
             delay: 1.25,
             ease: [0.16, 1, 0.3, 1],
           }}
@@ -663,8 +663,8 @@ function ContactHero() {
               filter: "blur(0px)",
             }}
             transition={{
-              duration: 2,
-              delay: 1.55,
+              duration: 3.2,
+              delay: 2.25,
               ease: [0.16, 1, 0.3, 1],
             }}
           >
@@ -707,8 +707,8 @@ function ContactHero() {
                 scaleX: 1,
               }}
               transition={{
-                duration: 1.8,
-                delay: 2.05,
+                duration: 2.8,
+                delay: 4.15,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="h-px w-16 origin-right sm:w-28 lg:w-36"
@@ -736,8 +736,8 @@ function ContactHero() {
                 y: 0,
               }}
               transition={{
-                duration: 2,
-                delay: 2.25,
+                duration: 3.2,
+                delay: 4.25,
                 ease: [0.16, 1, 0.3, 1],
               }}
               className="
@@ -765,8 +765,8 @@ function ContactHero() {
                   scaleX: 1,
                 }}
                 transition={{
-                  duration: 1.8,
-                  delay: 2.05,
+                  duration: 2.8,
+                  delay: 4.15,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               className="h-px w-16 origin-left sm:w-28 lg:w-36"
@@ -795,8 +795,8 @@ function ContactHero() {
           filter: "blur(0px)",
         }}
         transition={{
-          duration: 1.8,
-          delay: 2.65,
+          duration: 2.2,
+          delay: 5.4,
           ease: [0.16, 1, 0.3, 1],
         }}
           className="
