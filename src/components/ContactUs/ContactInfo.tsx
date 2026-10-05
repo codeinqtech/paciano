@@ -3,8 +3,8 @@ import {
     Phone,
     Sparkles,
   } from "lucide-react";
-  import {  useRef, type ReactNode } from "react";
-  import { motion, useInView, Variants  } from "framer-motion";
+
+import { motion } from "framer-motion";
 import convImg1 from "@/images/contact/about-bigimg.png";
 import convOverlap from "@/images/contact/teagarden.png";
 import contactBottomLeaf from "@/images/contact/contact-bottom-leaf.png";
@@ -13,228 +13,46 @@ const FOREST = "#0E2D20";
 const GOLD = "#C8A76A";
 const PARCHMENT = "#eee9dc";
 
-function FadeUp({
-  children,
-  delay = 0,
-  className = "",
-}: {
-  children: ReactNode;
-  delay?: number;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-40px" });
-  return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 28 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
+function ContactInfo() {    
 
-
-function ContactInfo() {
-    
-
-    const contacts = [
-      {
-        label: "Reservation",
-        value: "+91 98765 43210",
-        href: "tel:+919876543210",
-        icon: <Phone className="h-[18px] w-[18px]" strokeWidth={1.4} />,
-        // note: "STAYS, AVAILABILITY & BOOKINGS",
-      },
-      {
-        label: "Experiences",
-        value: "experiences@paciano.in",
-        href: "mailto:experiences@paciano.in",
-        icon: <Sparkles className="h-[17px] w-[17px]" strokeWidth={1.4} />,
-        // note: "CURATED EXPERIENCES & ACTIVITIES",
-      },
-      {
-        label: "General Enquiries",
-        value: "hello@paciano.in",
-        href: "mailto:hello@paciano.in",
-        icon: <Mail className="h-[18px] w-[18px]" strokeWidth={1.4} />,
-        // note: "PARTNERSHIPS, MEDIA & OTHER QUERIES",
-      },
-    ];
-  
-    const cinematicImageStyle = `
-      @keyframes pacianoCinematicDrift {
-        0% {
-          transform: scale(1.06) translate3d(0px, 0px, 0);
-        }
-  
-        25% {
-          transform: scale(1.075) translate3d(-8px, -3px, 0);
-        }
-  
-        50% {
-          transform: scale(1.09) translate3d(-16px, -6px, 0);
-        }
-  
-        75% {
-          transform: scale(1.075) translate3d(-8px, -3px, 0);
-        }
-  
-        100% {
-          transform: scale(1.06) translate3d(0px, 0px, 0);
-        }
-      }
-  `;
-  
-  const sectionRef = useRef<HTMLElement>(null);
-  
-  
-  const isVisible = useInView(sectionRef, {
-    once: true,
-    margin: "-10% 0px -15% 0px",
-  });
-
-
-  
-  /* =========================================================
-     CONTACT STORY — SAME ANIMATION ARCHITECTURE AS ABOUT US
-  ========================================================= */
-  
-//   const contactStoryRef = useRef<HTMLDivElement>(null);
-//   const contactStoryInView = useInView(contactStoryRef, {
-//     once: true,
-//     margin: "-40px",
-//   });
-
-//   const overlapRef = useRef<HTMLDivElement>(null);
-//   const overlapInView = useInView(overlapRef, {
-//     once: true,
-//     amount: 0.18,
-//   });
-
-/* =========================================================
-   MOBILE / DESKTOP SEPARATE REFS
-   Important because both layouts exist in the DOM.
-========================================================= */
-
-const mobileContactStoryRef = useRef<HTMLDivElement>(null);
-
-const mobileContactStoryInView = useInView(
-  mobileContactStoryRef,
-  {
-    once: true,
-    margin: "-40px",
-  }
-);
-const mobileOverlapRef = useRef<HTMLDivElement>(null);
-
-const mobileOverlapInView = useInView(
-  mobileOverlapRef,
-  {
-    once: true,
-    amount: 0.18,
-  }
-);
-
-const desktopContactStoryRef = useRef<HTMLDivElement>(null);
-
-const desktopContactStoryInView = useInView(
-  desktopContactStoryRef,
-  {
-    once: true,
-    margin: "-40px",
-  }
-);
-const desktopOverlapRef = useRef<HTMLDivElement>(null);
-
-const desktopOverlapInView = useInView(
-  desktopOverlapRef,
-  {
-    once: true,
-    amount: 0.18,
-  }
-);
-
-    
-  
-
-  
-  const contactStoryContainer: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delayChildren: 0.2,
-        staggerChildren: 0.7,
-      },
+  const contacts = [
+    {
+      label: "Reservation",
+      value: "+91 98765 43210",
+      href: "tel:+919876543210",
+      icon: <Phone className="h-[18px] w-[18px]" strokeWidth={1.4} />,
+      // note: "STAYS, AVAILABILITY & BOOKINGS",
     },
-  };
-  
-  const contactStoryItem: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 28,
+    {
+      label: "Experiences",
+      value: "experiences@paciano.in",
+      href: "mailto:experiences@paciano.in",
+      icon: <Sparkles className="h-[17px] w-[17px]" strokeWidth={1.4} />,
+      // note: "CURATED EXPERIENCES & ACTIVITIES",
     },
-  
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.85,
-        ease: [0.22, 1, 0.36, 1],
-      },
+    {
+      label: "General Enquiries",
+      value: "hello@paciano.in",
+      href: "mailto:hello@paciano.in",
+      icon: <Mail className="h-[18px] w-[18px]" strokeWidth={1.4} />,
+      // note: "PARTNERSHIPS, MEDIA & OTHER QUERIES",
     },
-  };
-  
-  const contactDetailsContainer: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        delayChildren: 0.15,
-        staggerChildren: 0.45,
-      },
-    },
-  };
-  
-  const contactDetailItem: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 22,
-    },
-  
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.75,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    },
-  };
-  
- 
+  ];
   
     return (
-      <section
-      ref={sectionRef}
+      <section      
         className="
           relative
           overflow-hidden
           bg-[#eee9dc]
           text-[#10261b]
         "
-      >
-        <style>{cinematicImageStyle}</style> 
-        
-
-  
+      >   
         {/* =========================================================
             DESKTOP / TABLET CINEMATIC COMPOSITION
         ========================================================== */}
   
-        {/* <div
+        <div
           className="
             relative
             z-10
@@ -243,20 +61,8 @@ const desktopOverlapInView = useInView(
             lg:block
             overflow-hidden
           "
-        > */}
-        <div
-            className="
-                relative
-                z-10
-                block
-                min-h-[760px]
-                overflow-hidden
-
-                max-lg:min-h-[680px]
-                max-md:min-h-[620px]
-                max-sm:min-h-[560px]
-            "
-            >
+        >
+      
             
         {/* =========================================================
             EXTREME RIGHT — ATMOSPHERIC LANDSCAPE
@@ -283,7 +89,7 @@ const desktopOverlapInView = useInView(
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <motion.img
+          {/* <motion.img
             src={convImg1}
             alt=""
             className="
@@ -302,8 +108,19 @@ const desktopOverlapInView = useInView(
               repeatType: "reverse",
               ease: "easeInOut",
             }}
+          /> */}
+
+          <motion.img
+            src={convImg1}
+            alt=""
+            className="
+              h-full
+              w-full
+              object-cover
+              object-center
+            "
           />
-  
+            
           {/* Heavy parchment fade — makes it feel atmospheric */}
           <div
             className="
@@ -347,7 +164,7 @@ const desktopOverlapInView = useInView(
             FULL-BLEED MAIN IMAGE
             Dynamic image = convImg1
         ====================================================== */}
-          <FadeUp delay={0.15} className="order-1 md:order-2">
+        <div className="order-1 md:order-2">
             <div className="relative mx-auto w-full max-w-[610px]">
               {/* =====================================================
                   PREMIUM IMAGE COMPOSITION
@@ -369,9 +186,9 @@ const desktopOverlapInView = useInView(
                   className="
                     absolute
                     right-[2%]
-                    top-[4%]
+                    top-[3%]
                     h-[86%]
-                    w-[72%]
+                    w-[94%]
                     rounded-[45%_8%_8%_12%]
                     border
                     border-[#C8A76A]/35
@@ -401,7 +218,7 @@ const desktopOverlapInView = useInView(
                     top-0
                     z-15
                     h-[88%]
-                    w-[78%]
+                    w-[100%]
                     overflow-hidden
                     rounded-[44%_9%_12%_30%]
                     bg-[#DED7C8]
@@ -412,21 +229,25 @@ const desktopOverlapInView = useInView(
 
                     max-sm:right-[1%]
                     max-sm:w-[84%]
-                    "
-                 initial={{
-                    opacity: 0,
-                    y: 18,
-                  }}
-                  animate={{
-                    opacity: desktopOverlapInView  ? 1 : 0,
-                    x: desktopOverlapInView  ? 0 : -90,
-                  }}                
-                  transition={{
-                    duration: 1.4,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
+                    "                
+                initial={{
+                  opacity: 0,
+                  x: -90,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.2,
+                }}
+                transition={{
+                  duration: 1.5,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
                 >
-                  <img
+                  <motion.img
                     src={convImg1}
                     alt="Paciano landscape"
                     className="
@@ -436,9 +257,17 @@ const desktopOverlapInView = useInView(
                       object-center
                       will-change-transform
                     "
-                    style={{
-                      animation: "pacianoCinematicDrift 18s ease-in-out infinite",
+                    animate={{
+                      scale: [1, 1.045, 1.02, 1],
+                      x: [0, -7, -3, 0],
+                      y: [0, -3, -6, 0],
                     }}
+                    transition={{
+                      duration: 24,
+                      repeat: Infinity,
+                      repeatType: "mirror",
+                      ease: "easeInOut",
+                    }}                  
                   />
   
                   {/* cinematic grading */}
@@ -481,7 +310,7 @@ const desktopOverlapInView = useInView(
                     opacity: 0,
                     clipPath: "inset(0 0 100% 0)",
                   }}
-                  animate={{
+                  whileInView={{
                     opacity: 0.72,
                     clipPath: "inset(0 0 0% 0)",
                   }}
@@ -506,7 +335,7 @@ const desktopOverlapInView = useInView(
                     /* Tablet */
                     md:w-[330px]
                     md:right-[-22%]
-                    md:bottom-[-5%]
+                    md:bottom-[-3%]
   
                     /* Mobile */
                     max-md:w-[240px]
@@ -520,8 +349,7 @@ const desktopOverlapInView = useInView(
                     SECONDARY PHOTOGRAPH
                 =================================================== */}
             
-              <motion.div
-                 ref={desktopOverlapRef}
+              <motion.div               
                 className="
                   absolute
                   bottom-[7%]
@@ -530,53 +358,31 @@ const desktopOverlapInView = useInView(
                   w-[38%]
                   max-w-[210px]
                   will-change-transform
-                "
+                "       
                 initial={{
                   opacity: 0,
-                  x: -70,
-                  y: 35,
-                  scale: 0.94,
-                  filter: "blur(5px)",
+                  x: -35,
+                  y: 20,
+                  scale: 0.96,
                 }}
-                animate={
-                    desktopOverlapInView
-                    ? {
-                        opacity: 1,
-                        x: 0,
-                        y: 0,
-                        scale: 1,
-                        filter: "blur(0px)",
-                      }
-                    : {
-                        opacity: 0,
-                        x: -70,
-                        y: 35,
-                        scale: 0.94,
-                        filter: "blur(5px)",
-                      }
-                }
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  y: 0,
+                  scale: 1,
+                }}
+                viewport={{
+                  once: true,
+                  amount: 0.2,
+                }}
                 transition={{
-                  duration: 1.7,
+                  duration: 1.5,
+                  delay: 0.8,
                   ease: [0.16, 1, 0.3, 1],
                 }}
               >
-                {/* Subtle continuous movement after entrance */}
-                <motion.div
-                  animate={
-                    desktopOverlapInView
-                      ? {
-                          y: [0, -5, 0],
-                          rotate: [0, 0.35, 0],
-                        }
-                      : {}
-                  }
-                  transition={{
-                    duration: 7,
-                    repeat: Infinity,
-                    repeatType: "mirror",
-                    ease: "easeInOut",
-                  }}
-                >
+                {/* Subtle continuous movement after entrance */}               
+                <div>
                   {/* Luxury photographic mount */}
                   <div
                     className="
@@ -617,20 +423,18 @@ const desktopOverlapInView = useInView(
                           w-full
                           object-cover
                           object-center
-                        "
-                        animate={
-                            desktopOverlapInView
-                            ? {
-                                scale: [1.02, 1.055, 1.02],
-                              }
-                            : { scale: 1.02 }
-                        }
+                        "  
+                        animate={{
+                          scale: [1, 1.035, 1.015, 1],
+                          x: [0, 2, -2, 0],
+                          y: [0, -3, -1, 0],
+                        }}
                         transition={{
                           duration: 18,
                           repeat: Infinity,
-                          repeatType: "mirror",
+                          repeatType: "loop",
                           ease: "easeInOut",
-                        }}
+                        }}           
                       />
   
                       {/* Cinematic image grading */}
@@ -658,28 +462,11 @@ const desktopOverlapInView = useInView(
                           ring-white/20
                         "
                       />
-                    </div>
+                    </div> 
                   </div>
   
                   {/* Caption */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 5 }}
-                    animate={
-                        desktopOverlapInView
-                        ? {
-                            opacity: 1,
-                            y: 0,
-                          }
-                        : {
-                            opacity: 0,
-                            y: 5,
-                          }
-                    }
-                    transition={{
-                      duration: 1.2,
-                      delay: 0.9,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
+                  <div                    
                     className="
                       absolute
                       -bottom-7
@@ -692,8 +479,8 @@ const desktopOverlapInView = useInView(
                     "
                   >
                     A moment in nature
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
               </motion.div>
   
                 {/* ===================================================
@@ -740,7 +527,7 @@ const desktopOverlapInView = useInView(
                
               </div>
             </div>
-          </FadeUp>
+          </div>
   
           {/* =====================================================
               ORGANIC CREAM PANEL
@@ -844,25 +631,23 @@ const desktopOverlapInView = useInView(
               max-w-[570px]
               -translate-y-1/2
             "
-          >
-           <motion.div
-                ref={desktopContactStoryRef}
-                initial="hidden"
-                animate={desktopContactStoryInView ? "visible" : "hidden"}
-                variants={contactStoryContainer}
-                >
+          >           
+            <div>
             {/* eyebrow */}
-  
+
               <motion.div
-              variants={contactStoryItem}
-              className="
-                mb-5
-                flex
-                items-center
-                gap-3
-              "               
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: 1.2,
+                  delay: 0.1,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                style={{ willChange: "transform, opacity" }}
+                className="mb-5 flex items-center gap-3"
               >
-             
+                          
                 <svg
                   viewBox="0 0 32 32"
                   className="
@@ -921,10 +706,18 @@ const desktopOverlapInView = useInView(
                 />
               </motion.div>
   
-              {/* heading */}
-  
+              {/* heading */}  
+         
               <motion.h2
-               variants={contactStoryItem}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: 2.4,
+                  delay: 0.6,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                style={{ willChange: "transform, opacity" }}
                 className="
                   font-cormorant
                   text-[62px]
@@ -935,7 +728,7 @@ const desktopOverlapInView = useInView(
                   xl:text-[72px]
                 "
               >
-                A Conversation
+               A Conversation
   
                 <br />
   
@@ -949,11 +742,19 @@ const desktopOverlapInView = useInView(
                 </span>
               </motion.h2>
   
-              {/* copy */}
-  
-                <motion.p
-                 variants={contactStoryItem}
-                className="
+              {/* copy */} 
+               
+              <motion.p
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                duration: 1.8,
+                delay: 1.0,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              style={{ willChange: "transform, opacity" }}
+              className="
                 mt-7
                 max-w-[470px]
                 font-manrope
@@ -966,9 +767,17 @@ const desktopOverlapInView = useInView(
                curated experience — we&apos;re here to
                  craft an experience around what matters to you. 
               </motion.p>
-  
+
               <motion.p
-               variants={contactStoryItem}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{
+                  duration: 1.8,
+                  delay: 1.35,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                style={{ willChange: "transform, opacity" }}
                 className="
                   mt-3
                   max-w-[430px]
@@ -976,182 +785,77 @@ const desktopOverlapInView = useInView(
                   text-[14px]
                   leading-[1.75]
                   text-[#66645c]
-                "
-              >
+                ">
                             
                 Reach out and let&apos;s create something meaningful together,
                 surrounded by the forests, rivers and stories of Paciano.
-                </motion.p>
+              </motion.p>
             
             {/* =================================================
                 CONTACT DETAILS
             ================================================== */}
-          <div className="mt-10 space-y-6">
-            {contacts.map((c, i) => (
-              <motion.a
-                key={c.label}
-                href={c.href}
-                variants={contactDetailItem}
-                className="group flex items-center gap-5"
-              >
-                <div
-                  className="
-                    flex h-[54px] w-[54px] shrink-0
-                    items-center justify-center
-                    rounded-full
-                    border border-[#c8a76a]/80
-                    bg-[#eee9dc]
-                    text-[#a47c35]
-                    transition-all duration-300
-                    group-hover:bg-[#0e2d20]
-                    group-hover:text-[#c8a76a]
-                  "
+            <div className="mt-10 space-y-6">
+              {contacts.map((c, i) => (
+                <motion.a
+                  key={c.label}
+                  href={c.href}
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 1.8,
+                    delay: 1.8 + i * 0.45,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  style={{ willChange: "transform, opacity" }}
+                  className="group flex items-center gap-5"
                 >
-                  {c.icon}
-                </div>
-  
-                <div>
-                  <p
+                  <div
                     className="
-                      font-jost text-[11px]
-                      uppercase tracking-[0.25em]
-                      text-[#718043]
+                      flex h-[54px] w-[54px] shrink-0
+                      items-center justify-center
+                      rounded-full
+                      border border-[#c8a76a]/80
+                      bg-[#eee9dc]
+                      text-[#a47c35]
+                      transition-all duration-300
+                      group-hover:bg-[#0e2d20]
+                      group-hover:text-[#c8a76a]
                     "
                   >
-                    {c.label}
-                  </p>
-  
-                  <p
-                    className="
-                      mt-1
-                      font-cormorant
-                      text-[21px]
-                      leading-none
-                      text-[#173025]
-                    "
-                  >
-                    {c.value}
-                  </p>
-                </div>
-              </motion.a>
-            ))}
-          </div>
-          </motion.div>
-                    
-  
-            {/* =================================================
-                EDITORIAL SIGNATURE
-            ================================================== */}
-  
-            {/* <FadeUp delay={0.35}>
-              <div
-                className="
-                  mt-9
-                  flex
-                  items-start
-                  gap-4
-                "
-              >
-                <div
-                  className="
-                    mt-1
-                    h-[55px]
-                    w-px
-                    bg-[#c8a76a]
-                  "
-                />
-  
-                <p
-                  className="
-                    font-cormorant
-                    text-[27px]
-                    italic
-                    leading-[0.95]
-                    text-[#b28b4c]
-                  "
-                >
-                  Same Rivers.
-                  <br />
-                  Different Stories.
-                </p>
-              </div>
-            </FadeUp> */}
-          </div>
-  
-          {/* =====================================================
-              SECONDARY IMAGE
-              Dynamic image = convOverlap
-          ====================================================== */}
-  
-          <motion.div
-            className="
-              absolute
-              left-[47%]
-              top-[48%]
-              z-50
-              w-[220px]
-              -translate-x-1/2
-              -translate-y-1/2
-              xl:w-[250px]
-            "
-            initial={{
-              opacity: 0,
-              x: -35,
-              y: 20,
-            }}         
-            
-            transition={{
-              duration: 1,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-          >
-            {/* gold halo */}
-  
-            <div
-              className="
-                absolute
-                -inset-3
-                rounded-[30px]
-                border
-                border-[#c8a76a]/60
-              "
-            />
-  
-            {/* cream frame */}
-  
-            <div
-              className="
-                relative
-                overflow-hidden
-                rounded-[26px]
-                border-[7px]
-                border-[#eee9dc]
-                bg-[#eee9dc]
-                shadow-[0_25px_55px_rgba(25,42,32,0.22)]
-              "
-            >
-              <img
-                src={convOverlap}
-                alt="Nature at Paciano"
-                className="
-                  aspect-[0.82]
-                  w-full
-                  object-cover
-                "
-              />
-  
-              <div
-                className="
-                  pointer-events-none
-                  absolute
-                  inset-0
-                  bg-gradient-to-t
-                  from-[#0e2d20]/20
-                  to-transparent
-                "
-              />
+                    {c.icon}
+                  </div>
+    
+                  <div>
+                    <p
+                      className="
+                        font-jost text-[11px]
+                        uppercase tracking-[0.25em]
+                        text-[#718043]
+                      "
+                    >
+                      {c.label}
+                    </p>
+    
+                    <p
+                      className="
+                        mt-1
+                        font-cormorant
+                        text-[21px]
+                        leading-none
+                        text-[#173025]
+                      "
+                    >
+                      {c.value}
+                    </p>
+                  </div>
+                </motion.a>
+              ))}
             </div>
-          </motion.div>      
+            </div>
+          </div>
+  
+
   
           {/* =====================================================
               BOTTOM ORGANIC TRANSITION
