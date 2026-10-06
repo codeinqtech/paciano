@@ -89,26 +89,7 @@ function ContactInfo() {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          {/* <motion.img
-            src={convImg1}
-            alt=""
-            className="
-              h-full
-              w-full
-              object-cover
-              object-center
-            "
-            animate={{
-              scale: [1.04, 1.08, 1.04],
-              x: [0, -10, 0],
-            }}
-            transition={{
-              duration: 30,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-          /> */}
+          
 
           <motion.img
             src={convImg1}
@@ -687,7 +668,7 @@ function ContactInfo() {
                 <span
                   className="
                     font-manrope
-                    text-[10px]
+                    text-[12px]
                     font-semibold
                     uppercase
                     tracking-[0.34em]
