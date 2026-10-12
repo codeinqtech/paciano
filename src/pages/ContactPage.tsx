@@ -4,6 +4,10 @@ import Footer from "@/components/Footer";
 import ContactHero from "@/components/ContactUs/ContactUsHero";
 import ContactInfo from "@/components/ContactUs/ContactInfo";
 import ContactForm from "@/components/ContactUs/ContactForm";
+<<<<<<< HEAD
+=======
+import ContactStory from "@/components/ContactUs/ContactStory";
+>>>>>>> d20482d84f2fd2b4b44c04d291feccc644a9e7f1
 
 
 const FOREST = "#0E2D20";
@@ -29,6 +33,10 @@ export default function ContactPage() {
         <ContactInfo />
         {/* <MistSectionBridge /> */}
         <ContactForm />
+<<<<<<< HEAD
+=======
+        <ContactStory/>
+>>>>>>> d20482d84f2fd2b4b44c04d291feccc644a9e7f1
         <div className="relative isolate">
           {/* <ContactLocationSection /> */}
           <Footer contactOverlap />

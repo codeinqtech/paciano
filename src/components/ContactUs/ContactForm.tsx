@@ -1,14 +1,6 @@
 /** Soft feather from cream form into location panorama (no hard cut) */
 import { Children, useRef, useState, type ReactNode } from "react";
-import {
-    motion,
-    animate,
-    useMotionValue,
-    useTransform,
-    useScroll,
-    useInView,
-    type Variants
-  } from "framer-motion";
+import { motion } from "framer-motion";
 import leafLeft from "@/images/location-left-leaves.png";
 import leafAccent from "@/images/dining-leaf2.png";
 import leafSoft from "@/images/dining-leaf3.png";
@@ -82,151 +74,6 @@ function BotanicalBackdrop({ variant }: { variant: "info" | "form" }) {
     }
 }
 
-// function FadeUp({
-//     children,
-//     delay = 0,
-//     className = "",
-//     }: {
-//     children: ReactNode;
-//     delay?: number;
-//     className?: string;
-//     }) {
-//     const ref = useRef(null);
-//     const inView = useInView(ref, { once: true, margin: "-40px" });
-//     return (
-//         <motion.div
-//         ref={ref}
-//         initial={{ opacity: 0, y: 28 }}
-//         animate={inView ? { opacity: 1, y: 0 } : {}}
-//         transition={{ duration: 0.75, delay, ease: [0.22, 1, 0.36, 1] }}
-//         className={className}
-//         >
-//         {children}
-//         </motion.div>
-//     );
-// }
-
-function FadeUp({
-    children,
-    className = "",
-  }: {
-    children: ReactNode;
-    className?: string;
-  }) {
-    const ref = useRef<HTMLDivElement | null>(null);
-  
-    const isInView = useInView(ref, {
-      once: true,
-      margin: "-15% 0px -15% 0px",
-    });
-  
-    const containerVariants = {
-      hidden: {},
-      visible: {
-        transition: {
-          staggerChildren: 0.22,
-          delayChildren: 0.15,
-        },
-      },
-    };
-  
-    return (
-      <motion.div
-        ref={ref}
-        variants={containerVariants}
-        initial="hidden"
-        animate={isInView ? "visible" : "hidden"}
-        className={className}
-      >
-        {children}
-      </motion.div>
-    );
-  }
-
-function ContactReveal({
-children,
-className = "",
-}: {
-children: ReactNode;
-className?: string;
-}) {
-const ref = useRef<HTMLDivElement | null>(null);
-
-const isInView = useInView(ref, {
-    once: true,
-    margin: "-12% 0px -12% 0px",
-});
-
-const containerVariants = {
-    hidden: {},
-    visible: {
-    transition: {
-        delayChildren: 0.15,
-        staggerChildren: 0.28,
-    },
-    },
-};
-
-const itemVariants: Variants = {
-    hidden: {
-      opacity: 0,
-      y: 28,
-    },
-  
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 1.1,
-        ease: [0.22, 1, 0.36, 1] as const,
-      },
-    },
-  };
-
-return (
-    <motion.div
-    ref={ref}
-    variants={containerVariants}
-    initial="hidden"
-    animate={isInView ? "visible" : "hidden"}
-    className={className}
-    >
-    {Children.map(children, (child) => (
-        <motion.div variants={itemVariants}>
-        {child}
-        </motion.div>
-    ))}
-    </motion.div>
-);
-}
-
-// const contactSequence = {
-//     hidden: {},
-//     visible: {
-//       transition: {
-//         delayChildren: 0.15,
-//         staggerChildren: 0.30,
-//       },
-//     },
-//   };
-  
-//   const contactItem: Variants = {
-//     hidden: {
-//       opacity: 0,
-//       y: 30,
-//     },
-  
-//     visible: (index: number) => ({
-//       opacity: 1,
-//       y: 0,
-//       transition: {
-//         delay: 0.15 + index * 0.30,
-//         duration: 0.85,
-//         ease: [0.16, 1, 0.3, 1] as const,
-//       },
-//     }),
-//   };
-
 function FormField({
     id,
     label,
@@ -294,37 +141,9 @@ function FormField({
         )}
       </div>
     );
-  }
-
-
-  
-  
+}
 
 function ContactForm() {
-    const sectionRef = useRef<HTMLDivElement | null>(null);
-
-    const sectionInView = useInView(sectionRef, {
-        once: true,
-        margin: "-12% 0px -12% 0px",
-      });
-
-      const contactItem: Variants = {
-        hidden: {
-          opacity: 0,
-          y: 32,
-        },
-      
-        visible: (index: number) => ({
-          opacity: 1,
-          y: 0,
-          transition: {
-            delay: 0.3 + index * 0.65,
-            duration: 2,
-            ease: [0.16, 1, 0.3, 1] as const,
-          },
-        }),
-      };
-      
      
     const [form, setForm] = useState({
       name: "",
@@ -347,9 +166,7 @@ function ContactForm() {
     };
   
     return (
-      <section
-      ref={sectionRef}
-        // className="relative overflow-hidden px-5 pb-0 pt-16 sm:px-6 sm:pt-24 lg:pt-32"
+      <section     
         className="
         relative
         overflow-hidden
@@ -365,20 +182,12 @@ function ContactForm() {
       >
         <BotanicalBackdrop variant="form" />
   
-        <div className="relative z-10 mx-auto max-w-5xl">
-          {/* <FadeUp className="mb-12 text-center sm:mb-16"> */}
+        <div className="relative z-10 mx-auto max-w-5xl">        
           <div className="mb-12 text-center sm:mb-16">
 
-            {/* 01 — SEND US A MESSAGE */}
-            <motion.div
-                custom={0}
-                variants={contactItem}
-                initial="hidden"
-                animate={sectionInView ? "visible" : "hidden"}
-            >
+            {/* 01 — SEND US A MESSAGE */}            
             <div
-                className="
-                paciano-reveal
+              className="                
                 relative
                 mt-[-70px]
                 text-center
@@ -388,9 +197,20 @@ function ContactForm() {
                 flex-col
                 items-center
                 text-center
-                "
+              "
             >
-                {/* KEEP YOUR EXISTING SVG HERE */}
+                <motion.div
+                  initial={{ opacity: 0, y: 14 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.25 }}
+                  transition={{
+                    duration: 1.6,
+                    delay: 0,                   
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="flex flex-col items-center"
+                >
+                {/* LEAF SVG — CENTERED */}
                 <svg
                   viewBox="0 0 32 32"
                   className="
@@ -405,7 +225,7 @@ function ContactForm() {
                     stroke="currentColor"
                     strokeWidth="1"
                   />
-  
+
                   <path
                     d="
                       M17 19
@@ -415,7 +235,7 @@ function ContactForm() {
                     fill="currentColor"
                     opacity=".8"
                   />
-  
+
                   <path
                     d="
                       M19 14
@@ -428,28 +248,33 @@ function ContactForm() {
                 </svg>
 
                 <span
-                className="
-                mt-4
+                  className="
+                    mt-4
                     font-manrope
                     text-[12px]
                     font-semibold
                     uppercase
                     tracking-[0.3em]
                     text-[#71803F]
-                "
+                  "
                 >
-                Send Us a Message
+                  Send Us a Message
                 </span>
+              </motion.div>
             </div>
-            </motion.div>
+          
 
             {/* 02 — MAIN HEADING */}
             <motion.div
-            custom={1}
-            variants={contactItem}
-            initial="hidden"
-            animate={sectionInView ? "visible" : "hidden"}
-        >
+              initial={{ opacity: 0, y: 6 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{
+                duration: 1.35,
+                delay: 0.18,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+            >
             <h3
                 className="
                 mt-[10px]
@@ -472,11 +297,16 @@ function ContactForm() {
 
             {/* 03 — DESCRIPTION */}
             <motion.div
-                custom={2}
-                variants={contactItem}
-                initial="hidden"
-                animate={sectionInView ? "visible" : "hidden"}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 1.35,
+                  delay: 0.36,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
             >
+                      
             <p
                 className="
                 mx-auto
@@ -509,10 +339,14 @@ function ContactForm() {
               <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-1 gap-8 sm:gap-x-10 sm:gap-y-10 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
                 <motion.div
-                    custom={3}
-                    variants={contactItem}
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
+                     initial={{ opacity: 0, y: 24 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true, amount: 0.18 }}
+                     transition={{
+                       duration: 1.35,
+                       delay: 0,
+                       ease: [0.16, 1, 0.3, 1],
+                     }}
                     className="lg:row-start-1"
                     >
                     <FormField
@@ -528,10 +362,14 @@ function ContactForm() {
                     />
                     </motion.div>
                     <motion.div
-                        custom={4}
-                        variants={contactItem}
-                        initial="hidden"
-                        animate={sectionInView ? "visible" : "hidden"}
+                         initial={{ opacity: 0, y: 24 }}
+                         whileInView={{ opacity: 1, y: 0 }}
+                         viewport={{ once: true, amount: 0.18 }}
+                         transition={{
+                           duration: 1.35,
+                           delay: 0.16,
+                           ease: [0.16, 1, 0.3, 1],
+                         }}
                         className="lg:row-start-1"
                         >
                     <FormField
@@ -548,10 +386,14 @@ function ContactForm() {
                   />
                 </motion.div>
                 <motion.div
-                    custom={5}
-                    variants={contactItem}
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{
+                      duration: 1.35,
+                      delay: 0.32,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     className="lg:row-start-1"
                     >
                   <FormField
@@ -568,11 +410,14 @@ function ContactForm() {
                 </motion.div>
 
                 <motion.div
-                    custom={6}
-                    variants={contactItem}
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
-                    className="lg:row-start-2 lg:self-start"
+                     initial={{ opacity: 0, y: 24 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true, amount: 0.18 }}
+                     transition={{
+                       duration: 1.35,
+                       delay: 0.48,
+                       ease: [0.16, 1, 0.3, 1],
+                     }}
                     >
                     
                   <FormField
@@ -587,10 +432,14 @@ function ContactForm() {
                 </motion.div>
 
                 <motion.div
-                    custom={7}
-                    variants={contactItem}
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.18 }}
+                    transition={{
+                      duration: 1.35,
+                      delay: 0.64,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
                     className="lg:col-span-2 lg:col-start-2 lg:row-start-2 lg:self-start"
                     >
                                         
@@ -621,250 +470,237 @@ function ContactForm() {
                
                 </div>
   
-                {/* <div className="flex justify-center pt-2 sm:pt-4">
-                  <motion.button
-                    type="submit"
-                    className="flex w-full max-w-md items-center justify-center gap-3 px-6 py-3.5 font-jost text-[0.85rem] font-light tracking-wide text-white sm:w-auto sm:gap-4 sm:px-8 sm:py-4 sm:text-[0.9rem]"
-                    style={{ background: FOREST, borderRadius: "999px" }}
-                    whileHover={{ scale: 1.02, backgroundColor: "#1a4332" }}
-                    whileTap={{ scale: 0.98 }}
-                  >
-                    Begin the Conversation
-                    <span
-                      className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-base sm:h-9 sm:w-9"
-                      style={{ background: GOLD, color: FOREST }}
-                    >
-                      →
-                    </span>
-                  </motion.button>
-                </div> */}
-                {/* <div className="flex justify-center pt-2 sm:pt-4"> */}
+                
                 <motion.div
-                    custom={8}
-                    variants={contactItem}
-                    initial="hidden"
-                    animate={sectionInView ? "visible" : "hidden"}
+                   initial={{ opacity: 0, y: 24 }}
+                   whileInView={{ opacity: 1, y: 0 }}
+                   viewport={{ once: true, amount: 0.18 }}
+                   transition={{
+                     duration: 1.35,
+                     delay: 0.80,
+                     ease: [0.16, 1, 0.3, 1],
+                   }}
                     className="flex justify-center pt-2 sm:pt-4"
-                    >
-                <motion.button
-                    type="submit"
-                    initial="rest"
-                    whileHover="hover"
-                    whileTap="tap"
-                    variants={{
-                    rest: {
-                        scale: 1,
-                        y: 0,
-                    },
-                    hover: {
-                        scale: 1.015,
-                        y: -1,
-                    },
-                    tap: {
-                        scale: 0.985,
-                        y: 0,
-                    },
-                    }}
-                    transition={{
-                    duration: 0.55,
-                    ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="
-                    group
-                    relative
-                    flex
-                    h-[58px]
-                    w-full
-                    max-w-[360px]
-                    items-center
-                    justify-center
-                    overflow-visible
-                    rounded-full
-                    px-5
-                    sm:h-[60px]
-                    sm:max-w-[292px]
-                    sm:px-6
-                    "
-                    style={{
-                    background:
-                        "linear-gradient(135deg, #163B2B 0%, #0E2D20 55%, #092319 100%)",
-                    border: `1px solid ${GOLD}`,
-                    boxShadow: "0 10px 28px rgba(14,45,32,0.13)",
-                    }}
                 >
-                    {/* Elegant moving highlight */}
-                    <motion.span
-                    className="
-                        pointer-events-none
-                        absolute
-                        inset-y-0
-                        left-[-45%]
-                        z-0
-                        w-[28%]
-                        skew-x-[-22deg]
-                        bg-gradient-to-r
-                        from-transparent
-                        via-white/10
-                        to-transparent
-                    "
-                    variants={{
-                        rest: {
-                        x: "0%",
-                        opacity: 0,
-                        },
-                        hover: {
-                        x: "500%",
-                        opacity: 1,
-                        },
-                    }}
-                    transition={{
-                        duration: 1.05,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    />
+                  <motion.button
+                      type="submit"
+                      initial="rest"
+                      whileHover="hover"
+                      whileTap="tap"
+                      variants={{
+                      rest: {
+                          scale: 1,
+                          y: 0,
+                      },
+                      hover: {
+                          scale: 1.015,
+                          y: -1,
+                      },
+                      tap: {
+                          scale: 0.985,
+                          y: 0,
+                      },
+                      }}
+                      transition={{
+                      duration: 0.55,
+                      ease: [0.22, 1, 0.36, 1],
+                      }}
+                      className="
+                      group
+                      relative
+                      flex
+                      h-[58px]
+                      w-full
+                      max-w-[360px]
+                      items-center
+                      justify-center
+                      overflow-visible
+                      rounded-full
+                      px-5
+                      sm:h-[60px]
+                      sm:max-w-[292px]
+                      sm:px-6
+                      "
+                      style={{
+                      background:
+                          "linear-gradient(135deg, #163B2B 0%, #0E2D20 55%, #092319 100%)",
+                      border: `1px solid ${GOLD}`,
+                      boxShadow: "0 10px 28px rgba(14,45,32,0.13)",
+                      }}
+                  >
+                      {/* Elegant moving highlight */}
+                      <motion.span
+                      className="
+                          pointer-events-none
+                          absolute
+                          inset-y-0
+                          left-[-45%]
+                          z-0
+                          w-[28%]
+                          skew-x-[-22deg]
+                          bg-gradient-to-r
+                          from-transparent
+                          via-white/10
+                          to-transparent
+                      "
+                      variants={{
+                          rest: {
+                          x: "0%",
+                          opacity: 0,
+                          },
+                          hover: {
+                          x: "500%",
+                          opacity: 1,
+                          },
+                      }}
+                      transition={{
+                          duration: 1.05,
+                          ease: [0.22, 1, 0.36, 1],
+                      }}
+                      />
 
-                    {/* Botanical leaf */}
-                    <motion.img
-                    src={leafCorner}
-                    alt=""
-                    aria-hidden="true"
-                    className="
-                        pointer-events-none
-                        absolute
-                        left-[-30px]
-                        top-1/2
-                        z-30
-                        w-[82px]
-                        -translate-y-1/2
-                        object-contain
-                        sm:left-[-36px]
-                        sm:w-[94px]
-                    "
-                    variants={{
-                        rest: {
-                        x: 0,
-                        y: 0,
-                        rotate: 0,
-                        scale: 1,
-                        },
-                        hover: {
-                        x: -2,
-                        y: -2,
-                        rotate: -3,
-                        scale: 1.035,
-                        },
-                    }}
-                    transition={{
-                        duration: 0.65,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    />
+                      {/* Botanical leaf */}
+                      <motion.img
+                      src={leafCorner}
+                      alt=""
+                      aria-hidden="true"
+                      className="
+                          pointer-events-none
+                          absolute
+                          left-[-30px]
+                          top-1/2
+                          z-30
+                          w-[82px]
+                          -translate-y-1/2
+                          object-contain
+                          sm:left-[-36px]
+                          sm:w-[94px]
+                      "
+                      variants={{
+                          rest: {
+                          x: 0,
+                          y: 0,
+                          rotate: 0,
+                          scale: 1,
+                          },
+                          hover: {
+                          x: -2,
+                          y: -2,
+                          rotate: -3,
+                          scale: 1.035,
+                          },
+                      }}
+                      transition={{
+                          duration: 0.65,
+                          ease: [0.22, 1, 0.36, 1],
+                      }}
+                      />
 
-                    {/* Text */}
-                    <span
-                    className="
-                    relative
-                    z-10
-                    translate-x-[8px]
-                    -translate-y-[1px]
-                    whitespace-nowrap
-                    font-jost
-                    text-[20px]
-                    font-coromant                    
-                    leading-none
-                    tracking-[0.035em]
-                    sm:text-[17px]
-                    "
-                    style={{
-                        color: "#E7DBA0",
-                    }}
-                    >
-                    Begin the Conversation
-                    </span>
+                      {/* Text */}
+                      <span
+                      className="
+                      relative
+                      z-10
+                      translate-x-[8px]
+                      -translate-y-[1px]
+                      whitespace-nowrap
+                      font-jost
+                      text-[20px]
+                      font-coromant                    
+                      leading-none
+                      tracking-[0.035em]
+                      sm:text-[17px]
+                      "
+                      style={{
+                          color: "#E7DBA0",
+                      }}
+                      >
+                      Begin the Conversation
+                      </span>
 
-                    {/* Arrow */}
-                    <motion.span
-                    className="
-                        relative
-                        z-20
-                        ml-7
-                        flex
-                        h-[38px]
-                        w-[38px]
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        sm:ml-8
-                        sm:h-[40px]
-                        sm:w-[40px]
-                    "
-                    style={{
-                        background: GOLD,
-                        color: FOREST,
-                    }}
-                    variants={{
-                        rest: {
-                        x: 0,
-                        scale: 1,
-                        },
-                        hover: {
-                        x: 4,
-                        scale: 1.04,
-                        },
-                    }}
-                    transition={{
-                        duration: 0.5,
-                        ease: [0.22, 1, 0.36, 1],
-                    }}
-                    >
-                    <motion.span
-                        className="
-                        block
-                        font-manrope
-                        text-[16px]
-                        font-medium
-                        leading-none
-                        "
-                        variants={{
-                        rest: {
-                            x: 0,
-                        },
-                        hover: {
-                            x: 2,
-                        },
-                        }}
-                        transition={{
-                        duration: 0.4,
-                        ease: [0.22, 1, 0.36, 1],
-                        }}
-                    >
-                        →
-                    </motion.span>
-                    </motion.span>
+                      {/* Arrow */}
+                      <motion.span
+                      className="
+                          relative
+                          z-20
+                          ml-7
+                          flex
+                          h-[38px]
+                          w-[38px]
+                          shrink-0
+                          items-center
+                          justify-center
+                          rounded-full
+                          sm:ml-8
+                          sm:h-[40px]
+                          sm:w-[40px]
+                      "
+                      style={{
+                          background: GOLD,
+                          color: FOREST,
+                      }}
+                      variants={{
+                          rest: {
+                          x: 0,
+                          scale: 1,
+                          },
+                          hover: {
+                          x: 4,
+                          scale: 1.04,
+                          },
+                      }}
+                      transition={{
+                          duration: 0.5,
+                          ease: [0.22, 1, 0.36, 1],
+                      }}
+                      >
+                      <motion.span
+                          className="
+                          block
+                          font-manrope
+                          text-[16px]
+                          font-medium
+                          leading-none
+                          "
+                          variants={{
+                          rest: {
+                              x: 0,
+                          },
+                          hover: {
+                              x: 2,
+                          },
+                          }}
+                          transition={{
+                          duration: 0.4,
+                          ease: [0.22, 1, 0.36, 1],
+                          }}
+                      >
+                          →
+                      </motion.span>
+                      </motion.span>
 
-                    {/* Very subtle gold glow on hover */}
-                    <motion.span
-                    className="
-                        pointer-events-none
-                        absolute
-                        inset-0
-                        rounded-full
-                    "
-                    variants={{
-                        rest: {
-                        boxShadow: "0 0 0 rgba(200,167,106,0)",
-                        },
-                        hover: {
-                        boxShadow: "0 8px 30px rgba(200,167,106,0.12)",
-                        },
-                    }}
-                    transition={{
-                        duration: 0.6,
-                        ease: "easeOut",
-                    }}
-                    />
-                </motion.button>
+                      {/* Very subtle gold glow on hover */}
+                      <motion.span
+                      className="
+                          pointer-events-none
+                          absolute
+                          inset-0
+                          rounded-full
+                      "
+                      variants={{
+                          rest: {
+                          boxShadow: "0 0 0 rgba(200,167,106,0)",
+                          },
+                          hover: {
+                          boxShadow: "0 8px 30px rgba(200,167,106,0.12)",
+                          },
+                      }}
+                      transition={{
+                          duration: 0.6,
+                          ease: "easeOut",
+                      }}
+                      />
+                  </motion.button>
                 </motion.div>
               </form>
             )}
