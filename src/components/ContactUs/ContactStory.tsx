@@ -7,7 +7,8 @@ export default function ContactStory() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const storyVideo = "/videos/contact-video.MOV";
+  // const storyVideo = "/videos/contact-video.MOV";
+  const storyVideo = "/src/videos/contact-video.MOV";
 
   const handlePlay = async () => {
     setIsPlaying(true);

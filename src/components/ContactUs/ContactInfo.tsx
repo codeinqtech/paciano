@@ -3,13 +3,8 @@ import {
     Phone,
     Sparkles,
   } from "lucide-react";
-<<<<<<< HEAD
-  import {  useRef, type ReactNode } from "react";
-  import { motion, useInView, Variants  } from "framer-motion";
-=======
 
 import { motion } from "framer-motion";
->>>>>>> d20482d84f2fd2b4b44c04d291feccc644a9e7f1
 import convImg1 from "@/images/contact/about-bigimg.png";
 import convOverlap from "@/images/contact/teagarden.png";
 import contactBottomLeaf from "@/images/contact/contact-bottom-leaf.png";
