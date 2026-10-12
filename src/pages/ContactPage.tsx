@@ -32,11 +32,7 @@ export default function ContactPage() {
         <ContactHero />
         <ContactInfo />
         {/* <MistSectionBridge /> */}
-        <ContactForm />
-<<<<<<< HEAD
-=======
-        <ContactStory/>
->>>>>>> d20482d84f2fd2b4b44c04d291feccc644a9e7f1
+        <ContactForm />       
         <div className="relative isolate">
           {/* <ContactLocationSection /> */}
           <Footer contactOverlap />
