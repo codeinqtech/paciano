@@ -1,11 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import storyImage from "@/images/story.png";
 import aboutNature from "@/images/about-nature-first.jpg";
-import aboutHospitality from "@/images/about-genuine-hospitality.jpg";
-import aboutConscious from "@/images/about-conscious-living.jpg";
+// import aboutHospitality from "@/images/about-genuine-hospitality.jpg";
+import aboutHospitality from "@/images/home/centre.jpg";
+// import aboutConscious from "@/images/about-conscious-living.jpg";
+import aboutRight from "@/images/home/about-right.jpeg";
 
 import riverside from "@/images/riverside-bliss.jpg";
-import teaGarden from "@/images/tea-garden-walks.jpg";
+// import teaGarden from "@/images/tea-garden-walks.jpg";
+import teaGarden from "@/images/home/teaGarden.png";
 // import culinary from "@/images/culinary-delights.jpg";
 import culinary from "@/images/story.png";
 import wellness from "@/images/wellness-spa.jpg";
@@ -1971,7 +1974,7 @@ export default function AboutUs() {
               />
 
               <img
-                src={aboutConscious}
+                src={aboutRight}
                 alt="Conscious living and dining"
                 className="
         h-full
