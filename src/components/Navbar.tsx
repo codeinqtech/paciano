@@ -6,15 +6,15 @@ import { homeHref, toAppPath } from "@/lib/appBase";
 
 const NAV_LINKS = [
   { label: "Stay", href: toAppPath("/stay") },
-  { label: "Experiences", href: homeHref("#experiences") },
+  // { label: "Experiences", href: homeHref("#experiences") },
   { label: "Dining", href: homeHref("#dining") },
-  { label: "About Us", href: homeHref("#about") },
+  { label: "About Us", href: homeHref("/about") },
   { label: "Contact", href: toAppPath("/contact") },
 ];
 
 interface NavbarProps {
   scrolled?: boolean;
-  activeNav?: "home" | "contact" | "stay";
+  activeNav?: "home" | "contact" | "stay" | "about";
 }
 
 export default function Navbar({
@@ -194,11 +194,16 @@ export default function Navbar({
                 active={activeNav === "stay"}
               />
 
-              <NavItem label="Experiences" href={homeHref("#experiences")} />
+              {/* <NavItem label="Experiences" href={homeHref("#experiences")} /> */}
 
               <NavItem label="Dining" href={homeHref("#dining")} />
 
-              <NavItem label="About Us" href={homeHref("#about")} />
+              {/* <NavItem label="About Us" href={homeHref("#about")} /> */}
+              <NavItem
+                label="About Us"
+                href={toAppPath("/about")}
+                active={activeNav === "about"}
+              />
 
               <NavItem
                 label="Contact"
@@ -3098,7 +3103,7 @@ function MobileMenu({
   open: boolean;
   onClose: () => void;
   onBooking: () => void;
-  activeNav?: "home" | "contact" | "stay";
+  activeNav?: "home" | "contact" | "stay" | "about";
 }) {
   return (
     <div
@@ -3180,6 +3185,8 @@ function MobileMenu({
                 item.label === "Contact"
                   ? activeNav === "contact"
                   : item.label === "Stay"
+                    ? activeNav === "stay"
+                  : item.label === "About Us"
                     ? activeNav === "stay"
                     : false
               }

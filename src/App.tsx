@@ -3,6 +3,7 @@ import HomePage from "@/pages/HomePage";
 import ContactPage from "@/pages/ContactPage";
 import StayPage from "@/pages/StayPage";
 import { appPathname } from "@/lib/appBase";
+import AboutUsPage from "./pages/AboutUsPage";
 
 export default function App() {
   const [path, setPath] = useState(() => appPathname(window.location.pathname));
@@ -21,6 +22,10 @@ export default function App() {
 
   if (path === "/stay") {
     return <StayPage />;
+  }
+
+  if (path === "/about") {
+    return <AboutUsPage />;
   }
 
   return <HomePage />;
