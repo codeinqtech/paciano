@@ -1109,112 +1109,146 @@ export default function AboutUsInfo() {
           RIGHT — THE THREE PHOTOGRAPHIC PIECES
       ====================================================== */}
           {/* ==========================================================
-    RIGHT — LUXURY THREE-PHOTO COMPOSITION
-========================================================== */}
+                RIGHT — LUXURY THREE-PHOTO COMPOSITION
+            ========================================================== */}
 
           <div
-            className="
-    relative
-    mt-[50px]
-    h-[530px]
-    lg:mt-0
-    lg:h-[585px]
-    lg:translate-x-[3%]
-    xl:translate-x-[4%]
-  "
+          
+          className="
+            relative
+            mt-10
+            h-[clamp(360px,105vw,500px)]
+            w-full
+            sm:mt-12
+            sm:h-[530px]
+            lg:mt-0
+            lg:h-[585px]
+            lg:translate-x-[3%]
+            xl:translate-x-[4%]
+          "
+          
+            // className="
+            //   relative
+            //   mt-[50px]
+            //   h-[530px]
+            //   lg:mt-0
+            //   lg:h-[585px]
+            //   lg:translate-x-[3%]
+            //   xl:translate-x-[4%]
+            // "
           >
             {/* ==========================================================
-      SOFT ATMOSPHERIC GLOW
-  ========================================================== */}
+                SOFT ATMOSPHERIC GLOW
+            ========================================================== */}
 
             <div
               className="
-      pointer-events-none
-      absolute
-      left-1/2
-      top-1/2
-      z-0
-      h-[500px]
-      w-[600px]
-      -translate-x-1/2
-      -translate-y-1/2
-      rounded-full
-      bg-[#D7D9C5]/25
-      blur-[90px]
-    "
+                pointer-events-none
+                absolute
+                left-1/2
+                top-1/2
+                z-0
+                h-[500px]
+                w-[600px]
+                -translate-x-1/2
+                -translate-y-1/2
+                rounded-full
+                bg-[#D7D9C5]/25
+                blur-[90px]
+              "
             />
 
             {/* ==========================================================
-      LEFT — NATURE
-      slightly behind center
-  ========================================================== */}
+                LEFT — NATURE slightly behind center
+            ========================================================== */}
 
             <div
               className="
-    paciano-reveal
-    paciano-delay-2
-    paciano-photo
-    paciano-photo-left
-    group
+                paciano-reveal
+                paciano-delay-2
+                paciano-photo
+                paciano-photo-left
+                group
 
-    absolute
-    left-[0%]
-    top-[82px]
+                absolute
+                left-[0%]
+                top-[82px]
+                z-20
 
-    z-20
+                h-[365px]
+                w-[31%]
+                overflow-hidden
+                rounded-[78px_78px_58px_58px]
+                bg-[#E9E1D1]
 
-    h-[365px]
-    w-[31%]
-
-    overflow-hidden
-
-    rounded-[78px_78px_58px_58px]
-
-    bg-[#E9E1D1]
-
-    shadow-[0_32px_75px_rgba(45,48,35,.16)]
-  "
-            >
+                shadow-[0_32px_75px_rgba(45,48,35,.16)]
+                sm:top-[82px]
+                sm:h-[365px]
+                sm:rounded-[60px_60px_42px_42px]
+                lg:rounded-[78px_78px_58px_58px]
+              "
+              // className="
+              //   paciano-reveal
+              //   paciano-delay-2
+              //   paciano-photo
+              //   paciano-photo-left
+              //   group
+              //   absolute
+              //   left-0
+              //   top-[16%]
+              //   z-20
+              //   h-[70%]
+              //   w-[31%]
+              //   overflow-hidden
+              //   rounded-[38px_38px_22px_22px]
+              //   bg-[#E9E1D1]
+              //   shadow-[0_20px_45px_rgba(45,48,35,.16)]
+              //   sm:top-[82px]
+              //   sm:h-[365px]
+              //   sm:rounded-[60px_60px_42px_42px]
+              //   lg:rounded-[78px_78px_58px_58px]
+              // "
+                          >
               {/* LUXURY DOUBLE RIM */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[6px]
-        z-30
-        rounded-[72px_72px_52px_52px]
-        border
-        border-[#FFFDF6]/90
-      "
+                  pointer-events-none
+                  absolute
+                  inset-[6px]
+                  z-30
+                  rounded-[72px_72px_52px_52px]
+                  border
+                  border-[#FFFDF6]/90
+                "
               />
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[10px]
-        z-30
-        rounded-[68px_68px_48px_48px]
-        border
-        border-[#F4EEDF]/55
-      "
+                  pointer-events-none
+                  absolute
+                  inset-[10px]
+                  z-30
+                  rounded-[68px_68px_48px_48px]
+                  border
+                  border-[#F4EEDF]/55
+                "
               />
 
               <img
                 src={aboutNature}
                 alt="Nature surrounding Paciano"
                 className="
-        h-full
-        w-full
-        object-cover
+                  h-full
+                  w-full
+                  object-cover
 
-        transition-transform
-        duration-[5000ms]
-        ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-transform
+                  duration-[5000ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-        group-hover:scale-[1.055]
-      "
+                  group-hover:scale-[1.055]
+                "
                 style={{
                   objectPosition: "center center",
                 }}
@@ -1224,65 +1258,64 @@ export default function AboutUsInfo() {
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-10
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  z-10
 
-        bg-gradient-to-t
-        from-[#172319]/[0.13]
-        via-transparent
-        to-[#fff8e8]/[0.10]
-      "
+                  bg-gradient-to-t
+                  from-[#172319]/[0.13]
+                  via-transparent
+                  to-[#fff8e8]/[0.10]
+                "
               />
 
               {/* soft sunlight */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        left-[10%]
-        top-[8%]
-        h-[150px]
-        w-[190px]
-        rounded-full
-        bg-[#FFF8E7]/[0.10]
-        blur-[50px]
-      "
+                  pointer-events-none
+                  absolute
+                  left-[10%]
+                  top-[8%]
+                  h-[150px]
+                  w-[190px]
+                  rounded-full
+                  bg-[#FFF8E7]/[0.10]
+                  blur-[50px]
+                "
               />
             </div>
 
             {/* ==========================================================
-      CENTER — HOSPITALITY
-      dominant image
-  ========================================================== */}
+              CENTER — HOSPITALITY             
+              ========================================================== */}
 
             <div
               className="
-    paciano-reveal
-    paciano-delay-3
-    paciano-photo
-    paciano-photo-center
-    group
+                paciano-reveal
+                paciano-delay-3
+                paciano-photo
+                paciano-photo-center
+                group
 
-    absolute
-    left-[29%]
-    top-[0px]
+                absolute
+                left-[29%]
+                top-[0px]
 
-    z-30
+                z-30
 
-    h-[475px]
-    w-[43%]
+                h-[475px]
+                w-[43%]
 
-    overflow-hidden
+                overflow-hidden
 
-    rounded-[92px_92px_66px_66px]
+                rounded-[92px_92px_66px_66px]
 
-    bg-[#E9E1D1]
+                bg-[#E9E1D1]
 
-    shadow-[0_42px_100px_rgba(40,42,30,.22)]
-  "
+                shadow-[0_42px_100px_rgba(40,42,30,.22)]
+              "
             >
               {/* MAIN WHITE RIM */}
 
@@ -1327,7 +1360,8 @@ export default function AboutUsInfo() {
         group-hover:scale-[1.055]
       "
                 style={{
-                  objectPosition: "center center",
+                  // objectPosition: "center center",
+                  objectPosition: "62% center",
                 }}
               />
 
