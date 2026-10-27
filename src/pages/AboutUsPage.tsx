@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AboutUsHero from "@/components/AboutUs/AboutUsHero";
+import AboutUsInfo from "@/components/AboutUs/AboutUsInfo";
 
 const PARCHMENT = "#eee9dc";
 
@@ -20,6 +21,7 @@ export default function AboutUsPage() {
       <Navbar scrolled={scrolled} activeNav="contact" />
       <main style={{ background: PARCHMENT }}>
         <AboutUsHero />
+        <AboutUsInfo />
         <div className="relative isolate">
           {/* <ContactLocationSection /> */}
           <Footer contactOverlap />
