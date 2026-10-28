@@ -693,9 +693,7 @@ function PacianoOurPlaceSection({
   image,
 }: PacianoOurPlaceSectionProps) {
   const reduceMotion = useReducedMotion();
-  const instant = Boolean(reduceMotion);
-  const ctaRef = useRef<HTMLDivElement | null>(null);
-  const [isVisible, setIsVisible] = useState(true);
+  const instant = Boolean(reduceMotion);  
 
   const reveal = {
     hidden: { opacity: 0, y: instant ? 0 : 24 },
