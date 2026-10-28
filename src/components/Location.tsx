@@ -742,27 +742,27 @@ const LocationSection: React.FC = () => {
       -------------------------------------------------------- */}
 
       <div
-  ref={eyebrowRef}
-  className={`
-    flex
-    items-center
-    gap-[10px]
-    transform
-    transition-all
-    duration-[1350ms]
-    ease-[cubic-bezier(0.22,1,0.36,1)]
-    will-change-transform
+          ref={eyebrowRef}
+          className={`
+          flex
+          items-center
+          gap-[10px]
+          transform
+          transition-all
+          duration-[1350ms]
+          ease-[cubic-bezier(0.22,1,0.36,1)]
+          will-change-transform
 
-    ${
-      isVisible
-        ? "translate-y-0 opacity-100"
-        : "translate-y-12 opacity-0"
-    }
-  `}
-  style={{
-    transitionDelay: "250ms",
-  }}
->
+          ${
+            isVisible
+              ? "translate-y-0 opacity-100"
+              : "translate-y-12 opacity-0"
+          }
+        `}
+        style={{
+          transitionDelay: "250ms",
+        }}
+      >
         {/* Leaf SVG */}
         <svg
           viewBox="0 0 32 32"
@@ -815,11 +815,11 @@ const LocationSection: React.FC = () => {
       </div>
 
 
-  {/* -------------------------------------------------------
-      HEADING
-  -------------------------------------------------------- */}
+      {/* -------------------------------------------------------
+          HEADING
+      -------------------------------------------------------- */}
 
-<h2
+    <h2
   ref={headingRef}
   className={`
     mt-[20px]
@@ -860,7 +860,7 @@ const LocationSection: React.FC = () => {
     >
       Peace.
     </span>
-  </h2>
+    </h2>
 
 
   {/* -------------------------------------------------------
@@ -1493,30 +1493,28 @@ style={{
     GET DIRECTIONS — LEAF WHISPER
 -------------------------------------------------------- */}
 
-{/* -------------------------------------------------------
-    GET DIRECTIONS — LEAF WHISPER / LUXURY FINISH
--------------------------------------------------------- */}
 
-<div
-ref={ctaRef}
-className={`
-  mt-[35px]
-  transform
-  transition-all
-  duration-[1450ms]
-  ease-[cubic-bezier(0.22,1,0.36,1)]
-  will-change-transform
 
-  ${
-    isVisible
-      ? "translate-y-0 scale-100 opacity-100"
-      : "translate-y-8 scale-[0.97] opacity-0"
-  }
-`}
-style={{
-  transitionDelay: "2250ms",
-}}
->
+    <div
+    ref={ctaRef}
+    className={`
+      mt-[35px]
+      transform
+      transition-all
+      duration-[1450ms]
+      ease-[cubic-bezier(0.22,1,0.36,1)]
+      will-change-transform
+
+      ${
+        isVisible
+          ? "translate-y-0 scale-100 opacity-100"
+          : "translate-y-8 scale-[0.97] opacity-0"
+      }
+    `}
+    style={{
+      transitionDelay: "2250ms",
+    }}
+    >
   <a
     href="#location-details"
     className="
@@ -1849,7 +1847,7 @@ style={{
   
 
 
-    </div>
+          </div>
 
           {/* =======================================================
               LOCATION DETAILS — FLOATING MAP CARD

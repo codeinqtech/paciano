@@ -7,7 +7,7 @@ import {
   useTransform,
 } from "framer-motion";
 
-import bannerAboutImg from "@/images/about/MOJO8117.jpg"
+import bannerAboutImg from "@/images/about/about-banner.png"
 import contactLeafIcon from "@/images/contact/paciano-leaf-gold-transparent.png";
 
 const PARCHMENT = "#eee9dc";
@@ -134,10 +134,10 @@ export default function AboutUsHero() {
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 z-[1]"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(8,24,19,.42) 0%, rgba(8,24,19,.12) 32%, rgba(5,20,15,.32) 72%, rgba(5,20,15,.56) 100%)",
-        }}
+        // style={{
+        //   background:
+        //     "linear-gradient(180deg, rgba(8,24,19,.42) 0%, rgba(8,24,19,.12) 32%, rgba(5,20,15,.32) 72%, rgba(5,20,15,.56) 100%)",
+        // }}
       />
 
       {/* RESPONSIVE TEXT LEGIBILITY */}

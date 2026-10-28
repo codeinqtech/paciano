@@ -1,8 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
+
 
 import aboutNature from "@/images/home/about_left.webp";
 import aboutHospitality from "@/images/home/about_centre.webp";
 import aboutRight from "@/images/home/about_right.webp";
+
+import dooarsLandscape from "@/images/about/dooars.png";
+import leafWhisper from "@/images/button-leaf.png";
 
 import riverside from "@/images/riverside-bliss.jpg";
 // import teaGarden from "@/images/tea-garden-walks.jpg";
@@ -592,6 +597,976 @@ function ImageLeafSprig({
   );
 }
 
+
+
+/** DOOARS LANDSCAPE  */
+
+type PacianoOurPlaceSectionProps = {
+  image: string;
+};
+
+const placeHighlights = [
+  {
+    title: "Rivers",
+    subtitle: "That Refresh",
+    icon: "river",
+  },
+  {
+    title: "Forests",
+    subtitle: "That Surround",
+    icon: "forest",
+  },
+  {
+    title: "Tea Gardens",
+    subtitle: "That Inspire",
+    icon: "tea",
+  },
+  {
+    title: "Wildlife",
+    subtitle: "That Delights",
+    icon: "wildlife",
+  },
+] as const;
+
+function PlaceHighlightIcon({
+  type,
+}: {
+  type: (typeof placeHighlights)[number]["icon"];
+}) {
+  const common = {
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.25,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+  };
+
+  return (
+    <svg
+      viewBox="0 0 48 48"
+      aria-hidden="true"
+      className="h-8 w-8 sm:h-9 sm:w-9"
+      {...common}
+    >
+      {type === "river" && (
+        <>
+          <path d="M8 14 L17 7 L24 15 L32 7 L40 14" />
+          <path d="M7 22 C13 17 18 27 24 22 S35 18 41 22" />
+          <path d="M8 29 C14 24 19 34 25 29 S35 25 40 29" />
+          <path d="M15 37 H33" />
+        </>
+      )}
+
+      {type === "forest" && (
+        <>
+          <path d="M13 24 L20 11 L27 24 H23 L30 34 H10 L17 24 Z" />
+          <path d="M29 27 L35 16 L41 27 H37 L42 35 H28" />
+          <path d="M20 34 V41 M35 35 V41" />
+        </>
+      )}
+
+      {type === "tea" && (
+        <>
+          <path d="M24 41 C23 29 25 18 32 8" />
+          <path d="M26 26 C14 27 10 19 11 13 C21 14 27 18 26 26 Z" />
+          <path d="M29 18 C29 10 35 7 41 8 C40 16 35 20 29 18 Z" />
+          <path d="M23 34 C15 35 11 30 11 25 C19 25 23 29 23 34 Z" />
+        </>
+      )}
+
+      {type === "wildlife" && (
+        <>
+          <path d="M9 17 L15 11 L21 15 L27 11 L33 15 L39 17 L36 26 L31 30 L29 38 H19 L17 30 L12 26 Z" />
+          <path d="M17 23 L20 25 M28 25 L31 23" />
+          <path d="M20 31 L24 33 L28 31" />
+          <path d="M16 15 L12 8 M32 15 L36 8" />
+        </>
+      )}
+    </svg>
+  );
+}
+
+
+
+
+function PacianoOurPlaceSection({
+  image,
+}: PacianoOurPlaceSectionProps) {
+  const reduceMotion = useReducedMotion();
+  const instant = Boolean(reduceMotion);
+  const ctaRef = useRef<HTMLDivElement | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
+
+  const reveal = {
+    hidden: { opacity: 0, y: instant ? 0 : 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: instant ? 0 : 1.35,
+        ease: [0.16, 1, 0.3, 1] as const,
+      },
+    },
+  };
+
+  return (
+    <section
+      aria-labelledby="paciano-our-place-title"
+      className="
+        relative isolate left-1/2 w-screen -translate-x-1/2
+        overflow-hidden bg-[#F2EBDD]
+        text-[#FFF8EB]
+      "
+    >
+      {/* LANDSCAPE — FULL BLEED, WITHOUT A VISIBLE BOX */}
+      <motion.div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-30 overflow-hidden"
+        initial={instant ? false : { scale: 1.06 }}
+        whileInView={{ scale: 1 }}
+        viewport={{ once: true, amount: 0.05 }}
+        transition={{
+          duration: instant ? 0 : 3.2,
+          ease: [0.16, 1, 0.3, 1],
+        }}
+      >
+        <img
+          src={image}
+          alt=""
+          className="
+            h-full w-full object-cover
+            object-[54%_center]
+            sm:object-center
+          "
+        />
+        {/* SUBTLE CINEMATIC TINT — PRESERVES THE LANDSCAPE */}
+        {/* <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background:
+              "rgba(7, 24, 16, 0.14)",
+          }}
+        /> */}
+        {/* WARM CINEMATIC GRADE — ENTIRE LANDSCAPE */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            background: `
+              linear-gradient(
+                135deg,
+                rgba(26, 34, 21, 0.30) 0%,
+                rgba(21, 34, 23, 0.24) 45%,
+                rgba(16, 31, 22, 0.30) 100%
+              ),
+              rgba(24, 32, 20, 0.10)
+            `,
+          }}
+        />
+      </motion.div>
+
+      {/* BEIGE SKY BLEND — CONNECTS TO THE SECTION ABOVE */}
+      {/* <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-20"
+        style={{
+          background: `
+            linear-gradient(
+              to bottom,
+              #F2EBDD 0%,
+              rgba(242,235,221,0.98) 5%,
+              rgba(242,235,221,0.88) 12%,
+              rgba(242,235,221,0.56) 20%,
+              rgba(242,235,221,0.20) 29%,
+              rgba(242,235,221,0.00) 39%,
+              rgba(242,235,221,0.00) 58%,
+              rgba(242,235,221,0.12) 70%,
+              rgba(242,235,221,0.48) 81%,
+              rgba(242,235,221,0.82) 91%,
+              #F2EBDD 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(6,24,17,0.82) 0%,
+              rgba(6,24,17,0.65) 28%,
+              rgba(6,24,17,0.25) 62%,
+              rgba(6,24,17,0.04) 100%
+            )
+          `,
+        }}
+      /> */}
+      {/* SOFT BEIGE TRANSITION — TOP AND BOTTOM ONLY */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-20"
+        style={{
+          background: `
+            linear-gradient(
+              to bottom,
+              #F2EBDD 0%,
+              rgba(242,235,221,0.90) 3%,
+              rgba(242,235,221,0.48) 9%,
+              rgba(242,235,221,0.12) 16%,
+              transparent 23%,
+              transparent 72%,
+              rgba(242,235,221,0.10) 80%,
+              rgba(242,235,221,0.40) 88%,
+              rgba(242,235,221,0.78) 95%,
+              #F2EBDD 100%
+            )
+          `,
+        }}
+      />
+
+      {/* NATURAL CINEMATIC DEPTH */}
+      {/* <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background: `
+            linear-gradient(
+              180deg,
+              transparent 26%,
+              rgba(7,24,16,0.10) 39%,
+              rgba(5,20,13,0.40) 60%,
+              rgba(5,20,13,0.76) 76%,
+              rgba(242,235,221,0.06) 88%,
+              transparent 100%
+            )
+          `,
+        }}
+      /> */}  
+
+      {/* CONTENT */}
+      <div
+        className="
+          relative mx-auto flex w-full max-w-[1600px]
+          flex-col justify-between
+          min-h-[850px]
+          px-7 pb-28 pt-40
+          sm:min-h-[820px] sm:px-12 sm:pb-32 sm:pt-48
+          md:min-h-[800px] md:px-16 md:pt-52
+          lg:min-h-[760px] lg:px-20 lg:pb-36 lg:pt-56
+          xl:min-h-[820px] xl:px-24 xl:pt-60
+          [@media(orientation:landscape)_and_(max-height:500px)]:min-h-[720px]
+          [@media(orientation:landscape)_and_(max-height:500px)]:pt-40
+        "
+      >
+        {/* STORY INTRODUCTION */}
+        <motion.div
+          variants={reveal}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.15 }}
+          className="
+            relative z-10 max-w-[650px]
+            lg:max-w-[610px]
+            xl:max-w-[680px]
+          "
+          // className="
+          //     relative z-10
+          //     max-w-[650px]
+          //     lg:max-w-[610px]
+          //     xl:max-w-[680px]
+          //     before:pointer-events-none
+          //     before:absolute
+          //     before:-inset-x-8
+          //     before:-inset-y-10
+          //     before:-z-10
+          //     before:rounded-[50%]
+          //     before:content-['']
+          //     sm:before:-inset-x-12
+          //     sm:before:-inset-y-14
+          //   "
+          //   style={{
+          //     isolation: "isolate",
+          //   }}
+          >
+            {/* SOFT ROUNDED GLOW BEHIND STORY TEXT */}
+          {/* <div
+            aria-hidden="true"
+            className="
+              pointer-events-none absolute
+              -inset-x-8 -inset-y-10 -z-10
+              rounded-[50%]
+              sm:-inset-x-12 sm:-inset-y-14
+            "
+            style={{
+              background:
+                "radial-gradient(ellipse at center, rgba(5,24,16,0.46) 0%, rgba(5,24,16,0.26) 48%, rgba(5,24,16,0.08) 72%, transparent 100%)",
+            }}
+          /> */}
+         {/* SOFT, WIDE BLEND BEHIND THE ENTIRE STORY */}
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none absolute
+              -inset-x-12 -inset-y-12
+              -z-10
+              sm:-inset-x-20 sm:-inset-y-16
+            "
+            style={{
+              background: `
+                linear-gradient(
+                  to right,
+                  transparent 0%,
+                  rgba(5, 24, 16, 0.10) 8%,
+                  rgba(5, 24, 16, 0.28) 22%,
+                  rgba(5, 24, 16, 0.40) 50%,
+                  rgba(5, 24, 16, 0.28) 78%,
+                  rgba(5, 24, 16, 0.10) 92%,
+                  transparent 100%
+                ),
+                linear-gradient(
+                  to bottom,
+                  transparent 0%,
+                  rgba(5, 24, 16, 0.10) 8%,
+                  rgba(5, 24, 16, 0.28) 25%,
+                  rgba(5, 24, 16, 0.38) 50%,
+                  rgba(5, 24, 16, 0.26) 75%,
+                  rgba(5, 24, 16, 0.09) 92%,
+                  transparent 100%
+                )
+              `,
+              filter: "blur(26px)",
+              transform: "scale(1.05)",
+            }}
+          />
+
+          
+          <div className="mb-6 flex items-center gap-3 sm:mb-8">
+            {/* <span className="h-px w-8 bg-[#9A8553] sm:w-10" /> */}
+            {/* Leaf SVG */}
+            <svg
+              viewBox="0 0 32 32"
+              className="
+                h-[21px]
+                w-[21px]
+                shrink-0               
+                text-[#E5CB91]
+              "
+              fill="none"
+            >
+              <path
+                d="M16 27C16 19 18 12 23 5"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+
+              <path
+                d="
+                  M17 19
+                  C10 17 7 12 8 7
+                  C14 8 18 13 18 18
+                "
+                fill="currentColor"
+                opacity=".8"
+              />
+
+              <path
+                d="
+                  M19 14
+                  C20 8 25 5 29 7
+                  C27 12 24 15 19 16
+                "
+                fill="currentColor"
+                opacity=".5"
+              />
+            </svg>    
+            <span
+              className="
+                whitespace-nowrap
+                text-[12px]
+                font-medium
+                uppercase
+                tracking-[0.28em]              
+                text-[#E5CB91]
+              "
+            >
+              OUR PLACE
+            </span>           
+          </div>
+
+          <h2
+            id="paciano-our-place-title"
+            className="
+              max-w-[650px]
+              font-['Cormorant_Garamond',serif]
+              text-[clamp(38px,4.15vw,61px)]
+              font-normal leading-[0.83]              
+              text-[#FFF9EE]
+              leading-[0.94]
+              tracking-[-0.045em]
+              text-[#10120F]
+              drop-shadow-[0_3px_22px_rgba(0,0,0,0.14)]
+            "
+            style={{
+              textShadow: "0 2px 8px rgba(0, 0, 0, 0.65)",
+            }}
+          >
+            The Enchanting
+            <br />
+            <span
+              className="
+                block
+                whitespace-nowrap
+                font-['Cormorant_Garamond',serif]
+                italic
+                text-[#E5CB91]
+              "
+            >
+              Dooars.
+            </span>          
+          </h2>
+
+          <p
+            className="
+              mt-6 max-w-[590px]
+              font-['Cormorant_Garamond']
+              text-[clamp(1.4rem,2.8vw,2.2rem)]
+              italic leading-[1.08]
+              text-[#E5CB91]
+              sm:mt-8
+            "
+          >
+            Rivers, Forests, and Endless Horizons.
+          </p>
+
+          <p
+            className="
+              mt-5 max-w-[430px]
+              font-manrope
+              text-[clamp(12px,0.95vw,15px)]              
+              leading-[1.9] text-[#FFF9EE]/90
+              sm:mt-6 sm:text-[13px]
+              md:text-sm
+            "
+            style={{
+              textShadow: "0 2px 8px rgba(0,0,0,0.8)",
+            }}
+          >
+            Where rivers wind through ancient forests and mist
+            settles over distant hills, the Dooars invites you
+            to slow down and reconnect with the natural world.
+            Here, every horizon holds a story waiting to unfold.
+          </p>
+
+          {/* <div
+    ref={ctaRef}
+    className={`
+      mt-[35px]
+      transform
+      transition-all
+      duration-[1450ms]
+      ease-[cubic-bezier(0.22,1,0.36,1)]
+      will-change-transform
+
+      ${
+        isVisible
+          ? "translate-y-0 scale-100 opacity-100"
+          : "translate-y-8 scale-[0.97] opacity-0"
+      }
+    `}
+    style={{
+      transitionDelay: "2250ms",
+    }}
+    > */}
+    <motion.div
+  initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
+  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+  viewport={{ once: true, amount: 0.35 }}
+  transition={{
+    duration: instant ? 0 : 1.4,
+    delay: instant ? 0 : 0.45,
+    ease: [0.16, 1, 0.3, 1],
+  }}
+  className="mt-[35px] will-change-transform"
+>
+  <a
+    href="#location-details"
+    className="
+      group
+      relative
+
+      inline-flex
+      h-[52px]
+      min-w-[235px]
+
+      items-center
+      justify-between
+
+      overflow-visible
+      rounded-full
+
+      border
+      border-[#B8B98B]/75
+
+      bg-gradient-to-b
+      from-[#5A6440]
+      via-[#4D5736]
+      to-[#414A2F]
+
+      px-[10px]
+      pl-[64px]
+      pr-[9px]
+
+      text-[#F4EFE4]
+
+      shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
+
+      transition-all
+      duration-700
+      ease-[cubic-bezier(.22,1,.36,1)]
+
+      hover:-translate-y-[3px]
+      hover:scale-[1.015]
+      hover:border-[#D0C89B]
+      hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
+    "
+  >
+
+    {/* ===================================================
+        SOFT GOLDEN INNER GLOW
+    ==================================================== */}
+
+    <span
+      className="
+        pointer-events-none
+        absolute
+        inset-[1px]
+        rounded-full
+
+        bg-gradient-to-b
+        from-[#D8D3A8]/[0.10]
+        via-transparent
+        to-[#1F2818]/[0.16]
+
+        opacity-100
+      "
+    />
+
+    {/* ===================================================
+        LUXURY SHINE BAND
+        Visible by default + stronger on hover
+    ==================================================== */}
+
+    <span
+      className="
+        pointer-events-none
+        absolute
+        left-[24%]
+        top-[3px]
+
+        h-[46px]
+        w-[42%]
+
+        rotate-[7deg]
+
+        rounded-full
+
+        bg-gradient-to-r
+        from-transparent
+        via-[#F8F2DD]/[0.10]
+        to-transparent
+
+        blur-[5px]
+
+        opacity-80
+
+        transition-all
+        duration-[1200ms]
+        ease-[cubic-bezier(.22,1,.36,1)]
+
+        group-hover:left-[48%]
+        group-hover:opacity-100
+      "
+    />
+
+    {/* ===================================================
+        THIN WARM LIGHT ALONG LOWER EDGE
+    ==================================================== */}
+
+    <span
+      className="
+        pointer-events-none
+        absolute
+        inset-x-[18%]
+        bottom-[3px]
+
+        h-px
+
+        bg-gradient-to-r
+        from-transparent
+        via-[#D7CF9B]/70
+        to-transparent
+
+        opacity-70
+
+        transition-opacity
+        duration-700
+
+        group-hover:opacity-100
+      "
+    />
+
+    {/* ===================================================
+        LEAF
+    ==================================================== */}
+
+    <span
+      className="
+        pointer-events-none
+        absolute
+        left-[-8px]
+        bottom-[-10px]
+
+        z-20
+
+        h-[78px]
+        w-[82px]
+
+        origin-bottom-left
+
+        transition-all
+        duration-[900ms]
+        ease-[cubic-bezier(.22,1,.36,1)]
+
+        group-hover:translate-x-[3px]
+        group-hover:translate-y-[-2px]
+        group-hover:rotate-[-4deg]
+        group-hover:scale-[1.05]
+      "
+    >
+      <img
+        src={leafWhisper}
+        alt=""
+        aria-hidden="true"
+        className="
+          h-full
+          w-auto
+          max-w-none
+
+          object-contain
+
+          brightness-[0.92]
+          contrast-[1.08]
+          saturate-[0.92]
+
+          drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
+
+          transition-all
+          duration-[900ms]
+          ease-[cubic-bezier(.22,1,.36,1)]
+
+          group-hover:brightness-[1.03]
+          group-hover:contrast-[1.04]
+        "
+      />
+    </span>
+
+          {/* ===================================================
+              VERY SOFT LEAF LIGHT
+          ==================================================== */}
+
+          <span
+            className="
+              pointer-events-none
+              absolute
+              left-[11px]
+              bottom-[7px]
+
+              z-[5]
+
+              h-[46px]
+              w-[46px]
+
+              rounded-full
+
+              bg-[#D8CF9C]/[0.10]
+
+              blur-[15px]
+
+              transition-all
+              duration-1000
+
+              group-hover:bg-[#E2D9A8]/[0.18]
+            "
+          />
+
+          {/* ===================================================
+              TEXT
+          ==================================================== */}
+
+          <span
+            className="
+              relative
+              z-30
+
+              mr-auto
+
+              whitespace-nowrap
+
+              text-[9px]
+              font-medium
+              uppercase
+
+              tracking-[0.30em]
+
+              text-[#F4EFE4]
+
+              drop-shadow-[0_1px_2px_rgba(31,37,23,0.20)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[3px]
+              group-hover:tracking-[0.36em]
+            "
+          >
+            Enquire About Your Stay
+          </span>
+
+          {/* ===================================================
+              SEPARATOR
+          ==================================================== */}
+
+          <span
+            className="
+              relative
+              z-30
+
+              mx-[13px]
+
+              h-[22px]
+              w-px
+
+              bg-[#F4EFE4]/35
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:h-[27px]
+              group-hover:bg-[#E5DDBA]/65
+            "
+          />
+
+          {/* ===================================================
+              ARROW MEDALLION
+          ==================================================== */}
+
+          <span
+            className="
+              relative
+              z-30
+
+              flex
+              h-[32px]
+              w-[32px]
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-[#E4DEC1]/55
+
+              bg-gradient-to-b
+              from-[#F0E9D3]/[0.12]
+              to-[#B7AF88]/[0.05]
+
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[4px]
+              group-hover:scale-[1.08]
+              group-hover:border-[#F0E9D3]/85
+              group-hover:bg-[#F4EFE4]/[0.14]
+            "
+          >
+            <span
+              className="
+                text-[15px]
+                leading-none
+
+                text-[#F4EFE4]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                group-hover:translate-x-[2px]
+              "
+            >
+              →
+            </span>
+          </span>
+
+        </a>
+        </motion.div>
+
+        </motion.div>
+
+        {/* FOUR HIGHLIGHTS — PART OF THE LANDSCAPE */}
+        <motion.div
+          initial={instant ? false : "hidden"}
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.1 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: {
+                staggerChildren: instant ? 0 : 0.18,
+                delayChildren: instant ? 0 : 0.2,
+              },
+            },
+          }}
+          className="
+            relative z-10 mt-16 grid w-full
+            grid-cols-2 gap-x-5 gap-y-8
+            sm:gap-x-8 sm:gap-y-10
+            lg:ml-auto lg:mt-[-105px] lg:w-[59%]
+            lg:grid-cols-4 lg:gap-x-4
+            xl:w-[57%] xl:gap-x-7
+          "
+        >
+          {/* SOFT GLOW BEHIND LANDSCAPE HIGHLIGHTS */}
+          {/* <div
+            aria-hidden="true"
+            className="
+              pointer-events-none absolute
+              -inset-x-8 -inset-y-5
+              -z-10 rounded-[50%]
+              sm:-inset-x-12 sm:-inset-y-8
+            "
+            style={{
+              background: `
+                radial-gradient(
+                  ellipse at center,
+                  rgba(8, 22, 14, 0.82) 0%,
+                  rgba(8, 22, 14, 0.64) 35%,
+                  rgba(8, 22, 14, 0.36) 60%,
+                  rgba(8, 22, 14, 0.12) 80%,
+                  transparent 100%
+                )
+              `,
+            }}
+          /> */}
+          {/* SOFT, WIDE BLEND BEHIND LANDSCAPE HIGHLIGHTS */}
+<div
+  aria-hidden="true"
+  className="
+    pointer-events-none absolute
+    -inset-x-12 -inset-y-8
+    -z-10
+    sm:-inset-x-20 sm:-inset-y-12
+  "
+  style={{
+    background: `
+      linear-gradient(
+        to right,
+        transparent 0%,
+        rgba(8, 22, 14, 0.12) 8%,
+        rgba(8, 22, 14, 0.42) 22%,
+        rgba(8, 22, 14, 0.70) 50%,
+        rgba(8, 22, 14, 0.42) 78%,
+        rgba(8, 22, 14, 0.12) 92%,
+        transparent 100%
+      ),
+      linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(8, 22, 14, 0.18) 12%,
+        rgba(8, 22, 14, 0.48) 32%,
+        rgba(8, 22, 14, 0.62) 50%,
+        rgba(8, 22, 14, 0.42) 70%,
+        rgba(8, 22, 14, 0.14) 90%,
+        transparent 100%
+      )
+    `,
+    filter: "blur(22px)",
+    transform: "scale(1.05)",
+  }}
+/>
+          {placeHighlights.map((item, index) => (
+            <motion.div
+              key={item.title}
+              variants={{
+                hidden: { opacity: 0, y: instant ? 0 : 18 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: {
+                    duration: instant ? 0 : 1.15,
+                    ease: [0.16, 1, 0.3, 1],
+                  },
+                },
+              }}
+              className={`
+                group flex min-w-0 flex-col items-center
+                text-center
+                ${
+                  index > 0
+                    ? "lg:border-l lg:border-[#D6BE84]/35 lg:pl-3"
+                    : ""
+                }
+              `}
+              style={{
+                textShadow: "0 2px 8px rgba(0, 0, 0, 0.65)",
+              }}
+            >
+              <div
+                className="
+                  flex h-11 w-11 items-center justify-center
+                  text-[#E0C27F]
+                  transition-transform duration-700
+                  group-hover:-translate-y-1
+                  sm:h-12 sm:w-12
+                "
+              >
+                <PlaceHighlightIcon type={item.icon}/>
+              </div>
+
+              <span
+                className="
+                  mt-3 font-jost text-[9px] font-semibold
+                  uppercase tracking-[0.15em] text-[#FFF8EB]
+                  sm:text-[10px] sm:tracking-[0.2em]
+                "
+              >
+                {item.title}
+              </span>
+
+              <span
+                className="
+                  mt-1.5 font-['Cormorant_Garamond']
+                  text-[16px] italic leading-tight
+                  text-[#E5CB91]
+                  sm:text-lg lg:text-[19px]
+                "
+              >
+                {item.subtitle}
+              </span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+
+
+
+
+
 /* ==========================================================================
    ABOUT US
    ========================================================================== */
@@ -673,14 +1648,14 @@ export default function AboutUsInfo() {
       ref={sectionRef}
       id="about"
       className={`
-    paciano-about
-    relative
-    overflow-hidden
-    bg-[#F2EADD]
-    text-[#17251B]
+      paciano-about
+      relative
+      overflow-hidden
+      bg-[#F2EADD]
+      text-[#17251B]
 
-    ${visible ? "paciano-about-visible" : ""}
-  `}
+      ${visible ? "paciano-about-visible" : ""}
+    `}
     >
       {/* ==========================================================
             BOTANICAL BACKGROUND
@@ -909,32 +1884,32 @@ export default function AboutUsInfo() {
       </div>
 
       {/* ==========================================================
-      MAIN CONTENT
-  ========================================================== */}
+          MAIN CONTENT
+      ========================================================== */}
 
       <div
         className="
-      relative
-      z-10
-      mx-auto
-      max-w-[1600px]
+          relative
+          z-10
+          mx-auto
+          max-w-[1600px]
 
-      px-7
-      pt-[70px]
-      pb-[70px]
+          px-7
+          pt-[70px]
+          pb-[70px]
 
-      sm:px-10
+          sm:px-10
 
-      lg:px-[70px]
-      lg:pt-[70px]
-      lg:pb-[90px]
+          lg:px-[70px]
+          lg:pt-[70px]
+          lg:pb-[90px]
 
-      xl:px-[90px]
-    "
+          xl:px-[90px]
+        "
       >
         {/* ========================================================
-        TOP STORY
-    ======================================================== */}
+          TOP STORY
+        ======================================================== */}
 
         <div className="grid items-center lg:grid-cols-[34%_66%]">
           {/* ======================================================
@@ -1106,14 +2081,10 @@ export default function AboutUsInfo() {
           </div>
 
           {/* ======================================================
-          RIGHT — THE THREE PHOTOGRAPHIC PIECES
-      ====================================================== */}
-          {/* ==========================================================
-                RIGHT — LUXURY THREE-PHOTO COMPOSITION
-            ========================================================== */}
+                RIGHT — THE THREE PHOTOGRAPHIC PIECES
+            ====================================================== */}       
 
-          <div
-          
+          <div          
           className="
             relative
             mt-10
@@ -2121,6 +3092,9 @@ export default function AboutUsInfo() {
             ))}
           </div>
         </div>
+
+        {/* THE ENCHANTING DOOARS */}
+        <PacianoOurPlaceSection image={dooarsLandscape} />
 
         {/* ==========================================================
                 EXPERIENCES TITLE
