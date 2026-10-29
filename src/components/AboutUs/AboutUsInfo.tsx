@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
-
 import aboutNature from "@/images/home/about_left.webp";
 import aboutHospitality from "@/images/home/about_centre.webp";
 import aboutRight from "@/images/home/about_right.webp";
@@ -9,13 +8,11 @@ import aboutRight from "@/images/home/about_right.webp";
 import dooarsLandscape from "@/images/about/dooars.png";
 import leafWhisper from "@/images/button-leaf.png";
 
-import riverside from "@/images/riverside-bliss.jpg";
-// import teaGarden from "@/images/tea-garden-walks.jpg";
-import teaGarden from "@/images/home/teaGarden.png";
-// import culinary from "@/images/culinary-delights.jpg";
-import culinary from "@/images/story.png";
-import wellness from "@/images/wellness-spa.jpg";
-import sustainable from "@/images/sustainable-stay.png";
+import riverside from "@/images/home/riverside-bliss.webp";
+import teaGarden from "@/images/home/teaGarden.webp";
+import culinary from "@/images/home/culinary-delights.webp";
+import swimming from "@/images/home/swimming-pool.webp";
+import sustainable from "@/images/home/sustaianable-stay.webp";
 
 const experiences = [
   {
@@ -34,9 +31,10 @@ const experiences = [
     image: culinary,
   },
   {
-    title: "Wellness & Spa",
-    description: "Rejuvenate your mind, body and soul.",
-    image: wellness,
+    title: "Poolside Leisure",
+    description:
+      "A refreshing escape where tranquil waters meet pure indulgence.",
+    image: swimming,
   },
   {
     title: "Sustainable Stay",
@@ -597,8 +595,6 @@ function ImageLeafSprig({
   );
 }
 
-
-
 /** DOOARS LANDSCAPE  */
 
 type PacianoOurPlaceSectionProps = {
@@ -686,14 +682,9 @@ function PlaceHighlightIcon({
   );
 }
 
-
-
-
-function PacianoOurPlaceSection({
-  image,
-}: PacianoOurPlaceSectionProps) {
+function PacianoOurPlaceSection({ image }: PacianoOurPlaceSectionProps) {
   const reduceMotion = useReducedMotion();
-  const instant = Boolean(reduceMotion);  
+  const instant = Boolean(reduceMotion);
 
   const reveal = {
     hidden: { opacity: 0, y: instant ? 0 : 24 },
@@ -834,7 +825,7 @@ function PacianoOurPlaceSection({
             )
           `,
         }}
-      /> */}  
+      /> */}
 
       {/* CONTENT */}
       <div
@@ -880,8 +871,8 @@ function PacianoOurPlaceSection({
           //   style={{
           //     isolation: "isolate",
           //   }}
-          >
-            {/* SOFT ROUNDED GLOW BEHIND STORY TEXT */}
+        >
+          {/* SOFT ROUNDED GLOW BEHIND STORY TEXT */}
           {/* <div
             aria-hidden="true"
             className="
@@ -895,7 +886,7 @@ function PacianoOurPlaceSection({
                 "radial-gradient(ellipse at center, rgba(5,24,16,0.46) 0%, rgba(5,24,16,0.26) 48%, rgba(5,24,16,0.08) 72%, transparent 100%)",
             }}
           /> */}
-         {/* SOFT, WIDE BLEND BEHIND THE ENTIRE STORY */}
+          {/* SOFT, WIDE BLEND BEHIND THE ENTIRE STORY */}
           <div
             aria-hidden="true"
             className="
@@ -932,7 +923,6 @@ function PacianoOurPlaceSection({
             }}
           />
 
-          
           <div className="mb-6 flex items-center gap-3 sm:mb-8">
             {/* <span className="h-px w-8 bg-[#9A8553] sm:w-10" /> */}
             {/* Leaf SVG */}
@@ -971,7 +961,7 @@ function PacianoOurPlaceSection({
                 fill="currentColor"
                 opacity=".5"
               />
-            </svg>    
+            </svg>
             <span
               className="
                 whitespace-nowrap
@@ -983,7 +973,7 @@ function PacianoOurPlaceSection({
               "
             >
               OUR PLACE
-            </span>           
+            </span>
           </div>
 
           <h2
@@ -1015,7 +1005,7 @@ function PacianoOurPlaceSection({
               "
             >
               Dooars.
-            </span>          
+            </span>
           </h2>
 
           <p
@@ -1044,10 +1034,10 @@ function PacianoOurPlaceSection({
               textShadow: "0 2px 8px rgba(0,0,0,0.8)",
             }}
           >
-            Where rivers wind through ancient forests and mist
-            settles over distant hills, the Dooars invites you
-            to slow down and reconnect with the natural world.
-            Here, every horizon holds a story waiting to unfold.
+            Where rivers wind through ancient forests and mist settles over
+            distant hills, the Dooars invites you to slow down and reconnect
+            with the natural world. Here, every horizon holds a story waiting to
+            unfold.
           </p>
 
           {/* <div
@@ -1070,87 +1060,86 @@ function PacianoOurPlaceSection({
       transitionDelay: "2250ms",
     }}
     > */}
-    <motion.div
-  initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
-  whileInView={{ opacity: 1, y: 0, scale: 1 }}
-  viewport={{ once: true, amount: 0.35 }}
-  transition={{
-    duration: instant ? 0 : 1.4,
-    delay: instant ? 0 : 0.45,
-    ease: [0.16, 1, 0.3, 1],
-  }}
-  className="mt-[35px] will-change-transform"
->
-  <a
-    href="#location-details"
-    className="
-      group
-      relative
+          <motion.div
+            initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: instant ? 0 : 1.4,
+              delay: instant ? 0 : 0.45,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="mt-[35px] will-change-transform"
+          >
+            <a
+              href="#location-details"
+              className="
+                group
+                relative
 
-      inline-flex
-      h-[52px]
-      min-w-[235px]
+                inline-flex
+                h-[52px]
+                min-w-[235px]
 
-      items-center
-      justify-between
+                items-center
+                justify-between
 
-      overflow-visible
-      rounded-full
+                overflow-visible
+                rounded-full
 
-      border
-      border-[#B8B98B]/75
+                border
+                border-[#B8B98B]/75
 
-      bg-gradient-to-b
-      from-[#5A6440]
-      via-[#4D5736]
-      to-[#414A2F]
+                bg-gradient-to-b
+                from-[#5A6440]
+                via-[#4D5736]
+                to-[#414A2F]
 
-      px-[10px]
-      pl-[64px]
-      pr-[9px]
+                px-[10px]
+                pl-[64px]
+                pr-[9px]
 
-      text-[#F4EFE4]
+                text-[#F4EFE4]
 
-      shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
+                shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
 
-      transition-all
-      duration-700
-      ease-[cubic-bezier(.22,1,.36,1)]
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
 
-      hover:-translate-y-[3px]
-      hover:scale-[1.015]
-      hover:border-[#D0C89B]
-      hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
-    "
-  >
+                hover:-translate-y-[3px]
+                hover:scale-[1.015]
+                hover:border-[#D0C89B]
+                hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
+              "
+            >
+              {/* ===================================================
+                  SOFT GOLDEN INNER GLOW
+              ==================================================== */}
 
-    {/* ===================================================
-        SOFT GOLDEN INNER GLOW
-    ==================================================== */}
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-[1px]
+                  rounded-full
 
-    <span
-      className="
-        pointer-events-none
-        absolute
-        inset-[1px]
-        rounded-full
+                  bg-gradient-to-b
+                  from-[#D8D3A8]/[0.10]
+                  via-transparent
+                  to-[#1F2818]/[0.16]
 
-        bg-gradient-to-b
-        from-[#D8D3A8]/[0.10]
-        via-transparent
-        to-[#1F2818]/[0.16]
+                  opacity-100
+                "
+              />
 
-        opacity-100
-      "
-    />
+              {/* ===================================================
+              LUXURY SHINE BAND
+              Visible by default + stronger on hover
+          ==================================================== */}
 
-    {/* ===================================================
-        LUXURY SHINE BAND
-        Visible by default + stronger on hover
-    ==================================================== */}
-
-    <span
-      className="
+              <span
+                className="
         pointer-events-none
         absolute
         left-[24%]
@@ -1179,14 +1168,14 @@ function PacianoOurPlaceSection({
         group-hover:left-[48%]
         group-hover:opacity-100
       "
-    />
+              />
 
-    {/* ===================================================
+              {/* ===================================================
         THIN WARM LIGHT ALONG LOWER EDGE
     ==================================================== */}
 
-    <span
-      className="
+              <span
+                className="
         pointer-events-none
         absolute
         inset-x-[18%]
@@ -1206,14 +1195,14 @@ function PacianoOurPlaceSection({
 
         group-hover:opacity-100
       "
-    />
+              />
 
-    {/* ===================================================
+              {/* ===================================================
         LEAF
     ==================================================== */}
 
-    <span
-      className="
+              <span
+                className="
         pointer-events-none
         absolute
         left-[-8px]
@@ -1235,12 +1224,12 @@ function PacianoOurPlaceSection({
         group-hover:rotate-[-4deg]
         group-hover:scale-[1.05]
       "
-    >
-      <img
-        src={leafWhisper}
-        alt=""
-        aria-hidden="true"
-        className="
+              >
+                <img
+                  src={leafWhisper}
+                  alt=""
+                  aria-hidden="true"
+                  className="
           h-full
           w-auto
           max-w-none
@@ -1260,15 +1249,15 @@ function PacianoOurPlaceSection({
           group-hover:brightness-[1.03]
           group-hover:contrast-[1.04]
         "
-      />
-    </span>
+                />
+              </span>
 
-          {/* ===================================================
+              {/* ===================================================
               VERY SOFT LEAF LIGHT
           ==================================================== */}
 
-          <span
-            className="
+              <span
+                className="
               pointer-events-none
               absolute
               left-[11px]
@@ -1290,14 +1279,14 @@ function PacianoOurPlaceSection({
 
               group-hover:bg-[#E2D9A8]/[0.18]
             "
-          />
+              />
 
-          {/* ===================================================
+              {/* ===================================================
               TEXT
           ==================================================== */}
 
-          <span
-            className="
+              <span
+                className="
               relative
               z-30
 
@@ -1322,16 +1311,16 @@ function PacianoOurPlaceSection({
               group-hover:translate-x-[3px]
               group-hover:tracking-[0.36em]
             "
-          >
-            Enquire About Your Stay
-          </span>
+              >
+                Enquire About Your Stay
+              </span>
 
-          {/* ===================================================
+              {/* ===================================================
               SEPARATOR
           ==================================================== */}
 
-          <span
-            className="
+              <span
+                className="
               relative
               z-30
 
@@ -1349,14 +1338,14 @@ function PacianoOurPlaceSection({
               group-hover:h-[27px]
               group-hover:bg-[#E5DDBA]/65
             "
-          />
+              />
 
-          {/* ===================================================
+              {/* ===================================================
               ARROW MEDALLION
           ==================================================== */}
 
-          <span
-            className="
+              <span
+                className="
               relative
               z-30
 
@@ -1388,9 +1377,9 @@ function PacianoOurPlaceSection({
               group-hover:border-[#F0E9D3]/85
               group-hover:bg-[#F4EFE4]/[0.14]
             "
-          >
-            <span
-              className="
+              >
+                <span
+                  className="
                 text-[15px]
                 leading-none
 
@@ -1402,14 +1391,12 @@ function PacianoOurPlaceSection({
 
                 group-hover:translate-x-[2px]
               "
-            >
-              →
-            </span>
-          </span>
-
-        </a>
-        </motion.div>
-
+                >
+                  →
+                </span>
+              </span>
+            </a>
+          </motion.div>
         </motion.div>
 
         {/* FOUR HIGHLIGHTS — PART OF THE LANDSCAPE */}
@@ -1458,16 +1445,16 @@ function PacianoOurPlaceSection({
             }}
           /> */}
           {/* SOFT, WIDE BLEND BEHIND LANDSCAPE HIGHLIGHTS */}
-<div
-  aria-hidden="true"
-  className="
+          <div
+            aria-hidden="true"
+            className="
     pointer-events-none absolute
     -inset-x-12 -inset-y-8
     -z-10
     sm:-inset-x-20 sm:-inset-y-12
   "
-  style={{
-    background: `
+            style={{
+              background: `
       linear-gradient(
         to right,
         transparent 0%,
@@ -1489,10 +1476,10 @@ function PacianoOurPlaceSection({
         transparent 100%
       )
     `,
-    filter: "blur(22px)",
-    transform: "scale(1.05)",
-  }}
-/>
+              filter: "blur(22px)",
+              transform: "scale(1.05)",
+            }}
+          />
           {placeHighlights.map((item, index) => (
             <motion.div
               key={item.title}
@@ -1510,11 +1497,7 @@ function PacianoOurPlaceSection({
               className={`
                 group flex min-w-0 flex-col items-center
                 text-center
-                ${
-                  index > 0
-                    ? "lg:border-l lg:border-[#D6BE84]/35 lg:pl-3"
-                    : ""
-                }
+                ${index > 0 ? "lg:border-l lg:border-[#D6BE84]/35 lg:pl-3" : ""}
               `}
               style={{
                 textShadow: "0 2px 8px rgba(0, 0, 0, 0.65)",
@@ -1529,7 +1512,7 @@ function PacianoOurPlaceSection({
                   sm:h-12 sm:w-12
                 "
               >
-                <PlaceHighlightIcon type={item.icon}/>
+                <PlaceHighlightIcon type={item.icon} />
               </div>
 
               <span
@@ -1559,11 +1542,6 @@ function PacianoOurPlaceSection({
     </section>
   );
 }
-
-
-
-
-
 
 /* ==========================================================================
    ABOUT US
@@ -1644,8 +1622,9 @@ export default function AboutUsInfo() {
   return (
     <section
       ref={sectionRef}
-      id="about"
+      id="about-paciano"
       className={`
+      scroll-mt-24
       paciano-about
       relative
       overflow-hidden
@@ -2028,26 +2007,26 @@ export default function AboutUsInfo() {
             </h2>
 
             {/* ====================================================
-            DESCRIPTION
-        ==================================================== */}
+                DESCRIPTION
+            ==================================================== */}
 
             <p
               className="
-            paciano-reveal
-            paciano-delay-2
+                paciano-reveal
+                paciano-delay-2
 
-            mt-[32px]
+                mt-[32px]
 
-            max-w-[400px]
+                max-w-[400px]
 
-            font-manrope
-            text-[12px]
-            leading-[1.85]
+                font-manrope
+                text-[12px]
+                leading-[1.85]
 
-            text-[#50584F]
+                text-[#50584F]
 
-            sm:text-[15px]
-          "
+                sm:text-[15px]
+              "
             >
               Paciano is more than a resort — it&apos;s a sanctuary where
               nature, comfort and genuine hospitality come together to create
@@ -2068,7 +2047,7 @@ export default function AboutUsInfo() {
               
             text-[#50584F]
 
-            sm:text-[14px]
+            sm:text-[15px]
           "
             >
               Nestled in serene landscapes of Dooars, our retreat is
@@ -2080,10 +2059,10 @@ export default function AboutUsInfo() {
 
           {/* ======================================================
                 RIGHT — THE THREE PHOTOGRAPHIC PIECES
-            ====================================================== */}       
+            ====================================================== */}
 
-          <div          
-          className="
+          <div
+            className="
             relative
             mt-10
             h-[clamp(360px,105vw,500px)]
@@ -2095,7 +2074,7 @@ export default function AboutUsInfo() {
             lg:translate-x-[3%]
             xl:translate-x-[4%]
           "
-          
+
             // className="
             //   relative
             //   mt-[50px]
@@ -2177,7 +2156,7 @@ export default function AboutUsInfo() {
               //   sm:rounded-[60px_60px_42px_42px]
               //   lg:rounded-[78px_78px_58px_58px]
               // "
-                          >
+            >
               {/* LUXURY DOUBLE RIM */}
 
               <div
@@ -3187,89 +3166,142 @@ export default function AboutUsInfo() {
         </div>
 
         {/* ==========================================================
-    FIVE EXPERIENCES
-========================================================== */}
+              FIVE EXPERIENCES
+          ========================================================== */}
 
         <div
           ref={experienceRef}
+          // className="
+          //   paciano-experiences
+          //   relative
+
+          //   mt-[55px]
+
+          //   grid
+          //   grid-cols-2
+          //   gap-x-[14px]
+          //   gap-y-[35px]
+
+          //   sm:grid-cols-3
+
+          //   lg:grid-cols-5
+          //   lg:gap-x-[18px]
+          //   lg:gap-y-0
+
+          //   xl:px-[10px]
+          // "
           className="
-    paciano-experiences
-    relative
+            paciano-experiences
+            relative
+            mt-[55px]
+            grid
+            grid-cols-2
+            items-stretch
+            gap-x-[14px]
+            gap-y-[35px]
 
-    mt-[55px]
+            sm:grid-cols-3
 
-    grid
-    grid-cols-2
-    gap-x-[14px]
-    gap-y-[35px]
+            lg:grid-cols-5
+            lg:gap-x-[18px]
+            lg:gap-y-0
 
-    sm:grid-cols-3
-
-    lg:grid-cols-5
-    lg:gap-x-[18px]
-    lg:gap-y-0
-
-    xl:px-[10px]
-  "
+            xl:px-[10px]
+          "
         >
           {experiences.map((experience, index) => (
+            // <article
+            //   key={experience.title}
+            //   className={`
+            //     paciano-experience
+            //     paciano-experience-${index + 1}
+
+            //     group
+            //     relative
+
+            //     ${experienceVisible ? "paciano-experience-visible" : ""}
+            //   `}
+            //   style={
+            //     {
+            //       "--experience-delay": `${index * 450}ms`,
+            //       "--experience-y":
+            //         index === 1 || index === 3
+            //           ? "22px"
+            //           : index === 2
+            //             ? "35px"
+            //             : "0px",
+            //     } as React.CSSProperties
+            //   }
+            // >
             <article
               key={experience.title}
               className={`
-  paciano-experience
-  paciano-experience-${index + 1}
+                paciano-experience
+                paciano-experience-${index + 1}
+                group
+                relative
+                min-w-0
+                flex
+                flex-col
 
-  group
-  relative
+                ${
+                  index === 4
+                    ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
+                    : ""
+                }
 
-  ${experienceVisible ? "paciano-experience-visible" : ""}
-`}
+                ${experienceVisible ? "paciano-experience-visible" : ""}
+              `}
               style={
                 {
                   "--experience-delay": `${index * 450}ms`,
-                  "--experience-y":
-                    index === 1 || index === 3
-                      ? "22px"
-                      : index === 2
-                        ? "35px"
-                        : "0px",
                 } as React.CSSProperties
               }
+              // style={
+              //   {
+              //     "--experience-delay": `${index * 450}ms`,
+              //     "--experience-y":
+              //       index === 1 || index === 3
+              //         ? "22px"
+              //         : index === 2
+              //           ? "35px"
+              //           : "0px",
+              //   } as React.CSSProperties
+              // }
             >
-              {/* =====================================================
-            
-          ICON
-      ===================================================== */}
+              {/* =====================================================            
+                  ICON
+              ===================================================== */}
 
               <div
                 className="
-          paciano-experience-icon
+                paciano-experience-icon
 
-          relative
-          z-10
+                relative
+                z-10
 
-          mx-auto
+                mx-auto
 
-          flex
-          h-[72px]
-          w-[72px]
+                flex
+                h-[72px]
+                w-[72px]
 
-          items-center
-          justify-center
+                items-center
+                justify-center
 
-          rounded-full
+                rounded-full
 
-          border
-          border-[#71803F]/20
+                border
+                border-[#71803F]/20
 
-          bg-[#F5EEE1]/55
+                bg-[#F5EEE1]/55
 
-          backdrop-blur-[2px]
+                backdrop-blur-[2px]
 
-          transition-all
-          duration-[1200ms]
-          ease-[cubic-bezier(.22,1,.36,1)]
-        "
+                transition-all
+                duration-[1200ms]
+                ease-[cubic-bezier(.22,1,.36,1)]
+              "
               >
                 <ExperienceIcon type={index} />
 
@@ -3305,33 +3337,44 @@ export default function AboutUsInfo() {
               </div>
 
               {/* =====================================================
-          TEXT
-      ===================================================== */}
+                  TEXT
+              ===================================================== */}
 
               <div
+                // className="
+                //   relative
+                //   z-10
+                //   mt-[18px]
+                //   text-center
+                // "
                 className="
-          relative
-          z-10
+                  relative
+                  z-10
+                  mt-[18px]
+                  text-center
 
-          mt-[18px]
+                  min-h-[125px]
+                  min-[380px]:min-h-[115px]
 
-          text-center
-        "
+                  sm:min-h-0
+                "
               >
                 <h4
                   className="
-    paciano-experience-title
-    font-cormorant
-    text-[28px]
-    font-medium
-    leading-[1.05]
-    tracking-[-0.015em]
-    text-[#17251B]
-    transition-all
-    duration-[1000ms]
-    ease-[cubic-bezier(.22,1,.36,1)]
-    group-hover:text-[#617638]
-  "
+                    paciano-experience-title
+                    font-cormorant
+                    text-[23px]
+                    sm:text-[24px]
+                    md:text-[28px]
+                    font-medium
+                    leading-[1.05]
+                    tracking-[-0.015em]
+                    text-[#17251B]
+                    transition-all
+                    duration-[1000ms]
+                    ease-[cubic-bezier(.22,1,.36,1)]
+                    group-hover:text-[#617638]
+                  "
                 >
                   {experience.title}
                 </h4>
@@ -3339,18 +3382,18 @@ export default function AboutUsInfo() {
                 <p
                   className="
                     paciano-experience-description
-    mx-auto
-    mt-[14px]
-    max-w-[220px]
-    font-manrope
-    text-[13px]
-    font-normal
-    leading-[1.65]
-    tracking-[0.005em]
-    text-[#555C52]
-    transition-all
-    duration-[1000ms]
-    ease-[cubic-bezier(.22,1,.36,1)]
+                    mx-auto
+                    mt-[14px]
+                    max-w-[220px]
+                    font-manrope
+                    text-[13px]
+                    font-normal
+                    leading-[1.65]
+                    tracking-[0.005em]
+                    text-[#555C52]
+                    transition-all
+                    duration-[1000ms]
+                    ease-[cubic-bezier(.22,1,.36,1)]
                   "
                 >
                   {experience.description}
@@ -3358,61 +3401,86 @@ export default function AboutUsInfo() {
               </div>
 
               {/* =====================================================
-          IMAGE FRAME
-      ===================================================== */}
+                  IMAGE FRAME
+              ===================================================== */}
 
               <div
+                // className="
+                //   paciano-experience-image
+                //   group/image
+                //   relative
+                //   mt-[23px]
+
+                //   h-[270px]
+                //   sm:h-[275px]
+                //   lg:h-[285px]
+                //   xl:h-[295px]
+
+                //   overflow-hidden
+
+                //   rounded-[70px_70px_28px_28px]
+
+                //   bg-[#E7DFCF]
+
+                //   shadow-[0_24px_60px_rgba(45,48,35,.12)]
+
+                //   animate-paciano-card-float
+
+                //   transition-shadow
+                //   duration-[1200ms]
+
+                //   hover:shadow-[0_32px_75px_rgba(45,48,35,.17)]
+
+                //   will-change-transform
+
+                //   motion-reduce:animate-none
+                // "
                 className="
-    paciano-experience-image
-    group/image
-    relative
-    mt-[23px]
+  paciano-experience-image
+  group/image
+  relative
+  mt-[23px]
+  w-full
+  shrink-0
 
-    h-[270px]
-    sm:h-[275px]
-    lg:h-[285px]
-    xl:h-[295px]
+  h-[220px]
+  min-[380px]:h-[245px]
+  sm:h-[275px]
+  lg:h-[285px]
+  xl:h-[295px]
 
-    overflow-hidden
-
-    rounded-[70px_70px_28px_28px]
-
-    bg-[#E7DFCF]
-
-    shadow-[0_24px_60px_rgba(45,48,35,.12)]
-
-    animate-paciano-card-float
-
-    transition-shadow
-    duration-[1200ms]
-
-    hover:shadow-[0_32px_75px_rgba(45,48,35,.17)]
-
-    will-change-transform
-
-    motion-reduce:animate-none
-  "
+  overflow-hidden
+  rounded-[70px_70px_28px_28px]
+  bg-[#E7DFCF]
+  shadow-[0_24px_60px_rgba(45,48,35,.12)]
+  animate-paciano-card-float
+  transition-shadow
+  duration-[1200ms]
+  hover:shadow-[0_32px_75px_rgba(45,48,35,.17)]
+  will-change-transform
+  motion-reduce:animate-none
+"
               >
                 {/* soft botanical border */}
 
                 <div
                   className="
-            pointer-events-none
-            absolute
-            inset-[5px]
-            z-20
+                    pointer-events-none
+                    absolute
+                    inset-[5px]
+                    z-20
 
-            rounded-[65px_65px_24px_24px]
+                    rounded-[65px_65px_24px_24px]
 
-            border
-            border-[#FFFDF5]/75
+                    border
+                    border-[#FFFDF5]/75
 
-            transition-all
-            duration-[1200ms]
+                    transition-all
+                    duration-[1200ms]
 
-            group-hover:inset-[8px]
-            group-hover:border-[#FFFDF5]
-          "
+                    group-hover:inset-[8px]
+                    group-hover:border-[#FFFDF5]
+                  "
                 />
 
                 {/* image */}
@@ -3440,23 +3508,23 @@ export default function AboutUsInfo() {
 
                 <div
                   className="
-            pointer-events-none
-            absolute
-            inset-0
-            z-10
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    z-10
 
-            bg-gradient-to-t
-            from-[#172319]/[0.18]
-            via-transparent
-            to-[#FFF8E8]/[0.10]
+                    bg-gradient-to-t
+                    from-[#172319]/[0.18]
+                    via-transparent
+                    to-[#FFF8E8]/[0.10]
 
-            opacity-[0.85]
+                    opacity-[0.85]
 
-            transition-opacity
-            duration-[1200ms]
+                    transition-opacity
+                    duration-[1200ms]
 
-            group-hover:opacity-100
-          "
+                    group-hover:opacity-100
+                  "
                 />
 
                 {/* moving light */}
@@ -3494,12 +3562,9 @@ export default function AboutUsInfo() {
               <div
                 className="
                   paciano-experience-botanical
-
                   relative
-
                   mx-auto
                   mt-[17px]
-
                   h-[18px]
                   w-[55px]
                 "
@@ -3507,13 +3572,11 @@ export default function AboutUsInfo() {
                 <svg
                   viewBox="0 0 55 18"
                   className="
-            h-full
-            w-full
-
-            overflow-visible
-
-            text-[#71883F]
-          "
+                    h-full
+                    w-full
+                    overflow-visible
+                    text-[#71883F]
+                  "
                   fill="none"
                 >
                   <path
@@ -3525,20 +3588,20 @@ export default function AboutUsInfo() {
 
                   <path
                     d="
-              M28 11
-              C22 10 18 7 18 3
-              C23 4 27 7 28 11
-            "
+                      M28 11
+                      C22 10 18 7 18 3
+                      C23 4 27 7 28 11
+                    "
                     fill="currentColor"
                     opacity=".65"
                   />
 
                   <path
                     d="
-              M33 7
-              C37 4 41 3 45 4
-              C42 8 38 9 33 8
-            "
+                      M33 7
+                      C37 4 41 3 45 4
+                      C42 8 38 9 33 8
+                    "
                     fill="currentColor"
                     opacity=".42"
                   />
@@ -3550,918 +3613,1042 @@ export default function AboutUsInfo() {
       </div>
 
       {/* ============================================================
-      ANIMATION
-  ============================================================ */}
+          ANIMATION
+      ============================================================ */}
 
       <style>
         {`
-       /* ==========================================================
-          ABOUT PACIANO SECTION
-        ========================================================== */
-          .paciano-reveal {
-            opacity: 0;
-            translate: 0 65px;
-
-            transition:
-              opacity 2.8s cubic-bezier(.16, 1, .3, 1),
-              translate 2.8s cubic-bezier(.16, 1, .3, 1);
-          }
-
-          .paciano-about-visible .paciano-reveal {
-            opacity: 1;
-            translate: 0 0;
-          }
-
-          .paciano-delay-1 {
-            transition-delay: 0.2s;
-          }
-
-          .paciano-delay-2 {
-            transition-delay: 0.45s;
-          }
-
-          .paciano-delay-3 {
-            transition-delay: 0.7s;
-          }
-
-          .paciano-delay-4 {
-            transition-delay: 0.95s;
-          }
-      /* ==========================================================
-        CINEMATIC PHOTO MOTION
-      ========================================================== */
-
-.paciano-photo {
-  will-change: transform;
-  transform-origin: center center;
-}
-
-
-/* LEFT PHOTO
-   Slow vertical breathing + tiny rotation
----------------------------------------------------------- */
-
-.paciano-about-visible .paciano-photo-left {
-  animation:
-    pacianoFloatLeft
-    9s
-    ease-in-out
-    infinite
-    1.4s;
-}
-
-
-/* CENTER PHOTO
-   Almost imperceptible movement
----------------------------------------------------------- */
-
-.paciano-about-visible .paciano-photo-center {
-  animation:
-    pacianoFloatCenter
-    11s
-    ease-in-out
-    infinite
-    1.7s;
-}
-
-
-/* RIGHT PHOTO
-   Different rhythm so the three don't move together
----------------------------------------------------------- */
-
-.paciano-about-visible .paciano-photo-right {
-  animation:
-    pacianoFloatRight
-    10s
-    ease-in-out
-    infinite
-    2s;
-}
-
-
-/* LEFT */
-
-@keyframes pacianoFloatLeft {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-
-  25% {
-    transform:
-      translate3d(-2px, -4px, 0)
-      rotate(-0.15deg);
-  }
-
-  50% {
-    transform:
-      translate3d(2px, -7px, 0)
-      rotate(0.15deg);
-  }
-
-  75% {
-    transform:
-      translate3d(1px, -3px, 0)
-      rotate(0deg);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-}
-
-
-/* CENTER */
-
-@keyframes pacianoFloatCenter {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-
-  25% {
-    transform:
-      translate3d(1px, -3px, 0)
-      rotate(0.08deg);
-  }
-
-  50% {
-    transform:
-      translate3d(-1px, -6px, 0)
-      rotate(-0.08deg);
-  }
-
-  75% {
-    transform:
-      translate3d(1px, -3px, 0)
-      rotate(0.05deg);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-}
-
-
-@keyframes pacianoFloatRight {
-
-  0% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-
-  25% {
-    transform:
-      translate3d(2px, -4px, 0)
-      rotate(0.12deg);
-  }
-
-  50% {
-    transform:
-      translate3d(-1px, -7px, 0)
-      rotate(-0.12deg);
-  }
-
-  75% {
-    transform:
-      translate3d(-1px, -3px, 0)
-      rotate(-0.05deg);
-  }
-
-  100% {
-    transform:
-      translate3d(0, 0, 0)
-      rotate(0deg);
-  }
-}
-
-/* ==========================================================
-   LEAF MOTION
-========================================================== */
-
-.paciano-floating-leaf {
-  transform-origin: 50% 90%;
-  animation:
-    pacianoLeafSway
-    7s
-    ease-in-out
-    infinite;
-}
-
-@keyframes pacianoLeafSway {
-
-  0% {
-    transform:
-      rotate(8deg)
-      translateY(0);
-  }
-
-  50% {
-    transform:
-      rotate(3deg)
-      translateY(-8px);
-  }
-
-  100% {
-    transform:
-      rotate(8deg)
-      translateY(0);
-  }
-}
-
-
-/* ==========================================================
-   SMALL LEAF CIRCLE
-========================================================== */
-
-.paciano-leaf-orbit {
-  animation:
-    pacianoLeafOrbit
-    6s
-    ease-in-out
-    infinite;
-}
-
-@keyframes pacianoLeafOrbit {
-
-  0% {
-    transform:
-      translateY(0)
-      rotate(0deg);
-  }
-
-  50% {
-    transform:
-      translateY(-9px)
-      rotate(5deg);
-  }
-
-  100% {
-    transform:
-      translateY(0)
-      rotate(0deg);
-  }
-}
-
-
-/* ==========================================================
-   ACCESSIBILITY
-========================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .paciano-photo-left,
-  .paciano-photo-center,
-  .paciano-photo-right,
-  .paciano-floating-leaf,
-  .paciano-leaf-orbit {
-    animation: none !important;
-  }
-
-}
-    @media (prefers-reduced-motion: reduce) {
-
-      .paciano-reveal {
-        opacity: 1;
-        transform: none;
-        transition: none;
-      }
-
-    }
-  /* ==========================================================
-   PACIANO — CINEMATIC FIVE EXPERIENCE CARDS
-   ========================================================== */
-
-    .paciano-experience {
-    transform: translateY(var(--experience-y, 0px));
-      opacity: 0;
-    }
-
-    /* Start the cards only when they actually enter the viewport */
-   .paciano-experience-visible {
-  animation:
-    pacianoExperienceReveal
-    3.2s
-    cubic-bezier(.22, 1, .36, 1)
-    both;
-
-  animation-delay: var(--experience-delay);
-}
-
-
-/* ----------------------------------------------------------
-   CINEMATIC ENTRY
-   IMPORTANT:
-   No transform on the card itself.
-   This keeps typography perfectly sharp.
-   ---------------------------------------------------------- */
-
-@keyframes pacianoExperienceReveal {
-  0% {
-    opacity: 0;
-    transform:
-      translateY(
-        calc(var(--experience-y, 0px) + 18px)
-      );
-  }
-
-  100% {
-    opacity: 1;
-    transform:
-      translateY(var(--experience-y, 0px));
-  }
-}
-
-/* ==========================================================
-   ICON — SUBTLE ENTRY
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-icon {
-  animation:
-    pacianoIconReveal
-    1.2s
-    cubic-bezier(.22, 1, .36, 1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 250ms);
-}
-
-@keyframes pacianoIconReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scale(.96);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-
-/* ==========================================================
-   TITLE
-   CRISP — NO TRANSLATE / NO BLUR
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-title {
-  animation: pacianoTitleFade 900ms cubic-bezier(.22,1,.36,1) both;
-  animation-delay: calc(var(--experience-delay) + 420ms);
-}
-
-@keyframes pacianoTitleFade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes pacianoDescriptionFade {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-@keyframes pacianoTitleReveal {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
-/* ==========================================================
-   DESCRIPTION
-   CRISP — NO TRANSLATE / NO BLUR
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-description {
-  animation: pacianoDescriptionFade 900ms cubic-bezier(.22,1,.36,1) both;
-  animation-delay: calc(var(--experience-delay) + 600ms);
-}
-
-
-@keyframes pacianoDescriptionReveal {
-  0% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-
-/* ==========================================================
-   IMAGE — THIS IS WHERE THE CINEMATIC MOTION SHOULD LIVE
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-img {
-  animation:
-    pacianoImagePush
-    10s
-    cubic-bezier(.22, 1, .36, 1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 350ms);
-
-  will-change: transform;
-}
-
-@keyframes pacianoImagePush {
-  0% {
-    transform: scale(1.075);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-
-/* ==========================================================
-   LIGHT SWEEP
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-image > div:last-child {
-  animation:
-    pacianoLightSweep
-    3.2s
-    cubic-bezier(.22, 1, .36, 1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 900ms);
-}
-
-
-/* ==========================================================
-   HOVER
-   ========================================================== */
-
-.paciano-experience:hover .paciano-experience-title {
-  transform: translateY(-2px);
-}
-
-.paciano-experience:hover .paciano-experience-description {
-  transform: translateY(-1px);
-}
-
-.paciano-experience:hover .paciano-experience-icon {
-  transform: translateY(-3px);
-}
-
-
-/* ==========================================================
-   REDUCED MOTION
-   ========================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-  .paciano-experience,
-  .paciano-experience-icon,
-  .paciano-experience-title,
-  .paciano-experience-description,
-  .paciano-experience-img,
-  .paciano-experience-image > div:last-child {
-    animation: none !important;
-    transition: none !important;
-  }
-
- 
-}
-
-
-
-
-/* ==========================================================
-   ICON — VERY SUBTLE LIFE
-   ========================================================== */
-
-@keyframes pacianoIconReveal {
-
-  0% {
-    opacity: 0;
-    transform:
-      translateY(12px)
-      scale(.92)
-      rotate(-3deg);
-  }
-
-  60% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1)
-      rotate(0deg);
-  }
-}
-
-
-/* ==========================================================
-   DESCRIPTION — FOLLOWS TITLE
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-description{
-  animation:
-    pacianoTextReveal
-    1.2s
-    cubic-bezier(.22,1,.36,1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 650ms);
-}
-
-
-@keyframes pacianoTextReveal {
-
-  0% {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-
-/* ==========================================================
-   IMAGE — CINEMATIC SLOW PUSH
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-img{
-  animation:
-    pacianoImagePush
-    10s
-    cubic-bezier(.22,1,.36,1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 500ms);
-
-  will-change: transform;
-}
-
-
-@keyframes pacianoImagePush {
-
-  0% {
-    transform: scale(1.075);
-  }
-
-  100% {
-    transform: scale(1);
-  }
-}
-
-
-/* ==========================================================
-   MOVING LIGHT — ONE SLOW CINEMATIC SWEEP
-   ========================================================== */
-
-.paciano-experience-visible .paciano-experience-image > div:last-child {
-  animation:
-    pacianoLightSweep
-    3.2s
-    cubic-bezier(.22,1,.36,1)
-    both;
-
-  animation-delay:
-    calc(var(--experience-delay) + 1.1s);
-}
-
-
-@keyframes pacianoLightSweep {
-
-  0% {
-    opacity: 0;
-    transform:
-      translateX(-180%)
-      rotate(12deg);
-  }
-
-  20% {
-    opacity: .7;
-  }
-
-  55% {
-    opacity: .35;
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translateX(430%)
-      rotate(12deg);
-  }
-}
-
-
-/* ==========================================================
-   HOVER — KEEP VERY REFINED
-   ========================================================== */
-
-.paciano-experience:hover .paciano-experience-title {
-  transform: translateY(-2px);
-}
-
-.paciano-experience:hover .paciano-experience-description {
-  transform: translateY(-1px);
-}
-
-.paciano-experience:hover .paciano-experience-icon {
-  transform: translateY(-3px);
-}
-
-
-/* ==========================================================
-   REDUCED MOTION
-   ========================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .paciano-experience,
-  .paciano-experience-icon,
-  .paciano-experience-title,
-  .paciano-experience-description,
-  .paciano-experience-img,
-  .paciano-experience-image > div:last-child {
-    animation: none !important;
-  }
-
-  .paciano-experience {
-    opacity: 1;
-    transform: none;
-    filter: none;
-  }
-}
-
-/* ==========================================================
-   PACIANO — FIVE EXPERIENCE CARDS
-   VERY SUBTLE LUXURY FLOAT
-   ========================================================== */
-
-
- .paciano-experience-image {
-  animation: pacianoCardFloat 9s ease-in-out infinite;
-  will-change: transform;
-}
-
-.paciano-experience:nth-child(1) .paciano-experience-image {
-  animation-delay: 0s;
-}
-
-.paciano-experience:nth-child(2) .paciano-experience-image {
-  animation-delay: -2s;
-}
-
-.paciano-experience:nth-child(3) .paciano-experience-image {
-  animation-delay: -4s;
-}
-
-.paciano-experience:nth-child(4) .paciano-experience-image {
-  animation-delay: -6s;
-}
-
-.paciano-experience:nth-child(5) .paciano-experience-image {
-  animation-delay: -8s;
-}
-
-@keyframes pacianoCardFloat {
-  0% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  25% {
-    transform: translate3d(0, -2px, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -4px, 0);
-  }
-
-  75% {
-    transform: translate3d(0, -2px, 0);
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.paciano-icon-orbit {
-  border: 1px solid rgba(113, 128, 63, 0.18);
-  border-top-color: rgba(113, 128, 63, 0.65);
-  border-right-color: rgba(113, 128, 63, 0.32);
-
-  animation:
-    pacianoIconOrbit
-    12s
-    linear
-    infinite;
-
-  transform-origin: center;
-}
-
-@keyframes pacianoIconOrbit {
-  from {
-    transform: rotate(0deg);
-  }
-
-  to {
-    transform: rotate(360deg);
-  }
-}
-  .paciano-experience:hover .paciano-icon-orbit {
-  animation-duration: 7s;
-  border-top-color: rgba(113, 128, 63, 0.85);
-}
-  /* ==========================================================
-   PACIANO VALUES — SYNCHRONIZED SCROLL REVEAL
-    ========================================================== */  
-.paciano-value-icon {
-  position: relative;
-  isolation: isolate;
- overflow: visible;
-  border-color: rgba(142, 143, 100, 0.42);
-  background: rgba(248, 243, 232, 0.5);
-  box-shadow: 0 4px 18px rgba(63, 65, 43, 0.035);
-  transition:
-    border-color 700ms ease,
-    box-shadow 900ms ease,
-    background 700ms ease;
-}
-
-.paciano-value-icon::before {
-  content: "";
-  position: absolute;
-  inset: 4px;
-  border: 1px solid rgba(142, 143, 100, 0.28);
-  border-radius: 50%;
-  pointer-events: none;
-}
-
-  
-.paciano-value-visible .paciano-value-icon {
-  animation: pacianoMedallionReveal 1.2s
-    cubic-bezier(.16, 1, .3, 1) both;
-  animation-delay: calc(var(--value-delay, 0ms) + 100ms);
-}
-
-.paciano-value-visible .paciano-value-title {
-  animation: pacianoValueText 1s
-    cubic-bezier(.16, 1, .3, 1) both;
-  animation-delay: calc(var(--value-delay, 0ms) + 400ms);
-}
-
-.paciano-value-visible .paciano-value-description {
-  animation: pacianoValueText 1s
-    cubic-bezier(.16, 1, .3, 1) both;
-  animation-delay: calc(var(--value-delay, 0ms) + 560ms);
-}
-
-@keyframes pacianoEmblemReveal {
-  from {
-    opacity: 0.55;
-  }
-
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes pacianoEmblemDraw {
-  to { stroke-dashoffset: 0; }
-}
-
-@keyframes pacianoMedallionReveal {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scale(.94);
-    box-shadow: 0 0 0 rgba(142, 143, 100, 0);
-  }
-  65% {
-    opacity: 1;
-    transform: translateY(0) scale(1.015);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    box-shadow: 0 4px 18px rgba(63, 65, 43, .055);
-  }
-}
-
-@keyframes pacianoValueText {
-  from {
-    opacity: 0;
-    transform: translateY(7px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .paciano-value:hover .paciano-value-icon {
-    border-color: rgba(116, 133, 72, .75);
-    background: rgba(255, 252, 244, .8);
-    box-shadow: 0 6px 24px rgba(63, 65, 43, .09);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .paciano-value-icon *,
-  .paciano-emblem-drawing path,
-  .paciano-emblem-drawing circle {
-    animation: none !important;
-    stroke-dasharray: none !important;
-    stroke-dashoffset: 0 !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-  /* Paciano — slow, refined icon motion */
-.paciano-value-icon {
-  overflow: visible;
-}
-
-.paciano-emblem-drawing {
-  overflow: visible;
-  transform-origin: center;
-  opacity: 1;
-}
-
-.paciano-value-visible .paciano-emblem-drawing {
-  animation:
-    pacianoIconReveal 1.8s cubic-bezier(.22, 1, .36, 1) both,
-    pacianoIconFloat 6s ease-in-out 1.8s infinite;
-  animation-delay:
-    calc(var(--value-delay, 0ms) + 180ms),
-    calc(var(--value-delay, 0ms) + 1.98s);
-}
-
-@keyframes pacianoIconReveal {
-  from {
-    opacity: 0;
-    transform: translateY(5px) scale(.92);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes pacianoIconFloat {
-  0%, 100% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-2px);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .paciano-emblem-drawing,
-  .paciano-value-icon *,
-  .paciano-value-title,
-  .paciano-value-description {
-    animation: none !important;
-    transition: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-  }
-}
-
-  `}
+              /* ==========================================================
+                  ABOUT PACIANO SECTION
+                ========================================================== */
+                  .paciano-reveal {
+                    opacity: 0;
+                    translate: 0 65px;
+
+                    transition:
+                      opacity 2.8s cubic-bezier(.16, 1, .3, 1),
+                      translate 2.8s cubic-bezier(.16, 1, .3, 1);
+                  }
+
+                  .paciano-about-visible .paciano-reveal {
+                    opacity: 1;
+                    translate: 0 0;
+                  }
+
+                  .paciano-delay-1 {
+                    transition-delay: 0.2s;
+                  }
+
+                  .paciano-delay-2 {
+                    transition-delay: 0.45s;
+                  }
+
+                  .paciano-delay-3 {
+                    transition-delay: 0.7s;
+                  }
+
+                  .paciano-delay-4 {
+                    transition-delay: 0.95s;
+                  }
+
+                  /* ==========================================================
+                    CINEMATIC PHOTO MOTION
+                  ========================================================== */
+
+                  .paciano-photo {
+                    will-change: transform;
+                    transform-origin: center center;
+                  }
+
+
+                  /* LEFT PHOTO Slow vertical breathing + tiny rotation
+                  ---------------------------------------------------------- */
+
+                  .paciano-about-visible .paciano-photo-left {
+                    animation:
+                      pacianoFloatLeft
+                      9s
+                      ease-in-out
+                      infinite
+                      1.4s;
+                  }
+
+
+                  /* CENTER PHOTO
+                    Almost imperceptible movement
+                  ---------------------------------------------------------- */
+
+                  .paciano-about-visible .paciano-photo-center {
+                    animation:
+                      pacianoFloatCenter
+                      11s
+                      ease-in-out
+                      infinite
+                      1.7s;
+                  }
+
+
+                  /* RIGHT PHOTO
+                    Different rhythm so the three don't move together
+                  ---------------------------------------------------------- */
+
+                  .paciano-about-visible .paciano-photo-right {
+                    animation:
+                      pacianoFloatRight
+                      10s
+                      ease-in-out
+                      infinite
+                      2s;
+                  }
+
+
+                  /* LEFT */
+
+                  @keyframes pacianoFloatLeft {
+
+                    0% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+
+                    25% {
+                      transform:
+                        translate3d(-2px, -4px, 0)
+                        rotate(-0.15deg);
+                    }
+
+                    50% {
+                      transform:
+                        translate3d(2px, -7px, 0)
+                        rotate(0.15deg);
+                    }
+
+                    75% {
+                      transform:
+                        translate3d(1px, -3px, 0)
+                        rotate(0deg);
+                    }
+
+                    100% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+                  }
+
+
+                  /* CENTER */
+
+                  @keyframes pacianoFloatCenter {
+
+                    0% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+
+                    25% {
+                      transform:
+                        translate3d(1px, -3px, 0)
+                        rotate(0.08deg);
+                    }
+
+                    50% {
+                      transform:
+                        translate3d(-1px, -6px, 0)
+                        rotate(-0.08deg);
+                    }
+
+                    75% {
+                      transform:
+                        translate3d(1px, -3px, 0)
+                        rotate(0.05deg);
+                    }
+
+                    100% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+                  }
+
+
+                  @keyframes pacianoFloatRight {
+
+                    0% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+
+                    25% {
+                      transform:
+                        translate3d(2px, -4px, 0)
+                        rotate(0.12deg);
+                    }
+
+                    50% {
+                      transform:
+                        translate3d(-1px, -7px, 0)
+                        rotate(-0.12deg);
+                    }
+
+                    75% {
+                      transform:
+                        translate3d(-1px, -3px, 0)
+                        rotate(-0.05deg);
+                    }
+
+                    100% {
+                      transform:
+                        translate3d(0, 0, 0)
+                        rotate(0deg);
+                    }
+                  }
+
+                  /* ==========================================================
+                    LEAF MOTION
+                  ========================================================== */
+
+                  .paciano-floating-leaf {
+                    transform-origin: 50% 90%;
+                    animation:
+                      pacianoLeafSway
+                      7s
+                      ease-in-out
+                      infinite;
+                  }
+
+                  @keyframes pacianoLeafSway {
+
+                    0% {
+                      transform:
+                        rotate(8deg)
+                        translateY(0);
+                    }
+
+                    50% {
+                      transform:
+                        rotate(3deg)
+                        translateY(-8px);
+                    }
+
+                    100% {
+                      transform:
+                        rotate(8deg)
+                        translateY(0);
+                    }
+                  }
+
+
+                  /* ==========================================================
+                    SMALL LEAF CIRCLE
+                  ========================================================== */
+
+                  .paciano-leaf-orbit {
+                    animation:
+                      pacianoLeafOrbit
+                      6s
+                      ease-in-out
+                      infinite;
+                  }
+
+                  @keyframes pacianoLeafOrbit {
+
+                    0% {
+                      transform:
+                        translateY(0)
+                        rotate(0deg);
+                    }
+
+                    50% {
+                      transform:
+                        translateY(-9px)
+                        rotate(5deg);
+                    }
+
+                    100% {
+                      transform:
+                        translateY(0)
+                        rotate(0deg);
+                    }
+                  }
+
+
+                /* ==========================================================
+                  ACCESSIBILITY
+                ========================================================== */
+
+                @media (prefers-reduced-motion: reduce) {
+
+                  .paciano-photo-left,
+                  .paciano-photo-center,
+                  .paciano-photo-right,
+                  .paciano-floating-leaf,
+                  .paciano-leaf-orbit {
+                    animation: none !important;
+                  }
+
+                }
+                @media (prefers-reduced-motion: reduce) {
+
+                  .paciano-reveal {
+                    opacity: 1;
+                    transform: none;
+                    transition: none;
+                  }
+
+                }
+
+                /* ==========================================================
+                PACIANO — CINEMATIC FIVE EXPERIENCE CARDS
+                ========================================================== */
+
+                  .paciano-experience {
+                  transform: translateY(var(--experience-y, 0px));
+                    opacity: 0;
+                  }
+
+                  /* Start the cards only when they actually enter the viewport */
+                  .paciano-experience-visible {
+                    animation:
+                      pacianoExperienceReveal
+                      3.2s
+                      cubic-bezier(.22, 1, .36, 1)
+                      both;
+
+                      animation-delay: var(--experience-delay);
+                  }
+
+
+              /* ----------------------------------------------------------
+                CINEMATIC ENTRY
+                IMPORTANT:
+                No transform on the card itself.
+                This keeps typography perfectly sharp.
+                ---------------------------------------------------------- */
+
+              @keyframes pacianoExperienceReveal {
+                0% {
+                  opacity: 0;
+                  transform:
+                    translateY(
+                      calc(var(--experience-y, 0px) + 18px)
+                    );
+                }
+
+                100% {
+                  opacity: 1;
+                  transform:
+                    translateY(var(--experience-y, 0px));
+                }
+              }
+
+              /* ==========================================================
+                ICON — SUBTLE ENTRY
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-icon {
+                animation:
+                  pacianoIconReveal
+                  1.2s
+                  cubic-bezier(.22, 1, .36, 1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 250ms);
+              }
+
+              @keyframes pacianoIconReveal {
+                0% {
+                  opacity: 0;
+                  transform: translateY(8px) scale(.96);
+                }
+
+                100% {
+                  opacity: 1;
+                  transform: translateY(0) scale(1);
+                }
+              }
+
+
+              /* ==========================================================
+                TITLE CRISP — NO TRANSLATE / NO BLUR
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-title {
+                animation: pacianoTitleFade 900ms cubic-bezier(.22,1,.36,1) both;
+                animation-delay: calc(var(--experience-delay) + 420ms);
+              }
+
+              @keyframes pacianoTitleFade {
+                from {
+                  opacity: 0;
+                }
+
+                to {
+                  opacity: 1;
+                }
+              }
+
+              @keyframes pacianoDescriptionFade {
+                from {
+                  opacity: 0;
+                }
+
+                to {
+                  opacity: 1;
+                }
+              }
+              @keyframes pacianoTitleReveal {
+                0% {
+                  opacity: 0;
+                }
+
+                100% {
+                  opacity: 1;
+                }
+              }
+
+
+              /* ==========================================================
+                DESCRIPTION
+                CRISP — NO TRANSLATE / NO BLUR
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-description {
+                animation: pacianoDescriptionFade 900ms cubic-bezier(.22,1,.36,1) both;
+                animation-delay: calc(var(--experience-delay) + 600ms);
+              }
+
+
+              @keyframes pacianoDescriptionReveal {
+                0% {
+                  opacity: 0;
+                }
+
+                100% {
+                  opacity: 1;
+                }
+              }
+
+
+              /* ==========================================================
+                IMAGE — THIS IS WHERE THE CINEMATIC MOTION SHOULD LIVE
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-img {
+                animation:
+                  pacianoImagePush
+                  10s
+                  cubic-bezier(.22, 1, .36, 1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 350ms);
+
+                will-change: transform;
+              }
+
+              @keyframes pacianoImagePush {
+                0% {
+                  transform: scale(1.075);
+                }
+
+                100% {
+                  transform: scale(1);
+                }
+              }
+
+
+              /* ==========================================================
+                LIGHT SWEEP
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-image > div:last-child {
+                animation:
+                  pacianoLightSweep
+                  3.2s
+                  cubic-bezier(.22, 1, .36, 1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 900ms);
+              }
+
+
+              /* ==========================================================
+                HOVER
+                ========================================================== */
+
+              .paciano-experience:hover .paciano-experience-title {
+                transform: translateY(-2px);
+              }
+
+              .paciano-experience:hover .paciano-experience-description {
+                transform: translateY(-1px);
+              }
+
+              .paciano-experience:hover .paciano-experience-icon {
+                transform: translateY(-3px);
+              }
+
+
+              /* ==========================================================
+                REDUCED MOTION
+                ========================================================== */
+
+              @media (prefers-reduced-motion: reduce) {
+                .paciano-experience,
+                .paciano-experience-icon,
+                .paciano-experience-title,
+                .paciano-experience-description,
+                .paciano-experience-img,
+                .paciano-experience-image > div:last-child {
+                  animation: none !important;
+                  transition: none !important;
+                }
+
+              }
+
+              /* ==========================================================
+                ICON — VERY SUBTLE LIFE
+                ========================================================== */
+
+              @keyframes pacianoIconReveal {
+
+                0% {
+                  opacity: 0;
+                  transform:
+                    translateY(12px)
+                    scale(.92)
+                    rotate(-3deg);
+                }
+
+                60% {
+                  opacity: 1;
+                }
+
+                100% {
+                  opacity: 1;
+                  transform:
+                    translateY(0)
+                    scale(1)
+                    rotate(0deg);
+                }
+              }
+
+
+              /* ==========================================================
+                DESCRIPTION — FOLLOWS TITLE
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-description{
+                animation:
+                  pacianoTextReveal
+                  1.2s
+                  cubic-bezier(.22,1,.36,1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 650ms);
+              }
+
+
+              @keyframes pacianoTextReveal {
+
+                0% {
+                  opacity: 0;
+                  transform: translateY(10px);
+                }
+
+                100% {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+
+
+              /* ==========================================================
+                IMAGE — CINEMATIC SLOW PUSH
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-img{
+                animation:
+                  pacianoImagePush
+                  10s
+                  cubic-bezier(.22,1,.36,1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 500ms);
+
+                will-change: transform;
+              }
+
+
+              @keyframes pacianoImagePush {
+
+                0% {
+                  transform: scale(1.075);
+                }
+
+                100% {
+                  transform: scale(1);
+                }
+              }
+
+
+              /* ==========================================================
+                MOVING LIGHT — ONE SLOW CINEMATIC SWEEP
+                ========================================================== */
+
+              .paciano-experience-visible .paciano-experience-image > div:last-child {
+                animation:
+                  pacianoLightSweep
+                  3.2s
+                  cubic-bezier(.22,1,.36,1)
+                  both;
+
+                animation-delay:
+                  calc(var(--experience-delay) + 1.1s);
+              }
+
+
+              @keyframes pacianoLightSweep {
+
+                0% {
+                  opacity: 0;
+                  transform:
+                    translateX(-180%)
+                    rotate(12deg);
+                }
+
+                20% {
+                  opacity: .7;
+                }
+
+                55% {
+                  opacity: .35;
+                }
+
+                100% {
+                  opacity: 0;
+                  transform:
+                    translateX(430%)
+                    rotate(12deg);
+                }
+              }
+
+
+              /* ==========================================================
+                HOVER — KEEP VERY REFINED
+                ========================================================== */
+
+              .paciano-experience:hover .paciano-experience-title {
+                transform: translateY(-2px);
+              }
+
+              .paciano-experience:hover .paciano-experience-description {
+                transform: translateY(-1px);
+              }
+
+              .paciano-experience:hover .paciano-experience-icon {
+                transform: translateY(-3px);
+              }
+
+
+              /* ==========================================================
+                REDUCED MOTION
+                ========================================================== */
+
+              @media (prefers-reduced-motion: reduce) {
+
+                .paciano-experience,
+                .paciano-experience-icon,
+                .paciano-experience-title,
+                .paciano-experience-description,
+                .paciano-experience-img,
+                .paciano-experience-image > div:last-child {
+                  animation: none !important;
+                }
+
+                .paciano-experience {
+                  opacity: 1;
+                  transform: none;
+                  filter: none;
+                }
+              }
+
+              /* ==========================================================
+                PACIANO — FIVE EXPERIENCE CARDS
+                VERY SUBTLE LUXURY FLOAT
+                ========================================================== */
+
+
+              .paciano-experience-image {
+                animation: pacianoCardFloat 9s ease-in-out infinite;
+                will-change: transform;
+              }
+
+              .paciano-experience:nth-child(1) .paciano-experience-image {
+                animation-delay: 0s;
+              }
+
+              .paciano-experience:nth-child(2) .paciano-experience-image {
+                animation-delay: -2s;
+              }
+
+              .paciano-experience:nth-child(3) .paciano-experience-image {
+                animation-delay: -4s;
+              }
+
+              .paciano-experience:nth-child(4) .paciano-experience-image {
+                animation-delay: -6s;
+              }
+
+              .paciano-experience:nth-child(5) .paciano-experience-image {
+                animation-delay: -8s;
+              }
+
+              @keyframes pacianoCardFloat {
+                0% {
+                  transform: translate3d(0, 0, 0);
+                }
+
+                25% {
+                  transform: translate3d(0, -2px, 0);
+                }
+
+                50% {
+                  transform: translate3d(0, -4px, 0);
+                }
+
+                75% {
+                  transform: translate3d(0, -2px, 0);
+                }
+
+                100% {
+                  transform: translate3d(0, 0, 0);
+                }
+              }
+
+              .paciano-icon-orbit {
+                border: 1px solid rgba(113, 128, 63, 0.18);
+                border-top-color: rgba(113, 128, 63, 0.65);
+                border-right-color: rgba(113, 128, 63, 0.32);
+
+                animation:
+                  pacianoIconOrbit
+                  12s
+                  linear
+                  infinite;
+
+                transform-origin: center;
+              }
+
+              @keyframes pacianoIconOrbit {
+                from {
+                  transform: rotate(0deg);
+                }
+
+                to {
+                  transform: rotate(360deg);
+                }
+              }
+              .paciano-experience:hover .paciano-icon-orbit {
+              animation-duration: 7s;
+              border-top-color: rgba(113, 128, 63, 0.85);
+            }
+
+          /* ==========================================================
+          PACIANO VALUES — SYNCHRONIZED SCROLL REVEAL
+            ========================================================== */  
+
+            .paciano-value-icon {
+              position: relative;
+              isolation: isolate;
+              overflow: visible;
+              border-color: rgba(142, 143, 100, 0.42);
+              background: rgba(248, 243, 232, 0.5);
+              box-shadow: 0 4px 18px rgba(63, 65, 43, 0.035);
+              transition:
+                border-color 700ms ease,
+                box-shadow 900ms ease,
+                background 700ms ease;
+            }
+
+            .paciano-value-icon::before {
+              content: "";
+              position: absolute;
+              inset: 4px;
+              border: 1px solid rgba(142, 143, 100, 0.28);
+              border-radius: 50%;
+              pointer-events: none;
+            }
+
+              
+            .paciano-value-visible .paciano-value-icon {
+              animation: pacianoMedallionReveal 1.2s
+                cubic-bezier(.16, 1, .3, 1) both;
+              animation-delay: calc(var(--value-delay, 0ms) + 100ms);
+            }
+
+            .paciano-value-visible .paciano-value-title {
+              animation: pacianoValueText 1s
+                cubic-bezier(.16, 1, .3, 1) both;
+              animation-delay: calc(var(--value-delay, 0ms) + 400ms);
+            }
+
+            .paciano-value-visible .paciano-value-description {
+              animation: pacianoValueText 1s
+                cubic-bezier(.16, 1, .3, 1) both;
+              animation-delay: calc(var(--value-delay, 0ms) + 560ms);
+            }
+
+            @keyframes pacianoEmblemReveal {
+              from {
+                opacity: 0.55;
+              }
+
+              to {
+                opacity: 1;
+              }
+            }
+
+            @keyframes pacianoEmblemDraw {
+              to { stroke-dashoffset: 0; }
+            }
+
+            @keyframes pacianoMedallionReveal {
+              0% {
+                opacity: 0;
+                transform: translateY(8px) scale(.94);
+                box-shadow: 0 0 0 rgba(142, 143, 100, 0);
+              }
+              65% {
+                opacity: 1;
+                transform: translateY(0) scale(1.015);
+              }
+              100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                box-shadow: 0 4px 18px rgba(63, 65, 43, .055);
+              }
+            }
+
+            @keyframes pacianoValueText {
+              from {
+                opacity: 0;
+                transform: translateY(7px);
+              }
+              to {
+                opacity: 1;
+                transform: translateY(0);
+              }
+            }
+
+            @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+              .paciano-value:hover .paciano-value-icon {
+                border-color: rgba(116, 133, 72, .75);
+                background: rgba(255, 252, 244, .8);
+                box-shadow: 0 6px 24px rgba(63, 65, 43, .09);
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .paciano-value-icon *,
+              .paciano-emblem-drawing path,
+              .paciano-emblem-drawing circle {
+                animation: none !important;
+                stroke-dasharray: none !important;
+                stroke-dashoffset: 0 !important;
+                opacity: 1 !important;
+                transform: none !important;
+              }
+            }
+              /* Paciano — slow, refined icon motion */
+            .paciano-value-icon {
+              overflow: visible;
+            }
+
+            .paciano-emblem-drawing {
+              overflow: visible;
+              transform-origin: center;
+              opacity: 1;
+            }
+
+            .paciano-value-visible .paciano-emblem-drawing {
+              animation:
+                pacianoIconReveal 1.8s cubic-bezier(.22, 1, .36, 1) both,
+                pacianoIconFloat 6s ease-in-out 1.8s infinite;
+              animation-delay:
+                calc(var(--value-delay, 0ms) + 180ms),
+                calc(var(--value-delay, 0ms) + 1.98s);
+            }
+
+            @keyframes pacianoIconReveal {
+              from {
+                opacity: 0;
+                transform: translateY(5px) scale(.92);
+              }
+
+              to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+              }
+            }
+
+            @keyframes pacianoIconFloat {
+              0%, 100% {
+                transform: translateY(0);
+              }
+
+              50% {
+                transform: translateY(-2px);
+              }
+            }
+
+            @media (prefers-reduced-motion: reduce) {
+              .paciano-emblem-drawing,
+              .paciano-value-icon *,
+              .paciano-value-title,
+              .paciano-value-description {
+                animation: none !important;
+                transition: none !important;
+                opacity: 1 !important;
+                transform: none !important;
+              }
+            }
+          
+            /* Desktop stagger: preserve the original design */
+            .paciano-experience-2,
+            .paciano-experience-4 {
+              --experience-y: 22px;
+            }
+
+            .paciano-experience-3 {
+              --experience-y: 35px;
+            }
+
+            /* MOBILE ONLY — align experience cards in consistent rows */
+            @media (max-width: 639px) {
+              .paciano-experiences {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                align-items: start;
+                column-gap: 14px;
+                row-gap: 35px;
+              }
+
+              .paciano-experience {
+                --experience-y: 0px;
+
+                display: grid;
+                grid-template-rows: 72px 165px 245px 35px;
+                align-content: start;
+                align-items: start;
+                min-width: 0;
+                min-height: 0;
+                transform: none;
+              }
+
+              /* Prevent the reveal animation from moving cards vertically */
+              .paciano-experience-visible {
+                animation-name: pacianoExperienceRevealMobile;
+                animation-duration: 3.2s;
+                animation-timing-function: cubic-bezier(.22, 1, .36, 1);
+                animation-fill-mode: both;
+                animation-delay: var(--experience-delay, 0ms);
+              }
+
+              @keyframes pacianoExperienceRevealMobile {
+                from {
+                  opacity: 0;
+                  transform: none;
+                }
+
+                to {
+                  opacity: 1;
+                  transform: none;
+                }
+              }
+
+              /* All icons begin at the same position */
+              .paciano-experience-icon {
+                grid-row: 1;
+                margin: 0 auto;
+              }
+
+              /* Reserve the same text area before each image */
+              .paciano-experience > div:nth-child(2) {
+                grid-row: 2;
+                min-height: 0;
+                height: 165px;
+                margin-top: 18px;
+                align-self: start;
+              }
+
+              /* Align image tops across each pair */
+              .paciano-experience-image {
+                grid-row: 3;
+                width: 100%;
+                height: 245px;
+                min-height: 0;
+                margin-top: 0;
+                align-self: start;
+              }
+
+              .paciano-experience-botanical {
+                grid-row: 4;
+                margin-top: 17px;
+                justify-self: center;
+              }
+
+              /* The fifth card is centered on its own row */
+              .paciano-experience-5 {
+                grid-column: 1 / -1;
+                grid-template-rows: 72px 165px 245px 35px;
+                width: 100%;
+                max-width: 240px;
+                justify-self: center;
+              }
+            }
+
+            /* Smaller phones: allow additional room for wrapped text */
+            @media (max-width: 379px) {
+              .paciano-experience {
+                grid-template-rows: 72px 180px 220px 35px;
+              }
+
+              .paciano-experience > div:nth-child(2) {
+                height: 180px;
+              }
+
+              .paciano-experience-image {
+                height: 220px;
+              }
+
+              .paciano-experience-5 {
+                grid-template-rows: 72px 180px 220px 35px;
+              }
+            }
+
+            /* Restore the original desktop stagger at desktop widths */
+            @media (min-width: 1024px) {
+              .paciano-experience-2,
+              .paciano-experience-4 {
+                --experience-y: 22px;
+              }
+
+              .paciano-experience-3 {
+                --experience-y: 35px;
+              }
+            }
+
+            
+
+        `}
       </style>
     </section>
   );

@@ -1,18 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import storyImage from "@/images/story.png";
-import aboutNature from "@/images/about-nature-first.jpg";
-// import aboutHospitality from "@/images/about-genuine-hospitality.jpg";
-import aboutHospitality from "@/images/home/centre.jpg";
-// import aboutConscious from "@/images/about-conscious-living.jpg";
-import aboutRight from "@/images/home/about-right.jpeg";
+import aboutNature from "@/images/home/about_left.webp";
+import aboutHospitality from "@/images/home/about_centre.webp";
+import aboutRight from "@/images/home/about_right.webp";
 
-import riverside from "@/images/riverside-bliss.jpg";
-// import teaGarden from "@/images/tea-garden-walks.jpg";
-import teaGarden from "@/images/home/teaGarden.png";
-// import culinary from "@/images/culinary-delights.jpg";
-import culinary from "@/images/story.png";
-import wellness from "@/images/wellness-spa.jpg";
-import sustainable from "@/images/sustainable-stay.png";
+import riverside from "@/images/home/riverside-bliss.webp";
+import teaGarden from "@/images/home/teaGarden.webp";
+import culinary from "@/images/home/culinary-delights.webp";
+import swimming from "@/images/home/swimming-pool.webp";
+import sustainable from "@/images/home/sustaianable-stay.webp";
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +45,10 @@ const experiences = [
     image: culinary,
   },
   {
-    title: "Wellness & Spa",
-    description: "Rejuvenate your mind, body and soul.",
-    image: wellness,
+    title: "Poolside Leisure",
+    description:
+      "A refreshing escape where tranquil waters meet pure indulgence.",
+    image: swimming,
   },
   {
     title: "Sustainable Stay",

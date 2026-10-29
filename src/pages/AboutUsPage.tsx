@@ -3,6 +3,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import AboutUsHero from "@/components/AboutUs/AboutUsHero";
 import AboutUsInfo from "@/components/AboutUs/AboutUsInfo";
+import PacianoStory from "@/components/AboutUs/PacianoStorySection";
+import GuestReviews from "../components/AboutUs/GuestReviews";
 
 const PARCHMENT = "#eee9dc";
 
@@ -22,6 +24,8 @@ export default function AboutUsPage() {
       <main style={{ background: PARCHMENT }}>
         <AboutUsHero />
         <AboutUsInfo />
+        <PacianoStory />
+        <GuestReviews />
         <div className="relative isolate">
           {/* <ContactLocationSection /> */}
           <Footer contactOverlap />
