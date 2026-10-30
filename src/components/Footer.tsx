@@ -345,8 +345,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
           </>
         ) : null}
         {/* ==========================================================
-    CINEMATIC FOOTER ATMOSPHERE
-=========================================================== */}
+            CINEMATIC FOOTER ATMOSPHERE
+        =========================================================== */}
 
         <motion.div
           initial={{
@@ -364,12 +364,12 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             ease: [0.22, 1, 0.36, 1],
           }}
           className="
-    pointer-events-none
-    absolute
-    inset-0
-    z-0
-    bg-[radial-gradient(circle_at_18%_35%,rgba(165,176,140,0.07),transparent_28%),radial-gradient(circle_at_82%_40%,rgba(200,188,130,0.055),transparent_30%)]
-  "
+            pointer-events-none
+            absolute
+            inset-0
+            z-0
+            bg-[radial-gradient(circle_at_18%_35%,rgba(165,176,140,0.07),transparent_28%),radial-gradient(circle_at_82%_40%,rgba(200,188,130,0.055),transparent_30%)]
+          "
         />
         {/* ==========================================================
           TOP BOTANICAL LIGHT
@@ -395,8 +395,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
 =========================================================== */}
 
         {/* ==========================================================
-    LEFT BOTANICAL LEAVES
-=========================================================== */}
+            LEFT BOTANICAL LEAVES
+        =========================================================== */}
 
         <motion.img
           src={footerLeaf}
@@ -457,20 +457,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
           MAIN FOOTER CONTENT
       ========================================================== */}
 
-        <div
-          //   className="
-          //   relative
-          //   z-20
-          //   mx-auto
-          //   w-full
-          //   max-w-[1630px]
-          //   px-6
-          //   pb-7
-          //   pt-[92px]
-          //   sm:px-10
-          //   lg:px-8
-          //   xl:px-0
-          // "
+        <div          
           className="
             relative
             z-20
@@ -488,9 +475,9 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             lg:pt-[92px]
             xl:px-10
             2xl:px-0
-            [@media(orientation:landscape)_and_(max-height:700px)]:grid
-            [@media(orientation:landscape)_and_(max-height:700px)]:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)]
-            [@media(orientation:landscape)_and_(max-height:700px)]:gap-x-6
+            [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:grid
+            [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)]
+            [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:gap-x-6
           "
         >
           {/* ========================================================
@@ -513,25 +500,50 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 },
               },
             }}
+            // className="
+            //   grid
+            //   grid-cols-1
+            //   justify-items-center
+            //   gap-x-8
+            //   gap-y-10
+            //   text-center
+            //   sm:grid-cols-2
+            //   sm:gap-x-8
+            //   sm:gap-y-12
+
+            //   lg:grid-cols-[minmax(0,1.55fr)_repeat(3,minmax(0,1fr))]
+            //   lg:justify-items-stretch
+            //   lg:gap-x-[42px]
+            //   lg:gap-y-12
+            //   lg:text-left
+            //   xl:grid-cols-[420px_230px_230px_230px]
+            //   xl:gap-x-[48px]
+            //   [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:contents
+            // "
             className="
-              grid
-              grid-cols-1
-              justify-items-center
-              gap-x-8
-              gap-y-10
-              text-center
-              sm:grid-cols-2
-              sm:gap-x-8
-              sm:gap-y-12
-              lg:grid-cols-[minmax(0,1.55fr)_repeat(3,minmax(0,1fr))]
-              lg:justify-items-stretch
-              lg:gap-x-[42px]
-              lg:gap-y-12
-              lg:text-left
-              xl:grid-cols-[420px_230px_230px_230px]
-              xl:gap-x-[48px]
-              [@media(orientation:landscape)_and_(max-height:700px)]:contents
-            "
+  grid
+  grid-cols-1
+  justify-items-center
+  gap-x-8
+  gap-y-10
+  text-center
+  sm:grid-cols-2
+  sm:gap-x-8
+  sm:gap-y-12
+
+  lg:w-[76%]
+  lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
+  lg:justify-items-stretch
+  lg:gap-x-6
+  lg:gap-y-12
+  lg:text-left
+
+  xl:w-[76%]
+  xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
+  xl:gap-x-6
+
+  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:contents
+"
           >
             {/* ======================================================
               BRAND
@@ -565,11 +577,11 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 lg:items-start
                 lg:text-left
                 lg:pl-12
-                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:2]
-                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:1]
-                [@media(orientation:landscape)_and_(max-height:700px)]:mx-auto
-                [@media(orientation:landscape)_and_(max-height:700px)]:items-center
-                [@media(orientation:landscape)_and_(max-height:700px)]:text-center
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-column:2]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-row:1]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mx-auto
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:items-center
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-center
               "
             >
               {/* ==================================================
@@ -671,7 +683,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                       w-[125px]
                       sm:w-[135px]
                       lg:w-[145px]
-                      [@media(orientation:landscape)_and_(max-height:700px)]:w-[105px]
+                      [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:w-[105px]
                       max-w-full
                       object-contain
                       opacity-95
@@ -768,7 +780,9 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   lg:text-[14px]
                   font-light
                   leading-[1.7]
-                  text-[#F2EBDD]/[0.68]                  
+                  text-[#F2EBDD]/[0.68]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mb-5
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[13px]                  
                 "
               >
                 A quiet retreat in the heart of Dooars, shaped by forest
@@ -856,9 +870,9 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 pt-0
                 lg:pt-[48px]
                 
-              [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:1]
-              [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:1]
-              [@media(orientation:landscape)_and_(max-height:700px)]:self-start
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-column:1]
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-row:1]
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:self-start
               "
             >
               <div
@@ -870,6 +884,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   uppercase
                   tracking-[0.38em]
                   text-[#C8BC82]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mb-5
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[13px]
                 "
               >
                 Explore
@@ -882,6 +898,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 items-center
                 gap-[7px]
                 lg:items-start
+                text-[11px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[13px]
               "
               >
                 {exploreLinks.map((item, index) => (
@@ -917,6 +935,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 z-[60]
                 pt-[48px]
                 max-w-[230px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:pt-0
               "
             >
               <div
@@ -928,6 +947,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   uppercase
                   tracking-[0.38em]
                   text-[#C8BC82]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mb-5
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[12px]
                 "
               >
                 Experiences
@@ -975,12 +996,13 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 z-[60]
                 w-full
                 min-w-0
-                max-w-[220px]
+                max-w-[180px]
                 pt-0
                 lg:pt-[48px]
-                
-                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:1]
-                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:2]
+
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:max-w-[220px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-column:1]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:[grid-row:2]
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:items-start
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:justify-self-start
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-0
@@ -995,6 +1017,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 uppercase
                 tracking-[0.38em]
                 text-[#C8BC82]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mb-5
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[13px]              
               "
               >
                 Plan Your Stay
@@ -1183,7 +1207,9 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   delay: 0.45,
                   ease: [0.16, 1, 0.3, 1],
                 }}
-                className="block"
+                className="block
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[25px]"
+                
               >
                 Slower Days.
               </motion.span>
@@ -1202,13 +1228,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   duration: 1.4,
                   delay: 0.45,
                   ease: [0.16, 1, 0.3, 1],
-                }}
-                // className="
-                //     mt-5
-                //     block
-                //     whitespace-nowrap
-                //     pl-[8%]
-                //   "
+                }}               
                 className="
                   mt-2
                   block
@@ -1217,6 +1237,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   sm:mt-5
                   sm:whitespace-nowrap
                   sm:pl-[8%]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[25px]
                 "
               >
                 Deeper Connections.
@@ -1280,8 +1301,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               }}
               className="
                 relative
-                z-10
-                mt-5
+                z-10             
                 max-w-[300px]
                 font-manrope
                 text-[12px]
@@ -1290,6 +1310,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 leading-[1.7]
                 text-[#F2EBDD]/[0.68]                
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-[25px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[13px]
               "
             >
               Nature isn't just a destination,
@@ -1298,8 +1319,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             </motion.p>
 
             {/* ========================================================
-      BOOK YOUR STAY BUTTON
-  ========================================================= */}
+                  BOOK YOUR STAY BUTTON
+              ========================================================= */}
 
             <motion.a
               href="#"
@@ -1541,8 +1562,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               pt-4
               sm:mt-10
               sm:pt-5
-              [@media(orientation:landscape)_and_(max-height:700px)]:col-span-3
-              [@media(orientation:landscape)_and_(max-height:700px)]:mt-6
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:col-span-3
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:mt-6
             "
           >
             <div
