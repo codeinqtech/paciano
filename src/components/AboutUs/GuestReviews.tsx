@@ -295,6 +295,8 @@ export default function GuestReviews() {
                 sm:text-[46px]
                 md:text-[52px]
                 lg:text-[60px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[clamp(34px,5vw,48px)]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1]
               "
             >
               Loved by Our Guests.

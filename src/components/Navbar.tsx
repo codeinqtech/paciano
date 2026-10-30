@@ -8,7 +8,7 @@ const NAV_LINKS = [
   { label: "Stay", href: toAppPath("/stay") },
   // { label: "Experiences", href: homeHref("#experiences") },
   { label: "Dining", href: homeHref("#dining") },
-  { label: "About Us", href: homeHref("/about") },
+  { label: "About Us", href: toAppPath("/about") },
   { label: "Contact", href: toAppPath("/contact") },
 ];
 
@@ -3186,9 +3186,9 @@ function MobileMenu({
                   ? activeNav === "contact"
                   : item.label === "Stay"
                     ? activeNav === "stay"
-                  : item.label === "About Us"
-                    ? activeNav === "stay"
-                    : false
+                    : item.label === "About Us"
+                      ? activeNav === "about"
+                      : false
               }
               onClick={onClose}
             />

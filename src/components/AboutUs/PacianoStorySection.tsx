@@ -313,6 +313,9 @@ export default function PacianoStorySection({
                 lg:pl-[6%] lg:pr-[8%]
                 xl:pl-[8%] xl:pr-[10%]
                 2xl:pl-[9%] 2xl:pr-[11%]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:mx-auto
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:w-full
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:text-center
                 "
           >
             {/* Eyebrow */}
@@ -328,15 +331,16 @@ export default function PacianoStorySection({
               className="
                 mb-5 flex items-center gap-3
                 sm:mb-6
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:justify-center
               "
             >
               <svg
                 viewBox="0 0 32 32"
                 className="
-              h-[21px]
-              w-[21px]
-              text-[#71863D]
-            "
+                  h-[21px]
+                  w-[21px]
+                  text-[#71863D]
+                "
                 fill="none"
               >
                 <path
@@ -368,13 +372,13 @@ export default function PacianoStorySection({
 
               <span
                 className="
-              font-manrope
-              text-[12px]
-              font-semibold
-              uppercase
-              tracking-[0.31em]
-              text-[#68753F]
-            "
+                  font-manrope
+                  text-[12px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.31em]
+                  text-[#68753F]
+                "
               >
                 The Paciano Story
               </span>
@@ -401,8 +405,12 @@ export default function PacianoStorySection({
                 tracking-[-.025em]
 
                 text-[#17251B]
-                sm:text-[52px]
+                sm:text-[40px]
                 lg:text-[60px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[clamp(34px,5vw,48px)]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:mx-auto
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:text-center
               
                 
               "
@@ -432,6 +440,10 @@ export default function PacianoStorySection({
                 lg:text-[13px]
                 xl:mt-8 xl:text-[14px]
                 2xl:text-[15px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[13px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1.65]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:mx-auto
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:text-center
               "
             >
               Paciano was created for moments that bring you closer to nature,
@@ -450,75 +462,6 @@ export default function PacianoStorySection({
             </motion.p>
 
             {/* STORY CTA */}
-            {/* <motion.div
-              variants={reveal}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: instant ? 0 : 1.2,
-                delay: instant ? 0 : 0.48,
-              }}
-              className="mt-7 sm:mt-8 xl:mt-9"
-            >
-              <a
-                href={`#${storyTargetId}`}
-                className="
-                  group inline-flex min-h-[48px]
-                  max-w-full items-center gap-5
-                  rounded-full border border-[#9AA17A]/80
-                  px-5 py-2.5
-                  text-[#26382C]
-                  transition-all duration-700
-                  ease-[cubic-bezier(0.16,1,0.3,1)]
-                  hover:-translate-y-0.5
-                  hover:border-[#67774E]
-                  hover:bg-[#E9E5D6]
-                  hover:shadow-[0_8px_25px_rgba(48,57,36,0.08)]
-                  focus-visible:outline-none
-                  focus-visible:ring-2
-                  focus-visible:ring-[#829066]
-                  focus-visible:ring-offset-4
-                  focus-visible:ring-offset-[#F5EFE3]
-                  sm:gap-7 sm:px-6
-                "
-              >
-                <span
-                  className="
-                    font-manrope text-[9px]
-                    font-semibold uppercase
-                    tracking-[0.23em]
-                    sm:text-[10px] sm:tracking-[0.26em]
-                  "
-                >
-                  Discover Paciano
-                </span>
-
-                <span
-                  aria-hidden="true"
-                  className="
-                    flex h-7 w-7 shrink-0 items-center
-                    justify-center rounded-full
-                    border border-[#A5A78A]/80
-                    transition-all duration-700
-                    group-hover:translate-x-1
-                    group-hover:border-[#68764E]
-                    group-hover:bg-[#68764E]
-                    group-hover:text-[#FFF9EF]
-                  "
-                >
-                  <svg viewBox="0 0 24 24" fill="none" className="h-3.5 w-3.5">
-                    <path
-                      d="M5 12h14m-6-6 6 6-6 6"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </span>
-              </a>
-            </motion.div> */}
             <motion.div
               initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -528,7 +471,10 @@ export default function PacianoStorySection({
                 delay: instant ? 0 : 0.45,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-7 sm:mt-8 xl:mt-9"
+              className="mt-7 sm:mt-8 xl:mt-9
+              [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:flex
+              [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:justify-center
+              "
             >
               <a
                 href="#about-paciano"

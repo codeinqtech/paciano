@@ -394,99 +394,6 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
     RIGHT CINEMATIC IMAGE
 =========================================================== */}
 
-        {/* <motion.div
-          initial={{
-            opacity: 0,
-            x: 45,
-          }}
-          whileInView={{
-            opacity: 1,
-            x: 0,
-          }}
-          viewport={{
-            once: true,
-            amount: 0.12,
-          }}
-          transition={{
-            duration: 1.8,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-    pointer-events-none
-    absolute
-    right-0
-    top-0
-    bottom-0
-    z-[1]
-    hidden
-    w-[30%]
-    overflow-hidden
-    lg:block
-  "
-        >
-          <motion.img
-            src={footerArchitecture}
-            alt=""
-            aria-hidden="true"
-            animate={{
-              scale: [1, 1.018, 1],
-              x: [0, -3, 0],
-            }}
-            transition={{
-              duration: 16,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="
-      absolute
-      inset-0
-      h-full
-      w-full
-      object-cover
-      object-[72%_center]
-      opacity-[0.96]
-      saturate-[0.95]
-      contrast-[1.02]
-      brightness-[0.92]
-    "
-          />
-
-        
-          <div
-            className="
-      absolute
-      inset-y-0
-      left-0
-      w-[14%]
-      bg-gradient-to-r
-      from-[#09160F]/[0.9]
-      to-transparent
-    "
-          />
-
-        
-          <div
-            className="
-      absolute
-      inset-x-0
-      bottom-0
-      h-[18%]
-      bg-gradient-to-t
-      from-[#09160F]/[0.55]
-      to-transparent
-    "
-          />
-
-        
-          <div
-            className="
-      absolute
-      inset-0
-      bg-[linear-gradient(to_right,rgba(9,22,15,0.12),transparent_22%,transparent_88%,rgba(9,22,15,0.08))]
-    "
-          />
-        </motion.div> */}
-
         {/* ==========================================================
     LEFT BOTANICAL LEAVES
 =========================================================== */}
@@ -532,18 +439,18 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             },
           }}
           className="
-    pointer-events-none
-    absolute
-    left-[-55px]
-    bottom-[42px]
-    z-[8]
-    w-[300px]
-    max-w-none
-    rotate-[-8deg]
-    brightness-[1.18]
-    saturate-[0.82]
-    grayscale-[0.05]
-  "
+            pointer-events-none
+            absolute
+            left-[-55px]
+            bottom-[42px]
+            z-[8]
+            w-[300px]
+            max-w-none
+            rotate-[-8deg]
+            brightness-[1.18]
+            saturate-[0.82]
+            grayscale-[0.05]
+          "
         />
 
         {/* ==========================================================
@@ -551,19 +458,40 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
       ========================================================== */}
 
         <div
+          //   className="
+          //   relative
+          //   z-20
+          //   mx-auto
+          //   w-full
+          //   max-w-[1630px]
+          //   px-6
+          //   pb-7
+          //   pt-[92px]
+          //   sm:px-10
+          //   lg:px-8
+          //   xl:px-0
+          // "
           className="
-          relative
-          z-20
-          mx-auto
-          w-full
-          max-w-[1630px]
-          px-6
-          pb-7
-          pt-[92px]
-          sm:px-10
-          lg:px-8
-          xl:px-0
-        "
+            relative
+            z-20
+            mx-auto
+            w-full
+            min-w-0
+            max-w-[1630px]
+            px-4
+            pb-7
+            pt-16
+            sm:px-6
+            sm:pt-20
+            md:px-8
+            lg:px-8
+            lg:pt-[92px]
+            xl:px-10
+            2xl:px-0
+            [@media(orientation:landscape)_and_(max-height:700px)]:grid
+            [@media(orientation:landscape)_and_(max-height:700px)]:grid-cols-[minmax(0,1fr)_minmax(0,1.4fr)_minmax(0,1fr)]
+            [@media(orientation:landscape)_and_(max-height:700px)]:gap-x-6
+          "
         >
           {/* ========================================================
             TOP BRAND STATEMENT
@@ -587,13 +515,22 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             }}
             className="
               grid
-              gap-8
-
-              lg:grid-cols-[400px_220px_220px_220px]
-              lg:gap-[42px]
-
+              grid-cols-1
+              justify-items-center
+              gap-x-8
+              gap-y-10
+              text-center
+              sm:grid-cols-2
+              sm:gap-x-8
+              sm:gap-y-12
+              lg:grid-cols-[minmax(0,1.55fr)_repeat(3,minmax(0,1fr))]
+              lg:justify-items-stretch
+              lg:gap-x-[42px]
+              lg:gap-y-12
+              lg:text-left
               xl:grid-cols-[420px_230px_230px_230px]
-              xl:gap-[48px]
+              xl:gap-x-[48px]
+              [@media(orientation:landscape)_and_(max-height:700px)]:contents
             "
           >
             {/* ======================================================
@@ -617,9 +554,22 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               }}
               className="
                 relative
+                flex
+                w-full
+                min-w-0
                 max-w-[420px]
+                flex-col
+                items-center
                 pt-0
+                text-center
+                lg:items-start
+                lg:text-left
                 lg:pl-12
+                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:2]
+                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:1]
+                [@media(orientation:landscape)_and_(max-height:700px)]:mx-auto
+                [@media(orientation:landscape)_and_(max-height:700px)]:items-center
+                [@media(orientation:landscape)_and_(max-height:700px)]:text-center
               "
             >
               {/* ==================================================
@@ -718,7 +668,10 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                     className="
                       block
                       h-auto
-                      w-[145px]
+                      w-[125px]
+                      sm:w-[135px]
+                      lg:w-[145px]
+                      [@media(orientation:landscape)_and_(max-height:700px)]:w-[105px]
                       max-w-full
                       object-contain
                       opacity-95
@@ -808,16 +761,14 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 }}
                 className="
                   mt-[13px]
+                  w-full
                   max-w-[400px]
-
                   font-manrope
-                  text-[10px]
+                  text-[12px]
+                  lg:text-[14px]
                   font-light
-                  leading-[1.85]
-
-                  text-[#F2EBDD]/[0.68]
-
-                  sm:text-[14px]
+                  leading-[1.7]
+                  text-[#F2EBDD]/[0.68]                  
                 "
               >
                 A quiet retreat in the heart of Dooars, shaped by forest
@@ -847,6 +798,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 className="
                   mt-8
                   flex
+                  flex-wrap
                   items-center
                   gap-3
                 "
@@ -898,8 +850,15 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               className="
                 relative
                 z-[60]
-                pt-[48px]
+                w-full
+                min-w-0
                 max-w-[220px]
+                pt-0
+                lg:pt-[48px]
+                
+              [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:1]
+              [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:1]
+              [@media(orientation:landscape)_and_(max-height:700px)]:self-start
               "
             >
               <div
@@ -916,7 +875,15 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 Explore
               </div>
 
-              <div className="flex flex-col items-start gap-[7px]">
+              <div
+                className="
+                flex
+                flex-col
+                items-center
+                gap-[7px]
+                lg:items-start
+              "
+              >
                 {exploreLinks.map((item, index) => (
                   <FooterLink key={item} delay={0.15 + index * 0.11}>
                     {item}
@@ -966,7 +933,15 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 Experiences
               </div>
 
-              <div className="flex flex-col items-start gap-[7px]">
+              <div
+                className="
+                flex
+                flex-col
+                items-center
+                gap-[7px]
+                lg:items-start
+              "
+              >
                 {experienceLinks.map((item, index) => (
                   <FooterLink key={item} delay={0.25 + index * 0.11}>
                     {item}
@@ -998,8 +973,17 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               className="
                 relative
                 z-[60]
-                pt-[48px]
+                w-full
+                min-w-0
                 max-w-[220px]
+                pt-0
+                lg:pt-[48px]
+                
+                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-column:1]
+                [@media(orientation:landscape)_and_(max-height:700px)]:[grid-row:2]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:items-start
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:justify-self-start
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-0
               "
             >
               <div
@@ -1016,237 +1000,17 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 Plan Your Stay
               </div>
 
-              <div className="flex flex-col items-start gap-[7px]">
+              <div
+                className="
+                flex
+                flex-col
+                items-center
+                gap-[7px]
+                lg:items-start
+              "
+              >
                 {stayLinks.map(
                   (item, index) => (
-                    //               item === "Book Your Stay" ? (
-                    //                 <motion.a
-                    //                   key={item}
-                    //                   href="#"
-                    //                   initial={{
-                    //                     opacity: 0,
-                    //                     y: 12,
-                    //                   }}
-                    //                   whileInView={{
-                    //                     opacity: 1,
-                    //                     y: 0,
-                    //                   }}
-                    //                   viewport={{
-                    //                     once: true,
-                    //                     amount: 0.65,
-                    //                   }}
-                    //                   transition={{
-                    //                     duration: 0.9,
-                    //                     delay: 0.24 + index * 0.08,
-                    //                     ease: [0.22, 1, 0.36, 1],
-                    //                   }}
-                    //                   whileHover={{
-                    //                     y: -3,
-                    //                     scale: 1.025,
-                    //                   }}
-                    //                   whileTap={{
-                    //                     scale: 0.97,
-                    //                   }}
-                    //                   className="
-                    //                     group
-                    //                     relative
-                    //                     mt-2
-                    //                     inline-flex
-                    //                     h-[42px]
-                    //                     items-center
-                    //                     gap-3
-                    //                     overflow-hidden
-                    //                     rounded-full
-                    //                     border
-                    //                     border-[#C8BC82]/65
-                    //                     bg-[#C8BC82]/[0.055]
-                    //                     px-5
-                    //                     font-manrope
-                    //                     text-[11px]
-                    //                     font-medium
-                    //                     uppercase
-                    //                     tracking-[0.16em]
-                    //                     text-[#D8CB8D]
-                    //                     backdrop-blur-sm
-                    //                     shadow-[0_0_0_rgba(200,188,130,0)]
-                    //                     transition-all
-                    //                     duration-700
-                    //                     ease-[cubic-bezier(.22,1,.36,1)]
-                    //                     hover:border-[#E2D59B]
-                    //                     hover:bg-[#C8BC82]/[0.12]
-                    //                     hover:text-[#FFFDF5]
-                    //                     hover:shadow-[0_10px_35px_rgba(200,188,130,0.13)]
-                    //                   "
-                    //                 >
-                    //                   {/* =====================================================
-                    //                         SOFT INNER GLOW
-                    //                     ====================================================== */}
-
-                    //                   <motion.span
-                    //                     animate={{
-                    //                       opacity: [0.08, 0.18, 0.08],
-                    //                     }}
-                    //                     transition={{
-                    //                       duration: 4,
-                    //                       repeat: Infinity,
-                    //                       ease: "easeInOut",
-                    //                     }}
-                    //                     className="
-                    //                       pointer-events-none
-                    //                       absolute
-                    //                       inset-0
-                    //                       rounded-full
-                    //                       bg-[#E8DDAA]/[0.08]
-                    //                       blur-md
-                    //                     "
-                    //                   />
-
-                    //                   {/* =====================================================
-                    //                       MOVING LIGHT SWEEP
-                    //                   ====================================================== */}
-
-                    //                   <motion.span
-                    //                     initial={{
-                    //                       x: "-140%",
-                    //                     }}
-                    //                     animate={{
-                    //                       x: ["-140%", "180%"],
-                    //                     }}
-                    //                     transition={{
-                    //                       duration: 3.8,
-                    //                       repeat: Infinity,
-                    //                       repeatDelay: 5.5,
-                    //                       ease: [0.22, 1, 0.36, 1],
-                    //                     }}
-                    //                     className="
-                    //                         pointer-events-none
-                    //                         absolute
-                    //                         inset-y-[-40%]
-                    //                         left-0
-                    //                         w-[28%]
-                    //                         rotate-[18deg]
-                    //                         bg-gradient-to-r
-                    //                         from-transparent
-                    //                         via-[#FFF7D8]/25
-                    //                         to-transparent
-                    //                         blur-[6px]
-                    //                       "
-                    //                   />
-
-                    //                   {/* =====================================================
-                    //                         TEXT
-                    //                     ====================================================== */}
-
-                    //                   <span
-                    //                     className="
-                    //   relative
-                    //   z-10
-                    //   transition-transform
-                    //   duration-700
-                    //   ease-[cubic-bezier(.22,1,.36,1)]
-                    //   group-hover:translate-x-[-1px]
-                    // "
-                    //                   >
-                    //                     {item}
-                    //                   </span>
-
-                    //                   {/* =====================================================
-                    //                       ARROW
-                    //                   ====================================================== */}
-
-                    //                   <motion.span
-                    //                     animate={{
-                    //                       x: [0, 2, 0],
-                    //                       y: [0, -1, 0],
-                    //                     }}
-                    //                     transition={{
-                    //                       duration: 2.8,
-                    //                       repeat: Infinity,
-                    //                       ease: "easeInOut",
-                    //                     }}
-                    //                     className="
-                    //                     relative
-                    //                     z-10
-                    //                     flex
-                    //                     h-[22px]
-                    //                     w-[22px]
-                    //                     items-center
-                    //                     justify-center
-                    //                     rounded-full
-                    //                     border
-                    //                     border-[#D8CB8D]/45
-                    //                     bg-[#D8CB8D]/[0.06]
-                    //                     transition-all
-                    //                     duration-700
-                    //                     group-hover:border-[#E8DDAA]/80
-                    //                     group-hover:bg-[#D8CB8D]/[0.16]
-                    //                   "
-                    //                   >
-                    //                     <ArrowUpRight
-                    //                       size={12}
-                    //                       strokeWidth={1.35}
-                    //                       className="
-                    //                         transition-transform
-                    //                         duration-700
-                    //                         ease-[cubic-bezier(.22,1,.36,1)]
-                    //                         group-hover:translate-x-[2px]
-                    //                         group-hover:-translate-y-[2px]
-                    //                       "
-                    //                     />
-                    //                   </motion.span>
-
-                    //                   {/* =====================================================
-                    //                       BOTTOM GOLD LINE
-                    //                   ====================================================== */}
-
-                    //                   <motion.span
-                    //                     initial={{
-                    //                       scaleX: 0,
-                    //                       opacity: 0,
-                    //                     }}
-                    //                     whileHover={{
-                    //                       scaleX: 1,
-                    //                       opacity: 1,
-                    //                     }}
-                    //                     transition={{
-                    //                       duration: 0.7,
-                    //                       ease: [0.22, 1, 0.36, 1],
-                    //                     }}
-                    //                     className="
-                    //   pointer-events-none
-                    //   absolute
-                    //   bottom-0
-                    //   left-[18%]
-                    //   right-[18%]
-                    //   h-px
-                    //   origin-center
-                    //   bg-gradient-to-r
-                    //   from-transparent
-                    //   via-[#E5D79A]
-                    //   to-transparent
-                    // "
-                    //                   />
-
-                    //                   {/* =====================================================
-                    //                 OUTER HOVER RING
-                    //             ====================================================== */}
-
-                    //                   <span
-                    //                     className="
-                    //   pointer-events-none
-                    //   absolute
-                    //   inset-[-4px]
-                    //   rounded-full
-                    //   border
-                    //   border-[#D8CB8D]/0
-                    //   transition-all
-                    //   duration-700
-                    //   group-hover:border-[#D8CB8D]/20
-                    //   group-hover:scale-[1.03]
-                    // "
-                    //                   />
-                    //                 </motion.a>
-                    //               ) : (
                     <FooterLink key={item} delay={0.35 + index * 0.11}>
                       {item}
                     </FooterLink>
@@ -1258,90 +1022,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
           </motion.div>
 
           {/* ==========================================================
-                RIGHT EDITORIAL QUOTE
-            =========================================================== */}
-
-          {/* <motion.div
-            initial={{
-              opacity: 0,
-              x: 24,
-            }}
-            whileInView={{
-              opacity: 1,
-              x: 0,
-            }}
-            viewport={{
-              once: true,
-              amount: 0.25,
-            }}
-            transition={{
-              duration: 1.4,
-              delay: 0.45,
-              ease: [0.22, 1, 0.36, 1],
-            }}
-            className="
-    pointer-events-none
-    absolute
-    right-[3%]
-    top-[48%]
-    z-30
-    hidden
-    max-w-[270px]
-    -translate-y-1/2
-    text-right
-    text-[#C8BC82]
-    lg:block
-  "
-          >
-            <motion.div
-              animate={{
-                y: [0, -3, 0],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="
-                font-['Brittany_Signature',cursive]
-                text-[22px]
-                leading-[0.92]
-                tracking-[0.01em]
-              "
-            >
-              <span className="block">Slower Days.</span>
-
-              <motion.span
-                initial={{
-                  opacity: 0,
-                  x: 12,
-                }}
-                whileInView={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 1.1,
-                  delay: 0.75,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="
-                  mt-4
-                  block
-                  pr-3
-                "
-              >
-                Deeper Connections.
-              </motion.span>
-            </motion.div>
-          </motion.div> */}
-
-          {/* ==========================================================
-    RIGHT EDITORIAL STATEMENT
-=========================================================== */}
+              RIGHT EDITORIAL STATEMENT
+          =========================================================== */}
 
           <motion.div
             initial={{
@@ -1362,16 +1044,42 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               ease: [0.16, 1, 0.3, 1],
             }}
             className="
-            pointer-events-auto
-            absolute
-            right-[1.5%]
-            top-[25%]
-            z-[30]
-            hidden
-            w-[21%]
-            max-w-[350px]
-            lg:block
-          "
+              pointer-events-auto
+              relative
+              z-[30]
+              mx-auto
+              mt-14
+              flex
+              w-full
+              max-w-[380px]
+              overflow-visible
+              min-w-0
+              flex-col
+              items-center
+              px-4
+              text-center
+              sm:mt-16
+              sm:px-0
+              lg:absolute
+              lg:right-[1.5%]
+              lg:top-[25%]
+              lg:mx-0
+              lg:mt-0
+              lg:w-[21%]
+              lg:max-w-[350px]
+              lg:items-start
+              lg:text-left
+              
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:[grid-column:3]
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:[grid-row:2]             
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:w-full
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:max-w-none
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:items-start
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:px-0
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:text-left
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:mt-2
+
+            "
           >
             {/* ========================================================
               SOFT LEAF SHADOW BEHIND THE QUOTE
@@ -1432,16 +1140,32 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
           ========================================================= */}
 
             <motion.div
+              // className="
+              //   relative
+              //   z-10
+              //   font-['Brittany_Signature',cursive]
+              //   text-[#D8CB8D]
+              //   text-[32px]
+              //   leading-[0.9]
+              //   tracking-[0.01em]
+              //   drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]
+              //   xl:text-[32px]
+              //   [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-[25px]
+              // "
               className="
                 relative
                 z-10
+                w-full
+                max-w-full
+                overflow-visible
                 font-['Brittany_Signature',cursive]
                 text-[#D8CB8D]
-                text-[32px]
-                leading-[0.9]
+                text-[clamp(27px,7.5vw,32px)]
+                leading-[1.25]
                 tracking-[0.01em]
                 drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]
-                xl:text-[32px]
+                sm:text-[32px]
+                sm:leading-[1.2]
               "
             >
               <motion.span
@@ -1479,11 +1203,21 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   delay: 0.45,
                   ease: [0.16, 1, 0.3, 1],
                 }}
+                // className="
+                //     mt-5
+                //     block
+                //     whitespace-nowrap
+                //     pl-[8%]
+                //   "
                 className="
-                mt-5
-                block
-                pl-[8%]
-              "
+                  mt-2
+                  block
+                  whitespace-normal
+                  pl-0
+                  sm:mt-5
+                  sm:whitespace-nowrap
+                  sm:pl-[8%]
+                "
               >
                 Deeper Connections.
               </motion.span>
@@ -1550,10 +1284,12 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 mt-5
                 max-w-[300px]
                 font-manrope
-                text-[14px]
+                text-[12px]
+                lg:text-[14px]
                 font-light
                 leading-[1.7]
-                text-[#F2EBDD]/[0.68]
+                text-[#F2EBDD]/[0.68]                
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-[25px]
               "
             >
               Nature isn't just a destination,
@@ -1591,34 +1327,40 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 scale: 0.98,
               }}
               className="
-    group
-    relative
-    mt-7
-    flex
-    h-[50px]
-    w-[245px]
-    max-w-full
-    items-center
-    rounded-full
-    border
-    border-[#D8CB8D]/75
-    bg-[#09160F]/[0.25]
-    pl-[76px]
-    pr-[10px]
-    font-manrope
-    text-[10px]
-    font-medium
-    uppercase
-    tracking-[0.24em]
-    text-[#E7DBA0]
-    backdrop-blur-[3px]
-    shadow-[0_0_25px_rgba(200,188,130,0.07)]
-    transition-all
-    duration-700
-    hover:border-[#F0E3A8]
-    hover:bg-[#C8BC82]/[0.08]
-    hover:shadow-[0_0_35px_rgba(200,188,130,0.16)]
-  "
+                group
+                relative
+                mt-7
+                flex
+                h-[44px]
+                lg:h-[50px]
+                w-[245px]
+                max-w-full
+                items-center
+                rounded-full
+                border
+                border-[#D8CB8D]/75
+                bg-[#09160F]/[0.25]
+                pl-[76px]
+                pr-[10px]
+                font-manrope
+                text-[10px]
+                font-medium
+                uppercase
+                tracking-[0.24em]
+                text-[#E7DBA0]
+                backdrop-blur-[3px]
+                shadow-[0_0_25px_rgba(200,188,130,0.07)]
+                transition-all
+                duration-700
+                hover:border-[#F0E3A8]
+                hover:bg-[#C8BC82]/[0.08]
+                hover:shadow-[0_0_35px_rgba(200,188,130,0.16)]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:h-[38px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:w-[220px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:pl-[58px]
+                [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:pr-2
+                                
+              "
             >
               {/* ======================================================
                   BUTTON GOLD GLOW
@@ -1662,18 +1404,20 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   ease: "easeInOut",
                 }}
                 className="
-      pointer-events-none
-      absolute
-      -left-[48px]
-      bottom-[-30px]
-      z-20
-      w-[145px]
-      max-w-none
-      rotate-[-4deg]
-      brightness-[0.82]
-      saturate-[0.88]
-      drop-shadow-[0_10px_12px_rgba(0,0,0,0.35)]
-    "
+                  pointer-events-none
+                  absolute
+                  -left-[48px]
+                  bottom-[-30px]
+                  z-20
+                  w-[145px]
+                  max-w-none
+                  rotate-[-4deg]
+                  brightness-[0.82]
+                  saturate-[0.88]
+                  drop-shadow-[0_10px_12px_rgba(0,0,0,0.35)]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:w-[115px]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:-left-[38px]
+                "
               />
               {/* ======================================================
                   LEAF SHADOW ON BUTTON
@@ -1689,17 +1433,17 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   ease: "easeInOut",
                 }}
                 className="
-      pointer-events-none
-      absolute
-      -left-[18px]
-      bottom-[-14px]
-      z-[15]
-      h-[70px]
-      w-[105px]
-      rounded-full
-      bg-black/30
-      blur-[14px]
-    "
+                  pointer-events-none
+                  absolute
+                  -left-[18px]
+                  bottom-[-14px]
+                  z-[15]
+                  h-[70px]
+                  w-[105px]
+                  rounded-full
+                  bg-black/30
+                  blur-[14px]
+                "
               />
 
               {/* ======================================================
@@ -1736,34 +1480,36 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   ease: "easeInOut",
                 }}
                 className="
-      relative
-      z-30
-      flex
-      h-[38px]
-      w-[38px]
-      shrink-0
-      items-center
-      justify-center
-      rounded-full
-      border
-      border-[#D8CB8D]/70
-      bg-[#09160F]/30
-      transition-all
-      duration-700
-      group-hover:border-[#F0E3A8]
-      group-hover:bg-[#D8CB8D]/[0.12]
-    "
+                  relative
+                  z-30
+                  flex
+                  h-[38px]
+                  w-[38px]
+                  shrink-0
+                  items-center
+                  justify-center
+                  rounded-full
+                  border
+                  border-[#D8CB8D]/70
+                  bg-[#09160F]/30
+                  transition-all
+                  duration-700
+                  group-hover:border-[#F0E3A8]
+                  group-hover:bg-[#D8CB8D]/[0.12]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:h-[32px]
+                  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:w-[32px]
+                "
               >
                 <ArrowUpRight
                   size={16}
                   strokeWidth={1.25}
                   className="
-        transition-transform
-        duration-700
-        ease-[cubic-bezier(.22,1,.36,1)]
-        group-hover:translate-x-[3px]
-        group-hover:-translate-y-[3px]
-      "
+                    transition-transform
+                    duration-700
+                    ease-[cubic-bezier(.22,1,.36,1)]
+                    group-hover:translate-x-[3px]
+                    group-hover:-translate-y-[3px]
+                  "
                 />
               </motion.span>
             </motion.a>
@@ -1789,40 +1535,83 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               delay: 0.6,
             }}
             className="
-              mt-10
+              mt-8
               border-t
               border-[#D5CA9A]/18
-              pt-5
+              pt-4
+              sm:mt-10
+              sm:pt-5
+              [@media(orientation:landscape)_and_(max-height:700px)]:col-span-3
+              [@media(orientation:landscape)_and_(max-height:700px)]:mt-6
             "
           >
             <div
               className="
-              flex
-              flex-col
-              gap-4
-              text-[13px]
-              text-[#F1EBDD]/42
-              sm:flex-row
-              sm:items-center
-              sm:justify-between
-            "
+                flex
+                min-w-0
+                flex-col
+                items-center
+                gap-2
+                text-center
+                text-[11px]
+                lg:text-[13px]
+                text-[#F1EBDD]/42
+                sm:gap-3
+                md:flex-row
+                md:items-center
+                md:justify-between
+                md:gap-4
+                md:text-left
+              "
             >
               <span>© 2025 Paciano. All rights reserved.</span>
 
               <span
-                className="              
+                className="
+                min-w-0
+                text-center
                 text-[13px]
+                leading-relaxed
                 text-[#F1EBDD]/42
-                sm:flex-row
-                sm:items-center
-                sm:justify-between
+                transition-colors
+                duration-500
               "
               >
-                {/* Nature • People • A brighter tomorrow */}
-                Designed & Developed by CodeInQ
+                Designed & Developed by{" "}
+                <a
+                  href="https://codeinq.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+                    relative
+                    inline-block
+                    font-medium
+                    text-[#C8BC82]/85
+                    transition-all
+                    duration-700
+                    hover:text-[#E9DDA8]
+                    hover:drop-shadow-[0_0_7px_rgba(200,188,130,0.65)]
+                    hover:drop-shadow-[0_0_12px_rgba(200,188,130,0.35)]
+                  "
+                >
+                  CodeInQ
+                </a>
               </span>
 
-              <div className="flex items-center gap-4">
+              <div
+                className="
+                flex
+                min-w-0
+                flex-wrap
+                items-center
+                justify-center
+                gap-x-3
+                gap-y-2
+                text-center
+                sm:gap-x-4
+                md:justify-start
+              "
+              >
                 <a
                   href="#"
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"

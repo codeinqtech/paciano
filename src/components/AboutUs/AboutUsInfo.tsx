@@ -1559,16 +1559,18 @@ export default function AboutUsInfo() {
 
   useEffect(() => {
     const element = sectionRef.current;
-
     if (!element) return;
 
     const observer = new IntersectionObserver(
       ([entry]) => {
-        setVisible(entry.isIntersecting);
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(element);
+        }
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -5% 0px",
+        threshold: 0,
+        rootMargin: "0px 0px -10% 0px",
       },
     );
 
@@ -1663,25 +1665,25 @@ export default function AboutUsInfo() {
 
         <ImageLeafSprig
           className="
-      left-[270px]
-      bottom-[180px]
-      h-[210px]
-      w-[125px]
-      opacity-[0.28]
-    "
+            left-[270px]
+            bottom-[180px]
+            h-[210px]
+            w-[125px]
+            opacity-[0.28]
+          "
           flip
         />
         {/* BETWEEN TEXT + IMAGE */}
 
         <ImageLeafSprig
           className="
-      left-[29%]
-      top-[285px]
-      z-[25]
-      h-[260px]
-      w-[145px]
-      opacity-[0.65]
-    "
+            left-[29%]
+            top-[285px]
+            z-[25]
+            h-[260px]
+            w-[145px]
+            opacity-[0.65]
+          "
           flip
         />
         {/* ABOVE CENTRAL IMAGE */}
@@ -1700,51 +1702,51 @@ export default function AboutUsInfo() {
 
         <ImageLeafSprig
           className="
-      right-[-20px]
-      top-[10px]
-      z-[25]
-      h-[500px]
-      w-[280px]
-      opacity-[0.70]
-    "
+            right-[-20px]
+            top-[10px]
+            z-[25]
+            h-[500px]
+            w-[280px]
+            opacity-[0.70]
+          "
           flip
         />
         {/* RIGHT LOWER */}
 
         <ImageLeafSprig
           className="
-      right-[220px]
-      bottom-[100px]
-      h-[230px]
-      w-[135px]
-      opacity-[0.30]
-    "
+            right-[220px]
+            bottom-[100px]
+            h-[230px]
+            w-[135px]
+            opacity-[0.30]
+          "
         />
         {/* ======================================================
-      LEFT — HUGE SOFT LEAF SHADOW
-  ====================================================== */}
+            LEFT — HUGE SOFT LEAF SHADOW
+        ====================================================== */}
 
         <LeafShadow
           className="
-      left-[-145px]
-      top-[30px]
-      h-[620px]
-      w-[520px]
-    "
+            left-[-145px]
+            top-[30px]
+            h-[620px]
+            w-[520px]
+          "
           rotate={-8}
         />
 
         {/* ======================================================
-      RIGHT — HUGE SOFT LEAF SHADOW
-  ====================================================== */}
+              RIGHT — HUGE SOFT LEAF SHADOW
+          ====================================================== */}
 
         <LeafShadow
           className="
-      right-[-155px]
-      top-[90px]
-      h-[600px]
-      w-[510px]
-    "
+            right-[-155px]
+            top-[90px]
+            h-[600px]
+            w-[510px]
+          "
           rotate={8}
         />
 
@@ -1888,39 +1890,55 @@ export default function AboutUsInfo() {
           TOP STORY
         ======================================================== */}
 
-        <div className="grid items-center lg:grid-cols-[34%_66%]">
+        <div
+          // className="grid items-center lg:grid-cols-[34%_66%]"
+          className="
+            grid items-center
+            lg:grid-cols-[34%_66%]
+
+            [@media(orientation:landscape)_and_(pointer:coarse)]:grid-cols-1
+            [@media(orientation:landscape)_and_(pointer:coarse)]:gap-y-8
+
+           
+          "
+        >
           {/* ======================================================
                 LEFT — TEXT
             ====================================================== */}
 
           <div
-            className="
-                relative
-                z-30
-                max-w-[550px]
-                lg:pr-[35px]
-                "
+            className="            
+              relative z-30
+              max-w-[550px]
+              lg:pr-[35px]
+
+              [@media(orientation:landscape)_and_(pointer:coarse)]:order-2
+              [@media(orientation:landscape)_and_(pointer:coarse)]:mx-auto
+              [@media(orientation:landscape)_and_(pointer:coarse)]:w-full
+              [@media(orientation:landscape)_and_(pointer:coarse)]:max-w-none
+              [@media(orientation:landscape)_and_(pointer:coarse)]:text-center
+              [@media(orientation:landscape)_and_(pointer:coarse)]:!pr-0
+            "
           >
             {/* ABOUT PACIANO */}
 
             <div
               className="
-            paciano-reveal
-
-            mb-[25px]
-
-            flex
-            items-center
-            gap-[10px]
-          "
+              paciano-reveal
+              mb-[25px]
+              flex
+              items-center
+              gap-[10px]
+              [@media(orientation:landscape)_and_(pointer:coarse)]:justify-center
+            "
             >
               <svg
                 viewBox="0 0 32 32"
                 className="
-              h-[21px]
-              w-[21px]
-              text-[#71863D]
-            "
+                  h-[21px]
+                  w-[21px]
+                  text-[#71863D]
+                "
                 fill="none"
               >
                 <path
@@ -1970,37 +1988,48 @@ export default function AboutUsInfo() {
 
             <h2
               className="
-            paciano-reveal
-            paciano-delay-1
+                paciano-reveal
+                paciano-delay-1
 
-            font-cormorant
+                font-cormorant
 
-            text-[45px]
-            leading-[0.91]
+                text-[45px]
+                leading-[0.91]
 
-            tracking-[-0.035em]
+                tracking-[-0.035em]
 
-            text-[#17251B]
+                text-[#17251B]
 
-            sm:text-[65px]
-            lg:text-[72px]
-            xl:text-[67px]
-          "
+                sm:text-[65px]
+                lg:text-[72px]
+                xl:text-[67px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[clamp(34px,5vw,48px)]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1]
+              "
             >
-              <span className="block">Inspired By</span>
+              <span
+                className="block
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:inline
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:whitespace-nowrap
+                "
+              >
+                Inspired By
+              </span>
 
-              <span className="block">Nature.</span>
+              <span className="block [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:inline">
+                Nature.
+              </span>
 
               <span
                 className="
-              mt-[3px]
-              block
+                  mt-[3px]
+                  block
 
-              italic
-              font-normal
+                  italic
+                  font-normal
 
-              text-[#78943F]
-            "
+                  text-[#78943F]
+                "
               >
                 Created For You.
               </span>
@@ -2026,6 +2055,10 @@ export default function AboutUsInfo() {
                 text-[#50584F]
 
                 sm:text-[15px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(max-height:600px)]:mt-3
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[13px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1.65]
+                [@media(orientation:landscape)_and_(pointer:coarse)]:mx-auto
               "
             >
               Paciano is more than a resort — it&apos;s a sanctuary where
@@ -2034,21 +2067,25 @@ export default function AboutUsInfo() {
             </p>
             <p
               className="
-            paciano-reveal
-            paciano-delay-2
+                paciano-reveal
+                paciano-delay-2
 
-            mt-[20px]
+                mt-[20px]
 
-            max-w-[400px]
+                max-w-[400px]
 
-            font-manrope
-            text-[12px]
-            leading-[1.85]
-              
-            text-[#50584F]
+                font-manrope
+                text-[12px]
+                leading-[1.85]
+                  
+                text-[#50584F]
 
-            sm:text-[15px]
-          "
+                sm:text-[15px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(max-height:600px)]:mt-3
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!text-[13px]
+                [@media(orientation:landscape)_and_(max-width:1024px)_and_(pointer:coarse)]:!leading-[1.65]
+                [@media(orientation:landscape)_and_(pointer:coarse)]:mx-auto
+              "
             >
               Nestled in serene landscapes of Dooars, our retreat is
               thoughtfully designed for those who seek a deeper connection with
@@ -2063,27 +2100,21 @@ export default function AboutUsInfo() {
 
           <div
             className="
-            relative
-            mt-10
-            h-[clamp(360px,105vw,500px)]
-            w-full
-            sm:mt-12
-            sm:h-[530px]
-            lg:mt-0
-            lg:h-[585px]
-            lg:translate-x-[3%]
-            xl:translate-x-[4%]
-          "
-
-            // className="
-            //   relative
-            //   mt-[50px]
-            //   h-[530px]
-            //   lg:mt-0
-            //   lg:h-[585px]
-            //   lg:translate-x-[3%]
-            //   xl:translate-x-[4%]
-            // "
+              relative
+              mt-10
+              h-[clamp(360px,105vw,500px)]
+              w-full
+              sm:mt-12
+              sm:h-[530px]
+              lg:mt-0
+              lg:h-[585px]
+              lg:translate-x-[3%]
+              xl:translate-x-[4%] 
+              [@media(orientation:landscape)_and_(pointer:coarse)]:order-1
+              [@media(orientation:landscape)_and_(pointer:coarse)]:!mt-0
+              [@media(orientation:landscape)_and_(pointer:coarse)]:!translate-x-0
+              [@media(orientation:landscape)_and_(max-height:500px)_and_(pointer:coarse)]:!h-[260px]
+            "
           >
             {/* ==========================================================
                 SOFT ATMOSPHERIC GLOW
@@ -2134,28 +2165,10 @@ export default function AboutUsInfo() {
                 sm:h-[365px]
                 sm:rounded-[60px_60px_42px_42px]
                 lg:rounded-[78px_78px_58px_58px]
+
+                [@media(orientation:landscape)_and_(max-height:500px)]:top-[38px]
+                [@media(orientation:landscape)_and_(max-height:500px)_and_(pointer:coarse)]:!h-[175px]
               "
-              // className="
-              //   paciano-reveal
-              //   paciano-delay-2
-              //   paciano-photo
-              //   paciano-photo-left
-              //   group
-              //   absolute
-              //   left-0
-              //   top-[16%]
-              //   z-20
-              //   h-[70%]
-              //   w-[31%]
-              //   overflow-hidden
-              //   rounded-[38px_38px_22px_22px]
-              //   bg-[#E9E1D1]
-              //   shadow-[0_20px_45px_rgba(45,48,35,.16)]
-              //   sm:top-[82px]
-              //   sm:h-[365px]
-              //   sm:rounded-[60px_60px_42px_42px]
-              //   lg:rounded-[78px_78px_58px_58px]
-              // "
             >
               {/* LUXURY DOUBLE RIM */}
 
@@ -2248,7 +2261,7 @@ export default function AboutUsInfo() {
                 group
 
                 absolute
-                left-[29%]
+                left-[30%]
                 top-[0px]
 
                 z-30
@@ -2263,50 +2276,53 @@ export default function AboutUsInfo() {
                 bg-[#E9E1D1]
 
                 shadow-[0_42px_100px_rgba(40,42,30,.22)]
+                [@media(orientation:landscape)_and_(max-height:500px)]:left-[29%]
+                [@media(orientation:landscape)_and_(max-height:500px)]:top-0
+                [@media(orientation:landscape)_and_(max-height:500px)_and_(pointer:coarse)]:!h-[249px]
               "
             >
               {/* MAIN WHITE RIM */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[6px]
-        z-30
-        rounded-[86px_86px_60px_60px]
-        border
-        border-[#FFFDF7]/95
-      "
+                  pointer-events-none
+                  absolute
+                  inset-[6px]
+                  z-30
+                  rounded-[86px_86px_60px_60px]
+                  border
+                  border-[#FFFDF7]/95
+                "
               />
 
               {/* SECOND INNER RIM */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[10px]
-        z-30
-        rounded-[82px_82px_56px_56px]
-        border
-        border-[#F5EDDE]/65
-      "
+                  pointer-events-none
+                  absolute
+                  inset-[10px]
+                  z-30
+                  rounded-[82px_82px_56px_56px]
+                  border
+                  border-[#F5EDDE]/65
+                "
               />
 
               <img
                 src={aboutHospitality}
                 alt="Genuine hospitality at Paciano"
                 className="
-        h-full
-        w-full
-        object-cover
+                  h-full
+                  w-full
+                  object-cover
 
-        transition-transform
-        duration-[5500ms]
-        ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-transform
+                  duration-[5500ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-        group-hover:scale-[1.055]
-      "
+                  group-hover:scale-[1.055]
+                "
                 style={{
                   // objectPosition: "center center",
                   objectPosition: "62% center",
@@ -2317,122 +2333,124 @@ export default function AboutUsInfo() {
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-10
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  z-10
 
-        bg-gradient-to-t
-        from-[#172319]/[0.16]
-        via-transparent
-        to-[#fff8e8]/[0.11]
-      "
+                  bg-gradient-to-t
+                  from-[#172319]/[0.16]
+                  via-transparent
+                  to-[#fff8e8]/[0.11]
+                "
               />
 
               {/* warm sunlight */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        left-[12%]
-        top-[6%]
-        h-[200px]
-        w-[210px]
-        rounded-full
-        bg-[#FFF7DE]/[0.10]
-        blur-[60px]
-      "
+                pointer-events-none
+                absolute
+                left-[12%]
+                top-[6%]
+                h-[200px]
+                w-[210px]
+                rounded-full
+                bg-[#FFF7DE]/[0.10]
+                blur-[60px]
+              "
               />
 
               {/* inner luxury shadow */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-20
-        rounded-[92px_92px_66px_66px]
-        shadow-[inset_0_0_45px_rgba(30,40,25,.12)]
-      "
+                pointer-events-none
+                absolute
+                inset-0
+                z-20
+                rounded-[92px_92px_66px_66px]
+                shadow-[inset_0_0_45px_rgba(30,40,25,.12)]
+              "
               />
             </div>
 
             {/* ==========================================================
-      RIGHT — CONSCIOUS LIVING
-      overlaps CENTER
-  ========================================================== */}
+                RIGHT — CONSCIOUS LIVING
+                overlaps CENTER
+            ========================================================== */}
 
             <div
               className="
-    paciano-reveal
-    paciano-delay-4
-    paciano-photo
-    paciano-photo-right
-    group
+              paciano-reveal
+              paciano-delay-4
+              paciano-photo
+              paciano-photo-right
+              group
 
-    absolute
-    left-[72%]
-    top-[82px]
+              absolute
+              left-[72%]
+              top-[82px]
 
-    z-20
+              z-20
 
-    h-[350px]
-    w-[29%]
+              h-[350px]
+              w-[29%]
 
-    overflow-hidden
+              overflow-hidden
 
-    rounded-[78px_78px_54px_54px]
+              rounded-[78px_78px_54px_54px]
 
-    bg-[#E9E1D1]
+              bg-[#E9E1D1]
 
-    shadow-[0_32px_75px_rgba(45,48,35,.16)]
-  "
+              shadow-[0_32px_75px_rgba(45,48,35,.16)]
+              [@media(orientation:landscape)_and_(max-height:500px)]:top-[42px]
+              [@media(orientation:landscape)_and_(max-height:500px)_and_(pointer:coarse)]:!h-[170px]
+            "
             >
               {/* ======================================================
-        IMPORTANT:
-        RIGHT IMAGE NOW HAS THE SAME WHITE LUXURY RIM
-    ====================================================== */}
+                    IMPORTANT:
+                    RIGHT IMAGE NOW HAS THE SAME WHITE LUXURY RIM
+                ====================================================== */}
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[6px]
-        z-30
-        rounded-[72px_72px_48px_48px]
-        border
-        border-[#FFFDF6]/95
-      "
+                  pointer-events-none
+                  absolute
+                  inset-[6px]
+                  z-30
+                  rounded-[72px_72px_48px_48px]
+                  border
+                  border-[#FFFDF6]/95
+                "
               />
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-[10px]
-        z-30
-        rounded-[68px_68px_44px_44px]
-        border
-        border-[#F4EEDF]/60
-      "
+                pointer-events-none
+                absolute
+                inset-[10px]
+                z-30
+                rounded-[68px_68px_44px_44px]
+                border
+                border-[#F4EEDF]/60
+              "
               />
 
               <img
                 src={aboutRight}
                 alt="Conscious living and dining"
                 className="
-        h-full
-        w-full
-        object-cover
+                  h-full
+                  w-full
+                  object-cover
 
-        transition-transform
-        duration-[4500ms]
-        ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-transform
+                  duration-[4500ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-        group-hover:scale-[1.06]
-      "
+                  group-hover:scale-[1.06]
+                "
                 style={{
                   objectPosition: "center center",
                 }}
@@ -2440,53 +2458,48 @@ export default function AboutUsInfo() {
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-10
+                pointer-events-none
+                absolute
+                inset-0
+                z-10
 
-        bg-gradient-to-t
-        from-[#172319]/[0.12]
-        via-transparent
-        to-[#fff8e8]/[0.10]
-      "
+                bg-gradient-to-t
+                from-[#172319]/[0.12]
+                via-transparent
+                to-[#fff8e8]/[0.10]
+              "
               />
 
               <div
                 className="
-        pointer-events-none
-        absolute
-        inset-0
-        z-20
-        rounded-[78px_78px_54px_54px]
-        shadow-[inset_0_0_38px_rgba(30,40,25,.10)]
-      "
+                  pointer-events-none
+                  absolute
+                  inset-0
+                  z-20
+                  rounded-[78px_78px_54px_54px]
+                  shadow-[inset_0_0_38px_rgba(30,40,25,.10)]
+                "
               />
             </div>
 
             {/* ==========================================================
-      BOTANICAL BRANCH — WRAPS THE IMAGE GROUP
-  ========================================================== */}
-
-            {/* ==========================================================
-    BOTANICAL BRANCH — BENEATH LEFT IMAGE
-    Dense luxury foliage exactly like the reference
-========================================================== */}
+                BOTANICAL BRANCH — WRAPS THE IMAGE GROUP
+            ========================================================== */}
 
             <svg
               viewBox="0 0 360 220"
               className="
-    pointer-events-none
-    absolute
-    left-[0%]
-    bottom-[-2px]
-    z-[35]
-    h-[190px]
-    w-[360px]
-    overflow-visible
-    text-[#78865C]
-    paciano-bottom-branch
-  "
+              pointer-events-none
+              absolute
+              left-[0%]
+              bottom-[-2px]
+              z-[35]
+              h-[190px]
+              w-[360px]
+              overflow-visible
+              text-[#78865C]
+              paciano-bottom-branch
+            "
               fill="none"
               aria-hidden="true"
             >
@@ -2494,11 +2507,11 @@ export default function AboutUsInfo() {
 
               <path
                 d="
-      M8 207
-      C45 194 77 178 106 158
-      C137 137 165 111 193 82
-      C220 54 247 32 279 15
-    "
+                  M8 207
+                  C45 194 77 178 106 158
+                  C137 137 165 111 193 82
+                  C220 54 247 32 279 15
+                "
                 stroke="currentColor"
                 strokeWidth="1.15"
                 strokeLinecap="round"
@@ -2509,10 +2522,10 @@ export default function AboutUsInfo() {
 
               <path
                 d="
-      M64 184
-      C94 164 119 144 139 119
-      C158 96 173 72 181 45
-    "
+                  M64 184
+                  C94 164 119 144 139 119
+                  C158 96 173 72 181 45
+                "
                 stroke="currentColor"
                 strokeWidth="0.7"
                 strokeLinecap="round"
@@ -2520,19 +2533,19 @@ export default function AboutUsInfo() {
               />
 
               {/* ==========================================================
-      DELICATE LEAVES
-      Long / narrow / slightly translucent
-  ========================================================== */}
+                  DELICATE LEAVES
+                  Long / narrow / slightly translucent
+              ========================================================== */}
 
               <g fill="currentColor">
                 {/* leaf 1 */}
                 <path
                   d="
-        M48 190
-        C29 186 17 174 13 157
-        C32 160 46 170 53 184
-        C54 187 52 189 48 190Z
-      "
+                  M48 190
+                  C29 186 17 174 13 157
+                  C32 160 46 170 53 184
+                  C54 187 52 189 48 190Z
+                "
                   opacity="0.34"
                 />
 
@@ -2672,39 +2685,39 @@ export default function AboutUsInfo() {
             </svg>
 
             {/* ==========================================================
-    BOTANICAL BRANCH — OUTSIDE RIGHT IMAGE
-    Reference-style vertical trailing branch
-========================================================== */}
+                BOTANICAL BRANCH — OUTSIDE RIGHT IMAGE
+                Reference-style vertical trailing branch
+            ========================================================== */}
 
             <svg
               viewBox="0 0 170 430"
               className="
-    pointer-events-none
-    absolute
-    right-[-8px]
-    top-[-8px]
-    z-[12]
-    h-[445px]
-    w-[175px]
-    overflow-visible
-    text-[#78865C]
-    paciano-right-branch
-  "
+                pointer-events-none
+                absolute
+                right-[-8px]
+                top-[-8px]
+                z-[12]
+                h-[445px]
+                w-[175px]
+                overflow-visible
+                text-[#78865C]
+                paciano-right-branch
+              "
               fill="none"
               aria-hidden="true"
             >
               {/* ==========================================================
-      LONG CURVED STEM
-  ========================================================== */}
+                  LONG CURVED STEM
+              ========================================================== */}
 
               <path
                 d="
-      M155 426
-      C143 373 133 325 128 281
-      C122 232 116 190 105 151
-      C94 110 78 70 50 35
-      C43 26 36 18 28 10
-    "
+                  M155 426
+                  C143 373 133 325 128 281
+                  C122 232 116 190 105 151
+                  C94 110 78 70 50 35
+                  C43 26 36 18 28 10
+                "
                 stroke="currentColor"
                 strokeWidth="1.15"
                 strokeLinecap="round"
@@ -2715,10 +2728,10 @@ export default function AboutUsInfo() {
 
               <path
                 d="
-      M132 306
-      C111 273 96 237 88 199
-      C79 158 71 121 53 91
-    "
+                  M132 306
+                  C111 273 96 237 88 199
+                  C79 158 71 121 53 91
+                "
                 stroke="currentColor"
                 strokeWidth="0.65"
                 strokeLinecap="round"
@@ -2726,84 +2739,84 @@ export default function AboutUsInfo() {
               />
 
               {/* ==========================================================
-      ELONGATED REFERENCE-STYLE LEAVES
-  ========================================================== */}
+                    ELONGATED REFERENCE-STYLE LEAVES
+                ========================================================== */}
 
               <g fill="currentColor">
                 {/* lower right */}
                 <path
                   d="
-        M136 377
-        C151 367 161 351 162 334
-        C147 340 137 352 132 367
-        C131 372 132 375 136 377Z
-      "
+                    M136 377
+                    C151 367 161 351 162 334
+                    C147 340 137 352 132 367
+                    C131 372 132 375 136 377Z
+                  "
                   opacity="0.32"
                 />
 
                 {/* lower left */}
                 <path
                   d="
-        M126 341
-        C108 335 96 323 91 307
-        C108 309 122 319 130 333
-        C132 337 130 340 126 341Z
-      "
+                    M126 341
+                    C108 335 96 323 91 307
+                    C108 309 122 319 130 333
+                    C132 337 130 340 126 341Z
+                  "
                   opacity="0.27"
                 />
 
                 {/* right */}
                 <path
                   d="
-        M121 300
-        C138 292 149 278 152 261
-        C136 266 124 278 117 292
-        C116 296 117 299 121 300Z
-      "
+                    M121 300
+                    C138 292 149 278 152 261
+                    C136 266 124 278 117 292
+                    C116 296 117 299 121 300Z
+                  "
                   opacity="0.37"
                 />
 
                 {/* left */}
                 <path
                   d="
-        M112 263
-        C94 258 82 246 77 230
-        C95 233 108 243 116 256
-        C118 260 116 262 112 263Z
-      "
+                    M112 263
+                    C94 258 82 246 77 230
+                    C95 233 108 243 116 256
+                    C118 260 116 262 112 263Z
+                  "
                   opacity="0.25"
                 />
 
                 {/* right */}
                 <path
                   d="
-        M107 225
-        C124 217 135 203 138 187
-        C121 191 109 203 103 217
-        C102 221 103 224 107 225Z
-      "
+                  M107 225
+                  C124 217 135 203 138 187
+                  C121 191 109 203 103 217
+                  C102 221 103 224 107 225Z
+                "
                   opacity="0.35"
                 />
 
                 {/* left */}
                 <path
                   d="
-        M98 190
-        C81 184 70 173 66 158
-        C83 161 96 171 103 183
-        C105 187 103 189 98 190Z
-      "
+                    M98 190
+                    C81 184 70 173 66 158
+                    C83 161 96 171 103 183
+                    C105 187 103 189 98 190Z
+                  "
                   opacity="0.25"
                 />
 
                 {/* right */}
                 <path
                   d="
-        M91 155
-        C107 147 117 134 119 119
-        C104 123 93 134 87 147
-        C86 151 87 154 91 155Z
-      "
+                  M91 155
+                  C107 147 117 134 119 119
+                  C104 123 93 134 87 147
+                  C86 151 87 154 91 155Z
+                "
                   opacity="0.36"
                 />
 
@@ -3207,6 +3220,9 @@ export default function AboutUsInfo() {
             lg:gap-y-0
 
             xl:px-[10px]
+            [@media(orientation:landscape)_and_(pointer:coarse)]:grid-cols-6
+            [@media(orientation:landscape)_and_(pointer:coarse)]:gap-x-[18px]
+            [@media(orientation:landscape)_and_(pointer:coarse)]:gap-y-[35px]
           "
         >
           {experiences.map((experience, index) => (
@@ -3243,10 +3259,18 @@ export default function AboutUsInfo() {
                 min-w-0
                 flex
                 flex-col
-
+                [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
+                [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
+                [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
+                ${
+                  index === 3
+                    ? "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2"
+                    : ""
+                }
                 ${
                   index === 4
-                    ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
+                    ? // ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
+                      "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4 [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0 [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none"
                     : ""
                 }
 
@@ -3436,30 +3460,31 @@ export default function AboutUsInfo() {
                 //   motion-reduce:animate-none
                 // "
                 className="
-  paciano-experience-image
-  group/image
-  relative
-  mt-[23px]
-  w-full
-  shrink-0
+                  paciano-experience-image
+                  group/image
+                  relative
+                  mt-[23px]
+                  w-full
+                  shrink-0
 
-  h-[220px]
-  min-[380px]:h-[245px]
-  sm:h-[275px]
-  lg:h-[285px]
-  xl:h-[295px]
+                  h-[220px]
+                  min-[380px]:h-[245px]
+                  sm:h-[275px]
+                  lg:h-[285px]
+                  xl:h-[295px]
+                  [@media(orientation:landscape)_and_(pointer:coarse)]:!h-[245px]
 
-  overflow-hidden
-  rounded-[70px_70px_28px_28px]
-  bg-[#E7DFCF]
-  shadow-[0_24px_60px_rgba(45,48,35,.12)]
-  animate-paciano-card-float
-  transition-shadow
-  duration-[1200ms]
-  hover:shadow-[0_32px_75px_rgba(45,48,35,.17)]
-  will-change-transform
-  motion-reduce:animate-none
-"
+                  overflow-hidden
+                  rounded-[70px_70px_28px_28px]
+                  bg-[#E7DFCF]
+                  shadow-[0_24px_60px_rgba(45,48,35,.12)]
+                  animate-paciano-card-float
+                  transition-shadow
+                  duration-[1200ms]
+                  hover:shadow-[0_32px_75px_rgba(45,48,35,.17)]
+                  will-change-transform
+                  motion-reduce:animate-none
+                "
               >
                 {/* soft botanical border */}
 
@@ -4533,7 +4558,7 @@ export default function AboutUsInfo() {
             }
 
             /* MOBILE ONLY — align experience cards in consistent rows */
-            @media (max-width: 639px) {
+            @media (max-width: 639px) and (orientation: portrait) {
               .paciano-experiences {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
                 align-items: start;
@@ -4616,7 +4641,7 @@ export default function AboutUsInfo() {
             }
 
             /* Smaller phones: allow additional room for wrapped text */
-            @media (max-width: 379px) {
+            @media (max-width: 379px) and (orientation: portrait) {
               .paciano-experience {
                 grid-template-rows: 72px 180px 220px 35px;
               }
