@@ -612,7 +612,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   relative
                   mt-10
                   w-fit
-                  [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:1024px)]:!mt-0
+                  [@media(orientation:portrait)_and_(min-width:700px)_and_(max-width:820px)]:!mt-0
+
               "
               >
                 {/* Soft atmospheric glow */}
@@ -1178,20 +1179,40 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               //   xl:text-[32px]
               //   [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:1100px)]:ml-[25px]
               // "
+              // className="
+              //   relative
+              //   z-10
+              //   w-full
+              //   max-w-full
+              //   overflow-visible
+              //   font-['Brittany_Signature',cursive]
+              //   text-[#D8CB8D]
+              //   text-[clamp(27px,7.5vw,32px)]
+              //   leading-[1.25]
+              //   tracking-[0.01em]
+              //   drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]
+              //   sm:text-[32px]
+              //   sm:leading-[1.2]
+              // "
               className="
                 relative
                 z-10
                 w-full
                 max-w-full
                 overflow-visible
+                py-[6px]
+
                 font-['Brittany_Signature',cursive]
                 text-[#D8CB8D]
                 text-[clamp(27px,7.5vw,32px)]
                 leading-[1.25]
                 tracking-[0.01em]
                 drop-shadow-[0_4px_18px_rgba(0,0,0,0.28)]
+
                 sm:text-[32px]
                 sm:leading-[1.2]
+
+                [@media(max-width:1024px)]:!leading-[1.55]
               "
             >
               <motion.span
@@ -1210,6 +1231,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   ease: [0.16, 1, 0.3, 1],
                 }}
                 className="block
+                [@media(max-width:1024px)]:!leading-[1.5]
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[25px]"
                 
               >
@@ -1239,6 +1261,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   sm:mt-5
                   sm:whitespace-nowrap
                   sm:pl-[8%]
+                  [@media(max-width:1024px)]:!leading-[1.5]
                   [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[25px]
                 "
               >
