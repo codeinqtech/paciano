@@ -261,7 +261,7 @@ function FooterLink({
         items-center
 
         font-manrope
-        text-[14px]
+        text-[13px]
         font-light
         leading-[1.8]
 
