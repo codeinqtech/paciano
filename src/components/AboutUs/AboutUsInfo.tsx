@@ -3220,6 +3220,12 @@ export default function AboutUsInfo() {
             lg:gap-y-0
 
             xl:px-[10px]
+            /* Tablet portrait: 6-column positioning */
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:grid-cols-6
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:gap-x-5
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:gap-y-10
+
+            /* Tablet landscape: preserve existing layout */
             [@media(orientation:landscape)_and_(pointer:coarse)]:grid-cols-6
             [@media(orientation:landscape)_and_(pointer:coarse)]:gap-x-[18px]
             [@media(orientation:landscape)_and_(pointer:coarse)]:gap-y-[35px]
@@ -3259,20 +3265,31 @@ export default function AboutUsInfo() {
                 min-w-0
                 flex
                 flex-col
-                [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
-                [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
-                [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-span-2 
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:!transform-none
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:[--experience-y:0px]               
                 ${
                   index === 3
-                    ? "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2"
-                    : ""
+                  ? `
+                  [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-2
+                  [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2
+                `
+                : ""
                 }
                 ${
                   index === 4
-                    ? // ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
-                      "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4 [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0 [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none"
-                    : ""
-                }
+                  ? `
+                    [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-4
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none
+                  `
+                  : ""
+              }
+              [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
+              [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
+              [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
 
                 ${experienceVisible ? "paciano-experience-visible" : ""}
               `}
@@ -3381,6 +3398,7 @@ export default function AboutUsInfo() {
                   min-[380px]:min-h-[115px]
 
                   sm:min-h-0
+                  [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:!min-h-[145px]
                 "
               >
                 <h4
@@ -3464,6 +3482,7 @@ export default function AboutUsInfo() {
                   group/image
                   relative
                   mt-[23px]
+                  [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:!mt-[18px]
                   w-full
                   shrink-0
 

@@ -1,14 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import contactVideo from "@/videos/contact-video.MOV";
 import storyImage from "@/images/contact/video-banner.png";
 
 export default function ContactStory() {
   const [isPlaying, setIsPlaying] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  // const storyVideo = "/videos/contact-video.MOV";
-  const storyVideo = "/src/videos/contact-video.MOV";
+  const storyVideo = contactVideo;
+ 
 
   const handlePlay = async () => {
     setIsPlaying(true);
