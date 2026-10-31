@@ -261,7 +261,7 @@ function FooterLink({
         items-center
 
         font-manrope
-        text-[13px]
+        text-[14px]
         font-light
         leading-[1.8]
 
@@ -391,8 +391,8 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
         />
 
         {/* ==========================================================
-    RIGHT CINEMATIC IMAGE
-=========================================================== */}
+            RIGHT CINEMATIC IMAGE
+        =========================================================== */}
 
         {/* ==========================================================
             LEFT BOTANICAL LEAVES
@@ -521,29 +521,29 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
             //   [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:contents
             // "
             className="
-  grid
-  grid-cols-1
-  justify-items-center
-  gap-x-8
-  gap-y-10
-  text-center
-  sm:grid-cols-2
-  sm:gap-x-8
-  sm:gap-y-12
+              grid
+              grid-cols-1
+              justify-items-center
+              gap-x-8
+              gap-y-10
+              text-center
+              sm:grid-cols-2
+              sm:gap-x-8
+              sm:gap-y-12
 
-  lg:w-[76%]
-  lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
-  lg:justify-items-stretch
-  lg:gap-x-6
-  lg:gap-y-12
-  lg:text-left
+              lg:w-[76%]
+              lg:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
+              lg:justify-items-stretch
+              lg:gap-x-6
+              lg:gap-y-12
+              lg:text-left
 
-  xl:w-[76%]
-  xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
-  xl:gap-x-6
+              xl:w-[76%]
+              xl:grid-cols-[minmax(0,1.5fr)_repeat(3,minmax(0,0.8fr))]
+              xl:gap-x-6
 
-  [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:contents
-"
+              [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:contents
+            "
           >
             {/* ======================================================
               BRAND
@@ -612,6 +612,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   relative
                   mt-10
                   w-fit
+                  [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:1024px)]:!mt-0
               "
               >
                 {/* Soft atmospheric glow */}
@@ -936,6 +937,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 pt-[48px]
                 max-w-[230px]
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:pt-0
+                [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:1024px)]:!pt-0
               "
             >
               <div
