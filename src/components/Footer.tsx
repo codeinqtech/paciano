@@ -939,6 +939,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 max-w-[230px]
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:pt-0
                 [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:1024px)]:!pt-0
+                [@media(orientation:portrait)_and_(min-width:700px)_and_(max-width:820px)]:!pt-0
               "
             >
               <div
