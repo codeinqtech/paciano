@@ -727,16 +727,8 @@ function PacianoOurPlaceSection({ image }: PacianoOurPlaceSectionProps) {
             object-[54%_center]
             sm:object-center
           "
-        />
-        {/* SUBTLE CINEMATIC TINT — PRESERVES THE LANDSCAPE */}
-        {/* <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0"
-          style={{
-            background:
-              "rgba(7, 24, 16, 0.14)",
-          }}
-        /> */}
+        />    
+        
         {/* WARM CINEMATIC GRADE — ENTIRE LANDSCAPE */}
         <div
           aria-hidden="true"
@@ -3220,37 +3212,45 @@ export default function AboutUsInfo() {
             lg:gap-y-0
 
             xl:px-[10px]
+            /* Tablet portrait: 6-column positioning */
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:grid-cols-6
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:gap-x-5
+            [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:gap-y-10         
+          
+            /* Tablet landscape: preserve existing layout */
             [@media(orientation:landscape)_and_(pointer:coarse)]:grid-cols-6
             [@media(orientation:landscape)_and_(pointer:coarse)]:gap-x-[18px]
             [@media(orientation:landscape)_and_(pointer:coarse)]:gap-y-[35px]
           "
         >
-          {experiences.map((experience, index) => (
-            // <article
-            //   key={experience.title}
-            //   className={`
-            //     paciano-experience
-            //     paciano-experience-${index + 1}
-
-            //     group
-            //     relative
-
-            //     ${experienceVisible ? "paciano-experience-visible" : ""}
-            //   `}
-            //   style={
-            //     {
-            //       "--experience-delay": `${index * 450}ms`,
-            //       "--experience-y":
-            //         index === 1 || index === 3
-            //           ? "22px"
-            //           : index === 2
-            //             ? "35px"
-            //             : "0px",
-            //     } as React.CSSProperties
-            //   }
-            // >
+          {experiences.map((experience, index) => (            
             <article
               key={experience.title}
+              // className={`
+              //   paciano-experience
+              //   paciano-experience-${index + 1}
+              //   group
+              //   relative
+              //   min-w-0
+              //   flex
+              //   flex-col
+              //   [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
+              //   [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
+              //   [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
+              //   ${
+              //     index === 3
+              //       ? "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2"
+              //       : ""
+              //   }
+              //   ${
+              //     index === 4
+              //       ? // ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
+              //         "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4 [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0 [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none"
+              //       : ""
+              //   }
+
+              //   ${experienceVisible ? "paciano-experience-visible" : ""}
+              // `}
               className={`
                 paciano-experience
                 paciano-experience-${index + 1}
@@ -3259,21 +3259,35 @@ export default function AboutUsInfo() {
                 min-w-0
                 flex
                 flex-col
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-span-2
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:!transform-none
+                [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:[--experience-y:0px]
+              
+                ${
+                  index === 3
+                    ? `
+                      [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-2
+                      [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2
+                    `
+                    : ""
+                }
+              
+                ${
+                  index === 4
+                    ? `
+                    [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-4
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full
+                    [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none
+                    `
+                    : ""
+                }
+              
                 [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
                 [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
                 [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
-                ${
-                  index === 3
-                    ? "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2"
-                    : ""
-                }
-                ${
-                  index === 4
-                    ? // ? "col-span-2 mx-auto w-full max-w-[240px] sm:col-span-1 sm:col-start-2 sm:max-w-none lg:col-start-auto lg:col-span-1"
-                      "[@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4 [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0 [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none"
-                    : ""
-                }
-
+              
                 ${experienceVisible ? "paciano-experience-visible" : ""}
               `}
               style={
@@ -3464,6 +3478,7 @@ export default function AboutUsInfo() {
                   group/image
                   relative
                   mt-[23px]
+                  [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:!mt-[18px]
                   w-full
                   shrink-0
 

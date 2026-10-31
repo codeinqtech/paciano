@@ -23,13 +23,13 @@ function ContactInfo() {
       icon: <Phone className="h-[18px] w-[18px]" strokeWidth={1.4} />,
       // note: "STAYS, AVAILABILITY & BOOKINGS",
     },
-    {
-      label: "Experiences",
-      value: "experiences@paciano.in",
-      href: "mailto:experiences@paciano.in",
-      icon: <Sparkles className="h-[17px] w-[17px]" strokeWidth={1.4} />,
-      // note: "CURATED EXPERIENCES & ACTIVITIES",
-    },
+    // {
+    //   label: "Experiences",
+    //   value: "experiences@paciano.in",
+    //   href: "mailto:experiences@paciano.in",
+    //   icon: <Sparkles className="h-[17px] w-[17px]" strokeWidth={1.4} />,
+    //   // note: "CURATED EXPERIENCES & ACTIVITIES",
+    // },
     {
       label: "General Enquiries",
       value: "hello@paciano.in",
@@ -48,6 +48,468 @@ function ContactInfo() {
           text-[#10261b]
         "
       >   
+
+
+          {/* =========================================================
+              MOBILE — RESPONSIVE ORGANIC IMAGE COMPOSITION
+              Portrait + Landscape
+          ========================================================= */}
+
+          <div className="relative block overflow-hidden py-8 min-[1440px]:hidden">
+
+            <div
+              className="
+                relative mx-auto
+                h-[clamp(430px,112vw,560px)]
+                w-[92%]
+                max-w-[620px]
+
+                [@media(orientation:landscape)_and_(max-height:600px)]:h-[78svh]
+                [@media(orientation:landscape)_and_(max-height:600px)]:w-[78vw]
+                [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[720px]
+              "
+            >
+
+              {/* Main landscape photograph */}
+
+              <motion.div
+                initial={{ opacity: 0, y: 18, scale: 1.025 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 1.6,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  absolute
+                  right-[2%]
+                  top-0
+                  h-[90%]
+                  w-[94%]
+                  overflow-hidden
+                  rounded-[24px]
+                  border
+                  border-[#C8A76A]/45
+                  bg-[#DED7C8]
+                  shadow-[0_28px_65px_rgba(35,42,30,0.18)]
+
+                  md:h-[92%]
+                  md:w-[92%]
+                  md:rounded-[30px]
+
+                  [@media(orientation:landscape)_and_(max-height:650px)]:h-full
+                  [@media(orientation:landscape)_and_(max-height:650px)]:w-[90%]
+                "
+                >
+
+                <motion.img
+                  src={convImg1}
+                  alt="Paciano landscape"
+                  className="
+                    h-full
+                    w-full
+                    object-cover
+                    object-center
+                    will-change-transform
+                  "
+                  initial={{ scale: 1.08 }}
+                  whileInView={{ scale: 1.015 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  transition={{
+                    duration: 2.8,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  animate={{
+                    scale: [1.015, 1.035, 1.015],
+                  }}
+                />
+
+                {/* Cinematic grading */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    bg-gradient-to-t
+                    from-[#102719]/25
+                    via-transparent
+                    to-[#FFF8E9]/5
+                  "
+                />
+
+                {/* Inner edge highlight */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    rounded-[42%_8%_12%_26%]
+                    ring-1
+                    ring-inset
+                    ring-[#E7C98E]/35
+                  "
+                />
+
+              </motion.div>
+
+
+              {/* Fine champagne-gold contour */}
+
+              <div
+                className="
+                  pointer-events-none
+                  absolute
+                  right-[1%]
+                  top-[-1%]
+                  z-10
+                  h-[95%]
+                  w-[90%]
+                  rounded-[42%_8%_12%_26%]
+                  border
+                  border-[#C8A76A]/55
+                "
+              />
+
+
+              {/* Small overlapping photograph */}
+
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  x: -24,
+                  y: 20,
+                  scale: 0.96,
+                }}
+                whileInView={{
+                  opacity: 1,
+                  x: 0,
+                  y: 0,
+                  scale: 1,
+                }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 1.5,
+                  delay: 0.65,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  absolute
+                  bottom-[3%]
+                  left-[1%]
+                  z-30
+                  w-[37%]
+                  max-w-[165px]
+
+                  [@media(orientation:landscape)_and_(max-height:600px)]:bottom-[2%]
+                  [@media(orientation:landscape)_and_(max-height:600px)]:left-[3%]
+                  [@media(orientation:landscape)_and_(max-height:600px)]:w-[23%]
+                  [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[145px]
+                "
+              >
+
+                {/* Gold perimeter */}
+
+                <div
+                  className="
+                    pointer-events-none
+                    absolute
+                    -inset-[5px]
+                    rounded-[25px]
+                    border
+                    border-[#C8A76A]/60
+                  "
+                />
+
+                {/* Cream photographic frame */}
+
+                <div
+                  className="
+                    relative
+                    overflow-hidden
+                    rounded-[22px]
+                    border-[6px]
+                    border-[#eee9dc]
+                    bg-[#eee9dc]
+                    shadow-[0_22px_45px_rgba(35,42,30,0.22)]
+                  "
+                >
+
+                  <motion.img
+                    src={convOverlap}
+                    alt="Nature surrounding Paciano"
+                    className="
+                      aspect-[4/5]
+                      w-full
+                      object-cover
+                      object-center
+                    "
+                    initial={{ scale: 1.06 }}
+                    whileInView={{ scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{
+                      duration: 2.2,
+                      delay: 0.8,
+                      ease: [0.16, 1, 0.3, 1],
+                    }}
+                  />
+
+                  <div
+                    className="
+                      pointer-events-none
+                      absolute
+                      inset-0
+                      rounded-[16px]
+                      ring-1
+                      ring-inset
+                      ring-white/20
+                    "
+                  />
+
+                </div>
+
+                {/* Caption */}
+
+                <p
+                  className="
+                    mt-3
+                    ml-1
+                    font-manrope
+                    text-[7px]
+                    uppercase
+                    tracking-[0.3em]
+                    text-[#68753F]
+                  "
+                >
+                  A moment in nature
+                </p>
+
+              </motion.div>
+
+            </div>
+
+            
+            {/* =========================================================
+                MOBILE STORY + CONTACT DETAILS
+            ========================================================= */}
+
+            <div className="
+                relative
+                z-20
+                mx-auto
+                block
+                w-full
+                px-[7%]
+                pb-16
+                pt-9
+                text-center
+                min-[1440px]:hidden
+
+                [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[760px]
+                [@media(orientation:landscape)_and_(max-height:600px)]:px-8
+                [@media(orientation:landscape)_and_(max-height:600px)]:pt-7
+              ">
+
+              {/* Eyebrow */}
+
+              <div className="mb-5 flex items-center justify-center gap-3">
+                <svg
+                  viewBox="0 0 32 32"
+                  className="h-5 w-5 text-[#71863d]"
+                  fill="none"
+                >
+                  <path
+                    d="M16 27C16 19 18 12 23 5"
+                    stroke="currentColor"
+                    strokeWidth="1"
+                  />
+                  <path
+                    d="M17 19C10 17 7 12 8 7C14 8 18 13 18 18"
+                    fill="currentColor"
+                    opacity=".8"
+                  />
+                  <path
+                    d="M19 14C20 8 25 5 29 7C27 12 24 15 19 16"
+                    fill="currentColor"
+                    opacity=".5"
+                  />
+                </svg>
+
+                <span className="
+                  font-manrope
+                  text-[9px]
+                  font-semibold
+                  uppercase
+                  tracking-[0.32em]
+                  text-[#68753f]
+                ">
+                  Connect With Us
+                </span>
+
+                <span className="h-px w-9 bg-[#c8a76a]/70" />
+              </div>
+
+
+              {/* Heading */}
+
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 1.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  font-cormorant
+                  text-[46px]
+                  font-normal
+                  leading-[0.91]
+                  tracking-[-0.04em]
+                  text-[#10261b]
+                  min-[400px]:text-[51px]
+                "
+              >
+                A Conversation
+                <br />
+                <span className="italic text-[#78943f]">
+                  Before Your Stay
+                </span>
+              </motion.h2>
+
+
+              {/* Description */}
+
+              <motion.div
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{
+                  duration: 1.2,
+                  delay: 0.2,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="
+                  mx-auto
+                  text-centre
+                  mt-6
+                  max-w-[480px]
+                  space-y-4
+                  font-manrope
+                  text-[13px]
+                  leading-[1.85]
+                  text-[#657067]
+                  min-[400px]:text-[14px]
+                "
+              >
+                <p>
+                  Whether you&apos;re planning a quiet retreat, a family
+                  celebration, a corporate banquet, or a curated
+                  experience — we&apos;re here to craft an experience
+                  around what matters to you.
+                </p>
+
+                <p>
+                  Reach out and let&apos;s create something meaningful
+                  together, surrounded by the forests, rivers and
+                  stories of Paciano.
+                </p>
+              </motion.div>
+
+
+              {/* Contact details */}
+
+              
+{/* MOBILE — CENTRED LUXURY CONTACT DETAILS */}
+
+<div className="mx-auto mt-10 w-full max-w-[440px]">
+
+  {contacts.map((contact, index) => (
+    <motion.a
+      key={contact.label}
+      href={contact.href}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        duration: 1.1,
+        delay: index * 0.2,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="
+        group
+        flex
+        flex-col
+        items-center
+        py-6
+        text-center
+      "
+    >
+
+      {/* Minimal gold icon */}
+
+      <div
+        className="
+          mb-3
+          text-[#a47c35]
+          transition-transform
+          duration-700
+          group-hover:-translate-y-1
+        "
+      >
+        {contact.icon}
+      </div>
+
+      {/* Contact label */}
+
+      <span
+        className="
+          font-manrope
+          text-[9px]
+          font-semibold
+          uppercase
+          tracking-[0.32em]
+          text-[#718043]
+        "
+      >
+        {contact.label}
+      </span>
+
+      {/* Contact value */}
+
+      <span
+        className="
+          mt-2
+          break-all
+          font-cormorant
+          text-[24px]
+          leading-tight
+          text-[#173025]
+          transition-colors
+          duration-500
+          group-hover:text-[#78943f]
+          min-[400px]:text-[26px]
+        "
+      >
+        {contact.value}
+      </span>
+
+    </motion.a>
+  ))}
+
+  {/* Fine finishing line */}
+
+  <div className="mx-auto mt-1 h-px w-12 bg-[#c8a76a]/50" />
+
+</div>
+
+
+            </div>
+
+
+          </div>
+
         {/* =========================================================
             DESKTOP / TABLET CINEMATIC COMPOSITION
         ========================================================== */}
@@ -58,7 +520,7 @@ function ContactInfo() {
             z-10
             hidden
             min-h-[760px]
-            lg:block
+            min-[1440px]:block
             overflow-hidden
           "
         >
