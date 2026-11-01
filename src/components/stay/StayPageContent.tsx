@@ -29,7 +29,10 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react"
-import heroBanner from "@/images/stay/hero-banner.jpg";
+import { motion, useReducedMotion } from "framer-motion";
+// import heroBanner from "@/images/garden-view.png";
+// import heroBanner from "@/images/stay/stay-banner.jpeg";
+import heroBanner from "@/images/stay/stay-banner.png";
 import heroBannerAlt from "@/images/stay/hero-banner-alt.jpg";
 import slowDaysMoments from "@/images/stay/slow-days-moments.jpg";
 import bookingRiverSunrise from "@/images/stay/booking-river-sunrise.jpg";
@@ -44,8 +47,8 @@ import clientRoom4 from "@/images/stay/client-room-4.jpeg";
 import clientRoom5 from "@/images/stay/client-room-5.jpeg";
 import clientRoom6 from "@/images/stay/client-room-6.jpeg";
 import MistSectionBridge from "@/components/MistSectionBridge";
-import StayPhotoBridge from "@/components/stay/StayPhotoBridge";
-import StayBotanicalBackdrop from "@/components/stay/StayBotanicalBackdrop";
+import StayPhotoBridge from "@/components/Stay/StayPhotoBridge";
+import StayBotanicalBackdrop from "@/components/Stay/StayBotanicalBackdrop";
 import Footer from "@/components/Footer";
 const STAY_CREAM = "#F8F5EE";
 const FOOTER_DARK = "#09160F";
@@ -258,65 +261,477 @@ function Wave({ flip = false }: { flip?: boolean }) {
   )
 }
 
+
+
+
 function Hero({ onExperience }: { onExperience: () => void }) {
+  const reduceMotion = useReducedMotion();
+
+  const reveal = (delay: number) => ({
+    initial: reduceMotion ? false : { opacity: 0, y: 28 },
+    animate: { opacity: 1, y: 0 },
+    transition: {
+      duration: reduceMotion ? 0 : 1.1,
+      delay: reduceMotion ? 0 : delay,
+      ease: [0.22, 1, 0.36, 1] as const,
+    },
+  });
+
   return (
     <section
-      className="hero relative isolate overflow-hidden"
+      className="
+        hero
+        relative
+        isolate
+        min-h-[780px]
+        overflow-hidden
+        bg-[#f8f5ee]
+
+        md:min-h-[720px]
+        lg:min-h-[min(900px,100svh)]
+
+        [@media(orientation:landscape)_and_(max-height:600px)]:min-h-[540px]
+        [@media(orientation:landscape)_and_(max-height:600px)]:h-[100svh]
+      "
       aria-labelledby="hero-title"
     >
+      {/* BACKGROUND IMAGE */}
       <img
         src={heroBanner}
-        alt="Luxury suite with a private balcony overlooking the valley"
-        className="absolute inset-0 h-full w-full object-cover object-center"
+        alt="Luxury Paciano suite with a private balcony overlooking the valley"
+        loading="eager"
+        fetchPriority="high"
+        className="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          object-[62%_center]
+
+          [@media(orientation:portrait)]:object-[65%_center]
+          [@media(orientation:landscape)_and_(max-height:600px)]:object-center
+        "
+      />     
+
+      {/* CINEMATIC IVORY OVERLAY */}
+      {/* <div
+        className="pointer-events-none absolute inset-0 z-[1]"
+        style={{
+          background: `
+            linear-gradient(
+              90deg,
+              rgba(250, 248, 242, 0.96) 0%,
+              rgba(250, 248, 242, 0.93) 15%,
+              rgba(250, 248, 242, 0.85) 28%,
+              rgba(250, 248, 242, 0.68) 40%,
+              rgba(250, 248, 242, 0.40) 52%,
+              rgba(250, 248, 242, 0.16) 65%,
+              rgba(250, 248, 242, 0.03) 78%,
+              rgba(250, 248, 242, 0) 88%
+            )
+          `,
+        }}
+      />  */}
+
+      {/* PORTRAIT GRADIENT FOR MOBILE READABILITY */}
+      {/* <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[2]
+          hidden
+
+          [@media(orientation:portrait)]:block
+          [@media(orientation:portrait)]:bg-[linear-gradient(180deg,transparent_5%,rgba(250,248,242,0.05)_35%,rgba(250,248,242,0.68)_65%,rgba(250,248,242,0.97)_100%)]
+        "
+      /> */}
+      {/* MOBILE PORTRAIT TEXT OVERLAY */}
+      {/* <div
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          z-[3]
+          hidden
+          [@media(orientation:portrait)]:block
+        "
+        style={{
+          background: `
+            linear-gradient(
+              180deg,
+              transparent 0%,
+              rgba(250,248,242,0.05) 32%,
+              rgba(250,248,242,0.50) 58%,
+              rgba(250,248,242,0.94) 85%,
+              rgba(250,248,242,0.98) 100%
+            )
+          `,
+        }}
+      /> */}
+
+      {/* SUBTLE TOP SHADING FOR NAVBAR */}
+      {/* <div
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          top-0
+          z-[3]
+          h-28
+          bg-gradient-to-b
+          from-black/35
+          to-transparent
+        "
+      /> */}
+      {/* SOFT TOP BANNER OVERLAY */}
+      <div
+        className="
+          pointer-events-none
+          absolute
+          inset-x-0
+          top-0
+          z-[4]
+          h-[150px]
+        "
+        style={{
+          background: `
+            linear-gradient(
+              180deg,
+              rgba(250,248,242,0.30) 0%,
+              rgba(250,248,242,0.18) 35%,
+              rgba(250,248,242,0.07) 70%,
+              transparent 100%
+            )
+          `,
+        }}
       />
-      <div className="hero-shade absolute inset-0" />
-      <div className="page-container relative z-10 flex min-h-[660px] items-center py-20 lg:min-h-[730px]">
-        <div className="hero-copy max-w-[560px] pt-4">
-          <Eyebrow>STAY AT PACIANO</Eyebrow>
-          <h1
-            id="hero-title"
-            className="font-display mt-6 text-[clamp(4rem,6.15vw,6.25rem)] leading-[0.91] tracking-[-0.045em] text-[#1c2c21]"
+
+      {/* HERO CONTENT */}
+      <div
+        className="
+          page-container
+          relative
+          z-10
+          flex
+          min-h-[780px]
+          items-end
+          pb-36
+          pt-32
+
+          md:min-h-[720px]
+          md:items-center
+          md:pb-20
+          md:pt-24
+
+          lg:min-h-[min(900px,100svh)]
+
+          [@media(orientation:landscape)_and_(max-height:600px)]:min-h-[540px]
+          [@media(orientation:landscape)_and_(max-height:600px)]:py-20
+        "
+      >
+        {/* LEFT CONTENT */}
+        <div
+          className="
+            hero-copy
+            w-full
+            max-w-[580px]
+            min-w-0
+
+            [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[460px]
+          "
+        >
+          {/* SOFT IVORY GLOW - BEHIND TEXT ONLY */}
+          <div
+            aria-hidden="true"
+            className="
+            pointer-events-none
+            absolute
+            -left-24
+            -top-24
+            z-0
+            h-[780px]
+            w-[820px]
+            max-w-[110vw]
+            "
+            style={{
+              background: `
+              radial-gradient(
+                ellipse 75% 85% at 36% 48%,
+                rgba(250,248,242,0.94) 0%,
+                rgba(250,248,242,0.88) 38%,
+                rgba(250,248,242,0.72) 58%,
+                rgba(250,248,242,0.42) 76%,
+                rgba(250,248,242,0.14) 90%,
+                transparent 100%
+              )
+            `,
+              filter: "blur(20px)",
+            }}
+          />
+          <div className="relative z-10">
+          {/* EYEBROW */}
+          <motion.div
+            {...reveal(0.15)}
+            className="
+              mb-5
+              flex
+              items-center
+              gap-2.5
+              md:mb-6
+            "
           >
-            Where Every
-            <br />
-            Stay Feels Like
-            <br />
-            <em className="font-normal text-[#4c6748]">a Story.</em>
-          </h1>
-          <p className="mt-8 max-w-[405px] text-[16px] leading-[1.75] text-[#39443a]">
-            Spacious rooms, timeless views and thoughtful details — designed for
-            your comfort, surrounded by nature’s beauty.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <PillLink href="#rooms">Explore Rooms</PillLink>
+            <svg
+              viewBox="0 0 32 32"
+              className="h-[20px] w-[20px] text-[#71863D]"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M16 27C16 19 18 12 23 5"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+              <path
+                d="M17 19C10 17 7 12 8 7C14 8 18 13 18 18"
+                fill="currentColor"
+                opacity=".8"
+              />
+              <path
+                d="M19 14C20 8 25 5 29 7C27 12 24 15 19 16"
+                fill="currentColor"
+                opacity=".5"
+              />
+            </svg>
+
+            <span
+              className="
+                font-manrope
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.31em]
+                text-[#68753F]
+                sm:text-[11px]
+              "
+            >
+              Stay at Paciano
+            </span>
+          </motion.div>
+
+          {/* HEADING */}
+          <motion.h1
+            id="hero-title"
+            {...reveal(0.35)}
+            className="
+              font-display
+              text-[clamp(3.15rem,6.2vw,6.25rem)]
+              leading-[0.91]
+              tracking-[-0.045em]
+              text-[#1c2c21]
+
+              max-[380px]:text-[2.85rem]
+              sm:text-[clamp(3.5rem,7vw,5.2rem)]
+              lg:text-[clamp(4.5rem,6.15vw,6.25rem)]
+
+              [@media(orientation:landscape)_and_(max-height:600px)]:text-[clamp(3rem,5vw,4.3rem)]
+            "
+          >
+            <span className="block">Where Every</span>
+            <span className="block">Stay Feels Like</span>
+            <em className="block font-normal text-[#4c6748]">
+              a Story.
+            </em>
+          </motion.h1>
+
+          {/* DESCRIPTION */}
+          <motion.p
+            {...reveal(0.65)}
+            className="
+              mt-6
+              max-w-[405px]
+              font-manrope
+              text-[13px]
+              leading-[1.8]
+              text-[#39443a]
+
+              sm:text-[14px]
+              lg:mt-7
+              lg:text-[15px]
+
+              [@media(orientation:landscape)_and_(max-height:600px)]:mt-4
+              [@media(orientation:landscape)_and_(max-height:600px)]:text-[12px]
+            "
+          >
+            Spacious rooms, timeless views and thoughtful details —
+            designed for your comfort, surrounded by nature’s beauty.
+          </motion.p>
+
+          {/* CTA BUTTONS */}
+          <motion.div
+            {...reveal(0.9)}
+            className="
+              mt-7
+              flex
+              flex-wrap
+              items-center
+              gap-3
+
+              sm:mt-8
+
+              [@media(orientation:landscape)_and_(max-height:600px)]:mt-5
+            "
+          >
+            <PillLink href="#rooms">
+              Explore Rooms
+            </PillLink>
+
             <PillLink href="#booking" outlined>
               Check Availability
             </PillLink>
+          </motion.div>
           </div>
-        </div>
-        <p className="hero-vertical absolute right-7 top-[27%] hidden text-center text-[10px] font-semibold uppercase leading-[2.1] tracking-[0.3em] text-[#f8f2df] xl:block">
-          A Room
-          <br />A View
-          <br />A Better You
-        </p>
-        <button
-          type="button"
-          onClick={onExperience}
-          className="experience-button absolute bottom-34 right-10 hidden flex-col items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white md:flex"
-          aria-label="See the Paciano experience"
-        >
-          <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/70 bg-white/10 backdrop-blur-sm transition-transform hover:scale-110">
-            <Play size={19} fill="currentColor" />
-          </span>
-          <span>See the experience</span>
-        </button>
+        </div>        
+
+       
       </div>
-      <Wave />
+
+      {/* BOTTOM WAVE */}
+      <div className="absolute bottom-[-1px] left-0 z-20 w-full">
+        <Wave />
+      </div>
     </section>
-  )
+  );
 }
 
-function RoomCard({ room, onSelect }: { room: Room onSelect: () => void }) {
+
+// function Hero({ onExperience }: { onExperience: () => void }) {
+//   return (
+//     <section
+//       className="hero relative isolate overflow-hidden"
+//       aria-labelledby="hero-title"
+//     >
+//       <img
+//         src={heroBanner}
+//         alt="Luxury suite with a private balcony overlooking the valley"
+//         className="absolute inset-0 h-full w-full object-cover object-center"
+//       />
+//       <div className="hero-shade absolute inset-0" />
+      
+//       <div className="page-container relative z-10 flex min-h-[660px] items-center py-20 lg:min-h-[730px]">
+//         <div className="hero-copy max-w-[560px] pt-4">
+//           {/* <Eyebrow>STAY AT PACIANO</Eyebrow> */}
+//           <div
+//               className="
+//               paciano-reveal
+//               mb-[25px]
+//               flex
+//               items-center
+//               gap-[10px]
+//               [@media(orientation:landscape)_and_(pointer:coarse)]:justify-center
+//             "
+//             >
+//               <svg
+//                 viewBox="0 0 32 32"
+//                 className="
+//                   h-[21px]
+//                   w-[21px]
+//                   text-[#71863D]
+//                 "
+//                 fill="none"
+//               >
+//                 <path
+//                   d="M16 27C16 19 18 12 23 5"
+//                   stroke="currentColor"
+//                   strokeWidth="1"
+//                 />
+
+//                 <path
+//                   d="
+//                 M17 19
+//                 C10 17 7 12 8 7
+//                 C14 8 18 13 18 18
+//               "
+//                   fill="currentColor"
+//                   opacity=".8"
+//                 />
+
+//                 <path
+//                   d="
+//                 M19 14
+//                 C20 8 25 5 29 7
+//                 C27 12 24 15 19 16
+//               "
+//                   fill="currentColor"
+//                   opacity=".5"
+//                 />
+//               </svg>
+
+//               <span
+//                 className="
+//               font-manrope
+//               text-[12px]
+//               font-semibold
+//               uppercase
+//               tracking-[0.31em]
+//               text-[#68753F]
+//             "
+//               >
+//                STAY AT PACIANO
+//               </span>
+//             </div>
+//           <h1
+//             id="hero-title"
+//             className="font-display mt-6 text-[clamp(4rem,6.15vw,6.25rem)] leading-[0.91] tracking-[-0.045em] text-[#1c2c21]"
+//           >
+//             Where Every
+//             <br />
+//             Stay Feels Like
+//             <br />
+//             <em className="font-normal text-[#4c6748]">a Story.</em>
+//           </h1>
+//           <p className="mt-8 max-w-[405px] text-[16px] leading-[1.75] text-[#39443a]">
+//             Spacious rooms, timeless views and thoughtful details — designed for
+//             your comfort, surrounded by nature’s beauty.
+//           </p>
+//           <div className="mt-8 flex flex-wrap gap-3">
+//             <PillLink href="#rooms">Explore Rooms</PillLink>
+//             <PillLink href="#booking" outlined>
+//               Check Availability
+//             </PillLink>
+//           </div>
+//         </div>
+//         {/* <p className="hero-vertical absolute right-7 top-[27%] hidden text-center text-[10px] font-semibold uppercase leading-[2.1] tracking-[0.3em] text-[#f8f2df] xl:block">
+//           A Room
+//           <br />A View
+//           <br />A Better You
+//         </p> */}
+//         <button
+//           type="button"
+//           onClick={onExperience}
+//           className="experience-button absolute bottom-34 right-10 hidden flex-col items-center gap-3 text-[9px] font-semibold uppercase tracking-[0.25em] text-white md:flex"
+//           aria-label="See the Paciano experience"
+//         >
+//           <span className="flex h-16 w-16 items-center justify-center rounded-full border border-white/70 bg-white/10 backdrop-blur-sm transition-transform hover:scale-110">
+//             <Play size={19} fill="currentColor" />
+//           </span>
+//           <span>See the experience</span>
+//         </button>
+//       </div>
+//       <Wave />
+//     </section>
+//   )
+// }
+
+// function RoomCard({ room, onSelect }: { room: Room onSelect: () => void }) {
+  function RoomCard({
+    room,
+    onSelect,
+  }: {
+    room: Room;
+    onSelect: () => void;
+  }) {
   return (
     <article className="room-card group relative h-[385px] w-[280px] shrink-0 snap-start overflow-hidden rounded-[22px] sm:w-[300px] lg:h-[420px] lg:w-[318px]">
       <img

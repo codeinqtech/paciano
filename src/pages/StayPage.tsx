@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
-import StayPageContent from "@/components/stay/StayPageContent";
+import StayPageContent from "@/components/Stay/StayPageContent";
 
 export default function StayPage() {
   const [scrolled, setScrolled] = useState(false);

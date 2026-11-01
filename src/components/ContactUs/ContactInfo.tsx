@@ -18,8 +18,8 @@ function ContactInfo() {
   const contacts = [
     {
       label: "Reservation",
-      value: "+91 98765 43210",
-      href: "tel:+919876543210",
+      value: "+91 85976 66577",
+      href: "tel:+918597666577",
       icon: <Phone className="h-[18px] w-[18px]" strokeWidth={1.4} />,
       // note: "STAYS, AVAILABILITY & BOOKINGS",
     },
@@ -32,8 +32,8 @@ function ContactInfo() {
     // },
     {
       label: "General Enquiries",
-      value: "hello@paciano.in",
-      href: "mailto:hello@paciano.in",
+      value: "info@paciano.in",
+      href: "mailto:info@paciano.in",
       icon: <Mail className="h-[18px] w-[18px]" strokeWidth={1.4} />,
       // note: "PARTNERSHIPS, MEDIA & OTHER QUERIES",
     },
