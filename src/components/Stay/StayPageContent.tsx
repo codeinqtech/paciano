@@ -4,7 +4,7 @@ import {
   useState,
   type FormEvent,
   type ReactNode,
-} from "react"
+} from "react";
 import {
   ArrowLeft,
   ArrowRight,
@@ -28,11 +28,10 @@ import {
   Wifi,
   X,
   type LucideIcon,
-} from "lucide-react"
+} from "lucide-react";
 import { motion, useReducedMotion } from "framer-motion";
-// import heroBanner from "@/images/garden-view.png";
-// import heroBanner from "@/images/stay/stay-banner.jpeg";
 import heroBanner from "@/images/stay/stay-banner.png";
+import leafWhisper from "@/images/button-leaf.png";
 import heroBannerAlt from "@/images/stay/hero-banner-alt.jpg";
 import slowDaysMoments from "@/images/stay/slow-days-moments.jpg";
 import bookingRiverSunrise from "@/images/stay/booking-river-sunrise.jpg";
@@ -54,14 +53,14 @@ const STAY_CREAM = "#F8F5EE";
 const FOOTER_DARK = "#09160F";
 
 type Room = {
-  title: string
-  category: string
-  image: string
-  description: string
-  subtitle: string
-  details: string
-  price: string
-}
+  title: string;
+  category: string;
+  image: string;
+  description: string;
+  subtitle: string;
+  details: string;
+  price: string;
+};
 
 const rooms: Room[] = [
   {
@@ -117,7 +116,7 @@ const rooms: Room[] = [
       "A private retreat crafted for unhurried days, intimate evenings, and the simple pleasure of having it all to yourself.",
     price: "₹14,500",
   },
-]
+];
 
 const categories = [
   "All Rooms",
@@ -126,7 +125,7 @@ const categories = [
   "Mountain View",
   "Family Stay",
   "Villas",
-]
+];
 
 const amenities: { label: string; icon: LucideIcon }[] = [
   { label: "Complimentary Breakfast", icon: ConciergeBell },
@@ -137,7 +136,7 @@ const amenities: { label: string; icon: LucideIcon }[] = [
   { label: "In-Room Dining", icon: UtensilsCrossed },
   { label: "Free Parking", icon: ParkingCircle },
   { label: "Nature View", icon: Mountain },
-]
+];
 
 const moments = [
   { time: "06:00 AM", title: "Wake to mountain sunrise", image: riverValley },
@@ -152,7 +151,7 @@ const moments = [
     title: "Bonfire & dining under the stars",
     image: goldenRiver,
   },
-]
+];
 
 const testimonials = [
   {
@@ -178,14 +177,14 @@ const testimonials = [
     initials: "PD",
     color: "#897464",
   },
-]
+];
 
 function Eyebrow({
   children,
   light = false,
 }: {
-  children: ReactNode
-  light?: boolean
+  children: ReactNode;
+  light?: boolean;
 }) {
   return (
     <p className={`eyebrow ${light ? "text-[#e9d7a7]" : "text-[#52694b]"}`}>
@@ -196,7 +195,7 @@ function Eyebrow({
       />
       {children}
     </p>
-  )
+  );
 }
 
 function CircleArrow({
@@ -205,12 +204,12 @@ function CircleArrow({
   label,
   className = "",
 }: {
-  direction?: "left" | "right"
-  onClick?: () => void
-  label: string
-  className?: string
+  direction?: "left" | "right";
+  onClick?: () => void;
+  label: string;
+  className?: string;
 }) {
-  const Icon = direction === "left" ? ArrowLeft : ArrowRight
+  const Icon = direction === "left" ? ArrowLeft : ArrowRight;
   return (
     <button
       type="button"
@@ -220,7 +219,7 @@ function CircleArrow({
     >
       <Icon size={18} strokeWidth={1.5} />
     </button>
-  )
+  );
 }
 
 function PillLink({
@@ -228,9 +227,9 @@ function PillLink({
   href,
   outlined = false,
 }: {
-  children: ReactNode
-  href: string
-  outlined?: boolean
+  children: ReactNode;
+  href: string;
+  outlined?: boolean;
 }) {
   return (
     <a
@@ -242,7 +241,7 @@ function PillLink({
         <ArrowRight size={16} strokeWidth={1.5} />
       </span>
     </a>
-  )
+  );
 }
 
 function Wave({ flip = false }: { flip?: boolean }) {
@@ -258,14 +257,12 @@ function Wave({ flip = false }: { flip?: boolean }) {
         fill="#F8F5EE"
       />
     </svg>
-  )
+  );
 }
-
-
-
 
 function Hero({ onExperience }: { onExperience: () => void }) {
   const reduceMotion = useReducedMotion();
+  const instant = Boolean(reduceMotion);
 
   const reveal = (delay: number) => ({
     initial: reduceMotion ? false : { opacity: 0, y: 28 },
@@ -312,7 +309,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
           [@media(orientation:portrait)]:object-[65%_center]
           [@media(orientation:landscape)_and_(max-height:600px)]:object-center
         "
-      />     
+      />
 
       {/* CINEMATIC IVORY OVERLAY */}
       {/* <div
@@ -334,43 +331,6 @@ function Hero({ onExperience }: { onExperience: () => void }) {
         }}
       />  */}
 
-      {/* PORTRAIT GRADIENT FOR MOBILE READABILITY */}
-      {/* <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-[2]
-          hidden
-
-          [@media(orientation:portrait)]:block
-          [@media(orientation:portrait)]:bg-[linear-gradient(180deg,transparent_5%,rgba(250,248,242,0.05)_35%,rgba(250,248,242,0.68)_65%,rgba(250,248,242,0.97)_100%)]
-        "
-      /> */}
-      {/* MOBILE PORTRAIT TEXT OVERLAY */}
-      {/* <div
-        className="
-          pointer-events-none
-          absolute
-          inset-0
-          z-[3]
-          hidden
-          [@media(orientation:portrait)]:block
-        "
-        style={{
-          background: `
-            linear-gradient(
-              180deg,
-              transparent 0%,
-              rgba(250,248,242,0.05) 32%,
-              rgba(250,248,242,0.50) 58%,
-              rgba(250,248,242,0.94) 85%,
-              rgba(250,248,242,0.98) 100%
-            )
-          `,
-        }}
-      /> */}
-
       {/* SUBTLE TOP SHADING FOR NAVBAR */}
       {/* <div
         className="
@@ -386,7 +346,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
         "
       /> */}
       {/* SOFT TOP BANNER OVERLAY */}
-      <div
+      {/* <div
         className="
           pointer-events-none
           absolute
@@ -406,7 +366,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
             )
           `,
         }}
-      />
+      /> */}
 
       {/* HERO CONTENT */}
       <div
@@ -435,15 +395,16 @@ function Hero({ onExperience }: { onExperience: () => void }) {
         <div
           className="
             hero-copy
+            relative
+            isolate
             w-full
             max-w-[580px]
             min-w-0
-
             [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[460px]
           "
         >
           {/* SOFT IVORY GLOW - BEHIND TEXT ONLY */}
-          <div
+          {/* <div
             aria-hidden="true"
             className="
             pointer-events-none
@@ -469,44 +430,137 @@ function Hero({ onExperience }: { onExperience: () => void }) {
             `,
               filter: "blur(20px)",
             }}
+          /> */}
+          {/* RESPONSIVE STAY HERO – LOCALIZED IVORY GLOW */}
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute
+              z-0
+
+              /* DESKTOP DEFAULT */
+              -left-24
+              -top-24
+              h-[780px]
+              w-[820px]
+              blur-[20px]
+
+              /* LAPTOP – 1200px TO 1599px */
+              [@media(min-width:1200px)_and_(max-width:1599px)]:-left-[65px]
+              [@media(min-width:1200px)_and_(max-width:1599px)]:-top-[30px]
+              [@media(min-width:1200px)_and_(max-width:1599px)]:h-[540px]
+              [@media(min-width:1200px)_and_(max-width:1599px)]:w-[680px]
+              [@media(min-width:1200px)_and_(max-width:1599px)]:blur-[18px]
+
+              /* MOBILE PORTRAIT */
+              [@media(max-width:639px)_and_(orientation:portrait)]:-left-6
+              [@media(max-width:639px)_and_(orientation:portrait)]:-top-7
+              [@media(max-width:639px)_and_(orientation:portrait)]:h-[450px]
+              [@media(max-width:639px)_and_(orientation:portrait)]:w-[430px]
+              [@media(max-width:639px)_and_(orientation:portrait)]:blur-[16px]
+
+              /* MOBILE LANDSCAPE */
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:-left-12
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:-top-7
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:h-[410px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:w-[620px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:blur-[16px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:hidden
+
+              /* TABLET PORTRAIT */
+             [@media(min-width:640px)_and_(max-width:1023px)_and_(orientation:portrait)]:-left-[45px]
+             [@media(min-width:640px)_and_(max-width:1023px)_and_(orientation:portrait)]:-top-[25px]
+             [@media(min-width:640px)_and_(max-width:1023px)_and_(orientation:portrait)]:h-[520px]
+             [@media(min-width:640px)_and_(max-width:1023px)_and_(orientation:portrait)]:w-[590px]
+
+              /* TABLET LANDSCAPE */
+             [@media(min-width:640px)_and_(max-width:1199px)_and_(orientation:landscape)]:-left-[55px]
+              [@media(min-width:640px)_and_(max-width:1199px)_and_(orientation:landscape)]:-top-[15px]
+              [@media(min-width:640px)_and_(max-width:1199px)_and_(orientation:landscape)]:h-[480px]
+              [@media(min-width:640px)_and_(max-width:1199px)_and_(orientation:landscape)]:w-[620px]
+            "
+            style={{
+              background: `
+                radial-gradient(
+                  ellipse 75% 82% at 36% 48%,
+                  rgba(250,248,242,0.94) 0%,
+                  rgba(250,248,242,0.88) 38%,
+                  rgba(250,248,242,0.72) 58%,
+                  rgba(250,248,242,0.42) 76%,
+                  rgba(250,248,242,0.14) 90%,
+                  transparent 100%
+                )
+              `,
+            }}
+          />
+          {/* MOBILE LANDSCAPE – COMPACT TEXT GLOW */}
+          <div
+            aria-hidden="true"
+            className="
+              pointer-events-none
+              absolute
+              z-0
+              hidden
+
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:block
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:-left-12
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:top-[-69px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:h-[380px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:w-[600px]
+              [@media(max-width:900px)_and_(max-height:600px)_and_(orientation:landscape)]:blur-[12px]
+            "
+            style={{
+              background: `
+                radial-gradient(
+                  ellipse 78% 62% at 38% 55%,
+                  rgba(250,248,242,0.96) 0%,
+                  rgba(250,248,242,0.88) 38%,
+                  rgba(250,248,242,0.65) 58%,
+                  rgba(250,248,242,0.28) 78%,
+                  rgba(250,248,242,0.05) 94%,
+                  transparent 100%
+                )
+              `,
+            }}
           />
           <div className="relative z-10">
-          {/* EYEBROW */}
-          <motion.div
-            {...reveal(0.15)}
-            className="
+            {/* EYEBROW */}
+            <motion.div
+              {...reveal(0.15)}
+              className="
               mb-5
               flex
               items-center
               gap-2.5
               md:mb-6
             "
-          >
-            <svg
-              viewBox="0 0 32 32"
-              className="h-[20px] w-[20px] text-[#71863D]"
-              fill="none"
-              aria-hidden="true"
             >
-              <path
-                d="M16 27C16 19 18 12 23 5"
-                stroke="currentColor"
-                strokeWidth="1"
-              />
-              <path
-                d="M17 19C10 17 7 12 8 7C14 8 18 13 18 18"
-                fill="currentColor"
-                opacity=".8"
-              />
-              <path
-                d="M19 14C20 8 25 5 29 7C27 12 24 15 19 16"
-                fill="currentColor"
-                opacity=".5"
-              />
-            </svg>
+              <svg
+                viewBox="0 0 32 32"
+                className="h-[20px] w-[20px] text-[#71863D]"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16 27C16 19 18 12 23 5"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M17 19C10 17 7 12 8 7C14 8 18 13 18 18"
+                  fill="currentColor"
+                  opacity=".8"
+                />
+                <path
+                  d="M19 14C20 8 25 5 29 7C27 12 24 15 19 16"
+                  fill="currentColor"
+                  opacity=".5"
+                />
+              </svg>
 
-            <span
-              className="
+              <span
+                className="
                 font-manrope
                 text-[10px]
                 font-semibold
@@ -515,40 +569,46 @@ function Hero({ onExperience }: { onExperience: () => void }) {
                 text-[#68753F]
                 sm:text-[11px]
               "
-            >
-              Stay at Paciano
-            </span>
-          </motion.div>
+              >
+                Stay at Paciano
+              </span>
+            </motion.div>
 
-          {/* HEADING */}
-          <motion.h1
-            id="hero-title"
-            {...reveal(0.35)}
-            className="
-              font-display
-              text-[clamp(3.15rem,6.2vw,6.25rem)]
+            {/* HEADING */}
+            <motion.h1
+              id="hero-title"
+              {...reveal(0.35)}
+              className="
+              font-display              
               leading-[0.91]
               tracking-[-0.045em]
               text-[#1c2c21]
 
               max-[380px]:text-[2.85rem]
-              sm:text-[clamp(3.5rem,7vw,5.2rem)]
-              lg:text-[clamp(4.5rem,6.15vw,6.25rem)]
+              
+              text-[44px]
+              sm:text-[52px]
+              md:text-[60px]
+              lg:text-[68px]
+              xl:text-[76px]
+              max-w-[760px]
 
-              [@media(orientation:landscape)_and_(max-height:600px)]:text-[clamp(3rem,5vw,4.3rem)]
+              
             "
-          >
-            <span className="block">Where Every</span>
-            <span className="block">Stay Feels Like</span>
-            <em className="block font-normal text-[#4c6748]">
-              a Story.
-            </em>
-          </motion.h1>
+            >
+              <span className="block">Where Every Stay</span>
+              <em
+                className="block font-normal italic
+                text-[#4c6748]"
+              >
+                Feels Like a Story.
+              </em>
+            </motion.h1>
 
-          {/* DESCRIPTION */}
-          <motion.p
-            {...reveal(0.65)}
-            className="
+            {/* DESCRIPTION */}
+            <motion.p
+              {...reveal(0.65)}
+              className="
               mt-6
               max-w-[405px]
               font-manrope
@@ -563,15 +623,15 @@ function Hero({ onExperience }: { onExperience: () => void }) {
               [@media(orientation:landscape)_and_(max-height:600px)]:mt-4
               [@media(orientation:landscape)_and_(max-height:600px)]:text-[12px]
             "
-          >
-            Spacious rooms, timeless views and thoughtful details —
-            designed for your comfort, surrounded by nature’s beauty.
-          </motion.p>
+            >
+              Spacious rooms, timeless views and thoughtful details — designed
+              for your comfort, surrounded by nature’s beauty.
+            </motion.p>
 
-          {/* CTA BUTTONS */}
-          <motion.div
-            {...reveal(0.9)}
-            className="
+            {/* CTA BUTTONS */}
+            {/* <motion.div
+              {...reveal(0.9)}
+              className="
               mt-7
               flex
               flex-wrap
@@ -582,19 +642,352 @@ function Hero({ onExperience }: { onExperience: () => void }) {
 
               [@media(orientation:landscape)_and_(max-height:600px)]:mt-5
             "
-          >
-            <PillLink href="#rooms">
-              Explore Rooms
-            </PillLink>
+            >
+              <PillLink href="#rooms">Explore Rooms</PillLink>
 
-            <PillLink href="#booking" outlined>
-              Check Availability
-            </PillLink>
-          </motion.div>
+              <PillLink href="#booking" outlined>
+                Check Availability
+              </PillLink>
+            </motion.div> */}
+            <motion.div
+              initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, amount: 0.35 }}
+              transition={{
+                duration: instant ? 0 : 1.4,
+                delay: instant ? 0 : 0.45,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="mt-[35px] will-change-transform"
+            >
+              <a
+                href="#location-details"
+                className="
+                group
+                relative
+
+                inline-flex
+                h-[52px]
+                min-w-[235px]
+
+                items-center
+                justify-between
+
+                overflow-visible
+                rounded-full
+
+                border
+                border-[#B8B98B]/75
+
+                bg-gradient-to-b
+                from-[#5A6440]
+                via-[#4D5736]
+                to-[#414A2F]
+
+                px-[10px]
+                pl-[64px]
+                pr-[9px]
+
+                text-[#F4EFE4]
+
+                shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                hover:-translate-y-[3px]
+                hover:scale-[1.015]
+                hover:border-[#D0C89B]
+                hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
+              "
+              >
+                {/* ===================================================
+                  SOFT GOLDEN INNER GLOW
+              ==================================================== */}
+
+                <span
+                  className="
+                  pointer-events-none
+                  absolute
+                  inset-[1px]
+                  rounded-full
+
+                  bg-gradient-to-b
+                  from-[#D8D3A8]/[0.10]
+                  via-transparent
+                  to-[#1F2818]/[0.16]
+
+                  opacity-100
+                "
+                />
+
+                {/* ===================================================
+              LUXURY SHINE BAND
+              Visible by default + stronger on hover
+          ==================================================== */}
+
+                <span
+                  className="
+                  pointer-events-none
+                  absolute
+                  left-[24%]
+                  top-[3px]
+
+                  h-[46px]
+                  w-[42%]
+
+                  rotate-[7deg]
+
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#F8F2DD]/[0.10]
+                  to-transparent
+
+                  blur-[5px]
+
+                  opacity-80
+
+                  transition-all
+                  duration-[1200ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:left-[48%]
+                  group-hover:opacity-100
+                "
+                />
+
+                {/* ===================================================
+                  THIN WARM LIGHT ALONG LOWER EDGE
+              ==================================================== */}
+
+                <span
+                  className="
+                  pointer-events-none
+                  absolute
+                  inset-x-[18%]
+                  bottom-[3px]
+
+                  h-px
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#D7CF9B]/70
+                  to-transparent
+
+                  opacity-70
+
+                  transition-opacity
+                  duration-700
+
+                  group-hover:opacity-100
+                "
+                />
+
+                {/* ===================================================
+                  LEAF
+              ==================================================== */}
+
+                <span
+                  className="
+                  pointer-events-none
+                  absolute
+                  left-[-8px]
+                  bottom-[-10px]
+
+                  z-20
+
+                  h-[78px]
+                  w-[82px]
+
+                  origin-bottom-left
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:translate-x-[3px]
+                  group-hover:translate-y-[-2px]
+                  group-hover:rotate-[-4deg]
+                  group-hover:scale-[1.05]
+                "
+                >
+                  <img
+                    src={leafWhisper}
+                    alt=""
+                    aria-hidden="true"
+                    className="
+                  h-full
+                  w-auto
+                  max-w-none
+
+                  object-contain
+
+                  brightness-[0.92]
+                  contrast-[1.08]
+                  saturate-[0.92]
+
+                  drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:brightness-[1.03]
+                  group-hover:contrast-[1.04]
+                "
+                  />
+                </span>
+
+                {/* ===================================================
+                      VERY SOFT LEAF LIGHT
+                  ==================================================== */}
+
+                <span
+                  className="
+                  pointer-events-none
+                  absolute
+                  left-[11px]
+                  bottom-[7px]
+
+                  z-[5]
+
+                  h-[46px]
+                  w-[46px]
+
+                  rounded-full
+
+                  bg-[#D8CF9C]/[0.10]
+
+                  blur-[15px]
+
+                  transition-all
+                  duration-1000
+
+                  group-hover:bg-[#E2D9A8]/[0.18]
+                "
+                />
+
+                {/* ===================================================
+                    TEXT
+                ==================================================== */}
+
+                <span
+                  className="
+                    relative
+                    z-30
+
+                    mr-auto
+
+                    whitespace-nowrap
+
+                    text-[9px]
+                    font-medium
+                    uppercase
+
+                    tracking-[0.30em]
+
+                    text-[#F4EFE4]
+
+                    drop-shadow-[0_1px_2px_rgba(31,37,23,0.20)]
+
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(.22,1,.36,1)]
+
+                    group-hover:translate-x-[3px]
+                    group-hover:tracking-[0.36em]
+                  "
+                >
+                  Enquire About Your Stay
+                </span>
+
+                {/* ===================================================
+              SEPARATOR
+          ==================================================== */}
+
+                <span
+                  className="
+                    relative
+                    z-30
+
+                    mx-[13px]
+
+                    h-[22px]
+                    w-px
+
+                    bg-[#F4EFE4]/35
+
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(.22,1,.36,1)]
+
+                    group-hover:h-[27px]
+                    group-hover:bg-[#E5DDBA]/65
+                  "
+                />
+
+                {/* ===================================================
+                    ARROW MEDALLION
+                ==================================================== */}
+
+                <span
+                  className="
+              relative
+              z-30
+
+              flex
+              h-[32px]
+              w-[32px]
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-[#E4DEC1]/55
+
+              bg-gradient-to-b
+              from-[#F0E9D3]/[0.12]
+              to-[#B7AF88]/[0.05]
+
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[4px]
+              group-hover:scale-[1.08]
+              group-hover:border-[#F0E9D3]/85
+              group-hover:bg-[#F4EFE4]/[0.14]
+            "
+                >
+                  <span
+                    className="
+                text-[15px]
+                leading-none
+
+                text-[#F4EFE4]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                group-hover:translate-x-[2px]
+              "
+                  >
+                    →
+                  </span>
+                </span>
+              </a>
+            </motion.div>
           </div>
-        </div>        
-
-       
+        </div>
       </div>
 
       {/* BOTTOM WAVE */}
@@ -604,7 +997,6 @@ function Hero({ onExperience }: { onExperience: () => void }) {
     </section>
   );
 }
-
 
 // function Hero({ onExperience }: { onExperience: () => void }) {
 //   return (
@@ -618,7 +1010,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
 //         className="absolute inset-0 h-full w-full object-cover object-center"
 //       />
 //       <div className="hero-shade absolute inset-0" />
-      
+
 //       <div className="page-container relative z-10 flex min-h-[660px] items-center py-20 lg:min-h-[730px]">
 //         <div className="hero-copy max-w-[560px] pt-4">
 //           {/* <Eyebrow>STAY AT PACIANO</Eyebrow> */}
@@ -725,13 +1117,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
 // }
 
 // function RoomCard({ room, onSelect }: { room: Room onSelect: () => void }) {
-  function RoomCard({
-    room,
-    onSelect,
-  }: {
-    room: Room;
-    onSelect: () => void;
-  }) {
+function RoomCard({ room, onSelect }: { room: Room; onSelect: () => void }) {
   return (
     <article className="room-card group relative h-[385px] w-[280px] shrink-0 snap-start overflow-hidden rounded-[22px] sm:w-[300px] lg:h-[420px] lg:w-[318px]">
       <img
@@ -760,18 +1146,18 @@ function Hero({ onExperience }: { onExperience: () => void }) {
         />
       </div>
     </article>
-  )
+  );
 }
 
 function RoomCollection({ onSelect }: { onSelect: (room: Room) => void }) {
-  const [category, setCategory] = useState("All Rooms")
-  const scroller = useRef<HTMLDivElement>(null)
+  const [category, setCategory] = useState("All Rooms");
+  const scroller = useRef<HTMLDivElement>(null);
   const visibleRooms =
     category === "All Rooms"
       ? rooms
-      : rooms.filter((room) => room.category === category)
+      : rooms.filter((room) => room.category === category);
   const scroll = (direction: number) =>
-    scroller.current?.scrollBy({ left: direction * 340, behavior: "smooth" })
+    scroller.current?.scrollBy({ left: direction * 340, behavior: "smooth" });
   return (
     <section
       id="rooms"
@@ -820,8 +1206,8 @@ function RoomCollection({ onSelect }: { onSelect: (room: Room) => void }) {
                   aria-selected={category === item}
                   type="button"
                   onClick={() => {
-                    setCategory(item)
-                    scroller.current?.scrollTo({ left: 0, behavior: "smooth" })
+                    setCategory(item);
+                    scroller.current?.scrollTo({ left: 0, behavior: "smooth" });
                   }}
                   className={`whitespace-nowrap rounded-full px-4 py-2 text-[11px] transition-colors ${
                     category === item
@@ -860,15 +1246,15 @@ function RoomCollection({ onSelect }: { onSelect: (room: Room) => void }) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function FeaturedRoom({ room }: { room: Room }) {
   const gallery = [room.image, clientRoom6, heroBannerAlt, riverValley];
-  const [active, setActive] = useState(0)
-  const shownImage = gallery[active]
+  const [active, setActive] = useState(0);
+  const shownImage = gallery[active];
   const change = (step: number) =>
-    setActive((current) => (current + step + gallery.length) % gallery.length)
+    setActive((current) => (current + step + gallery.length) % gallery.length);
   return (
     <section
       id="room-showcase"
@@ -936,12 +1322,14 @@ function FeaturedRoom({ room }: { room: Room }) {
             {room.details}
           </p>
           <div className="mt-8 grid grid-cols-4 border-y border-[#deddd1] py-5">
-            {([
-              { icon: Waves, label: "River View" },
-              { icon: BedDouble, label: "King Size Bed" },
-              { icon: Sunrise, label: "Private Balcony" },
-              { icon: Bath, label: "Spacious Bathroom" },
-            ] as const).map(({ icon: Icon, label }) => (
+            {(
+              [
+                { icon: Waves, label: "River View" },
+                { icon: BedDouble, label: "King Size Bed" },
+                { icon: Sunrise, label: "Private Balcony" },
+                { icon: Bath, label: "Spacious Bathroom" },
+              ] as const
+            ).map(({ icon: Icon, label }) => (
               <div
                 key={label}
                 className="flex flex-col items-center gap-2 border-r border-[#deddd1] px-1 text-center last:border-0"
@@ -966,7 +1354,7 @@ function FeaturedRoom({ room }: { room: Room }) {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function StayFeatures() {
@@ -989,13 +1377,13 @@ function StayFeatures() {
         ))}
       </div>
     </section>
-  )
+  );
 }
 
 function DayAtPaciano() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(0);
   const move = (step: number) =>
-    setActive((current) => (current + step + moments.length) % moments.length)
+    setActive((current) => (current + step + moments.length) % moments.length);
   return (
     <section
       className="relative overflow-hidden bg-[#eeeee5]"
@@ -1076,7 +1464,7 @@ function DayAtPaciano() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function GuestStories() {
@@ -1152,18 +1540,18 @@ function GuestStories() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function BookingCTA() {
-  const [submitted, setSubmitted] = useState(false)
-  const [checkIn, setCheckIn] = useState("")
-  const [checkOut, setCheckOut] = useState("")
-  const today = new Date().toISOString().slice(0, 10)
+  const [submitted, setSubmitted] = useState(false);
+  const [checkIn, setCheckIn] = useState("");
+  const [checkOut, setCheckOut] = useState("");
+  const today = new Date().toISOString().slice(0, 10);
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    setSubmitted(true)
-  }
+    event.preventDefault();
+    setSubmitted(true);
+  };
   return (
     <section
       id="booking"
@@ -1248,8 +1636,8 @@ function BookingCTA() {
                 min={today}
                 value={checkIn}
                 onChange={(event) => {
-                  setCheckIn(event.target.value)
-                  setSubmitted(false)
+                  setCheckIn(event.target.value);
+                  setSubmitted(false);
                 }}
                 required
                 className="booking-input"
@@ -1266,8 +1654,8 @@ function BookingCTA() {
                 min={checkIn || today}
                 value={checkOut}
                 onChange={(event) => {
-                  setCheckOut(event.target.value)
-                  setSubmitted(false)
+                  setCheckOut(event.target.value);
+                  setSubmitted(false);
                 }}
                 required
                 className="booking-input"
@@ -1310,39 +1698,39 @@ function BookingCTA() {
         </form>
       </div>
     </section>
-  )
+  );
 }
 
 export default function StayPageContent() {
-  const [featuredRoom, setFeaturedRoom] = useState(rooms[0])
-  const [experienceOpen, setExperienceOpen] = useState(false)
+  const [featuredRoom, setFeaturedRoom] = useState(rooms[0]);
+  const [experienceOpen, setExperienceOpen] = useState(false);
   useEffect(() => {
-    if (!experienceOpen) return
+    if (!experienceOpen) return;
     const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setExperienceOpen(false)
-    }
-    window.addEventListener("keydown", onKeyDown)
-    return () => window.removeEventListener("keydown", onKeyDown)
-  }, [experienceOpen])
+      if (event.key === "Escape") setExperienceOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [experienceOpen]);
   const selectRoom = (room: Room) => {
-    setFeaturedRoom(room)
+    setFeaturedRoom(room);
     document
       .getElementById("room-showcase")
-      ?.scrollIntoView({ behavior: "smooth" })
-  }
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div className="stay-page relative overflow-hidden bg-[#F8F5EE] text-[#203025]">
       <StayBotanicalBackdrop />
       <div className="relative z-[1]">
-      <Hero onExperience={() => setExperienceOpen(true)} />
-      <RoomCollection onSelect={selectRoom} />
-      <StayPhotoBridge src={heroBannerAlt} bottomFade="#f2efe6" />
-      <FeaturedRoom key={featuredRoom.title} room={featuredRoom} />
-      <MistSectionBridge />
-      <StayFeatures />
-      <DayAtPaciano />
-      <StayPhotoBridge src={slowDaysMoments} topFade="#eeeee5" />
-      <GuestStories />
+        <Hero onExperience={() => setExperienceOpen(true)} />
+        <RoomCollection onSelect={selectRoom} />
+        <StayPhotoBridge src={heroBannerAlt} bottomFade="#f2efe6" />
+        <FeaturedRoom key={featuredRoom.title} room={featuredRoom} />
+        <MistSectionBridge />
+        <StayFeatures />
+        <DayAtPaciano />
+        <StayPhotoBridge src={slowDaysMoments} topFade="#eeeee5" />
+        <GuestStories />
       </div>
       <div className="relative isolate">
         <BookingCTA />

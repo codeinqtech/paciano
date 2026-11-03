@@ -759,12 +759,12 @@ lg:mt-[75px]
 
             <span
               className="
-      block
-      mt-1
-      italic
-      font-normal
-      text-[#a5d56d]
-    "
+                block
+                mt-1
+                italic
+                font-normal
+                text-[#a5d56d]
+              "
               style={{
                 animation: intro
                   ? "pacianoHeading 1700ms cubic-bezier(0.22,1,0.36,1) 1450ms both"

@@ -1041,25 +1041,25 @@ function PacianoOurPlaceSection({ image }: PacianoOurPlaceSectionProps) {
           </p>
 
           {/* <div
-    ref={ctaRef}
-    className={`
-      mt-[35px]
-      transform
-      transition-all
-      duration-[1450ms]
-      ease-[cubic-bezier(0.22,1,0.36,1)]
-      will-change-transform
+            ref={ctaRef}
+            className={`
+              mt-[35px]
+              transform
+              transition-all
+              duration-[1450ms]
+              ease-[cubic-bezier(0.22,1,0.36,1)]
+              will-change-transform
 
-      ${
-        isVisible
-          ? "translate-y-0 scale-100 opacity-100"
-          : "translate-y-8 scale-[0.97] opacity-0"
-      }
-    `}
-    style={{
-      transitionDelay: "2250ms",
-    }}
-    > */}
+              ${
+                isVisible
+                  ? "translate-y-0 scale-100 opacity-100"
+                  : "translate-y-8 scale-[0.97] opacity-0"
+              }
+            `}
+            style={{
+              transitionDelay: "2250ms",
+            }}
+            > */}
           <motion.div
             initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -1140,115 +1140,115 @@ function PacianoOurPlaceSection({ image }: PacianoOurPlaceSectionProps) {
 
               <span
                 className="
-        pointer-events-none
-        absolute
-        left-[24%]
-        top-[3px]
+                  pointer-events-none
+                  absolute
+                  left-[24%]
+                  top-[3px]
 
-        h-[46px]
-        w-[42%]
+                  h-[46px]
+                  w-[42%]
 
-        rotate-[7deg]
+                  rotate-[7deg]
 
-        rounded-full
+                  rounded-full
 
-        bg-gradient-to-r
-        from-transparent
-        via-[#F8F2DD]/[0.10]
-        to-transparent
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#F8F2DD]/[0.10]
+                  to-transparent
 
-        blur-[5px]
+                  blur-[5px]
 
-        opacity-80
+                  opacity-80
 
-        transition-all
-        duration-[1200ms]
-        ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-all
+                  duration-[1200ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-        group-hover:left-[48%]
-        group-hover:opacity-100
-      "
+                  group-hover:left-[48%]
+                  group-hover:opacity-100
+                "
               />
 
               {/* ===================================================
-        THIN WARM LIGHT ALONG LOWER EDGE
-    ==================================================== */}
+                  THIN WARM LIGHT ALONG LOWER EDGE
+              ==================================================== */}
 
               <span
                 className="
-        pointer-events-none
-        absolute
-        inset-x-[18%]
-        bottom-[3px]
+                  pointer-events-none
+                  absolute
+                  inset-x-[18%]
+                  bottom-[3px]
 
-        h-px
+                  h-px
 
-        bg-gradient-to-r
-        from-transparent
-        via-[#D7CF9B]/70
-        to-transparent
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#D7CF9B]/70
+                  to-transparent
 
-        opacity-70
+                  opacity-70
 
-        transition-opacity
-        duration-700
+                  transition-opacity
+                  duration-700
 
-        group-hover:opacity-100
-      "
+                  group-hover:opacity-100
+                "
               />
 
               {/* ===================================================
-        LEAF
-    ==================================================== */}
+                  LEAF
+              ==================================================== */}
 
               <span
                 className="
-        pointer-events-none
-        absolute
-        left-[-8px]
-        bottom-[-10px]
+                  pointer-events-none
+                  absolute
+                  left-[-8px]
+                  bottom-[-10px]
 
-        z-20
+                  z-20
 
-        h-[78px]
-        w-[82px]
+                  h-[78px]
+                  w-[82px]
 
-        origin-bottom-left
+                  origin-bottom-left
 
-        transition-all
-        duration-[900ms]
-        ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-        group-hover:translate-x-[3px]
-        group-hover:translate-y-[-2px]
-        group-hover:rotate-[-4deg]
-        group-hover:scale-[1.05]
-      "
+                  group-hover:translate-x-[3px]
+                  group-hover:translate-y-[-2px]
+                  group-hover:rotate-[-4deg]
+                  group-hover:scale-[1.05]
+                "
               >
                 <img
                   src={leafWhisper}
                   alt=""
                   aria-hidden="true"
                   className="
-          h-full
-          w-auto
-          max-w-none
+                  h-full
+                  w-auto
+                  max-w-none
 
-          object-contain
+                  object-contain
 
-          brightness-[0.92]
-          contrast-[1.08]
-          saturate-[0.92]
+                  brightness-[0.92]
+                  contrast-[1.08]
+                  saturate-[0.92]
 
-          drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
+                  drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
 
-          transition-all
-          duration-[900ms]
-          ease-[cubic-bezier(.22,1,.36,1)]
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
 
-          group-hover:brightness-[1.03]
-          group-hover:contrast-[1.04]
-        "
+                  group-hover:brightness-[1.03]
+                  group-hover:contrast-[1.04]
+                "
                 />
               </span>
 
@@ -3270,23 +3270,23 @@ export default function AboutUsInfo() {
                 [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:[--experience-y:0px]               
                 ${
                   index === 3
-                  ? `
+                    ? `
                   [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-2
                   [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-2
                 `
-                : ""
+                    : ""
                 }
                 ${
                   index === 4
-                  ? `
+                    ? `
                     [@media(orientation:portrait)_and_(min-width:640px)_and_(max-width:900px)]:col-start-4
                     [@media(orientation:landscape)_and_(pointer:coarse)]:!col-start-4
                     [@media(orientation:landscape)_and_(pointer:coarse)]:!mx-0
                     [@media(orientation:landscape)_and_(pointer:coarse)]:!w-full
                     [@media(orientation:landscape)_and_(pointer:coarse)]:!max-w-none
                   `
-                  : ""
-              }
+                    : ""
+                }
               [@media(orientation:landscape)_and_(pointer:coarse)]:!col-span-2
               [@media(orientation:landscape)_and_(pointer:coarse)]:[--experience-y:0px]
               [@media(orientation:landscape)_and_(pointer:coarse)]:!transform-none
