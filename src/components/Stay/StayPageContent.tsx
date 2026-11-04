@@ -61,9 +61,9 @@ import familyRoom from "@/images/family-room.png";
 import familyBalcony from "@/images/room1.png";
 import familyDetail from "@/images/home-room-1.webp";
 import familyBathroom from "@/images/home-room-1.webp";
-import familyView from "@/images/home-room-1.webp";
+import familyView from "@/images/stay/familyView.webp";
 
-import leafCta from "@/images/leaf-cta.png";
+import pacianoLeaf from "@/images/paciano-leaf-transparent.png";
 const STAY_CREAM = "#F8F5EE";
 const FOOTER_DARK = "#09160F";
 
@@ -145,7 +145,7 @@ const amenities: { label: string; icon: LucideIcon }[] = [
 ];
 
 const moments = [
-  { time: "06:00 AM", title: "Wake to mountain sunrise", image: riverValley },
+   { time: "06:00 AM", title: "Wake to mountain sunrise", image: riverValley },
   { time: "08:00 AM", title: "Breakfast by the river", image: resortDeck },
   {
     time: "04:00 PM",
@@ -1646,10 +1646,11 @@ function RoomCollection() {
                       <span
                         className={`
                           whitespace-nowrap
-                          font-manrope
+                          font-cormorant
                           text-[8px]
                           sm:text-[8px]
                           lg:text-[8.5px]
+                          leading-[.95]
                           font-semibold
                           uppercase
                           tracking-[0.24em]
@@ -2682,6 +2683,8 @@ function RoomDescriptions() {
                       sm:text-[24px]
                       lg:text-[21px]
                       xl:text-[25px]
+
+                      
                     "
                   >
                     {room.title}
@@ -2780,87 +2783,166 @@ function RoomDescriptions() {
                         </div>
                       ))}
                     </div>
-                  </div>
+                  </div>                 
+                  
+                  {/* =========================================
+                      CLOSING EDITORIAL STATEMENT
+                  ========================================= */}
 
-                  {/* CLOSING EDITORIAL STATEMENT */}
                   <div
                     className="
-      paciano-stay-step
-      paciano-stay-step-6
-      mt-5
-      flex
-      items-center
-      gap-3
-      sm:mt-6
-      lg:mt-5
-      xl:mt-6
-      [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
-    "
+                      paciano-stay-step
+                      paciano-stay-step-6
+                      mt-5
+                      w-full
+                      sm:mt-6
+                      lg:mt-5
+                      xl:mt-6
+                      [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
+                    "
                   >
-                    <svg
-                      viewBox="0 0 40 48"
-                      fill="none"
-                      className="h-10 w-8 shrink-0 text-[#82916B]"
+                    <div
+                      className="
+                        relative
+                        flex
+                        w-full
+                        min-w-0
+                        items-center
+                        gap-3
+                        overflow-hidden
+                        rounded-[12px]
+                        border
+                        border-[#DDD9C9]
+                        bg-[#F5F1E7]/80
+                        px-3
+                        py-3
+                        sm:gap-4
+                        sm:px-5
+                        sm:py-4
+                        lg:gap-3
+                        lg:px-3
+                        lg:py-3
+                        xl:gap-4
+                        xl:px-5
+                        xl:py-4
+                        2xl:px-6
+                      "
                     >
-                      <path
-                        d="M20 44C20 29 17 15 7 4"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M19 29C8 28 4 21 5 14C14 15 19 21 19 29Z"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                      />
-                      <path
-                        d="M19 20C20 11 26 5 35 6C34 15 28 20 19 20Z"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                      />
-                      <path
-                        d="M20 43C23 32 29 27 37 26C37 36 30 42 20 43Z"
-                        stroke="currentColor"
-                        strokeWidth="1.2"
-                      />
-                    </svg>
-
-                    <div className="min-w-0 border-l border-[#D9D5C8] pl-4">
-                      <p
+                      {/* Soft decorative background */}
+                      <div
                         className="
-          font-manrope
-          text-[8px]
-          font-semibold
-          uppercase
-          tracking-[0.22em]
-          text-[#7C875B]
-          sm:text-[9px]
-        "
-                      >
-                        {isFirst
-                          ? "A retreat beside the river"
-                          : "Together, surrounded by nature"}
-                      </p>
+                          pointer-events-none
+                          absolute
+                          -right-8
+                          -top-12
+                          h-28
+                          w-28
+                          rounded-full
+                          bg-[#879368]/[0.06]
+                          blur-2xl
+                          sm:h-36
+                          sm:w-36
+                        "
+                      />
 
-                      <p
+                      {/* Animated botanical leaf */}
+                      <div
                         className="
-          mt-1
-          font-cormorant
-          text-[18px]
-          italic
-          leading-snug
-          text-[#465747]
-          sm:text-[20px]
-          lg:text-[17px]
-          xl:text-[20px]
-        "
+                          relative
+                          flex
+                          h-[52px]
+                          w-[52px]
+                          shrink-0
+                          items-center
+                          justify-center
+                          sm:h-[66px]
+                          sm:w-[66px]
+                          lg:h-[56px]
+                          lg:w-[56px]
+                          xl:h-[68px]
+                          xl:w-[68px]
+                        "
                       >
-                        {isFirst
-                          ? "Where river views meet mountain serenity."
-                          : "More space to share, more moments to remember."}
-                      </p>
+                        <img
+                          src={pacianoLeaf}
+                          alt=""
+                          aria-hidden="true"
+                          // className="
+                          //   paciano-leaf-float
+                          //   h-full
+                          //   w-full
+                          //   object-contain
+                          //   opacity-90
+                          // "
+                          className="
+                            h-full w-full object-contain opacity-90
+                            origin-center
+                            transition-transform duration-700 ease-in-out
+                            hover:-translate-y-2
+                            hover:rotate-6
+                            hover:scale-105
+                          "
+                        />
+                      </div>
+
+                      {/* Fine vertical divider */}
+                      <div
+                        className="
+                          h-10
+                          w-px
+                          shrink-0
+                          bg-[#D2CEBC]
+                          sm:h-12
+                          lg:h-10
+                          xl:h-12
+                        "
+                      />
+
+                      {/* Editorial text */}
+                      <div className="relative z-10 min-w-0 flex-1 text-left">
+                        <p
+                          className="
+                            font-manrope
+                            text-[8px]
+                            font-semibold
+                            uppercase
+                            leading-relaxed
+                            tracking-[0.18em]
+                            text-[#7D895D]
+                            sm:text-[9px]
+                            sm:tracking-[0.23em]
+                            lg:text-[8px]
+                            xl:text-[9px]
+                          "
+                        >
+                          {isFirst
+                            ? "A QUIETER WAY TO EXPERIENCE NATURE"
+                            : "TOGETHER, IN THE HEART OF NATURE"}
+                        </p>
+
+                        <p
+                          className="
+                            mt-1
+                            font-cormorant
+                            text-[17px]
+                            italic
+                            leading-[1.2]
+                            tracking-[0.005em]
+                            text-[#425344]
+                            sm:text-[21px]
+                            lg:text-[17px]
+                            xl:text-[21px]
+                            2xl:text-[23px]
+                          "
+                        >
+                          {isFirst
+                            ? "Where river views meets mountain serenity."
+                            : "Where family moments bloom in Nature’s Embrace."}
+                        </p>
+                      </div>
                     </div>
                   </div>
+
                 </div>
               </article>
             );
