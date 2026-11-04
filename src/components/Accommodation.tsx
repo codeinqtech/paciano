@@ -770,18 +770,18 @@ export default function Accommodation() {
                     <div
                       key={item.id}
                       className={`
-      relative
-      min-w-0
-      transition-all
-      duration-[1000ms]
-      ease-[cubic-bezier(0.16,1,0.3,1)]
-      ${
-        visible
-          ? "opacity-100 translate-y-0 blur-0"
-          : "opacity-0 translate-y-6 blur-[2px]"
-      }
-     
-    `}
+                        relative
+                        min-w-0
+                        transition-all
+                        duration-[1000ms]
+                        ease-[cubic-bezier(0.16,1,0.3,1)]
+                        ${
+                          visible
+                            ? "opacity-100 translate-y-0 blur-0"
+                            : "opacity-0 translate-y-6 blur-[2px]"
+                        }
+                      
+                      `}
                       style={{
                         transitionDelay: visible
                           ? `${180 + index * 100}ms`

@@ -574,7 +574,8 @@ export default function GuestReviews() {
           className="mt-9 flex justify-center sm:mt-11"
         >
           <a
-            href="https://www.google.com/search?q=Paciano+Hospitality+reviews"
+            // href="https://www.google.com/search?q=Paciano+Hospitality+reviews"
+            href="https://www.google.com/travel/search?q=paciano&ts=CAAaGhIYEhIKBwjqDxALGAQSBwjqDxALGAUyAggAKgcKBToDSU5S&qs=MidDaGtJbTlPZ29vQy0zNkItR2cwdlp5OHhNV3R3ZG5SZmVXWmlFQUU&ap=ugEHcmV2aWV3cw"
             target="_blank"
             rel="noopener noreferrer"
             className="
