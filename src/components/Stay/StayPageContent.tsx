@@ -29,16 +29,17 @@ import {
   X,
   type LucideIcon,
 } from "lucide-react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, AnimatePresence } from "framer-motion";
 import heroBanner from "@/images/stay/stay-banner.png";
 import leafWhisper from "@/images/button-leaf.png";
 import heroBannerAlt from "@/images/stay/hero-banner-alt.jpg";
-import slowDaysMoments from "@/images/stay/slow-days-moments.jpg";
-import bookingRiverSunrise from "@/images/stay/booking-river-sunrise.jpg";
-import resortDeck from "@/images/stay/resort-deck.jpg";
-import balcony from "@/images/stay/balcony.jpg";
-import riverValley from "@/images/stay/river-valley.jpg";
-import goldenRiver from "@/images/stay/golden-river.jpg";
+
+import bookingRiverSunrise from "@/images/stay/booking-river-sunrise.png";
+import resortDeck from "@/images/stay/resort-deck.png";
+import natureWalks from "@/images/stay/nature-walks.png";
+import slowDaysMoments from "@/images/stay/slow-days-moments.png";
+
+import bonfire from "@/images/stay/bonfire.png";
 import clientRoom1 from "@/images/stay/client-room-1.jpeg";
 import clientRoom2 from "@/images/stay/client-room-2.jpeg";
 import clientRoom3 from "@/images/stay/client-room-3.jpeg";
@@ -145,17 +146,21 @@ const amenities: { label: string; icon: LucideIcon }[] = [
 ];
 
 const moments = [
-   { time: "06:00 AM", title: "Wake to mountain sunrise", image: riverValley },
+  {
+    time: "06:00 AM",
+    title: "Wake to mountain sunrise",
+    image: slowDaysMoments,
+  },
   { time: "08:00 AM", title: "Breakfast by the river", image: resortDeck },
   {
     time: "04:00 PM",
     title: "Nature walk & local experiences",
-    image: balcony,
+    image: natureWalks,
   },
   {
     time: "07:00 PM",
     title: "Bonfire & dining under the stars",
-    image: goldenRiver,
+    image: bonfire,
   },
 ];
 
@@ -199,28 +204,6 @@ function CircleArrow({
     >
       <Icon size={18} strokeWidth={1.5} />
     </button>
-  );
-}
-
-function PillLink({
-  children,
-  href,
-  outlined = false,
-}: {
-  children: ReactNode;
-  href: string;
-  outlined?: boolean;
-}) {
-  return (
-    <a
-      href={href}
-      className={`pill-link ${outlined ? "pill-outline" : "pill-solid"}`}
-    >
-      <span>{children}</span>
-      <span className="pill-icon">
-        <ArrowRight size={16} strokeWidth={1.5} />
-      </span>
-    </a>
   );
 }
 
@@ -322,6 +305,8 @@ function Hero({ onExperience }: { onExperience: () => void }) {
             w-full
             max-w-[580px]
             min-w-0
+            
+            [@media(min-width:1200px)_and_(max-width:1599px)]:max-w-[640px]
             [@media(orientation:landscape)_and_(max-height:600px)]:max-w-[460px]
           "
         >
@@ -485,6 +470,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
               md:text-[60px]
               lg:text-[68px]
               xl:text-[76px]
+              [@media(min-width:1200px)_and_(max-width:1599px)]:text-[60px]
               max-w-[760px]
 
               
@@ -522,27 +508,6 @@ function Hero({ onExperience }: { onExperience: () => void }) {
               for your comfort, surrounded by nature’s beauty.
             </motion.p>
 
-            {/* CTA BUTTONS */}
-            {/* <motion.div
-              {...reveal(0.9)}
-              className="
-              mt-7
-              flex
-              flex-wrap
-              items-center
-              gap-3
-
-              sm:mt-8
-
-              [@media(orientation:landscape)_and_(max-height:600px)]:mt-5
-            "
-            >
-              <PillLink href="#rooms">Explore Rooms</PillLink>
-
-              <PillLink href="#booking" outlined>
-                Check Availability
-              </PillLink>
-            </motion.div> */}
             <motion.div
               initial={instant ? false : { opacity: 0, y: 28, scale: 0.98 }}
               whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -552,7 +517,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
                 delay: instant ? 0 : 0.45,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className="mt-[35px] will-change-transform"
+              className="mt-[35px] will-change-transform [@media(min-width:1200px)_and_(max-width:1599px)]:mt-[24px]"
             >
               <a
                 href="#location-details"
@@ -891,6 +856,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
     </section>
   );
 }
+
 type AmenityIconType = "bed" | "balcony" | "view" | "bath" | "wifi";
 type Stay = {
   id: string;
@@ -1151,8 +1117,8 @@ function RoomCollection() {
         setVisible(entry.isIntersecting);
       },
       {
-        threshold: 0.12,
-        rootMargin: "0px 0px -12% 0px",
+        threshold: 0.01,
+        rootMargin: "0px",
       },
     );
 
@@ -1276,8 +1242,8 @@ function RoomCollection() {
 
           <h2
             className="
-            paciano-reveal
-            paciano-delay-2
+            paciano-stay-step
+            paciano-stay-step-2
             mx-auto
             mt-[16px]
             max-w-[950px]
@@ -1289,6 +1255,8 @@ function RoomCollection() {
             text-[#17251B]
             sm:text-[52px]
             lg:text-[60px]
+            [@media(orientation:landscape)_and_(max-height:500px)]:mt-2
+            [@media(orientation:landscape)_and_(max-height:500px)]:text-[36px]
           "
           >
             Where Every Stay,
@@ -1315,6 +1283,10 @@ function RoomCollection() {
               text-[#657067]
               sm:text-[13px]
               lg:text-[14px]
+              [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
+              [@media(orientation:landscape)_and_(max-height:500px)]:max-w-[620px]
+              [@media(orientation:landscape)_and_(max-height:500px)]:text-[11px]
+              [@media(orientation:landscape)_and_(max-height:500px)]:leading-[1.6]
             "
           >
             Wake to misty mountains, unwind beside the river, and let nature set
@@ -1339,6 +1311,7 @@ function RoomCollection() {
               transition-all
               duration-[1400ms]
               ease-[cubic-bezier(0.16,1,0.3,1)]
+              [@media(orientation:landscape)_and_(max-height:500px)]:mt-5
               ${
                 visible
                   ? "opacity-100 translate-y-0 blur-0"
@@ -1351,23 +1324,27 @@ function RoomCollection() {
             ====================================================== */}
 
           <div
-            className={`
-              paciano-stay-step
-              paciano-stay-step-5
-              relative
-              mt-10
-              sm:mt-11
-              lg:mt-12
-              w-full
-              transition-all
-              duration-[1400ms]
-              ease-[cubic-bezier(0.16,1,0.3,1)]
-              ${
-                visible
-                  ? "translate-y-0 opacity-100 blur-0"
-                  : "translate-y-8 opacity-0 blur-[2px]"
-              }
-            `}
+            // className={`
+            //   paciano-stay-step
+            //   paciano-stay-step-5
+            //   relative
+            //   mt-10
+            //   sm:mt-11
+            //   lg:mt-12
+            //   w-full
+            //   transition-all
+            //   duration-[1400ms]
+            //   ease-[cubic-bezier(0.16,1,0.3,1)]
+            //   ${
+            //     visible
+            //       ? "translate-y-0 opacity-100 blur-0"
+            //       : "translate-y-8 opacity-0 blur-[2px]"
+            //   }
+            // `}
+            className="
+    relative
+    w-full
+  "
           >
             <div
               className="
@@ -1379,6 +1356,8 @@ function RoomCollection() {
                 gap-3
                 sm:gap-4
                 lg:gap-5
+                transition-all
+
               "
             >
               {[
@@ -1422,9 +1401,14 @@ function RoomCollection() {
                     }}
                     disabled={isTransitioning}
                     aria-pressed={active}
+                    // style={{
+                    //   transitionDelay: visible
+                    //     ? `${180 + index * 140}ms`
+                    //     : "0ms",
+                    // }}
                     style={{
                       transitionDelay: visible
-                        ? `${180 + index * 140}ms`
+                        ? `${180 + index * 450}ms`
                         : "0ms",
                     }}
                     className={`
@@ -1455,6 +1439,11 @@ function RoomCollection() {
                       focus-visible:ring-[#879368]/50
                       disabled:pointer-events-none
                       disabled:opacity-60
+                      ${
+                        visible
+                          ? "translate-y-0 opacity-100"
+                          : "translate-y-5 opacity-0"
+                      }
                       ${
                         active
                           ? "border-[#586B3B] bg-[#586B3B] text-[#FFFDF4] shadow-[0_8px_24px_rgba(65,83,43,0.22)]"
@@ -1794,6 +1783,52 @@ function RoomCollection() {
                 }
 
               }
+                /* Mobile portrait only — smooth, fixed-position active card */
+@media screen and (max-width: 767px) and (orientation: portrait) {
+  .day-moments-timeline {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: center;
+    justify-items: center;
+    overflow: hidden;
+    gap: 0;
+  }
+
+  .day-moments-timeline > .day-moment-card {
+    grid-area: 1 / 1;
+    width: 100%;
+    max-width: 320px;
+    margin-inline: auto;
+
+    opacity: 0 !important;
+    visibility: hidden;
+    pointer-events: none;
+
+    transform: translate3d(12px, 0, 0) scale(0.985);
+
+    transition:
+      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 650ms !important;
+
+    transition-delay: 0ms !important;
+  }
+
+  .day-moments-timeline > .day-moment-card.is-active {
+    opacity: 1 !important;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translate3d(0, 0, 0) scale(1);
+
+    transition:
+      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s !important;
+
+    transition-delay: 0ms !important;
+  }
+}
 
                 @media (prefers-reduced-motion: reduce) {
 
@@ -2008,13 +2043,58 @@ function RoomCollection() {
   );
 }
 
-{
-  /* =========================================================
-    PACIANO — ROOM DESCRIPTIONS & PHOTO GALLERIES
-========================================================= */
-}
-
 function RoomDescriptions() {
+  const roomSectionRef = useRef<HTMLElement | null>(null);
+  const [revealedRooms, setRevealedRooms] = useState<Record<string, boolean>>(
+    {},
+  );
+  useEffect(() => {
+    const section = roomSectionRef.current;
+    if (!section) return;
+
+    const roomElements =
+      section.querySelectorAll<HTMLElement>("[data-room-reveal]");
+
+    if (!("IntersectionObserver" in window)) {
+      setRevealedRooms(
+        Object.fromEntries(
+          Array.from(roomElements).map((room) => [
+            room.dataset.roomReveal!,
+            true,
+          ]),
+        ),
+      );
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const roomId = (entry.target as HTMLElement).dataset.roomReveal;
+
+            if (roomId) {
+              setRevealedRooms((previous) => ({
+                ...previous,
+                [roomId]: true,
+              }));
+            }
+
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -5% 0px",
+      },
+    );
+
+    roomElements.forEach((room) => observer.observe(room));
+
+    return () => observer.disconnect();
+  }, []);
+
   const [galleryIndexes, setGalleryIndexes] = useState<Record<string, number>>(
     {},
   );
@@ -2126,6 +2206,7 @@ function RoomDescriptions() {
   return (
     <>
       <section
+        ref={roomSectionRef}
         className="
           relative
           mx-auto
@@ -2146,6 +2227,7 @@ function RoomDescriptions() {
               <article
                 key={room.id}
                 id={`room-section-${room.id}`}
+                data-room-reveal={room.id}
                 // className="
                 //   grid
                 //   grid-cols-1
@@ -2159,6 +2241,7 @@ function RoomDescriptions() {
                 //   [@media(orientation:landscape)_and_(max-height:500px)]:gap-5
                 // "
                 className={`
+                  ${revealedRooms[room.id] ? "paciano-room-visible" : ""}
                   scroll-mt-24
                   sm:scroll-mt-28
                   lg:scroll-mt-32
@@ -2197,18 +2280,31 @@ function RoomDescriptions() {
                     relative
                     min-w-0
                     w-full
+
                     ${
                       isFirst
-                        ? "lg:-ml-8 xl:-ml-12 2xl:-ml-16 lg:w-[calc(100%+2rem)] xl:w-[calc(100%+3rem)] 2xl:w-[calc(100%+4rem)]"
+                        ? `
+                          lg:-ml-8
+                          xl:-ml-12
+                          2xl:-ml-16
+
+                          lg:w-[calc(100%+2rem)]
+                          xl:w-[calc(100%+3rem)]
+                          2xl:w-[calc(100%+4rem)]
+
+                          [@media(min-width:1024px)_and_(max-width:1599px)]:!ml-0
+                          [@media(min-width:1024px)_and_(max-width:1599px)]:!w-full
+                        `
                         : "lg:ml-0"
                     }
+
                     ${isFirst ? "order-1" : "order-1 lg:order-2"}
                   `}
                 >
                   {/* Main photograph */}
 
                   <div
-                    className="
+                    className="                     
                       group
                       relative
                       aspect-[1.48/1]
@@ -2465,7 +2561,16 @@ function RoomDescriptions() {
                           ROOM THUMBNAIL CAROUSEL
                       ===================================== */}
 
-                  <div className="relative z-10 -mt-4 flex min-w-0 items-center gap-2 px-1 sm:gap-3 sm:pl-3">
+                  <div
+                    // className="relative z-10 -mt-4 flex min-w-0 items-center gap-2 px-1 sm:gap-3 sm:pl-3"
+                    className="
+                      relative z-10 -mt-4
+                      flex min-w-0 items-center gap-2
+                      px-1 sm:gap-3 sm:pl-3
+                      animate-in fade-in slide-in-from-bottom-6
+                      duration-1000 delay-200
+                    "
+                  >
                     {/* Previous thumbnails */}
                     <button
                       type="button"
@@ -2566,13 +2671,13 @@ function RoomDescriptions() {
                       onClick={() => scrollThumbnails(room.id, 1)}
                       aria-label="Next thumbnails"
                       className="
-      flex h-8 w-8 shrink-0 items-center justify-center
-      rounded-full border border-[#D9D5C8]
-      bg-[#F8F5ED] text-[#53604F]
-      transition-all duration-500
-      hover:bg-[#71864F] hover:text-white
-      sm:h-9 sm:w-9
-    "
+                        flex h-8 w-8 shrink-0 items-center justify-center
+                        rounded-full border border-[#D9D5C8]
+                        bg-[#F8F5ED] text-[#53604F]
+                        transition-all duration-500
+                        hover:bg-[#71864F] hover:text-white
+                        sm:h-9 sm:w-9
+                      "
                     >
                       <svg
                         viewBox="0 0 24 24"
@@ -2585,28 +2690,6 @@ function RoomDescriptions() {
                       </svg>
                     </button>
                   </div>
-
-                  {/* Image count */}
-
-                  <div
-                    className="
-                      mt-3
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      text-[9px]
-                      tracking-[0.22em]
-                      text-[#79816E]
-                      sm:justify-end
-                    "
-                  >
-                    <span>{String(imageIndex + 1).padStart(2, "0")}</span>
-
-                    <span className="h-px w-7 bg-[#A8AD98]" />
-
-                    <span>{String(room.images.length).padStart(2, "0")}</span>
-                  </div>
                 </div>
 
                 {/* =========================================
@@ -2614,42 +2697,23 @@ function RoomDescriptions() {
                 ========================================= */}
 
                 {/* =========================================
-    ROOM DESCRIPTION — LUXURY EDITORIAL PANEL
-========================================= */}
+                    ROOM DESCRIPTION — LUXURY EDITORIAL PANEL
+                ========================================= */}
 
                 <div
                   key={room.id}
                   className={`
-    flex
-    min-w-0
-    flex-col
-    justify-center
-    ${
-      isFirst
-        ? "order-2 lg:order-2 lg:pl-2 xl:pl-5"
-        : "order-2 lg:order-1 lg:pr-2 xl:pr-5"
-    }
-  `}
+                    flex
+                    min-w-0
+                    flex-col
+                    justify-center
+                    ${
+                      isFirst
+                        ? "order-2 lg:order-2 lg:pl-2 xl:pl-5"
+                        : "order-2 lg:order-1 lg:pr-2 xl:pr-5"
+                    }
+                  `}
                 >
-                  {/* COLLECTION LABEL */}
-                  {/* <div className="paciano-stay-step paciano-stay-step-1 mb-3 flex items-center gap-3">
-                    <span
-                      className="
-                      font-manrope
-                      text-[9px]
-                      font-bold
-                      uppercase
-                      tracking-[0.30em]
-                      text-[#75834D]
-                      sm:text-[10px]
-                    "
-                    >
-                      {isFirst ? "Riverside Collection" : "Family Collection"}
-                    </span>
-
-                    <span className="h-px w-12 bg-[#AEB69B]" />
-                  </div> */}
-
                   {/* ROOM NAME */}
                   <h3
                     className="
@@ -2719,18 +2783,18 @@ function RoomDescriptions() {
                   {/* AMENITIES */}
                   <div
                     className="
-      paciano-stay-step
-      paciano-stay-step-5
-      mt-6
-      border-y
-      border-[#D9D5C8]
-      py-3
-      sm:mt-7
-      lg:mt-5
-      xl:mt-6
-      [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
-      [@media(orientation:landscape)_and_(max-height:500px)]:py-2
-    "
+                      paciano-stay-step
+                      paciano-stay-step-5
+                      mt-6
+                      border-y
+                      border-[#D9D5C8]
+                      py-3
+                      sm:mt-7
+                      lg:mt-5
+                      xl:mt-6
+                      [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
+                      [@media(orientation:landscape)_and_(max-height:500px)]:py-2
+                    "
                   >
                     <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5">
                       {room.amenities.map((amenity, index) => (
@@ -2783,8 +2847,8 @@ function RoomDescriptions() {
                         </div>
                       ))}
                     </div>
-                  </div>                 
-                  
+                  </div>
+
                   {/* =========================================
                       CLOSING EDITORIAL STATEMENT
                   ========================================= */}
@@ -2942,7 +3006,6 @@ function RoomDescriptions() {
                       </div>
                     </div>
                   </div>
-
                 </div>
               </article>
             );
@@ -2959,21 +3022,21 @@ function RoomDescriptions() {
         createPortal(
           <div
             className="
-        fixed
-        inset-0
-        z-[9999]
-        flex
-        h-[100dvh]
-        w-screen
-        items-center
-        justify-center
-        overflow-hidden
-        bg-[#111710]/95
-        p-3
-        backdrop-blur-md
-        animate-[lightboxFade_350ms_ease-out]
-        sm:p-6
-      "
+              fixed
+              inset-0
+              z-[9999]
+              flex
+              h-[100dvh]
+              w-screen
+              items-center
+              justify-center
+              overflow-hidden
+              bg-[#111710]/95
+              p-3
+              backdrop-blur-md
+              animate-[lightboxFade_350ms_ease-out]
+              sm:p-6
+            "
             onClick={closeLightbox}
             role="dialog"
             aria-modal="true"
@@ -3228,102 +3291,1037 @@ function RoomDescriptions() {
 }
 
 function StayFeatures() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -5% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       aria-label="Included stay amenities"
       className="bg-[#F8F5EE] py-14 lg:py-18"
     >
       <div className="page-container grid grid-cols-2 gap-y-9 sm:grid-cols-4 lg:grid-cols-8">
-        {amenities.map(({ label, icon: Icon }) => (
+        {amenities.map(({ label, icon: Icon }, index) => (
           <div
             key={label}
-            className="flex min-h-[100px] flex-col items-center justify-center gap-4 border-r border-[#e5e1d6] px-3 text-center last:border-0 [&:nth-child(2n)]:max-sm:border-0 [&:nth-child(4n)]:max-lg:border-0"
+            style={{
+              transitionDelay: isVisible ? `${index * 120}ms` : "0ms",
+            }}
+            className={`
+              group
+              flex min-h-[100px]
+              flex-col items-center justify-center
+              gap-4 border-r border-[#e5e1d6]
+              px-3 text-center last:border-0
+              [&:nth-child(2n)]:max-sm:border-0
+              [&:nth-child(4n)]:max-lg:border-0
+              transition-all
+              duration-[900ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${
+                isVisible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-7 opacity-0"
+              }
+            `}
           >
-            <Icon size={27} strokeWidth={1.25} className="text-[#3f5b3f]" />
-            <span className="max-w-[105px] text-[11px] leading-[1.45] text-[#334136]">
+            <span
+              className="
+                flex items-center justify-center
+                text-[#3f5b3f]
+                animate-[stayIconFloat_3.5s_ease-in-out_infinite]
+                transition-transform duration-700
+                group-hover:-translate-y-2
+                group-hover:scale-110
+              "
+              style={{
+                animationDelay: `${index * 180}ms`,
+              }}
+            >
+              <Icon
+                size={27}
+                strokeWidth={1.25}
+                className="transition-all duration-700 group-hover:drop-shadow-[0_4px_5px_rgba(63,91,63,0.20)]"
+              />
+            </span>
+
+            <span
+              className="
+                max-w-[105px]
+                text-[11px]
+                leading-[1.45]
+                text-[#334136]
+                transition-colors duration-500
+                group-hover:text-[#71864F]
+              "
+            >
               {label}
             </span>
           </div>
         ))}
       </div>
+
+      <style>
+        {`
+          @keyframes stayIconFloat {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-5px);
+            }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .group,
+            .group * {
+              animation: none !important;
+              transition-duration: 0.01ms !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
 
 function DayAtPaciano() {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  // const timelineRef = useRef<HTMLOListElement | null>(null);
+
+  const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(0);
+
   const move = (step: number) =>
     setActive((current) => (current + step + moments.length) % moments.length);
+
+  const activeImage = active === 0 ? slowDaysMoments : moments[active].image;
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Automatic carousel movement
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActive((current) => (current + 1) % moments.length);
+    }, 4500); // Change image every 4.5 seconds
+
+    return () => window.clearInterval(interval);
+  }, []);
+
+  // Keep the active timeline card fully visible on mobile
+  // useEffect(() => {
+  //   const container = timelineRef.current;
+  //   if (!container) return;
+
+  //   const activeItem = container.querySelector<HTMLElement>(
+  //     `[data-moment-index="${active}"]`,
+  //   );
+
+  //   if (!activeItem) return;
+
+  //   const left =
+  //     activeItem.offsetLeft -
+  //     (container.clientWidth - activeItem.clientWidth) / 2;
+
+  //   container.scrollTo({
+  //     left: Math.max(0, left),
+  //     behavior: "smooth",
+  //   });
+  // }, [active]);
+
   return (
     <section
-      className="relative overflow-hidden bg-[#eeeee5]"
+      ref={sectionRef}
+      className="relative isolate overflow-hidden bg-[#eeeee5]"
       aria-labelledby="day-title"
     >
-      <div className="grid min-h-[525px] lg:grid-cols-[40%_32%_28%]">
-        <div className="relative min-h-[390px] overflow-hidden lg:min-h-full">
-          <img
-            src={active === 0 ? slowDaysMoments : moments[active].image}
+      <div
+        className="
+          grid
+          grid-cols-1
+          md:grid-cols-2
+          lg:grid-cols-[36%_34%_30%]
+          xl:grid-cols-[40%_32%_28%]
+          min-h-0
+          lg:min-h-[580px]
+          xl:min-h-[620px]
+        "
+      >
+        {/* =========================================
+            SCENIC IMAGE
+        ========================================= */}
+
+        <div
+          className={`
+          relative
+          isolate
+          col-span-1
+          mx-3
+          h-[280px]
+          min-h-0
+          overflow-hidden
+          rounded-[15px]
+          sm:mx-5
+          sm:h-[360px]
+          sm:rounded-[19px]
+          md:col-span-2
+          md:mx-6
+          md:h-[420px]
+          md:rounded-[19px]
+          lg:col-span-1
+          lg:mx-0
+          lg:h-full
+          lg:min-h-full
+          lg:rounded-none
+
+          transition-all
+          duration-[1400ms]
+          ease-[cubic-bezier(0.16,1,0.3,1)]
+
+          ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+        `}
+        >
+          <AnimatePresence initial={false}>
+            <motion.img
+              key={active}
+              src={activeImage}
+              alt="Guest enjoying a quiet moment at Paciano"
+              loading="lazy"
+              initial={{ opacity: 0, scale: 1.025 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                opacity: {
+                  duration: 1.4,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+                scale: {
+                  duration: 2.2,
+                  ease: [0.22, 1, 0.36, 1],
+                },
+              }}
+              className="
+      absolute inset-0
+      h-full w-full
+      object-cover
+      object-center
+    "
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+              }}
+            />
+          </AnimatePresence>
+          {/* <img
+            key={active}
+            src={activeImage}
             alt="Guest enjoying a quiet morning overlooking the mountains"
             loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-500"
+            className="
+          absolute inset-0
+          h-full w-full
+          object-cover
+          object-center
+          transition-opacity duration-500
+        "
+            style={{
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
+            }}
+          /> */}
+
+          {/* Image atmosphere */}
+          <div
+            className="
+              absolute inset-0
+              bg-gradient-to-t
+              from-black/20
+              via-transparent
+              to-black/5
+              lg:bg-gradient-to-r
+              lg:from-transparent
+              lg:to-[#eeeee5]/10
+            "
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#eeeee5]/10" />
+
+          {/* Organic curve - desktop only */}
+          <svg
+            className="
+              pointer-events-none
+              absolute
+              right-[-1px]
+              top-0
+              z-10
+              hidden
+              h-full
+              w-[75px]
+              lg:block
+              xl:w-[105px]
+              2xl:w-[130px]
+            "
+            viewBox="0 0 130 600"
+            preserveAspectRatio="none"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="
+                M130 0
+                C20 90 20 180 75 270
+                C130 360 130 450 0 600
+                L130 600
+                Z
+              "
+              fill="#eeeee5"
+            />
+          </svg>
+          {/* Top and bottom edge blending */}
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              z-[5]
+              bg-[linear-gradient(to_bottom,#eeeee5_0%,rgba(238,238,229,0.85)_8%,rgba(238,238,229,0.45)_17%,transparent_28%,transparent_68%,rgba(238,238,229,0.45)_82%,rgba(238,238,229,0.85)_92%,#eeeee5_100%)]
+            "
+          />
         </div>
-        <div className="flex flex-col justify-center px-8 py-16 lg:px-12 xl:px-16">
-          <Eyebrow>A DAY AT PACIANO</Eyebrow>
-          <h2 id="day-title" className="font-display section-title mt-6">
-            Slow Days.
+
+        {/* =========================================
+            EDITORIAL CONTENT
+        ========================================= */}
+
+        <div
+          className="
+            flex min-w-0
+            flex-col
+            justify-center
+            px-6
+            py-12
+            sm:px-10
+            sm:py-14
+            md:px-8
+            md:py-14
+            lg:px-7
+            lg:py-12
+            xl:px-12
+            2xl:px-16
+          "
+        >
+          <div
+            style={{ transitionDelay: visible ? "250ms" : "0ms" }}
+            className={`
+              transition-all duration-[1000ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
+            `}
+          >
+            <div
+              className="
+              mb-0
+              flex
+              items-center
+              gap-2.5"
+            >
+              <svg
+                viewBox="0 0 32 32"
+                className="h-[20px] w-[20px] text-[#71863D]"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16 27C16 19 18 12 23 5"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <path
+                  d="M17 19C10 17 7 12 8 7C14 8 18 13 18 18"
+                  fill="currentColor"
+                  opacity=".8"
+                />
+                <path
+                  d="M19 14C20 8 25 5 29 7C27 12 24 15 19 16"
+                  fill="currentColor"
+                  opacity=".5"
+                />
+              </svg>
+              <span
+                className="
+                font-manrope
+                text-[10px]
+                font-semibold
+                uppercase
+                tracking-[0.31em]
+                text-[#68753F]
+                sm:text-[11px]
+              "
+              >
+                A DAY AT PACIANO
+              </span>
+            </div>
+          </div>
+
+          <h2
+            id="day-title"
+            className={`
+              font-display
+              section-title
+              mt-2
+              font-cormorant
+              text-[45px]
+              leading-[0.91]
+              tracking-[-0.035em]
+              text-[#17251B]
+              sm:text-[65px]
+              lg:text-[72px]
+              xl:text-[67px]
+              sm:mt-3
+              2xl:text-[68px]
+              transition-all
+              duration-[1200ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${
+                visible
+                  ? "translate-y-0 opacity-100"
+                  : "translate-y-7 opacity-0"
+              }
+            `}
+            style={{
+              transitionDelay: visible ? "450ms" : "0ms",
+            }}
+          >
+            Slow Days
             <br />
-            Meaningful
-            <br />
-            <em>Moments.</em>
+            <em className="text-[#607a58] font-medium italic leading-[0.98]">
+              Meaningful Moments.
+            </em>
           </h2>
-          <p className="mt-6 max-w-[360px] text-sm leading-[1.85] text-[#62685e]">
+
+          <p
+            className={`
+              mt-5
+              max-w-[390px]
+              text-[13px]
+              leading-[1.85]
+              text-[#62685e]
+              sm:mt-6
+              sm:text-sm
+              lg:mt-5
+              lg:text-[12px]
+              xl:text-sm
+
+              transition-all
+              duration-[1100ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+
+              ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
+            `}
+            style={{
+              transitionDelay: visible ? "750ms" : "0ms",
+            }}
+          >
             From peaceful mornings by the river to warm nights under the stars —
             every moment at Paciano is designed to help you slow down and feel
             more.
           </p>
-          <div className="mt-8 flex gap-2">
+
+          {/* Carousel controls */}
+          <div
+            style={{ transitionDelay: visible ? "950ms" : "0ms" }}
+            className={`
+              mt-7 flex items-center gap-3 sm:mt-8
+              transition-all duration-1000
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
+            `}
+          >
             <CircleArrow
               direction="left"
               onClick={() => move(-1)}
               label="Previous moment"
               className="bg-[#f8f5ee]"
             />
+
             <CircleArrow
               onClick={() => move(1)}
               label="Next moment"
               className="bg-[#f8f5ee]"
             />
           </div>
-        </div>
-        <div className="flex flex-col justify-center px-8 pb-16 lg:px-4 lg:py-12 xl:pl-10">
-          <ol className="relative border-l border-[#b5bba7] pl-7">
-            {moments.map((moment, index) => (
-              <li key={moment.time} className="relative py-3">
-                <span
-                  className={`absolute -left-[33px] top-9 h-[11px] w-[11px] rounded-full border-2 border-[#eeeee5] ${
-                    active === index ? "bg-[#b89b5e]" : "bg-[#60775a]"
-                  }`}
+          <div
+            className={`mt-[35px] will-change-transform [@media(min-width:1200px)_and_(max-width:1599px)]:mt-[24px] ${visible ? "translate-y-0 opacity-100" : "translate-y-5 opacity-0"}
+            `}
+            style={{ transitionDelay: visible ? "1150ms" : "0ms" }}
+          >
+            <a
+              href="#stay"
+              className="
+                group
+                relative
+
+                inline-flex
+                h-[52px]
+                min-w-[235px]
+
+                items-center
+                justify-between
+
+                overflow-visible
+                rounded-full
+
+                border
+                border-[#B8B98B]/75
+
+                bg-gradient-to-b
+                from-[#5A6440]
+                via-[#4D5736]
+                to-[#414A2F]
+
+                px-[10px]
+                pl-[64px]
+                pr-[9px]
+
+                text-[#F4EFE4]
+
+                shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                hover:-translate-y-[3px]
+                hover:scale-[1.015]
+                hover:border-[#D0C89B]
+                hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
+              "
+            >
+              {/* ===================================================
+                  SOFT GOLDEN INNER GLOW
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-[1px]
+                  rounded-full
+
+                  bg-gradient-to-b
+                  from-[#D8D3A8]/[0.10]
+                  via-transparent
+                  to-[#1F2818]/[0.16]
+
+                  opacity-100
+                "
+              />
+
+              {/* ===================================================
+              LUXURY SHINE BAND
+              Visible by default + stronger on hover
+          ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[24%]
+                  top-[3px]
+
+                  h-[46px]
+                  w-[42%]
+
+                  rotate-[7deg]
+
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#F8F2DD]/[0.10]
+                  to-transparent
+
+                  blur-[5px]
+
+                  opacity-80
+
+                  transition-all
+                  duration-[1200ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:left-[48%]
+                  group-hover:opacity-100
+                "
+              />
+
+              {/* ===================================================
+                  THIN WARM LIGHT ALONG LOWER EDGE
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-[18%]
+                  bottom-[3px]
+
+                  h-px
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#D7CF9B]/70
+                  to-transparent
+
+                  opacity-70
+
+                  transition-opacity
+                  duration-700
+
+                  group-hover:opacity-100
+                "
+              />
+
+              {/* ===================================================
+                  LEAF
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[-8px]
+                  bottom-[-10px]
+
+                  z-20
+
+                  h-[78px]
+                  w-[82px]
+
+                  origin-bottom-left
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:translate-x-[3px]
+                  group-hover:translate-y-[-2px]
+                  group-hover:rotate-[-4deg]
+                  group-hover:scale-[1.05]
+                "
+              >
+                <img
+                  src={leafWhisper}
+                  alt=""
+                  aria-hidden="true"
+                  className="
+                  h-full
+                  w-auto
+                  max-w-none
+
+                  object-contain
+
+                  brightness-[0.92]
+                  contrast-[1.08]
+                  saturate-[0.92]
+
+                  drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:brightness-[1.03]
+                  group-hover:contrast-[1.04]
+                "
                 />
+              </span>
+
+              {/* ===================================================
+                      VERY SOFT LEAF LIGHT
+                  ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[11px]
+                  bottom-[7px]
+
+                  z-[5]
+
+                  h-[46px]
+                  w-[46px]
+
+                  rounded-full
+
+                  bg-[#D8CF9C]/[0.10]
+
+                  blur-[15px]
+
+                  transition-all
+                  duration-1000
+
+                  group-hover:bg-[#E2D9A8]/[0.18]
+                "
+              />
+
+              {/* ===================================================
+                    TEXT
+                ==================================================== */}
+
+              <span
+                className="
+                    relative
+                    z-30
+
+                    mr-auto
+
+                    whitespace-nowrap
+
+                    text-[9px]
+                    font-medium
+                    uppercase
+
+                    tracking-[0.30em]
+
+                    text-[#F4EFE4]
+
+                    drop-shadow-[0_1px_2px_rgba(31,37,23,0.20)]
+
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(.22,1,.36,1)]
+
+                    group-hover:translate-x-[3px]
+                    group-hover:tracking-[0.36em]
+                  "
+              >
+                Explore Our Stays
+              </span>
+
+              {/* ===================================================
+              SEPARATOR
+          ==================================================== */}
+
+              <span
+                className="
+                    relative
+                    z-30
+
+                    mx-[13px]
+
+                    h-[22px]
+                    w-px
+
+                    bg-[#F4EFE4]/35
+
+                    transition-all
+                    duration-700
+                    ease-[cubic-bezier(.22,1,.36,1)]
+
+                    group-hover:h-[27px]
+                    group-hover:bg-[#E5DDBA]/65
+                  "
+              />
+
+              {/* ===================================================
+                    ARROW MEDALLION
+                ==================================================== */}
+
+              <span
+                className="
+              relative
+              z-30
+
+              flex
+              h-[32px]
+              w-[32px]
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-[#E4DEC1]/55
+
+              bg-gradient-to-b
+              from-[#F0E9D3]/[0.12]
+              to-[#B7AF88]/[0.05]
+
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[4px]
+              group-hover:scale-[1.08]
+              group-hover:border-[#F0E9D3]/85
+              group-hover:bg-[#F4EFE4]/[0.14]
+            "
+              >
+                <span
+                  className="
+                text-[15px]
+                leading-none
+
+                text-[#F4EFE4]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                group-hover:translate-x-[2px]
+              "
+                >
+                  →
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        {/* =========================================
+            EXPERIENCE TIMELINE
+        ========================================= */}
+
+        <div
+          className="
+            flex
+            min-w-0
+            flex-col
+            justify-center
+            px-5
+            pb-12
+            md:px-7
+            md:pb-14
+            lg:px-5
+            lg:py-12
+            xl:pl-9
+            xl:pr-6
+            2xl:pl-10
+          "
+        >
+          <ol
+            // className="
+            //   relative
+            //   flex
+            //   gap-3
+            //   overflow-x-auto
+            //   pb-3
+            //   [scrollbar-width:none]
+            //   [&::-webkit-scrollbar]:hidden
+            //   md:flex-col
+            //   md:gap-3
+            //   md:overflow-visible
+            //   md:border-l
+            //   md:border-[#b5bba7]
+            //   md:pl-5
+            //   lg:pl-4
+            //   xl:pl-7
+            // "
+            className="
+              day-moments-timeline
+              relative
+              flex
+              w-full
+              justify-center
+              gap-3
+              overflow-hidden
+              pb-3
+              [scrollbar-width:none]
+              [&::-webkit-scrollbar]:hidden
+
+              md:flex-col
+              md:justify-start
+              md:gap-3
+              md:overflow-visible
+              md:border-l
+              md:border-[#b5bba7]
+              md:pl-5
+
+              lg:pl-4
+              xl:pl-7
+            "
+          >
+            {moments.map((moment, index) => (
+              <li
+                key={moment.time}
+                data-moment-index={index}
+                className={`
+                day-moment-card
+                relative
+                w-full
+                max-w-[320px]
+                flex-none
+                md:w-auto
+                md:max-w-none
+                md:flex-1
+                md:min-w-0
+                md:py-1
+                lg:py-1.5
+                xl:py-2
+
+                transition-all
+                duration-[1000ms]
+                ease-[cubic-bezier(0.16,1,0.3,1)]
+
+                ${active === index ? "is-active" : ""}
+
+                ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}
+              `}
+                style={{
+                  transitionDelay: visible ? `${1250 + index * 180}ms` : "0ms",
+                }}
+              >
+                {/* Timeline dot */}
+                <span
+                  className={`
+                    absolute
+                    left-7
+                    top-1/2
+                    z-10
+                    hidden
+                    h-[11px]
+                    w-[11px]
+                    -translate-y-1/2
+                    rounded-full
+                    border-2
+                    border-[#eeeee5]
+                    transition-colors
+                    duration-500
+                    md:block
+                    md:-left-[26px]
+                    lg:-left-[25px]
+                    xl:-left-[34px]
+                    ${
+                      active === index
+                        ? "bg-[#b89b5e] scale-110"
+                        : "bg-[#60775a]"
+                    }
+                  `}
+                />
+
                 <button
                   type="button"
                   onClick={() => setActive(index)}
                   aria-current={active === index ? "step" : undefined}
-                  className={`flex w-full items-center gap-4 rounded-2xl p-2 text-left transition-colors hover:bg-white/50 ${
-                    active === index ? "bg-white/60" : ""
-                  }`}
+                  className={`
+                    group
+                    flex
+                    h-full
+                    w-full
+                    items-center
+                    gap-3
+                    rounded-2xl
+                    p-3
+                    text-left
+                    transition-all
+                    duration-500
+                    md:gap-3
+                    md:p-2
+                    lg:gap-2
+                    xl:gap-4
+                    ${
+                      active === index
+                        ? "bg-white/65 shadow-[0_5px_20px_rgba(50,60,40,0.04)]"
+                        : "bg-white/25 hover:bg-white/55"
+                    }
+                  `}
                 >
                   <img
                     src={moment.image}
                     alt=""
-                    className="h-14 w-14 shrink-0 rounded-full object-cover"
+                    loading="lazy"
+                    className="
+                      h-14
+                      w-14
+                      shrink-0
+                      rounded-full
+                      object-cover
+                      transition-transform
+                      duration-700
+                      group-hover:scale-105
+                      sm:h-16
+                      sm:w-16
+                      lg:h-12
+                      lg:w-12
+                      xl:h-14
+                      xl:w-14
+                      2xl:h-16
+                      2xl:w-16
+                    "
                   />
-                  <span>
-                    <span className="block text-[10px] font-bold tracking-[0.14em] text-[#3c4f3c]">
+
+                  <span className="min-w-0">
+                    <span
+                      className="
+                        block
+                        font-manrope
+                        text-[10px]
+                        font-bold
+                        tracking-[0.14em]
+                        text-[#3c4f3c]
+                        sm:text-[11px]
+                      "
+                    >
                       {moment.time}
                     </span>
-                    <span className="mt-1 block max-w-[175px] text-[12px] leading-[1.45] text-[#596055]">
+
+                    <span
+                      className="
+                        mt-1
+                        block
+                        max-w-[175px]
+                        font-manrope
+                        text-[11px]
+                        leading-[1.5]
+                        text-[#596055]
+                        sm:text-[12px]
+                        lg:text-[10px]
+                        xl:text-[12px]
+                      "
+                    >
                       {moment.title}
                     </span>
                   </span>
@@ -3333,57 +4331,144 @@ function DayAtPaciano() {
           </ol>
         </div>
       </div>
+      <style>
+        {`
+          @media (prefers-reduced-motion: reduce) {
+            .day-at-paciano-reveal,
+            .day-at-paciano-reveal * {
+              transition-duration: 0.01ms !important;
+              animation-duration: 0.01ms !important;
+            }
+          }
+        `}
+      </style>
     </section>
   );
 }
 
-function BookingCTA() {
+function EscapeAwaits() {
   const [submitted, setSubmitted] = useState(false);
-  const [checkIn, setCheckIn] = useState("");
-  const [checkOut, setCheckOut] = useState("");
-  const today = new Date().toISOString().slice(0, 10);
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setSubmitted(true);
-  };
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const [sectionVisible, setSectionVisible] = useState(false);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setSectionVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.15,
+        rootMargin: "0px 0px -10% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let frame1 = 0;
+    let frame2 = 0;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          observer.disconnect();
+
+          // Allow the hidden state to render before starting animations.
+          frame1 = requestAnimationFrame(() => {
+            frame2 = requestAnimationFrame(() => {
+              setSectionVisible(true);
+            });
+          });
+        }
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame1);
+      cancelAnimationFrame(frame2);
+    };
+  }, []);
+
   return (
     <section
+      ref={sectionRef}
       id="booking"
-      className="relative min-h-[clamp(560px,78vh,920px)] overflow-hidden bg-[#09160F] pb-8 pt-8 sm:pb-10 sm:pt-10 lg:pt-12"
+      // className="relative min-h-[clamp(560px,78vh,920px)] overflow-hidden bg-[#09160F] pb-8 pt-8 sm:pb-10 sm:pt-10 lg:pt-12"
+      className="relative min-h-[clamp(560px,78vh,920px)] overflow-hidden bg-[#eeeee5] pb-8 pt-8 sm:pb-10 sm:pt-10 lg:pt-12"
       aria-labelledby="booking-title"
     >
-      <img
+      {/* <img
         src={bookingRiverSunrise}
         alt=""
         aria-hidden
         className="pointer-events-none absolute inset-0 h-full w-full object-cover object-center"
+      /> */}
+      <img
+        src={bookingRiverSunrise}
+        alt=""
+        aria-hidden
+        className={`
+          pointer-events-none absolute inset-0
+          h-full w-full object-cover object-center
+          transition-all
+          duration-[1800ms]
+          ease-[cubic-bezier(0.16,1,0.3,1)]
+          ${sectionVisible ? "scale-100 opacity-100" : "scale-[1.04] opacity-0"}
+        `}
+        style={{
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 27%, black 100%)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 27%, black 100%)",
+        }}
       />
-      <div
+      {/* <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 top-0 z-[6]"
-        style={{ height: "clamp(160px, 26vw, 320px)" }}
+        style={{ height: "clamp(180px, 28vw, 340px)" }}
       >
         <div
           className="absolute inset-0"
           style={{
-            background: `linear-gradient(to bottom,
+            background: `linear-gradient(
+              to bottom,
               ${STAY_CREAM} 0%,
-              ${STAY_CREAM} 8%,
-              rgba(248, 245, 238, 0.94) 22%,
-              rgba(248, 245, 238, 0.72) 38%,
-              rgba(248, 245, 238, 0.38) 52%,
-              rgba(248, 245, 238, 0.12) 66%,
-              rgba(16, 41, 29, 0.08) 78%,
-              transparent 100%)`,
+              ${STAY_CREAM} 12%,
+              rgba(248,245,238,0.92) 28%,
+              rgba(248,245,238,0.65) 45%,
+              rgba(248,245,238,0.28) 65%,
+              rgba(248,245,238,0.08) 82%,
+              transparent 100%
+            )`,
           }}
         />
-      </div>
+      </div> */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 z-[5]"
         style={{
           background:
-            "linear-gradient(to right, rgba(14,45,32,0.78) 0%, rgba(14,45,32,0.35) 42%, transparent 72%)",
+            "linear-gradient(to right, rgba(9,30,21,0.76) 0%, rgba(14,45,32,0.48) 30%, rgba(14,45,32,0.20) 60%, transparent 100%)",
+          WebkitMaskImage:
+            "linear-gradient(to bottom, transparent 0%, black 27%, black 100%)",
+          maskImage:
+            "linear-gradient(to bottom, transparent 0%, black 27%, black 100%)",
         }}
       />
       <div
@@ -3398,98 +4483,473 @@ function BookingCTA() {
             transparent 100%)`,
         }}
       />
-      <div className="page-container relative z-[7] grid items-center gap-10 py-16 pb-[clamp(72px,10vw,120px)] lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-24 lg:pb-[clamp(88px,11vw,140px)]">
+      {/* <div className="page-container relative z-[8] grid items-center gap-10 py-16 pb-[clamp(72px,10vw,120px)] lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:py-24 lg:pb-[clamp(88px,11vw,140px)]"> */}
+      <div className="page-container relative z-[8] grid w-full min-w-0 grid-cols-1 items-center gap-10 px-5 py-12 pb-[clamp(72px,10vw,120px)] sm:px-8 sm:py-16 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:px-0 lg:py-24 lg:pb-[clamp(88px,11vw,140px)]">
         <div>
-          <Eyebrow light>YOUR ESCAPE AWAITS</Eyebrow>
+          <div
+            // className="mb-6 flex items-center gap-3 sm:mb-8"
+            className={`
+            mb-6 flex items-center gap-3 sm:mb-8
+            transition-all duration-[1000ms]
+            ease-[cubic-bezier(0.16,1,0.3,1)]
+            ${
+              sectionVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-6 opacity-0"
+            }
+          `}
+            style={{ transitionDelay: sectionVisible ? "350ms" : "0ms" }}
+          >
+            {/* <span className="h-px w-8 bg-[#9A8553] sm:w-10" /> */}
+            {/* Leaf SVG */}
+            <svg
+              viewBox="0 0 32 32"
+              className="
+                h-[21px]
+                w-[21px]
+                shrink-0               
+                text-[#E5CB91]
+              "
+              fill="none"
+            >
+              <path
+                d="M16 27C16 19 18 12 23 5"
+                stroke="currentColor"
+                strokeWidth="1"
+              />
+
+              <path
+                d="
+                  M17 19
+                  C10 17 7 12 8 7
+                  C14 8 18 13 18 18
+                "
+                fill="currentColor"
+                opacity=".8"
+              />
+
+              <path
+                d="
+                  M19 14
+                  C20 8 25 5 29 7
+                  C27 12 24 15 19 16
+                "
+                fill="currentColor"
+                opacity=".5"
+              />
+            </svg>
+            <span
+              className="
+                whitespace-nowrap
+                text-[12px]
+                font-semibold
+                uppercase
+                tracking-[0.28em]
+                text-[#F2D69B]
+              "
+              style={{
+                textShadow: "0 1px 10px rgba(0,0,0,0.45)",
+              }}
+            >
+              YOUR ESCAPE AWAITS
+            </span>
+          </div>
+          {/* <Eyebrow light>YOUR ESCAPE AWAITS</Eyebrow> */}
           <h2
             id="booking-title"
-            className="font-display mt-6 max-w-[600px] text-[clamp(3.6rem,5vw,5.7rem)] leading-[0.95] tracking-[-0.04em] text-white"
+            // className="font-display mt-6 max-w-[600px] text-[clamp(3.6rem,5vw,5.7rem)] leading-[0.95] tracking-[-0.04em] text-white"
+            className={`
+              font-display mt-4 sm:mt-6
+              w-full max-w-full min-w-0
+              text-[clamp(2.2rem,10vw,3.6rem)]
+              sm:text-[clamp(3.6rem,5vw,5.7rem)]
+              leading-[0.98] tracking-[-0.04em] text-white
+              transition-all duration-[1200ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              ${sectionVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+            `}
+            style={{ transitionDelay: sectionVisible ? "650ms" : "0ms" }}
           >
-            Ready to Stay Closer
+            Ready to Stay
             <br />
-            to <em>Nature?</em>
-          </h2>
-          <p className="mt-6 max-w-[395px] text-sm leading-[1.8] text-white/80">
-            A quieter rhythm, a beautiful view, and a stay made just for you.
-            Your perfect getaway at Paciano begins here.
-          </p>
-        </div>
-        <form
-          onSubmit={handleSubmit}
-          className="rounded-[28px] border border-white/50 bg-[#f8f5ee]/95 p-5 shadow-[0_22px_60px_rgba(0,0,0,0.2)] backdrop-blur-lg sm:p-7"
-        >
-          <div className="grid gap-4 sm:grid-cols-3">
-            <label className="booking-field">
-              <span className="flex items-center gap-2 text-[11px] font-semibold text-[#334537]">
-                <CalendarDays size={17} strokeWidth={1.5} />
-                Check In
-              </span>
-              <input
-                aria-label="Check in date"
-                type="date"
-                min={today}
-                value={checkIn}
-                onChange={(event) => {
-                  setCheckIn(event.target.value);
-                  setSubmitted(false);
-                }}
-                required
-                className="booking-input"
-              />
-            </label>
-            <label className="booking-field">
-              <span className="flex items-center gap-2 text-[11px] font-semibold text-[#334537]">
-                <CalendarDays size={17} strokeWidth={1.5} />
-                Check Out
-              </span>
-              <input
-                aria-label="Check out date"
-                type="date"
-                min={checkIn || today}
-                value={checkOut}
-                onChange={(event) => {
-                  setCheckOut(event.target.value);
-                  setSubmitted(false);
-                }}
-                required
-                className="booking-input"
-              />
-            </label>
-            <label className="booking-field">
-              <span className="flex items-center gap-2 text-[11px] font-semibold text-[#334537]">
-                <Users size={17} strokeWidth={1.5} />
-                Guests
-              </span>
-              <select
-                aria-label="Number of guests"
-                defaultValue="2"
-                className="booking-input"
-              >
-                <option value="1">1 Guest</option>
-                <option value="2">2 Guests</option>
-                <option value="3">3 Guests</option>
-                <option value="4">4 Guests</option>
-                <option value="5">5+ Guests</option>
-              </select>
-            </label>
-          </div>
-          <button
-            type="submit"
-            className="mt-5 flex w-full items-center justify-center gap-4 rounded-full bg-[#3f5b3f] px-6 py-4 text-[11px] font-semibold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#29442f]"
-          >
-            Check Availability <ArrowRight size={17} />
-          </button>
-          {submitted && (
-            <p
-              role="status"
-              className="mt-4 flex items-start gap-2 text-xs leading-relaxed text-[#3f5b3f]"
+            <span
+              className="
+                block
+                max-w-full
+                whitespace-normal
+                break-words
+                font-['Cormorant_Garamond',serif]
+                italic
+                text-[#E5CB91]
+              "
             >
-              <Check size={17} className="shrink-0" />
-              Availability lookup is not connected yet. Your dates are selected;
-              please contact the resort to confirm your stay.
-            </p>
-          )}
-        </form>
+              Closer to Nature?
+            </span>
+          </h2>
+          <p
+            // className="mt-6 max-w-[395px] text-sm leading-[1.8] text-white/80
+            className="
+              mt-5 w-full min-w-0 max-w-[430px]
+              font-manrope
+              text-[clamp(12px,0.95vw,15px)]              
+              leading-[1.9] text-[#FFF9EE]/90
+              sm:mt-6 sm:text-[13px]
+              md:text-sm
+              transition-all
+              duration-[1100ms]
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+            "
+            style={{
+              textShadow: "0 2px 8px rgba(0,0,0,0.8)",
+              transitionDelay: sectionVisible ? "1000ms" : "0ms",
+              opacity: sectionVisible ? 1 : 0,
+              transform: sectionVisible ? "translateY(0)" : "translateY(22px)",
+            }}
+          >
+            A slower pace, a beautiful view, and moments that feel entirely your
+            own. Imagine a morning with nothing on your itinerary but the
+            mountains, the river, and the view.
+          </p>
+          <div
+            className={`
+            mt-[35px] will-change-transform
+            transition-all duration-[1100ms]
+            ease-[cubic-bezier(0.16,1,0.3,1)]
+            ${
+              sectionVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-7 opacity-0"
+            }
+          `}
+            style={{ transitionDelay: sectionVisible ? "1300ms" : "0ms" }}
+          >
+            <a
+              href="#location-details"
+              className="
+                group
+                relative
+
+                inline-flex
+                h-[52px]
+                min-w-[235px]
+
+                items-center
+                justify-between
+
+                overflow-visible
+                rounded-full
+
+                border
+                border-[#B8B98B]/75
+
+                bg-gradient-to-b
+                from-[#5A6440]
+                via-[#4D5736]
+                to-[#414A2F]
+
+                px-[10px]
+                pl-[64px]
+                pr-[9px]
+
+                text-[#F4EFE4]
+
+                shadow-[0_8px_24px_rgba(39,46,26,0.22),inset_0_1px_0_rgba(255,255,255,0.16)]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                hover:-translate-y-[3px]
+                hover:scale-[1.015]
+                hover:border-[#D0C89B]
+                hover:shadow-[0_16px_36px_rgba(39,46,26,0.30),inset_0_1px_0_rgba(255,255,255,0.20)]
+              "
+            >
+              {/* ===================================================
+                  SOFT GOLDEN INNER GLOW
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-[1px]
+                  rounded-full
+
+                  bg-gradient-to-b
+                  from-[#D8D3A8]/[0.10]
+                  via-transparent
+                  to-[#1F2818]/[0.16]
+
+                  opacity-100
+                "
+              />
+
+              {/* ===================================================
+              LUXURY SHINE BAND
+              Visible by default + stronger on hover
+          ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[24%]
+                  top-[3px]
+
+                  h-[46px]
+                  w-[42%]
+
+                  rotate-[7deg]
+
+                  rounded-full
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#F8F2DD]/[0.10]
+                  to-transparent
+
+                  blur-[5px]
+
+                  opacity-80
+
+                  transition-all
+                  duration-[1200ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:left-[48%]
+                  group-hover:opacity-100
+                "
+              />
+
+              {/* ===================================================
+                  THIN WARM LIGHT ALONG LOWER EDGE
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  inset-x-[18%]
+                  bottom-[3px]
+
+                  h-px
+
+                  bg-gradient-to-r
+                  from-transparent
+                  via-[#D7CF9B]/70
+                  to-transparent
+
+                  opacity-70
+
+                  transition-opacity
+                  duration-700
+
+                  group-hover:opacity-100
+                "
+              />
+
+              {/* ===================================================
+                  LEAF
+              ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[-8px]
+                  bottom-[-10px]
+
+                  z-20
+
+                  h-[78px]
+                  w-[82px]
+
+                  origin-bottom-left
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:translate-x-[3px]
+                  group-hover:translate-y-[-2px]
+                  group-hover:rotate-[-4deg]
+                  group-hover:scale-[1.05]
+                "
+              >
+                <img
+                  src={leafWhisper}
+                  alt=""
+                  aria-hidden="true"
+                  className="
+                  h-full
+                  w-auto
+                  max-w-none
+
+                  object-contain
+
+                  brightness-[0.92]
+                  contrast-[1.08]
+                  saturate-[0.92]
+
+                  drop-shadow-[0_5px_8px_rgba(22,28,16,0.18)]
+
+                  transition-all
+                  duration-[900ms]
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:brightness-[1.03]
+                  group-hover:contrast-[1.04]
+                "
+                />
+              </span>
+
+              {/* ===================================================
+                    VERY SOFT LEAF LIGHT
+                ==================================================== */}
+
+              <span
+                className="
+                  pointer-events-none
+                  absolute
+                  left-[11px]
+                  bottom-[7px]
+
+                  z-[5]
+
+                  h-[46px]
+                  w-[46px]
+
+                  rounded-full
+
+                  bg-[#D8CF9C]/[0.10]
+
+                  blur-[15px]
+
+                  transition-all
+                  duration-1000
+
+                  group-hover:bg-[#E2D9A8]/[0.18]
+                "
+              />
+
+              {/* ===================================================
+              TEXT
+          ==================================================== */}
+
+              <span
+                className="
+              relative
+              z-30
+
+              mr-auto
+
+              whitespace-nowrap
+
+              text-[9px]
+              font-medium
+              uppercase
+
+              tracking-[0.30em]
+
+              text-[#F4EFE4]
+
+              drop-shadow-[0_1px_2px_rgba(31,37,23,0.20)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[3px]
+              group-hover:tracking-[0.36em]
+            "
+              >
+                Plan Your Stay
+              </span>
+
+              {/* ===================================================
+              SEPARATOR
+          ==================================================== */}
+
+              <span
+                className="
+                  relative
+                  z-30
+
+                  mx-[13px]
+
+                  h-[22px]
+                  w-px
+
+                  bg-[#F4EFE4]/35
+
+                  transition-all
+                  duration-700
+                  ease-[cubic-bezier(.22,1,.36,1)]
+
+                  group-hover:h-[27px]
+                  group-hover:bg-[#E5DDBA]/65
+                "
+              />
+
+              {/* ===================================================
+              ARROW MEDALLION
+          ==================================================== */}
+
+              <span
+                className="
+              relative
+              z-30
+
+              flex
+              h-[32px]
+              w-[32px]
+              shrink-0
+
+              items-center
+              justify-center
+
+              rounded-full
+
+              border
+              border-[#E4DEC1]/55
+
+              bg-gradient-to-b
+              from-[#F0E9D3]/[0.12]
+              to-[#B7AF88]/[0.05]
+
+              shadow-[inset_0_1px_0_rgba(255,255,255,0.16)]
+
+              transition-all
+              duration-700
+              ease-[cubic-bezier(.22,1,.36,1)]
+
+              group-hover:translate-x-[4px]
+              group-hover:scale-[1.08]
+              group-hover:border-[#F0E9D3]/85
+              group-hover:bg-[#F4EFE4]/[0.14]
+            "
+              >
+                <span
+                  className="
+                text-[15px]
+                leading-none
+
+                text-[#F4EFE4]
+
+                transition-all
+                duration-700
+                ease-[cubic-bezier(.22,1,.36,1)]
+
+                group-hover:translate-x-[2px]
+              "
+                >
+                  →
+                </span>
+              </span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -3518,57 +4978,13 @@ export default function StayPageContent() {
       <div className="relative z-[1]">
         <Hero onExperience={() => setExperienceOpen(true)} />
         <RoomCollection />
-        {/* onSelect={selectRoom}<StayPhotoBridge src={heroBannerAlt} bottomFade="#f2efe6" /> */}
-        {/* <FeaturedRoom key={featuredRoom.title} room={featuredRoom} /> */}
-        {/* <MistSectionBridge /> */}
-        {/* <StayFeatures /> */}
-        {/* <DayAtPaciano /> */}
-        {/* <StayPhotoBridge src={slowDaysMoments} topFade="#eeeee5" /> */}
+        <StayFeatures />
+        <DayAtPaciano />
       </div>
       <div className="relative isolate">
-        <BookingCTA />
+        <EscapeAwaits />
         <Footer contactOverlap />
       </div>
-      {experienceOpen && (
-        <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-[#0d1b14]/80 p-5 backdrop-blur-md"
-          role="presentation"
-          onMouseDown={() => setExperienceOpen(false)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="experience-title"
-            className="relative w-full max-w-3xl overflow-hidden rounded-[28px] bg-[#f8f5ee] shadow-2xl"
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <button
-              type="button"
-              autoFocus
-              onClick={() => setExperienceOpen(false)}
-              aria-label="Close experience preview"
-              className="absolute right-5 top-5 z-10 flex h-10 w-10 items-center justify-center rounded-full bg-[#f8f5ee] text-[#263e2c]"
-            >
-              <X size={20} />
-            </button>
-            <img
-              src={heroBannerAlt}
-              alt="A private suite above the valley"
-              className="h-[330px] w-full object-cover sm:h-[430px]"
-            />
-            <div className="p-7 sm:p-9">
-              <Eyebrow>A MOMENT AT PACIANO</Eyebrow>
-              <h2 id="experience-title" className="font-display mt-3 text-4xl">
-                Stay a little longer.
-              </h2>
-              <p className="mt-3 text-sm leading-relaxed text-[#646b60]">
-                Imagine a morning with nothing on your itinerary but the
-                mountains, the river, and the view.
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 }

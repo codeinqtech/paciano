@@ -1253,32 +1253,32 @@ function PacianoOurPlaceSection({ image }: PacianoOurPlaceSectionProps) {
               </span>
 
               {/* ===================================================
-              VERY SOFT LEAF LIGHT
-          ==================================================== */}
+                    VERY SOFT LEAF LIGHT
+                ==================================================== */}
 
               <span
                 className="
-              pointer-events-none
-              absolute
-              left-[11px]
-              bottom-[7px]
+                  pointer-events-none
+                  absolute
+                  left-[11px]
+                  bottom-[7px]
 
-              z-[5]
+                  z-[5]
 
-              h-[46px]
-              w-[46px]
+                  h-[46px]
+                  w-[46px]
 
-              rounded-full
+                  rounded-full
 
-              bg-[#D8CF9C]/[0.10]
+                  bg-[#D8CF9C]/[0.10]
 
-              blur-[15px]
+                  blur-[15px]
 
-              transition-all
-              duration-1000
+                  transition-all
+                  duration-1000
 
-              group-hover:bg-[#E2D9A8]/[0.18]
-            "
+                  group-hover:bg-[#E2D9A8]/[0.18]
+                "
               />
 
               {/* ===================================================
@@ -1646,8 +1646,7 @@ export default function AboutUsInfo() {
             absolute
             inset-0
             z-0
-            overflow-hidden
-        "
+            overflow-hidden"
         aria-hidden="true"
       >
         {/* LEFT — LARGE NATURAL BRANCH */}
@@ -1757,13 +1756,13 @@ export default function AboutUsInfo() {
         <svg
           viewBox="0 0 500 700"
           className="
-      absolute
-      left-[-90px]
-      top-[260px]
-      h-[600px]
-      w-[430px]
-      opacity-[0.12]
-    "
+            absolute
+            left-[-90px]
+            top-[260px]
+            h-[600px]
+            w-[430px]
+            opacity-[0.12]
+          "
           fill="none"
         >
           <path
