@@ -1784,51 +1784,51 @@ function RoomCollection() {
 
               }
                 /* Mobile portrait only — smooth, fixed-position active card */
-@media screen and (max-width: 767px) and (orientation: portrait) {
-  .day-moments-timeline {
-    display: grid !important;
-    grid-template-columns: minmax(0, 1fr);
-    align-items: center;
-    justify-items: center;
-    overflow: hidden;
-    gap: 0;
-  }
+              @media screen and (max-width: 767px) and (orientation: portrait) {
+                .day-moments-timeline {
+                  display: grid !important;
+                  grid-template-columns: minmax(0, 1fr);
+                  align-items: center;
+                  justify-items: center;
+                  overflow: hidden;
+                  gap: 0;
+                }
 
-  .day-moments-timeline > .day-moment-card {
-    grid-area: 1 / 1;
-    width: 100%;
-    max-width: 320px;
-    margin-inline: auto;
+                .day-moments-timeline > .day-moment-card {
+                  grid-area: 1 / 1;
+                  width: 100%;
+                  max-width: 320px;
+                  margin-inline: auto;
 
-    opacity: 0 !important;
-    visibility: hidden;
-    pointer-events: none;
+                  opacity: 0 !important;
+                  visibility: hidden;
+                  pointer-events: none;
 
-    transform: translate3d(12px, 0, 0) scale(0.985);
+                  transform: translate3d(12px, 0, 0) scale(0.985);
 
-    transition:
-      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s linear 650ms !important;
+                  transition:
+                    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+                    visibility 0s linear 650ms !important;
 
-    transition-delay: 0ms !important;
-  }
+                  transition-delay: 0ms !important;
+                }
 
-  .day-moments-timeline > .day-moment-card.is-active {
-    opacity: 1 !important;
-    visibility: visible;
-    pointer-events: auto;
+                .day-moments-timeline > .day-moment-card.is-active {
+                  opacity: 1 !important;
+                  visibility: visible;
+                  pointer-events: auto;
 
-    transform: translate3d(0, 0, 0) scale(1);
+                  transform: translate3d(0, 0, 0) scale(1);
 
-    transition:
-      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
-      visibility 0s !important;
+                  transition:
+                    opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+                    transform 650ms cubic-bezier(0.22, 1, 0.36, 1),
+                    visibility 0s !important;
 
-    transition-delay: 0ms !important;
-  }
-}
+                  transition-delay: 0ms !important;
+                }
+              }
 
                 @media (prefers-reduced-motion: reduce) {
 
@@ -3406,7 +3406,7 @@ function StayFeatures() {
 
 function DayAtPaciano() {
   const sectionRef = useRef<HTMLElement | null>(null);
-  // const timelineRef = useRef<HTMLOListElement | null>(null);
+  const timelineRef = useRef<HTMLOListElement | null>(null);
 
   const [visible, setVisible] = useState(false);
   const [active, setActive] = useState(0);
@@ -3444,26 +3444,38 @@ function DayAtPaciano() {
     return () => window.clearInterval(interval);
   }, []);
 
-  // Keep the active timeline card fully visible on mobile
-  // useEffect(() => {
-  //   const container = timelineRef.current;
-  //   if (!container) return;
+  // Automatically slide to the active card on compact landscape screens
+  // Slide to active card on mobile portrait and landscape
+  useEffect(() => {
+    const isMobile = window.matchMedia(
+      "(orientation: portrait) and (max-width: 767px)",
+    ).matches;
 
-  //   const activeItem = container.querySelector<HTMLElement>(
-  //     `[data-moment-index="${active}"]`,
-  //   );
+    if (!isMobile) return;
 
-  //   if (!activeItem) return;
+    const container = timelineRef.current;
+    if (!container) return;
 
-  //   const left =
-  //     activeItem.offsetLeft -
-  //     (container.clientWidth - activeItem.clientWidth) / 2;
+    const activeItem = container.querySelector<HTMLElement>(
+      `[data-moment-index="${active}"]`,
+    );
 
-  //   container.scrollTo({
-  //     left: Math.max(0, left),
-  //     behavior: "smooth",
-  //   });
-  // }, [active]);
+    if (!activeItem) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const itemRect = activeItem.getBoundingClientRect();
+
+    const left =
+      container.scrollLeft +
+      itemRect.left -
+      containerRect.left -
+      (container.clientWidth - itemRect.width) / 2;
+
+    container.scrollTo({
+      left: Math.max(0, left),
+      behavior: "smooth",
+    });
+  }, [active]);
 
   return (
     <section
@@ -3475,6 +3487,9 @@ function DayAtPaciano() {
         className="
           grid
           grid-cols-1
+          md:grid-cols-1
+          lg:grid-cols-2
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!grid-cols-[minmax(0,1.2fr)_minmax(220px,0.8fr)]
           md:grid-cols-2
           lg:grid-cols-[36%_34%_30%]
           xl:grid-cols-[40%_32%_28%]
@@ -3499,8 +3514,7 @@ function DayAtPaciano() {
           rounded-[15px]
           sm:mx-5
           sm:h-[360px]
-          sm:rounded-[19px]
-          md:col-span-2
+          sm:rounded-[19px] 
           md:mx-6
           md:h-[420px]
           md:rounded-[19px]
@@ -3513,8 +3527,18 @@ function DayAtPaciano() {
           transition-all
           duration-[1400ms]
           ease-[cubic-bezier(0.16,1,0.3,1)]
-
           ${visible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"}
+
+          md:col-span-2
+
+          [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:950px)]:!col-span-2
+          [@media(orientation:portrait)_and_(min-width:768px)_and_(max-width:950px)]:!row-start-1
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!col-span-2
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!row-start-1
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!block
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!h-[180px]
+          [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!mx-3
+
         `}
         >
           <AnimatePresence initial={false}>
@@ -3537,11 +3561,11 @@ function DayAtPaciano() {
                 },
               }}
               className="
-      absolute inset-0
-      h-full w-full
-      object-cover
-      object-center
-    "
+                absolute inset-0
+                h-full w-full
+                object-cover
+                object-center
+              "
               style={{
                 WebkitMaskImage:
                   "linear-gradient(to bottom, transparent 0%, black 18%, black 78%, transparent 100%)",
@@ -3646,6 +3670,9 @@ function DayAtPaciano() {
             lg:py-12
             xl:px-12
             2xl:px-16
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!col-start-1
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!row-start-2
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!py-4
           "
         >
           <div
@@ -4139,41 +4166,49 @@ function DayAtPaciano() {
             lg:py-12
             xl:pl-9
             xl:pr-6
-            2xl:pl-10
+            2xl:pl-10[@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!col-start-2
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!row-start-2
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!self-center
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!px-2
+            [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!py-4
+
           "
         >
           <ol
             // className="
+            //   day-moments-timeline
             //   relative
             //   flex
+            //   w-full
+            //   justify-center
             //   gap-3
-            //   overflow-x-auto
+            //   overflow-hidden
             //   pb-3
             //   [scrollbar-width:none]
             //   [&::-webkit-scrollbar]:hidden
+
             //   md:flex-col
+            //   md:justify-start
             //   md:gap-3
             //   md:overflow-visible
             //   md:border-l
             //   md:border-[#b5bba7]
             //   md:pl-5
+
             //   lg:pl-4
             //   xl:pl-7
             // "
+            ref={timelineRef}
             className="
-              day-moments-timeline
               relative
               flex
-              w-full
-              justify-center
               gap-3
-              overflow-hidden
+              overflow-x-auto
               pb-3
               [scrollbar-width:none]
               [&::-webkit-scrollbar]:hidden
 
               md:flex-col
-              md:justify-start
               md:gap-3
               md:overflow-visible
               md:border-l
@@ -4181,7 +4216,10 @@ function DayAtPaciano() {
               md:pl-5
 
               lg:pl-4
-              xl:pl-7
+              xl:pl-7 
+              [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!flex-col
+              [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!overflow-visible
+              [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!gap-2            
             "
           >
             {moments.map((moment, index) => (
@@ -4190,7 +4228,7 @@ function DayAtPaciano() {
                 data-moment-index={index}
                 className={`
                 day-moment-card
-                relative
+                relative              
                 w-full
                 max-w-[320px]
                 flex-none
@@ -4198,6 +4236,7 @@ function DayAtPaciano() {
                 md:max-w-none
                 md:flex-1
                 md:min-w-0
+                md:mx-0
                 md:py-1
                 lg:py-1.5
                 xl:py-2
@@ -4209,6 +4248,9 @@ function DayAtPaciano() {
                 ${active === index ? "is-active" : ""}
 
                 ${visible ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}
+                [@media(orientation:portrait)_and_(max-width:767px)]:!w-[min(360px,calc(100vw-40px))]
+                [@media(orientation:portrait)_and_(max-width:767px)]:!max-w-[360px]
+                
               `}
                 style={{
                   transitionDelay: visible ? `${1250 + index * 180}ms` : "0ms",
@@ -4262,6 +4304,8 @@ function DayAtPaciano() {
                     md:p-2
                     lg:gap-2
                     xl:gap-4
+                    [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!mx-auto
+                    [@media(orientation:landscape)_and_(max-height:500px)_and_(max-width:950px)]:!max-w-[320px]
                     ${
                       active === index
                         ? "bg-white/65 shadow-[0_5px_20px_rgba(50,60,40,0.04)]"
