@@ -6,15 +6,15 @@ import { homeHref, toAppPath } from "@/lib/appBase";
 
 const NAV_LINKS = [
   { label: "Stay", href: toAppPath("/stay") },
-  // { label: "Experiences", href: homeHref("#experiences") },
   { label: "Dining", href: homeHref("#dining") },
+  { label: "Events", href: toAppPath("/events") },
   { label: "About Us", href: toAppPath("/about") },
   { label: "Contact", href: toAppPath("/contact") },
 ];
 
 interface NavbarProps {
   scrolled?: boolean;
-  activeNav?: "home" | "contact" | "stay" | "about";
+  activeNav?: "home" | "contact" | "stay" | "about" | "events";
 }
 
 export default function Navbar({
@@ -120,17 +120,17 @@ export default function Navbar({
 
         <div
           className="
-      relative
-      z-10
-      mx-auto
-      flex
-      h-[104px]
-      w-full
-      items-center
-      px-8
-      lg:px-12
-      xl:px-16
-    "
+            relative
+            z-10
+            mx-auto
+            flex
+            h-[104px]
+            w-full
+            items-center
+            px-8
+            lg:px-12
+            xl:px-16
+          "
         >
           {/* =========================================
               PACIANO LOGO
@@ -198,7 +198,12 @@ export default function Navbar({
 
               <NavItem label="Dining" href={homeHref("#dining")} />
 
-              {/* <NavItem label="About Us" href={homeHref("#about")} /> */}
+              <NavItem
+                label="Events"
+                href={toAppPath("/events")}
+                active={activeNav === "events"}
+              />
+
               <NavItem
                 label="About Us"
                 href={toAppPath("/about")}
@@ -3051,12 +3056,12 @@ function NavItem({
     py-2
 
     font-jost
-text-[12px]
-font-normal
-uppercase
-leading-none
-tracking-[0.14em]
-text-white/85
+    text-[12px]
+    font-normal
+    uppercase
+    leading-none
+    tracking-[0.14em]
+    text-white/85
 
     text-white/85
     drop-shadow-[0_1px_5px_rgba(0,0,0,0.45)]
@@ -3103,7 +3108,7 @@ function MobileMenu({
   open: boolean;
   onClose: () => void;
   onBooking: () => void;
-  activeNav?: "home" | "contact" | "stay" | "about";
+  activeNav?: "home" | "contact" | "stay" | "about" | "events";
 }) {
   return (
     <div
@@ -3186,9 +3191,11 @@ function MobileMenu({
                   ? activeNav === "contact"
                   : item.label === "Stay"
                     ? activeNav === "stay"
-                    : item.label === "About Us"
-                      ? activeNav === "about"
-                      : false
+                    : item.label === "Events"
+                      ? activeNav === "events"
+                      : item.label === "About Us"
+                        ? activeNav === "about"
+                        : false
               }
               onClick={onClose}
             />
@@ -3201,20 +3208,20 @@ function MobileMenu({
             type="button"
             onClick={onBooking}
             className="
-    group
-    flex
-    items-center
-    gap-3
+              group
+              flex
+              items-center
+              gap-3
 
-    font-lora
-    text-[14px]
-    font-medium
-    tracking-[0.015em]
-    text-[#173321]
+              font-lora
+              text-[14px]
+              font-medium
+              tracking-[0.015em]
+              text-[#173321]
 
-    transition-all
-    duration-500
-  "
+              transition-all
+              duration-500
+            "
           >
             <span
               className="

@@ -37,8 +37,8 @@ type Stay = {
 };
 const stays: Stay[] = [
   {
-    id: "riverside",
-    name: "Riverside Suite",
+    id: "deluxe",
+    name: "Deluxe Rooms",
     eyebrow: "RIVERSIDE SUITE",
     title: "Wake to Tranquility",
     description:
@@ -70,71 +70,71 @@ const stays: Stay[] = [
     ],
   },
 
-  {
-    id: "garden",
-    name: "Garden Residence",
-    eyebrow: "GARDEN RESIDENCE",
-    title: "Wake Among Greenery",
-    description:
-      "A peaceful retreat overlooking Paciano's gardens, where quiet mornings unfold beneath open skies and surrounding greenery.",
+  // {
+  //   id: "garden",
+  //   name: "Garden Residence",
+  //   eyebrow: "GARDEN RESIDENCE",
+  //   title: "Wake Among Greenery",
+  //   description:
+  //     "A peaceful retreat overlooking Paciano's gardens, where quiet mornings unfold beneath open skies and surrounding greenery.",
 
-    images: [gardenRoom, gardenView, gardenBalcony],
+  //   images: [gardenRoom, gardenView, gardenBalcony],
 
-    amenities: [
-      {
-        label: "King Bed",
-        icon: "bed",
-      },
-      {
-        label: "Garden Outlook",
-        icon: "view",
-      },
-      {
-        label: "Private Sitting Area",
-        icon: "balcony",
-      },
-      {
-        label: "Luxury Bathroom",
-        icon: "bath",
-      },
-      {
-        label: "Complimentary Wi-Fi",
-        icon: "wifi",
-      },
-    ],
-  },
+  //   amenities: [
+  //     {
+  //       label: "King Bed",
+  //       icon: "bed",
+  //     },
+  //     {
+  //       label: "Garden Outlook",
+  //       icon: "view",
+  //     },
+  //     {
+  //       label: "Private Sitting Area",
+  //       icon: "balcony",
+  //     },
+  //     {
+  //       label: "Luxury Bathroom",
+  //       icon: "bath",
+  //     },
+  //     {
+  //       label: "Complimentary Wi-Fi",
+  //       icon: "wifi",
+  //     },
+  //   ],
+  // },
 
-  {
-    id: "valley",
-    name: "Valley Retreat",
-    eyebrow: "VALLEY RETREAT",
-    title: "Closer to the Wild",
-    description:
-      "A quiet escape where mountain views stretch beyond the room and every morning begins a little slower.",
-    images: [riversideRoom, riversideDetail, riversideBalcony],
-    amenities: [
-      {
-        label: "King Bed",
-        icon: "bed",
-      },
-      {
-        label: "Private Balcony",
-        icon: "balcony",
-      },
-      {
-        label: "Valley View",
-        icon: "view",
-      },
-      {
-        label: "Luxury Bathroom",
-        icon: "bath",
-      },
-      {
-        label: "Complimentary Wi-Fi",
-        icon: "wifi",
-      },
-    ],
-  },
+  // {
+  //   id: "valley",
+  //   name: "Valley Retreat",
+  //   eyebrow: "VALLEY RETREAT",
+  //   title: "Closer to the Wild",
+  //   description:
+  //     "A quiet escape where mountain views stretch beyond the room and every morning begins a little slower.",
+  //   images: [riversideRoom, riversideDetail, riversideBalcony],
+  //   amenities: [
+  //     {
+  //       label: "King Bed",
+  //       icon: "bed",
+  //     },
+  //     {
+  //       label: "Private Balcony",
+  //       icon: "balcony",
+  //     },
+  //     {
+  //       label: "Valley View",
+  //       icon: "view",
+  //     },
+  //     {
+  //       label: "Luxury Bathroom",
+  //       icon: "bath",
+  //     },
+  //     {
+  //       label: "Complimentary Wi-Fi",
+  //       icon: "wifi",
+  //     },
+  //   ],
+  // },
 
   {
     id: "family",
@@ -512,39 +512,6 @@ export default function Accommodation() {
         <div>
           {/* Small botanical sprout above OUR STAYS */}
           <div className="paciano-stay-step paciano-stay-step-1 mb-3 flex justify-center">
-            {/* <svg
-            width="34"
-            height="30"
-            viewBox="0 0 34 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            className="overflow-visible"
-          >
-            {/* stem
-            <path
-              d="M17 29C17 22 17 16 18.5 9"
-              stroke="#71803F"
-              strokeWidth="1"
-              strokeLinecap="round"
-            />
-
-            {/* left leaf 
-            <path
-              d="M17.8 13.2
-                C11.4 13.2 7.3 9.9 6.2 4.1
-                C12.4 4.2 17.2 7.1 17.8 13.2Z"
-              fill="#71803F"
-            />
-
-            {/* right leaf 
-            <path
-              d="M18.2 9.8
-                C20.1 4.2 24.2 1.8 29.3 2.5
-                C28.2 7.8 24.5 10.5 18.2 9.8Z"
-              fill="#71803F"
-            />
-          </svg> */}
             <svg
               viewBox="0 0 40 40"
               className="
@@ -679,11 +646,11 @@ export default function Accommodation() {
         </div>
 
         {/* ======================================================
-                PACIANO STAY NAVIGATION
-                REFERENCE-MATCHED HORIZONTAL CAPSULE
-            ====================================================== */}
+              PACIANO STAY NAVIGATION
+              REFERENCE-MATCHED HORIZONTAL CAPSULE
+          ====================================================== */}
 
-        <div
+        {/* <div
           className={`
               paciano-stay-step
               paciano-stay-step-5
@@ -699,559 +666,550 @@ export default function Accommodation() {
                 visible
                   ? "opacity-100 translate-y-0 blur-0"
                   : "opacity-0 translate-y-8"
-              }
+              }   
             `}
+        > */}
+        <div
+          className={`
+            paciano-stay-step
+            paciano-stay-step-5
+            relative
+            mx-auto
+            mt-8
+            w-fit
+            max-w-full
+            transition-all
+            duration-[1200ms]
+            ease-[cubic-bezier(0.16,1,0.3,1)]
+            ${
+              visible
+                ? "translate-y-0 opacity-100 blur-0"
+                : "translate-y-6 opacity-0 blur-[2px]"
+            }
+          `}
         >
-          {/* ====================================================
-                  CAPSULE
-                  SAME WIDTH AS IMAGE BELOW
-              ==================================================== */}
-
+          {/* SINGLE COMPACT CAPSULE */}
           <div
             className="
-      relative
-      w-full
-      min-h-[96px]
-      flex
-      items-center
-      rounded-[60px]
-      border
-      border-[#C9C8BC]/75
-      bg-[#F7F3E9]/90
-      shadow-[0_12px_40px_rgba(65,73,55,0.065)]
-      backdrop-blur-[8px]
-      overflow-visible
-    "
+              relative
+              flex
+              w-full
+              flex-col
+              overflow-visible
+              rounded-[24px]
+              border
+              border-[#C9C8BC]/75
+              bg-[#F7F3E9]/95
+              shadow-[0_10px_32px_rgba(65,73,55,0.065)]
+              backdrop-blur-[8px]
+              sm:flex-row
+              sm:items-center
+              sm:rounded-full
+              sm:px-3
+              lg:px-5
+            "
           >
-            {/* very subtle inner border */}
-
+            {/* INNER BORDER */}
             <div
               aria-hidden="true"
               className="
-        pointer-events-none
-        absolute
-        inset-[1px]
-        rounded-[59px]
-        border
-        border-white/50
+              pointer-events-none
+              absolute
+              inset-[1px]
+              rounded-[23px]
+              border
+              border-white/50
+              sm:rounded-full
+            "
+            />
+
+            {/* TWO ACCOMMODATION OPTIONS */}
+            <div
+              className="
+                relative
+                z-10
+                grid
+                min-w-0
+                flex-1
+                grid-cols-2
+                px-1
+                py-2
+                sm:py-0
+              "
+            >
+              {stays.slice(0, 2).map((item, index) => {
+                const active = index === activeStay;
+
+                const descriptors = ["RIVER & MOUNTAINS", "RIVER & MOUNTAINS"];
+
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    onClick={() => changeStay(index)}
+                    disabled={isTransitioning}
+                    aria-label={`View ${item.name}`}
+                    aria-pressed={active}
+                    className="
+              group
+              relative
+              flex
+              min-w-0
+              items-center
+              justify-center
+              gap-1.5
+              rounded-full
+              px-1
+              py-2
+              outline-none
+              transition-all
+              duration-700
+              ease-[cubic-bezier(0.16,1,0.3,1)]
+              focus-visible:ring-2
+              focus-visible:ring-[#879368]
+              focus-visible:ring-offset-2
+              disabled:pointer-events-none
+              disabled:opacity-60
+              sm:min-h-[82px]
+              sm:gap-2
+              sm:px-2
+              md:gap-3
+              md:px-3
+              lg:gap-3.5
+              lg:px-4
+            "
+                  >
+                    {/* ICON */}
+                    <span
+                      className={`
+                relative
+                flex
+                h-[36px]
+                w-[36px]
+                shrink-0
+                items-center
+                justify-center
+                rounded-full
+                border
+                transition-all
+                duration-700
+                sm:h-[42px]
+                sm:w-[42px]
+                lg:h-[48px]
+                lg:w-[48px]
+                ${
+                  active
+                    ? "border-[#879368]/55 bg-[#879368] text-[#F8F5EA] shadow-[0_4px_16px_rgba(86,99,61,0.18)]"
+                    : "border-[#C6C7BC]/80 bg-[#F8F5ED]/55 text-[#7E867A] group-hover:border-[#9DA77F]/80 group-hover:bg-[#E9EAD9] group-hover:text-[#657547]"
+                }
+              `}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={`
+                  pointer-events-none
+                  absolute
+                  inset-[4px]
+                  rounded-full
+                  border
+                  transition-colors
+                  duration-500
+                  ${active ? "border-white/20" : "border-[#B8BCAD]/30"}
+                `}
+                      />
+
+                      {/* RIVERSIDE WATER ICON */}
+                      {index === 0 && (
+                        <svg
+                          viewBox="0 0 44 34"
+                          fill="none"
+                          aria-hidden="true"
+                          className="
+                    relative
+                    z-10
+                    h-[21px]
+                    w-[26px]
+                    transition-transform
+                    duration-700
+                    group-hover:scale-110
+                    sm:h-[23px]
+                    sm:w-[29px]
+                  "
+                        >
+                          <path
+                            d="M3 10 C9 5 15 5 21 10 C27 15 33 15 41 9"
+                            stroke="currentColor"
+                            strokeWidth="1.15"
+                          />
+                          <path
+                            d="M3 16 C9 11 15 11 21 16 C27 21 34 21 41 15"
+                            stroke="currentColor"
+                            strokeWidth="1"
+                            opacity=".68"
+                          />
+                          <path
+                            d="M7 23 C13 19 19 19 24 23 C29 27 35 27 39 24"
+                            stroke="currentColor"
+                            strokeWidth=".75"
+                            opacity=".42"
+                          />
+                        </svg>
+                      )}
+
+                      {/* FAMILY BOTANICAL ICON */}
+                      {index === 1 && (
+                        <svg
+                          viewBox="0 0 44 34"
+                          fill="none"
+                          aria-hidden="true"
+                          className="
+                    relative
+                    z-10
+                    h-[22px]
+                    w-[25px]
+                    origin-bottom
+                    transition-transform
+                    duration-700
+                    group-hover:-rotate-3
+                    sm:h-[24px]
+                    sm:w-[27px]
+                  "
+                        >
+                          <path
+                            d="M21 29 C21 22 21 15 24 5"
+                            stroke="currentColor"
+                            strokeWidth="1.1"
+                          />
+                          <path
+                            d="M22 20 C16 19 12 15 12 10 C18 10 22 13 22 20Z"
+                            stroke="currentColor"
+                            strokeWidth="1.1"
+                          />
+                          <path
+                            d="M23 14 C24 9 28 6 33 7 C31 12 28 15 23 15Z"
+                            stroke="currentColor"
+                            strokeWidth="1.1"
+                            opacity=".75"
+                          />
+                        </svg>
+                      )}
+                    </span>
+
+                    {/* NAME + DESCRIPTOR */}
+                    <span className="flex min-w-0 flex-col items-start justify-center text-left">
+                      <span
+                        className={`
+                  whitespace-nowrap
+                  font-cormorant
+                  text-[14px]
+                  font-medium
+                  leading-none
+                  transition-colors
+                  duration-500
+                  sm:text-[17px]
+                  md:text-[19px]
+                  lg:text-[21px]
+                  ${
+                    active
+                      ? "text-[#1F3026]"
+                      : "text-[#3A4840] group-hover:text-[#26382D]"
+                  }
+                `}
+                      >
+                        {item.name}
+                      </span>
+
+                      <span
+                        className={`
+                  mt-[5px]
+                  whitespace-nowrap
+                  font-manrope
+                  text-[6px]
+                  font-medium
+                  uppercase
+                  tracking-[0.10em]
+                  transition-colors
+                  duration-500
+                  sm:text-[7px]
+                  sm:tracking-[0.18em]
+                  lg:text-[9px]
+                  lg:tracking-[0.25em]
+                  ${
+                    active
+                      ? "text-[#718043]"
+                      : "text-[#657067] group-hover:text-[#78855F]"
+                  }
+                `}
+                      >
+                        {descriptors[index]}
+                      </span>
+                    </span>
+
+                    {/* ACTIVE UNDERLINE */}
+                    <span
+                      aria-hidden="true"
+                      className={`
+                pointer-events-none
+                absolute
+                bottom-[2px]
+                left-1/2
+                h-px
+                w-[75%]
+                -translate-x-1/2
+                origin-center
+                bg-gradient-to-r
+                from-transparent
+                via-[#71833F]
+                to-transparent
+                transition-all
+                duration-700
+                sm:bottom-[10px]
+                ${
+                  active
+                    ? "scale-x-100 opacity-100"
+                    : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
+                }
+              `}
+                    >
+                      <span
+                        className={`
+                  absolute
+                  left-1/2
+                  top-1/2
+                  h-[4px]
+                  w-[4px]
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  rounded-full
+                  bg-[#71833F]
+                  transition-all
+                  duration-500
+                  ${active ? "scale-100 opacity-100" : "scale-0 opacity-0"}
+                `}
+                      />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* VERTICAL DIVIDER */}
+            <span
+              aria-hidden="true"
+              className="
+        mx-5
+        hidden
+        h-[42px]
+        w-px
+        shrink-0
+        bg-[#C2C5B9]/75
+        sm:block
       "
             />
 
-            {/* ==================================================
-                NAVIGATION + COLLECTION CTA
-                Reference-matched horizontal capsule
-            ================================================== */}
-
-            <div
+            {/* MOBILE DIVIDER */}
+            <span
+              aria-hidden="true"
               className="
-    relative
-    z-20
-    flex
-    min-h-[94px]
-    w-full
-    items-stretch
-    overflow-visible
-    pl-[27px]
-  "
+        mx-5
+        h-px
+        bg-[#C2C5B9]/60
+        sm:hidden
+      "
+            />
+
+            {/* EXPLORE COLLECTION */}
+            <button
+              type="button"
+              onClick={() => {
+                document.getElementById("stays")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+              aria-label="Explore the Paciano collection"
+              // className="
+              //   group
+              //   relative
+              //   z-10
+              //   flex
+              //   min-h-[62px]
+              //   w-full
+              //   shrink-0
+              //   items-center
+              //   justify-center
+              //   overflow-visible
+              //   outline-none
+              //   transition-all
+              //   duration-700
+              //   sm:min-h-[82px]
+              //   sm:w-[185px]
+              //   md:w-[205px]
+              //   lg:w-[225px]
+              //   xl:w-[245px]
+              // "
+              className="
+                group
+                relative
+                z-10
+                mx-auto
+                flex
+                min-h-[62px]
+                w-fit
+                shrink-0
+                items-center
+                justify-center
+                overflow-visible
+                px-2
+                outline-none
+                transition-all
+                duration-700
+                sm:min-h-[82px]
+                sm:mx-0
+                sm:w-[185px]
+                md:w-[205px]
+                lg:w-[225px]
+                xl:w-[245px]
+              "
             >
-              {/* Four stay navigation items */}
-              <div className="grid min-w-0 flex-1 grid-cols-[1fr_1fr_1fr_1.08fr]">
-                {stays.map((item, index) => {
-                  const active = index === activeStay;
-
-                  const descriptors = [
-                    "RIVER & MOUNTAINS",
-                    "GARDENS & GREENS",
-                    "HILLS & HORIZONS",
-                    "TOGETHER IN NATURE",
-                  ];
-
-                  return (
-                    <div
-                      key={item.id}
-                      className={`
-                        relative
-                        min-w-0
-                        transition-all
-                        duration-[1000ms]
-                        ease-[cubic-bezier(0.16,1,0.3,1)]
-                        ${
-                          visible
-                            ? "opacity-100 translate-y-0 blur-0"
-                            : "opacity-0 translate-y-6 blur-[2px]"
-                        }
-                      
-                      `}
-                      style={{
-                        transitionDelay: visible
-                          ? `${180 + index * 100}ms`
-                          : "0ms",
-                      }}
-                    >
-                      <button
-                        type="button"
-                        onClick={() => changeStay(index)}
-                        disabled={isTransitioning}
-                        aria-label={`View ${item.name}`}
-                        className="
-                          group
-                          relative
-                          flex
-                          h-full
-                          w-full
-                          items-center
-                          justify-center
-                          gap-4
-                          px-3
-                          outline-none
-                          transition-all
-                          duration-500
-                          disabled:pointer-events-none
-                          sm:gap-5
-                          lg:px-5
-                        "
-                      >
-                        <span
-                          className={`
-                            flex
-                            items-center
-                            gap-4
-                           
-                          `}
-                        >
-                          {/* Icon */}
-                          <span
-                            className={`
-                            relative
-                            z-10
-                            flex
-                            h-[56px]
-                            w-[56px]
-                            shrink-0
-                            items-center
-                            justify-center
-                            rounded-full
-                            border
-                            transition-all
-                            duration-700
-                            ease-[cubic-bezier(0.16,1,0.3,1)]
-                            ${
-                              active
-                                ? "border-[#879368]/55 bg-[#879368] text-[#F8F5EA] shadow-[0_0_0_3px_rgba(139,150,107,0.08),0_6px_24px_rgba(86,99,61,0.20)]"
-                                : "border-[#C6C7BC]/80 bg-[#F8F5ED]/55 text-[#7E867A] group-hover:border-[#9DA77F]/80 group-hover:bg-[#E9EAD9] group-hover:text-[#657547] group-hover:shadow-[0_5px_18px_rgba(92,105,67,0.10)]"
-                            }
-                          `}
-                          >
-                            <span
-                              aria-hidden="true"
-                              className={`
-                              pointer-events-none
-                              absolute
-                              inset-[5px]
-                              rounded-full
-                              border
-                              transition-all
-                              duration-700
-                              ${
-                                active
-                                  ? "border-white/20"
-                                  : "border-[#B8BCAD]/30 group-hover:border-[#9BA77A]/45"
-                              }
-                            `}
-                            />
-
-                            {index === 0 && (
-                              <svg
-                                viewBox="0 0 44 34"
-                                className="relative z-10 h-[27px] w-[34px]"
-                                fill="none"
-                              >
-                                <path
-                                  d="M3 10 C9 5 15 5 21 10 C27 15 33 15 41 9"
-                                  stroke="currentColor"
-                                  strokeWidth="1.15"
-                                />
-                                <path
-                                  d="M3 16 C9 11 15 11 21 16 C27 21 34 21 41 15"
-                                  stroke="currentColor"
-                                  strokeWidth="1"
-                                  opacity=".68"
-                                />
-                                <path
-                                  d="M7 23 C13 19 19 19 24 23 C29 27 35 27 39 24"
-                                  stroke="currentColor"
-                                  strokeWidth=".75"
-                                  opacity=".42"
-                                />
-                              </svg>
-                            )}
-
-                            {index === 1 && (
-                              <svg
-                                viewBox="0 0 44 34"
-                                className="relative z-10 h-[29px] w-[31px] origin-bottom transition-transform duration-700 group-hover:-rotate-3"
-                                fill="none"
-                              >
-                                <path
-                                  d="M21 29 C21 22 21 15 24 5"
-                                  stroke="currentColor"
-                                  strokeWidth="1.1"
-                                />
-                                <path
-                                  d="M22 20 C16 19 12 15 12 10 C18 10 22 13 22 20Z"
-                                  stroke="currentColor"
-                                  strokeWidth="1.1"
-                                />
-                                <path
-                                  d="M23 14 C24 9 28 6 33 7 C31 12 28 15 23 15Z"
-                                  stroke="currentColor"
-                                  strokeWidth="1.1"
-                                  opacity=".75"
-                                />
-                              </svg>
-                            )}
-
-                            {index === 2 && (
-                              <svg
-                                viewBox="0 0 44 34"
-                                className="relative z-10 h-[28px] w-[35px] transition-transform duration-700 group-hover:-translate-y-0.5"
-                                fill="none"
-                              >
-                                <path
-                                  d="M2 27 L13 14 L19 21 L28 7 L42 27"
-                                  stroke="currentColor"
-                                  strokeWidth="1.1"
-                                />
-                                <path
-                                  d="M20 27 L28 17 L36 27"
-                                  stroke="currentColor"
-                                  strokeWidth=".8"
-                                  opacity=".42"
-                                />
-                                <path
-                                  d="M2 28 H42"
-                                  stroke="currentColor"
-                                  strokeWidth=".8"
-                                  opacity=".45"
-                                />
-                              </svg>
-                            )}
-
-                            {index === 3 && (
-                              <svg
-                                viewBox="0 0 44 34"
-                                className="relative z-10 h-[29px] w-[34px]"
-                                fill="none"
-                              >
-                                <circle
-                                  cx="15"
-                                  cy="9"
-                                  r="3"
-                                  stroke="currentColor"
-                                  strokeWidth="1"
-                                />
-                                <circle
-                                  cx="29"
-                                  cy="9"
-                                  r="3"
-                                  stroke="currentColor"
-                                  strokeWidth="1"
-                                />
-                                <path
-                                  d="M7 29 C7 21 11 17 15 17 C20 17 22 21 22 29"
-                                  stroke="currentColor"
-                                  strokeWidth="1"
-                                />
-                                <path
-                                  d="M22 29 C22 21 24 17 29 17 C34 17 38 21 38 29"
-                                  stroke="currentColor"
-                                  strokeWidth="1"
-                                />
-                              </svg>
-                            )}
-                          </span>
-
-                          {/* Text is vertically centred against the icon */}
-                          <span className="flex min-w-0 flex-col items-start justify-center text-left">
-                            <span
-                              className={`
-                              whitespace-nowrap
-                              font-cormorant
-                              font-medium
-                              text-[21px]
-                              leading-[1]
-                              tracking-[0]
-                              antialiased
-                              transition-colors
-                              duration-500
-
-                              sm:text-[20px]
-                              lg:text-[20px]
-
-                              ${active ? "text-[#1F3026]" : "text-[#3A4840] group-hover:text-[#26382D]"}
-                            `}
-                            >
-                              {item.name}
-                            </span>
-
-                            <span
-                              className={`
-                              mt-[7px]
-                              whitespace-nowrap
-                              font-manrope
-                              text-[10px]
-                              font-medium
-                              uppercase
-                              tracking-[0.29em]
-                              transition-colors
-                              duration-500
-                              sm:text-[9px]
-                              ${
-                                active
-                                  ? "text-[#718043]"
-                                  : "text-[#657067] group-hover:text-[#78855F]"
-                              }
-                            `}
-                            >
-                              {descriptors[index]}
-                            </span>
-                          </span>
-
-                          {/* Reference-style active/hover underline.
-                            It is deliberately below the content, never touching the icon. */}
-                          <span
-                            aria-hidden="true"
-                            className={`
-                          pointer-events-none
-                          absolute
-                          bottom-[24px]
-                          left-1/2
-                          h-px
-                          w-[218px]
-                          -translate-x-1/2
-                          origin-center
-                          bg-gradient-to-r
-                          from-transparent
-                          via-[#71833F]
-                          to-transparent
-                          transition-all
-                          duration-[750ms]
-                          ease-[cubic-bezier(0.16,1,0.3,1)]
-                          ${
-                            active
-                              ? "scale-x-100 opacity-100"
-                              : "scale-x-0 opacity-0 group-hover:scale-x-100 group-hover:opacity-100"
-                          }
-                        `}
-                          >
-                            <span
-                              className={`
-                                  pointer-events-none
-                                  absolute
-                                  left-1/2
-                                  top-1/2
-                                  h-[5px]
-                                  w-[5px]
-                                  -translate-x-1/2
-                                  -translate-y-1/2
-                                  rounded-full
-                                  bg-[#71833F]
-                                  shadow-[0_0_6px_1px_rgba(113,131,63,0.18)]
-                                  transition-all
-                                  duration-500
-                                  ${
-                                    active
-                                      ? "scale-100 opacity-100"
-                                      : "scale-0 opacity-0 group-hover:scale-100 group-hover:opacity-100"
-                                  }
-                                `}
-                            />
-                          </span>
-                        </span>
-                      </button>
-                    </div>
-                  );
-                })}
-              </div>
-
-              {/* CTA divider — same visual height as the navigation dividers */}
-              <span
+              {/* LEAF ASSET — PRESERVED */}
+              <img
+                src={leafCta}
+                alt=""
                 aria-hidden="true"
                 className="
-                  my-auto
-                  h-[52px]
-                  w-px
-                  shrink-0
-                  bg-[#C2C5B9]/80
+                  pointer-events-none
+                  absolute
+                  right-[-43px]
+                  top-1/2
+                  z-0
+                  h-[65px]
+                  w-auto
+                  max-w-none
+                  -translate-y-1/2
+                  object-contain
+                  opacity-65
+                  transition-all
+                  duration-700
+                  group-hover:translate-x-[5px]
+                  group-hover:rotate-[1.5deg]
+                  group-hover:opacity-100
+                  sm:right-[-28px]
+                  sm:h-[78px]
+                  lg:right-[-38px]
+                  lg:h-[92px]
                 "
               />
 
-              {/* Collection CTA */}
-              <button
-                type="button"
-                onClick={() => {
-                  document.getElementById("stays")?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start",
-                  });
-                }}
-                aria-label="Explore the Paciano collection"
-                className={`
-                  group
-                  relative
-                  flex
-                  min-h-[116px]
-                  w-[260px]
-                  shrink-0
-                  items-center
-                  justify-center
-                  overflow-visible
-                  outline-none
-                  transition-all
-                  duration-[1100ms]
-                  ease-[cubic-bezier(0.16,1,0.3,1)]
-                  ${
-                    visible
-                      ? "opacity-100 translate-x-0 blur-0"
-                      : "opacity-0 translate-x-8 blur-[2px]"
-                  }
-                  sm:w-[275px]
-                  lg:w-[260px]
-                `}
-                style={{
-                  transitionDelay: visible ? "620ms" : "0ms",
-                }}
+              <span
+                className="
+          relative
+          z-10
+          flex
+          items-center
+          gap-3
+          pr-2
+          sm:gap-3
+          lg:gap-4
+        "
               >
-                {/* Leaf is a separate transparent asset, so the CTA remains
-                    fully clickable/animatable. */}
-                <img
-                  src={leafCta}
-                  alt=""
-                  aria-hidden="true"
-                  className="
-                    pointer-events-none
-                    absolute
-                    right-[-58px]
-                    top-1/2
-                    z-0
-                    h-[112px]
-                    w-auto
-                    max-w-none
-                    -translate-y-1/2
-                    object-contain
-                    opacity-80
-                    transition-all
-                    duration-[900ms]
-                    ease-[cubic-bezier(0.16,1,0.3,1)]
-                    group-hover:translate-x-[7px]
-                    group-hover:rotate-[1.5deg]
-                    group-hover:opacity-100
-                  "
-                />
-
-                <span
-                  className="
-                    relative
-                    z-10
-                    flex
-                    items-center
-                    gap-5
-                    pr-2
-                  "
-                >
-                  <span className="flex flex-col items-start text-left">
-                    <span
-                      className="
-                        font-manrope
-                        text-[9px]
-                        font-semibold
-                        uppercase
-                        tracking-[0.42em]
-                        text-[#718043]
-                        transition-all
-                        duration-500
-                        group-hover:tracking-[0.47em]
-                      "
-                    >
-                      Explore the
-                    </span>
-
-                    <span
-                      className="
-                        mt-[2px]
-                        font-cormorant
-                        text-[28px]
-                        leading-[.9]
-                        tracking-[-0.025em]
-                        text-[#25372C]
-                        sm:text-[30px]
-                      "
-                    >
-                      Collection
-                    </span>
-
-                    <span className="relative mt-[8px] h-[9px] w-[74px] overflow-visible">
-                      <svg
-                        viewBox="0 0 110 12"
-                        className="
-                          h-[9px]
-                          w-[78px]
-                          origin-left
-                          text-[#71833F]
-                          transition-transform
-                          duration-700
-                          group-hover:scale-x-[1.12]
-                        "
-                        fill="none"
-                      >
-                        <path
-                          d="M1 7 C25 2 51 2 76 6 C89 8 100 8 109 4"
-                          stroke="currentColor"
-                          strokeWidth="1"
-                        />
-                      </svg>
-                    </span>
+                <span className="flex flex-col items-start text-left">
+                  <span
+                    className="
+              font-manrope
+              text-[7px]
+              font-semibold
+              uppercase
+              tracking-[0.32em]
+              text-[#718043]
+              transition-all
+              duration-500
+              group-hover:tracking-[0.38em]
+              sm:text-[8px]
+              lg:text-[9px]
+            "
+                  >
+                    Explore the
                   </span>
 
                   <span
                     className="
-                      relative
-                      flex
-                      h-[56px]
-                      w-[56px]
-                      shrink-0
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-[#A9AE9B]
-                      text-[#25372C]
-                      transition-all
-                      duration-700
-                      ease-[cubic-bezier(0.16,1,0.3,1)]
-                      group-hover:border-[#71833F]
-                      group-hover:bg-[#71833F]
-                      group-hover:text-white
-                      group-hover:shadow-[0_8px_22px_rgba(88,103,57,0.16)]
-                    "
+              mt-[2px]
+              font-cormorant
+              text-[24px]
+              leading-[.9]
+              tracking-[-0.025em]
+              text-[#25372C]
+              sm:text-[26px]
+              lg:text-[29px]
+            "
                   >
-                    <span
-                      className="
-                        text-[18px]
-                        leading-none
-                        transition-transform
-                        duration-700
-                        group-hover:translate-x-1
-                      "
-                    >
-                      →
-                    </span>
+                    Collection
+                  </span>
+
+                  <svg
+                    viewBox="0 0 110 12"
+                    fill="none"
+                    className="
+              mt-[6px]
+              h-[8px]
+              w-[68px]
+              origin-left
+              text-[#71833F]
+              transition-transform
+              duration-700
+              group-hover:scale-x-[1.12]
+            "
+                  >
+                    <path
+                      d="M1 7 C25 2 51 2 76 6 C89 8 100 8 109 4"
+                      stroke="currentColor"
+                      strokeWidth="1"
+                    />
+                  </svg>
+                </span>
+
+                {/* ARROW */}
+                <span
+                  className="
+            relative
+            flex
+            h-[40px]
+            w-[40px]
+            shrink-0
+            items-center
+            justify-center
+            rounded-full
+            border
+            border-[#A9AE9B]
+            text-[#25372C]
+            transition-all
+            duration-700
+            group-hover:border-[#71833F]
+            group-hover:bg-[#71833F]
+            group-hover:text-white
+            group-hover:shadow-[0_8px_22px_rgba(88,103,57,0.16)]
+            sm:h-[44px]
+            sm:w-[44px]
+            lg:h-[50px]
+            lg:w-[50px]
+          "
+                >
+                  <span
+                    className="
+              text-[17px]
+              leading-none
+              transition-transform
+              duration-700
+              group-hover:translate-x-1
+            "
+                  >
+                    →
                   </span>
                 </span>
-              </button>
-            </div>
+              </span>
+            </button>
           </div>
-
           {/* ======================================================
             CINEMATIC ROOM IMAGE
         ====================================================== */}
