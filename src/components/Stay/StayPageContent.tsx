@@ -857,7 +857,7 @@ function Hero({ onExperience }: { onExperience: () => void }) {
   );
 }
 
-type AmenityIconType = "bed" | "balcony" | "view" | "bath" | "wifi";
+type AmenityIconType = "bed" | "balcony" | "view" | "bath" | "users";
 type Stay = {
   id: string;
   name: string;
@@ -896,8 +896,12 @@ const stays: Stay[] = [
 
     amenities: [
       {
-        label: "King Bed",
+        label: "1 King Bed",
         icon: "bed",
+      },
+      {
+        label: "2 + 1 Guests",
+        icon: "users",
       },
       {
         label: "Private Balcony",
@@ -910,10 +914,6 @@ const stays: Stay[] = [
       {
         label: "Luxury Bathroom",
         icon: "bath",
-      },
-      {
-        label: "Complimentary Wi-Fi",
-        icon: "wifi",
       },
     ],
   },
@@ -938,8 +938,12 @@ const stays: Stay[] = [
 
     amenities: [
       {
-        label: "Two Comfortable Beds",
+        label: "1 King Bed + 1 Single Bed",
         icon: "bed",
+      },
+      {
+        label: "3 + 1 Guests",
+        icon: "users",
       },
       {
         label: "Spacious Interior",
@@ -952,10 +956,6 @@ const stays: Stay[] = [
       {
         label: "Luxury Bathroom",
         icon: "bath",
-      },
-      {
-        label: "Complimentary Wi-Fi",
-        icon: "wifi",
       },
     ],
   },
@@ -1009,6 +1009,26 @@ function AmenityIcon({ type }: { type: AmenityIconType }) {
         />
         <path d="M6 12V7a2 2 0 0 1 4 0v1" stroke="currentColor" />
         <path d="M10 8h5" stroke="currentColor" />
+      </svg>
+    );
+  }
+
+  if (type === "users") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" className={className}>
+        <circle cx="9" cy="8" r="3" stroke="currentColor" strokeWidth="1.4" />
+        <path
+          d="M3.5 19v-1.5A5.5 5.5 0 0 1 9 12a5.5 5.5 0 0 1 5.5 5.5V19H3.5Z"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M16 5.5a3 3 0 0 1 0 5.8M17 13a5.5 5.5 0 0 1 3.5 5.2V19h-3"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+        />
       </svg>
     );
   }
@@ -2267,15 +2287,6 @@ function RoomDescriptions() {
                 ========================================= */}
 
                 <div
-                  // className={`
-                  //   relative
-                  //   min-w-0
-                  //   w-full
-                  //   lg:-ml-2
-                  //   xl:-ml-4
-                  //   2xl:-ml-5
-                  //   ${isFirst ? "order-1" : "order-1 lg:order-2"}
-                  // `}
                   className={`
                     relative
                     min-w-0
@@ -2487,82 +2498,7 @@ function RoomDescriptions() {
                     </button>
                   </div>
 
-                  {/* =====================================
-                      THUMBNAIL STRIP
-                  ===================================== */}
-
-                  {/* <div
-                    className="
-                      relative
-                      z-10
-                      -mt-4
-                      flex
-                      items-center
-                      justify-center
-                      gap-2
-                      px-3
-                      sm:justify-start
-                      sm:pl-5
-                    "
-                  >
-                    {room.images.map((image, photoIndex) => {
-                      const selected = photoIndex === imageIndex;
-
-                      return (
-                        <button
-                          key={`${room.id}-${photoIndex}`}
-                          type="button"
-                          onClick={() => changeGalleryImage(room, photoIndex)}
-                          aria-label={`View photograph ${photoIndex + 1}`}
-                          aria-pressed={selected}
-                          className={`
-                            relative
-                            h-[48px]
-                            w-[64px]
-                            shrink-0
-                            overflow-hidden
-                            rounded-[8px]
-                            border-[2px]
-                            bg-[#F5F0E5]
-                            shadow-[0_4px_12px_rgba(35,40,30,0.15)]
-                            transition-all
-                            duration-500
-                            sm:h-[57px]
-                            sm:w-[76px]
-                            lg:h-[53px]
-                            lg:w-[70px]
-                            xl:h-[58px]
-                            xl:w-[80px]
-                            ${
-                              selected
-                                ? "border-[#879368] -translate-y-1"
-                                : "border-[#F7F3E9] opacity-80 hover:opacity-100 hover:-translate-y-1"
-                            }
-                          `}
-                        >
-                          <img
-                            src={image}
-                            alt=""
-                            className="
-                              h-full
-                              w-full
-                              object-cover
-                              transition-transform
-                              duration-700
-                              hover:scale-110
-                            "
-                          />
-                        </button>
-                      );
-                    })}
-                  </div> */}
-
-                  {/* =====================================
-                          ROOM THUMBNAIL CAROUSEL
-                      ===================================== */}
-
                   <div
-                    // className="relative z-10 -mt-4 flex min-w-0 items-center gap-2 px-1 sm:gap-3 sm:pl-3"
                     className="
                       relative z-10 -mt-4
                       flex min-w-0 items-center gap-2
@@ -2801,29 +2737,29 @@ function RoomDescriptions() {
                         <div
                           key={amenity.label}
                           className={`
-            flex
-            min-w-0
-            flex-col
-            items-center
-            justify-center
-            gap-2
-            px-2
-            py-3
-            text-center
-            transition-colors
-            duration-500
-            hover:text-[#71864F]
+                          flex
+                          min-w-0
+                          flex-col
+                          items-center
+                          justify-center
+                          gap-2
+                          px-2
+                          py-3
+                          text-center
+                          transition-colors
+                          duration-500
+                          hover:text-[#71864F]
 
-            ${index % 2 === 0 ? "border-r border-[#D9D5C8]" : ""}
+                          ${index % 2 === 0 ? "border-r border-[#D9D5C8]" : ""}
 
-            ${index < 4 ? "border-b border-[#D9D5C8] sm:border-b-0" : ""}
+                          ${index < 4 ? "border-b border-[#D9D5C8] sm:border-b-0" : ""}
 
-            sm:border-r
-            sm:last:border-r-0
-            xl:border-b-0
-            xl:border-r
-            xl:last:border-r-0
-          `}
+                          sm:border-r
+                          sm:last:border-r-0
+                          xl:border-b-0
+                          xl:border-r
+                          xl:last:border-r-0
+                        `}
                         >
                           <span className="flex h-5 items-center justify-center text-[#71864F]">
                             <AmenityIcon type={amenity.icon} />
@@ -2831,16 +2767,16 @@ function RoomDescriptions() {
 
                           <span
                             className="
-              max-w-[105px]
-              font-manrope
-              text-[9px]
-              leading-[1.5]
-              text-[#596456]
-              sm:text-[10px]
-              lg:text-[9px]
-              xl:text-[9px]
-              2xl:text-[10px]
-            "
+                              max-w-[105px]
+                              font-manrope
+                              text-[9px]
+                              leading-[1.5]
+                              text-[#596456]
+                              sm:text-[10px]
+                              lg:text-[9px]
+                              xl:text-[9px]
+                              2xl:text-[10px]
+                            "
                           >
                             {amenity.label}
                           </span>
