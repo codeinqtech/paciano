@@ -18,7 +18,7 @@ function Wave({ flip = false }: { flip?: boolean }) {
     >
       <path
         d="M0 39C210 99 355 8 572 36C790 64 835 97 1044 44C1220 0 1338 18 1440 57V90H0V39Z"
-        fill="#f2eee3"
+        fill="#F7F3E9"
       />
     </svg>
   );
@@ -270,7 +270,7 @@ export default function EventsHero() {
             </motion.div>
 
             {/* HEADING */}
-            <motion.h1
+            <motion.h2
               id="hero-title"
               {...reveal(0.35)}
               className="
@@ -279,8 +279,7 @@ export default function EventsHero() {
               tracking-[-0.045em]
               text-[#1c2c21]
               font-['Cormorant_Garamond']
-              max-[380px]:text-[2.85rem]
-              
+              max-[380px]:text-[2.85rem]              
               text-[44px]
               sm:text-[52px]
               md:text-[60px]
@@ -299,7 +298,7 @@ export default function EventsHero() {
               >
                 Nature's Embrace.
               </em>
-            </motion.h1>
+            </motion.h2>
 
             {/* DESCRIPTION */}
             <motion.p

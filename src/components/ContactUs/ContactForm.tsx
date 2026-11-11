@@ -51,71 +51,74 @@ function CreamToLocationBlend() {
 }
 
 function BotanicalBackdrop({ variant }: { variant: "info" | "form" }) {
-    if (variant === "info") {
-      return (
-        <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden>
-          <img
-            src={leafLeft}
-            alt=""
-            className="absolute -left-[8%] -top-[6%] w-[min(52vw,420px)] opacity-[0.22] mix-blend-multiply sm:-left-[4%] sm:opacity-[0.26]"
-          />
-          <img
-            src={leafAccent}
-            alt=""
-            className="absolute -right-[12%] top-[8%] w-[min(40vw,320px)] rotate-[12deg] opacity-[0.18] mix-blend-multiply sm:-right-[6%] sm:opacity-[0.22]"
-          />
-          <img
-            src={leafSoft}
-            alt=""
-            className="absolute bottom-[6%] left-[2%] hidden w-[200px] rotate-[-18deg] opacity-[0.14] mix-blend-multiply sm:block"
-          />
-        </div>
-      );
-    }
+  if (variant === "info") {
+    return (
+      <div
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+        aria-hidden
+      >
+        <img
+          src={leafLeft}
+          alt=""
+          className="absolute -left-[8%] -top-[6%] w-[min(52vw,420px)] opacity-[0.22] mix-blend-multiply sm:-left-[4%] sm:opacity-[0.26]"
+        />
+        <img
+          src={leafAccent}
+          alt=""
+          className="absolute -right-[12%] top-[8%] w-[min(40vw,320px)] rotate-[12deg] opacity-[0.18] mix-blend-multiply sm:-right-[6%] sm:opacity-[0.22]"
+        />
+        <img
+          src={leafSoft}
+          alt=""
+          className="absolute bottom-[6%] left-[2%] hidden w-[200px] rotate-[-18deg] opacity-[0.14] mix-blend-multiply sm:block"
+        />
+      </div>
+    );
+  }
 }
 
 function FormField({
-    id,
-    label,
-    name,
-    value,
-    onChange,
-    type = "text",
-    required,
-    autoComplete,
-    placeholder,
-    as = "input",
-    className = "",
-    inputClassName,
-  }: {
-    id: string;
-    label: string;
-    name: string;
-    value: string;
-    onChange: (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => void;
-    type?: string;
-    required?: boolean;
-    autoComplete?: string;
-    placeholder?: string;
-    as?: "input" | "textarea";
-    className?: string;
-    inputClassName?: string;
-  }) {
-    const labelCls =
-      "mb-2 block font-manrope uppercase sm:mb-3 text-[0.75rem] tracking-[0.18em]";
-    const inputCls =
-      inputClassName ??
-      `luxury-input${as === "textarea" ? " min-h-[100px] sm:min-h-[120px]" : ""}`;
-  
-    return (
-      <div className={className}>
-        <label htmlFor={id} className={labelCls} style={{ color: '#71803F '}}>
-          {label}
-        </label>
-        {as === "textarea" ? (
-          <textarea
+  id,
+  label,
+  name,
+  value,
+  onChange,
+  type = "text",
+  required,
+  autoComplete,
+  placeholder,
+  as = "input",
+  className = "",
+  inputClassName,
+}: {
+  id: string;
+  label: string;
+  name: string;
+  value: string;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => void;
+  type?: string;
+  required?: boolean;
+  autoComplete?: string;
+  placeholder?: string;
+  as?: "input" | "textarea";
+  className?: string;
+  inputClassName?: string;
+}) {
+  const labelCls =
+    "mb-2 block font-manrope uppercase sm:mb-3 text-[0.75rem] tracking-[0.18em]";
+  const inputCls =
+    inputClassName ??
+    `luxury-input${as === "textarea" ? " min-h-[100px] sm:min-h-[120px]" : ""}`;
+
+  return (
+    <div className={className}>
+      <label htmlFor={id} className={labelCls} style={{ color: "#71803F " }}>
+        {label}
+      </label>
+      {as === "textarea" ? (
+        <textarea
           id={id}
           className={inputCls}
           name={name}
@@ -124,50 +127,49 @@ function FormField({
           placeholder={placeholder}
           required={required}
           aria-required={required}
-          />
-        ) : (
-          <input
-            id={id}
-            className={inputCls}
-            name={name}
-            type={type}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            required={required}
-            autoComplete={autoComplete}
-            aria-required={required}
-          />
-        )}
-      </div>
-    );
+        />
+      ) : (
+        <input
+          id={id}
+          className={inputCls}
+          name={name}
+          type={type}
+          value={value}
+          onChange={onChange}
+          placeholder={placeholder}
+          required={required}
+          autoComplete={autoComplete}
+          aria-required={required}
+        />
+      )}
+    </div>
+  );
 }
 
 function ContactForm() {
-     
-    const [form, setForm] = useState({
-      name: "",
-      email: "",
-      phone: "",
-      dates: "",
-      message: "",
-    });
-    const [submitted, setSubmitted] = useState(false);
-  
-    const handleChange = (
-      e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-    ) => {
-      setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
-    };
-  
-    const handleSubmit = (e: React.FormEvent) => {
-      e.preventDefault();
-      setSubmitted(true);
-    };
-  
-    return (
-      <section     
-        className="
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    dates: "",
+    message: "",
+  });
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+  };
+
+  return (
+    <section
+      className="
         relative
         overflow-hidden
         px-5
@@ -178,16 +180,15 @@ function ContactForm() {
         lg:px-8
         lg:pt-32
       "
-        style={{ background: PARCHMENT }}
-      >
-        <BotanicalBackdrop variant="form" />
-  
-        <div className="relative z-10 mx-auto max-w-5xl">        
-          <div className="mb-12 text-center sm:mb-16">
+      style={{ background: PARCHMENT }}
+    >
+      <BotanicalBackdrop variant="form" />
 
-            {/* 01 — SEND US A MESSAGE */}            
-            <div
-              className="                
+      <div className="relative z-10 mx-auto max-w-5xl">
+        <div className="mb-12 text-center sm:mb-16">
+          {/* 01 — SEND US A MESSAGE */}
+          <div
+            className="                
                 relative
                 mt-[-70px]
                 text-center
@@ -198,57 +199,57 @@ function ContactForm() {
                 items-center
                 text-center
               "
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 14 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.25 }}
+              transition={{
+                duration: 1.6,
+                delay: 0,
+                ease: [0.16, 1, 0.3, 1],
+              }}
+              className="flex flex-col items-center"
             >
-                <motion.div
-                  initial={{ opacity: 0, y: 14 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{
-                    duration: 1.6,
-                    delay: 0,                   
-                    ease: [0.16, 1, 0.3, 1],
-                  }}
-                  className="flex flex-col items-center"
-                >
-                {/* LEAF SVG — CENTERED */}
-                <svg
-                  viewBox="0 0 32 32"
-                  className="
+              {/* LEAF SVG — CENTERED */}
+              <svg
+                viewBox="0 0 32 32"
+                className="
                     h-[20px]
                     w-[20px]
                     text-[#71863d]
                   "
-                  fill="none"
-                >
-                  <path
-                    d="M16 27C16 19 18 12 23 5"
-                    stroke="currentColor"
-                    strokeWidth="1"
-                  />
+                fill="none"
+              >
+                <path
+                  d="M16 27C16 19 18 12 23 5"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
 
-                  <path
-                    d="
+                <path
+                  d="
                       M17 19
                       C10 17 7 12 8 7
                       C14 8 18 13 18 18
                     "
-                    fill="currentColor"
-                    opacity=".8"
-                  />
+                  fill="currentColor"
+                  opacity=".8"
+                />
 
-                  <path
-                    d="
+                <path
+                  d="
                       M19 14
                       C20 8 25 5 29 7
                       C27 12 24 15 19 16
                     "
-                    fill="currentColor"
-                    opacity=".5"
-                  />
-                </svg>
+                  fill="currentColor"
+                  opacity=".5"
+                />
+              </svg>
 
-                <span
-                  className="
+              <span
+                className="
                     mt-4
                     font-manrope
                     text-[12px]
@@ -257,26 +258,25 @@ function ContactForm() {
                     tracking-[0.3em]
                     text-[#71803F]
                   "
-                >
-                  Send Us a Message
-                </span>
-              </motion.div>
-            </div>
-          
+              >
+                Send Us a Message
+              </span>
+            </motion.div>
+          </div>
 
-            {/* 02 — MAIN HEADING */}
-            <motion.div
-              initial={{ opacity: 0, y: 6 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 1.35,
-                delay: 0.18,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-            >
+          {/* 02 — MAIN HEADING */}
+          <motion.div
+            initial={{ opacity: 0, y: 6 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 1.35,
+              delay: 0.18,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
             <h3
-                className="
+              className="
                 mt-[10px]
                 font-cormorant
                 text-[43px]
@@ -287,28 +287,25 @@ function ContactForm() {
                 lg:text-[60px]
                 "
             >
-                Plan Your Time,
-                <br />
-                <span className="italic text-[#789541]">
-                At Paciano.
-                </span>
+              Plan Your Time,
+              <br />
+              <span className="italic text-[#789541]">At Paciano.</span>
             </h3>
-            </motion.div>
+          </motion.div>
 
-            {/* 03 — DESCRIPTION */}
-            <motion.div
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
-                transition={{
-                  duration: 1.35,
-                  delay: 0.36,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-            >
-                      
+          {/* 03 — DESCRIPTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{
+              duration: 1.35,
+              delay: 0.36,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
             <p
-                className="
+              className="
                 mx-auto
                 mt-3
                 max-w-lg
@@ -319,60 +316,59 @@ function ContactForm() {
                 sm:text-[0.9rem]
                 "
             >
-                Share a little about what you're looking for, and we'll be
-                in touch to arrange something truly special.
+              Share a little about what you're looking for, and we'll be in
+              touch to arrange something truly special.
             </p>
-            </motion.div>
-
+          </motion.div>
         </div>
-  
-          {/* <FadeUp delay={0.12}> */}
-          <div>  
-            {submitted ? (
-              <p
-                className="text-center font-lora text-lg italic text-[#0E2D20]"
-                role="status"
-              >
-                Thank you — we&apos;ll be in touch shortly.
-              </p>
-            ) : (
-              <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
-                <div className="grid grid-cols-1 gap-8 sm:gap-x-10 sm:gap-y-10 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
+
+        {/* <FadeUp delay={0.12}> */}
+        <div>
+          {submitted ? (
+            <p
+              className="text-center font-lora text-lg italic text-[#0E2D20]"
+              role="status"
+            >
+              Thank you — we&apos;ll be in touch shortly.
+            </p>
+          ) : (
+            <form className="flex flex-col gap-10" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 gap-8 sm:gap-x-10 sm:gap-y-10 lg:grid-cols-3 lg:grid-rows-[auto_auto]">
                 <motion.div
-                     initial={{ opacity: 0, y: 24 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     viewport={{ once: true, amount: 0.18 }}
-                     transition={{
-                       duration: 1.35,
-                       delay: 0,
-                       ease: [0.16, 1, 0.3, 1],
-                     }}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{
+                    duration: 1.35,
+                    delay: 0,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="lg:row-start-1"
+                >
+                  <FormField
+                    id="contact-name"
+                    label="Your Name"
+                    name="name"
+                    required
+                    // autoComplete="name"
+                    placeholder="Your name"
+                    value={form.name}
+                    onChange={handleChange}
                     className="lg:row-start-1"
-                    >
-                    <FormField
-                        id="contact-name"
-                        label="Your Name"
-                        name="name"
-                        required
-                        // autoComplete="name"
-                        placeholder="Your name"
-                        value={form.name}
-                        onChange={handleChange}
-                        className="lg:row-start-1"
-                    />
-                    </motion.div>
-                    <motion.div
-                         initial={{ opacity: 0, y: 24 }}
-                         whileInView={{ opacity: 1, y: 0 }}
-                         viewport={{ once: true, amount: 0.18 }}
-                         transition={{
-                           duration: 1.35,
-                           delay: 0.16,
-                           ease: [0.16, 1, 0.3, 1],
-                         }}
-                        className="lg:row-start-1"
-                        >
-                    <FormField
+                  />
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{
+                    duration: 1.35,
+                    delay: 0.16,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="lg:row-start-1"
+                >
+                  <FormField
                     id="contact-email"
                     label="Email Address"
                     name="email"
@@ -386,16 +382,16 @@ function ContactForm() {
                   />
                 </motion.div>
                 <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.18 }}
-                    transition={{
-                      duration: 1.35,
-                      delay: 0.32,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="lg:row-start-1"
-                    >
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{
+                    duration: 1.35,
+                    delay: 0.32,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="lg:row-start-1"
+                >
                   <FormField
                     id="contact-phone"
                     label="Phone Number"
@@ -410,16 +406,15 @@ function ContactForm() {
                 </motion.div>
 
                 <motion.div
-                     initial={{ opacity: 0, y: 24 }}
-                     whileInView={{ opacity: 1, y: 0 }}
-                     viewport={{ once: true, amount: 0.18 }}
-                     transition={{
-                       duration: 1.35,
-                       delay: 0.48,
-                       ease: [0.16, 1, 0.3, 1],
-                     }}
-                    >
-                    
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{
+                    duration: 1.35,
+                    delay: 0.48,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
                   <FormField
                     id="contact-dates"
                     label="Preferred Dates"
@@ -432,17 +427,16 @@ function ContactForm() {
                 </motion.div>
 
                 <motion.div
-                    initial={{ opacity: 0, y: 24 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.18 }}
-                    transition={{
-                      duration: 1.35,
-                      delay: 0.64,
-                      ease: [0.16, 1, 0.3, 1],
-                    }}
-                    className="lg:col-span-2 lg:col-start-2 lg:row-start-2 lg:self-start"
-                    >
-                                        
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.18 }}
+                  transition={{
+                    duration: 1.35,
+                    delay: 0.64,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className="lg:col-span-2 lg:col-start-2 lg:row-start-2 lg:self-start"
+                >
                   <FormField
                     id="contact-message"
                     label="How may we help?"
@@ -464,48 +458,45 @@ function ContactForm() {
                     lg:!resize-none
                     lg:!overflow-hidden
                   "
-                    />
+                  />
                 </motion.div>
-                  
-               
-                </div>
-  
-                
-                <motion.div
-                   initial={{ opacity: 0, y: 24 }}
-                   whileInView={{ opacity: 1, y: 0 }}
-                   viewport={{ once: true, amount: 0.18 }}
-                   transition={{
-                     duration: 1.35,
-                     delay: 0.80,
-                     ease: [0.16, 1, 0.3, 1],
-                   }}
-                    className="flex justify-center pt-2 sm:pt-4"
-                >
-                  <motion.button
-                      type="submit"
-                      initial="rest"
-                      whileHover="hover"
-                      whileTap="tap"
-                      variants={{
-                      rest: {
-                          scale: 1,
-                          y: 0,
-                      },
-                      hover: {
-                          scale: 1.015,
-                          y: -1,
-                      },
-                      tap: {
-                          scale: 0.985,
-                          y: 0,
-                      },
-                      }}
-                      transition={{
-                      duration: 0.55,
-                      ease: [0.22, 1, 0.36, 1],
-                      }}
-                      className="
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.18 }}
+                transition={{
+                  duration: 1.35,
+                  delay: 0.8,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="flex justify-center pt-2 sm:pt-4"
+              >
+                <motion.button
+                  type="submit"
+                  initial="rest"
+                  whileHover="hover"
+                  whileTap="tap"
+                  variants={{
+                    rest: {
+                      scale: 1,
+                      y: 0,
+                    },
+                    hover: {
+                      scale: 1.015,
+                      y: -1,
+                    },
+                    tap: {
+                      scale: 0.985,
+                      y: 0,
+                    },
+                  }}
+                  transition={{
+                    duration: 0.55,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="
                       group
                       relative
                       flex
@@ -521,16 +512,16 @@ function ContactForm() {
                       sm:max-w-[292px]
                       sm:px-6
                       "
-                      style={{
-                      background:
-                          "linear-gradient(135deg, #163B2B 0%, #0E2D20 55%, #092319 100%)",
-                      border: `1px solid ${GOLD}`,
-                      boxShadow: "0 10px 28px rgba(14,45,32,0.13)",
-                      }}
-                  >
-                      {/* Elegant moving highlight */}
-                      <motion.span
-                      className="
+                  style={{
+                    background:
+                      "linear-gradient(135deg, #163B2B 0%, #0E2D20 55%, #092319 100%)",
+                    border: `1px solid ${GOLD}`,
+                    boxShadow: "0 10px 28px rgba(14,45,32,0.13)",
+                  }}
+                >
+                  {/* Elegant moving highlight */}
+                  <motion.span
+                    className="
                           pointer-events-none
                           absolute
                           inset-y-0
@@ -543,28 +534,28 @@ function ContactForm() {
                           via-white/10
                           to-transparent
                       "
-                      variants={{
-                          rest: {
-                          x: "0%",
-                          opacity: 0,
-                          },
-                          hover: {
-                          x: "500%",
-                          opacity: 1,
-                          },
-                      }}
-                      transition={{
-                          duration: 1.05,
-                          ease: [0.22, 1, 0.36, 1],
-                      }}
-                      />
+                    variants={{
+                      rest: {
+                        x: "0%",
+                        opacity: 0,
+                      },
+                      hover: {
+                        x: "500%",
+                        opacity: 1,
+                      },
+                    }}
+                    transition={{
+                      duration: 1.05,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  />
 
-                      {/* Botanical leaf */}
-                      <motion.img
-                      src={leafCorner}
-                      alt=""
-                      aria-hidden="true"
-                      className="
+                  {/* Botanical leaf */}
+                  <motion.img
+                    src={leafCorner}
+                    alt=""
+                    aria-hidden="true"
+                    className="
                           pointer-events-none
                           absolute
                           left-[-30px]
@@ -576,29 +567,29 @@ function ContactForm() {
                           sm:left-[-36px]
                           sm:w-[94px]
                       "
-                      variants={{
-                          rest: {
-                          x: 0,
-                          y: 0,
-                          rotate: 0,
-                          scale: 1,
-                          },
-                          hover: {
-                          x: -2,
-                          y: -2,
-                          rotate: -3,
-                          scale: 1.035,
-                          },
-                      }}
-                      transition={{
-                          duration: 0.65,
-                          ease: [0.22, 1, 0.36, 1],
-                      }}
-                      />
+                    variants={{
+                      rest: {
+                        x: 0,
+                        y: 0,
+                        rotate: 0,
+                        scale: 1,
+                      },
+                      hover: {
+                        x: -2,
+                        y: -2,
+                        rotate: -3,
+                        scale: 1.035,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.65,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  />
 
-                      {/* Text */}
-                      <span
-                      className="
+                  {/* Text */}
+                  <span
+                    className="
                       relative
                       z-10
                       translate-x-[8px]
@@ -611,16 +602,16 @@ function ContactForm() {
                       tracking-[0.035em]
                       sm:text-[17px]
                       "
-                      style={{
-                          color: "#E7DBA0",
-                      }}
-                      >
-                      Begin the Conversation
-                      </span>
+                    style={{
+                      color: "#E7DBA0",
+                    }}
+                  >
+                    Begin the Conversation
+                  </span>
 
-                      {/* Arrow */}
-                      <motion.span
-                      className="
+                  {/* Arrow */}
+                  <motion.span
+                    className="
                           relative
                           z-20
                           ml-7
@@ -635,82 +626,82 @@ function ContactForm() {
                           sm:h-[40px]
                           sm:w-[40px]
                       "
-                      style={{
-                          background: GOLD,
-                          color: FOREST,
-                      }}
-                      variants={{
-                          rest: {
-                          x: 0,
-                          scale: 1,
-                          },
-                          hover: {
-                          x: 4,
-                          scale: 1.04,
-                          },
-                      }}
-                      transition={{
-                          duration: 0.5,
-                          ease: [0.22, 1, 0.36, 1],
-                      }}
-                      >
-                      <motion.span
-                          className="
+                    style={{
+                      background: GOLD,
+                      color: FOREST,
+                    }}
+                    variants={{
+                      rest: {
+                        x: 0,
+                        scale: 1,
+                      },
+                      hover: {
+                        x: 4,
+                        scale: 1.04,
+                      },
+                    }}
+                    transition={{
+                      duration: 0.5,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                  >
+                    <motion.span
+                      className="
                           block
                           font-manrope
                           text-[16px]
                           font-medium
                           leading-none
                           "
-                          variants={{
-                          rest: {
-                              x: 0,
-                          },
-                          hover: {
-                              x: 2,
-                          },
-                          }}
-                          transition={{
-                          duration: 0.4,
-                          ease: [0.22, 1, 0.36, 1],
-                          }}
-                      >
-                          →
-                      </motion.span>
-                      </motion.span>
+                      variants={{
+                        rest: {
+                          x: 0,
+                        },
+                        hover: {
+                          x: 2,
+                        },
+                      }}
+                      transition={{
+                        duration: 0.4,
+                        ease: [0.22, 1, 0.36, 1],
+                      }}
+                    >
+                      →
+                    </motion.span>
+                  </motion.span>
 
-                      {/* Very subtle gold glow on hover */}
-                      <motion.span
-                      className="
+                  {/* Very subtle gold glow on hover */}
+                  <motion.span
+                    className="
                           pointer-events-none
                           absolute
                           inset-0
                           rounded-full
                       "
-                      variants={{
-                          rest: {
-                          boxShadow: "0 0 0 rgba(200,167,106,0)",
-                          },
-                          hover: {
-                          boxShadow: "0 8px 30px rgba(200,167,106,0.12)",
-                          },
-                      }}
-                      transition={{
-                          duration: 0.6,
-                          ease: "easeOut",
-                      }}
-                      />
-                  </motion.button>
-                </motion.div>
-              </form>
-            )}
+                    variants={{
+                      rest: {
+                        boxShadow: "0 0 0 rgba(200,167,106,0)",
+                      },
+                      hover: {
+                        boxShadow: "0 8px 30px rgba(200,167,106,0.12)",
+                      },
+                    }}
+                    transition={{
+                      duration: 0.6,
+                      ease: "easeOut",
+                    }}
+                  />
+                </motion.button>
+              </motion.div>
+            </form>
+          )}
           {/* </FadeUp> */}
-          </div>
         </div>
-  
-        <CreamToLocationBlend />
-      </section>
-    );
+      </div>
+
+      <CreamToLocationBlend />
+    </section>
+  );
 }
 
 export default ContactForm;

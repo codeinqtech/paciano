@@ -122,16 +122,16 @@ const rooms: Room[] = [
       "Generous spaces, comforting details, and nature just outside the door make this a wonderful home for the whole family.",
     price: "₹11,500",
   },
-  {
-    title: "Villa Escape",
-    category: "Villas",
-    image: clientRoom5,
-    description: "An intimate hideaway with a world of nature all your own.",
-    subtitle: "Your Own Corner of Paradise.",
-    details:
-      "A private retreat crafted for unhurried days, intimate evenings, and the simple pleasure of having it all to yourself.",
-    price: "₹14,500",
-  },
+  // {
+  //   title: "Villa Escape",
+  //   category: "Villas",
+  //   image: clientRoom5,
+  //   description: "An intimate hideaway with a world of nature all your own.",
+  //   subtitle: "Your Own Corner of Paradise.",
+  //   details:
+  //     "A private retreat crafted for unhurried days, intimate evenings, and the simple pleasure of having it all to yourself.",
+  //   price: "₹14,500",
+  // },
 ];
 
 const amenities: { label: string; icon: LucideIcon }[] = [
@@ -884,7 +884,7 @@ const stays: Stay[] = [
       "Wake to the gentle rhythm of the river, framed by the magnificent mountains beyond. The Deluxe Rooms offer a peaceful retreat where the beauty of the surrounding landscape becomes part of your stay, from mist-covered mornings to golden evenings overlooking the valley.",
 
     details:
-      "Thoughtfully appointed with elegant interiors, warm natural textures and a private balcony, each room is designed for unhurried moments and effortless comfort. Enjoy the calming views of both the river and mountains, relax in your beautifully appointed bathroom, and experience a stay where understated luxury meets the simplicity of nature.",
+      "Thoughtfully designed with refined interiors, warm natural textures and a private balcony, every detail invites relaxation. From the plush bedding to the elegantly appointed bathroom, enjoy a tranquil retreat where comfort and understated luxury come naturally.",
 
     images: [
       deluxeRoom,
@@ -1298,7 +1298,7 @@ function RoomCollection() {
               px-4
               text-center
               font-manrope
-              text-[12px]
+              text-[13px]
               leading-[1.8]
               text-[#657067]
               sm:text-[13px]
@@ -1344,27 +1344,10 @@ function RoomCollection() {
             ====================================================== */}
 
           <div
-            // className={`
-            //   paciano-stay-step
-            //   paciano-stay-step-5
-            //   relative
-            //   mt-10
-            //   sm:mt-11
-            //   lg:mt-12
-            //   w-full
-            //   transition-all
-            //   duration-[1400ms]
-            //   ease-[cubic-bezier(0.16,1,0.3,1)]
-            //   ${
-            //     visible
-            //       ? "translate-y-0 opacity-100 blur-0"
-            //       : "translate-y-8 opacity-0 blur-[2px]"
-            //   }
-            // `}
             className="
-    relative
-    w-full
-  "
+              relative
+              w-full
+            "
           >
             <div
               className="
@@ -1421,11 +1404,6 @@ function RoomCollection() {
                     }}
                     disabled={isTransitioning}
                     aria-pressed={active}
-                    // style={{
-                    //   transitionDelay: visible
-                    //     ? `${180 + index * 140}ms`
-                    //     : "0ms",
-                    // }}
                     style={{
                       transitionDelay: visible
                         ? `${180 + index * 450}ms`
@@ -1471,15 +1449,6 @@ function RoomCollection() {
                       }
                     `}
                   >
-                    {/* ==========================================
-                      CIRCULAR ICON
-                      ${
-                      active
-                        ? "border-[#586B3B] bg-[#586B3B] text-[#FFFDF4] shadow-[0_8px_24px_rgba(65,83,43,0.22)]"
-                        : "border-[#D8D5C9]/80 bg-[#F7F4EB] text-[#344238] hover:border-[#9DA77F] hover:bg-[#EEEFE4] hover:shadow-[0_8px_24px_rgba(65,73,55,0.08)]"
-                    }
-                  ========================================== */}
-
                     <span
                       className={`
                         relative
@@ -1497,9 +1466,7 @@ function RoomCollection() {
 
                         ${
                           active
-                            ? // ? "border-[#879368]/60 bg-[#879368] text-[#F8F5EA] shadow-[0_0_0_4px_rgba(139,150,107,0.07),0_5px_18px_rgba(86,99,61,0.20)]"
-                              // : "border-[#C6C7BC]/80 bg-[#F8F5ED]/70 text-[#7E867A] group-hover:border-[#9DA77F] group-hover:bg-[#E9EAD9] group-hover:text-[#657547]"
-                              "border-white/35 bg-[#71864F] text-[#FFFDF4] shadow-[0_0_0_3px_rgba(255,255,255,0.10),0_5px_18px_rgba(0,0,0,0.12)]"
+                            ? "border-white/35 bg-[#71864F] text-[#FFFDF4] shadow-[0_0_0_3px_rgba(255,255,255,0.10),0_5px_18px_rgba(0,0,0,0.12)]"
                             : "border-[#C6C7BC]/80 bg-[#F8F5ED]/70 text-[#7E867A] group-hover:border-[#9DA77F] group-hover:bg-[#E9EAD9] group-hover:text-[#657547]"
                         }
                       `}
@@ -2267,7 +2234,7 @@ function RoomDescriptions() {
                   lg:scroll-mt-32
                   grid
                   grid-cols-1
-                  items-start
+                  items-stretch
                   gap-7
                   sm:gap-9
                   lg:gap-9
@@ -2291,6 +2258,9 @@ function RoomDescriptions() {
                     relative
                     min-w-0
                     w-full
+                    lg:flex
+                    lg:h-full
+                    lg:flex-col
 
                     ${
                       isFirst
@@ -2320,9 +2290,13 @@ function RoomDescriptions() {
                       relative
                       aspect-[1.48/1]
                       w-full
+                      min-h-0
                       overflow-hidden
                       rounded-[15px]
                       sm:rounded-[19px]
+                      lg:aspect-auto
+                      lg:min-h-[260px]
+                      lg:flex-1
                       lg:rounded-[16px]
                       xl:rounded-[19px]
                       bg-[#DED8C9]
@@ -2501,7 +2475,7 @@ function RoomDescriptions() {
                   <div
                     className="
                       relative z-10 -mt-4
-                      flex min-w-0 items-center gap-2
+                      flex min-w-0 shrink-0 items-center gap-2
                       px-1 sm:gap-3 sm:pl-3
                       animate-in fade-in slide-in-from-bottom-6
                       duration-1000 delay-200
@@ -2643,6 +2617,7 @@ function RoomDescriptions() {
                     min-w-0
                     flex-col
                     justify-center
+                    lg:h-full
                     ${
                       isFirst
                         ? "order-2 lg:order-2 lg:pl-2 xl:pl-5"
@@ -2705,7 +2680,7 @@ function RoomDescriptions() {
                     sm:text-[13px]
                     lg:mt-5
                     lg:text-[11px]
-                    xl:text-[12px]
+                    xl:text-[14px]
                     2xl:text-[15px]
                     [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
                     [@media(orientation:landscape)_and_(max-height:500px)]:space-y-2
@@ -2798,7 +2773,7 @@ function RoomDescriptions() {
                       sm:mt-6
                       lg:mt-5
                       xl:mt-6
-                      [@media(orientation:landscape)_and_(max-height:500px)]:mt-3
+                      [@media(orientation:landscape)_and_(max-height:500px)]:mt-0
                     "
                   >
                     <div
