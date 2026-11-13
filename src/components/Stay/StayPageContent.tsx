@@ -137,7 +137,7 @@ const rooms: Room[] = [
 const amenities: { label: string; icon: LucideIcon }[] = [
   { label: "Complimentary Breakfast", icon: ConciergeBell },
   { label: "High-Speed WiFi", icon: Wifi },
-  { label: "24/7 Room Service", icon: Sparkles },
+  { label: "Thoughtful Hospitality", icon: Sparkles },
   { label: "Tea & Coffee Station", icon: Coffee },
   { label: "Natural Toiletries", icon: Leaf },
   { label: "In-Room Dining", icon: UtensilsCrossed },
