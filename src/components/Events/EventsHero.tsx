@@ -103,6 +103,7 @@ export default function EventsHero() {
 
           /* LAPTOP */
           [@media(min-width:1200px)_and_(max-width:1599px)]:pl-[60px]
+          [@media(min-width:1600px)]:!pl-[85px]
 
           /* MOBILE LANDSCAPE */
           [@media(orientation:landscape)_and_(max-height:600px)]:min-h-[540px]

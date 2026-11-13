@@ -148,7 +148,7 @@ const amenities: { label: string; icon: LucideIcon }[] = [
 const moments = [
   {
     time: "06:00 AM",
-    title: "Wake to mountain sunrise",
+    title: "Sunrise over lush tea gardens.",
     image: slowDaysMoments,
   },
   { time: "08:00 AM", title: "Breakfast by the river", image: resortDeck },
