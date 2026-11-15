@@ -8,13 +8,14 @@ const NAV_LINKS = [
   { label: "Stay", href: toAppPath("/stay") },
   { label: "Dining", href: homeHref("#dining") },
   { label: "Events", href: toAppPath("/events") },
+  { label: "Gallery", href: toAppPath("/gallery") },
   { label: "About Us", href: toAppPath("/about") },
   { label: "Contact", href: toAppPath("/contact") },
 ];
 
 interface NavbarProps {
   scrolled?: boolean;
-  activeNav?: "home" | "contact" | "stay" | "about" | "events";
+  activeNav?: "home" | "contact" | "stay" | "about" | "events" | "gallery";
 }
 
 export default function Navbar({
@@ -198,10 +199,12 @@ export default function Navbar({
 
               <NavItem label="Dining" href={homeHref("#dining")} />
 
+              <DesktopEventsMenu active={activeNav === "events"} />
+
               <NavItem
-                label="Events"
-                href={toAppPath("/events")}
-                active={activeNav === "events"}
+                label="Gallery"
+                href={toAppPath("/gallery")}
+                active={activeNav === "gallery"}
               />
 
               <NavItem
@@ -1986,302 +1989,6 @@ function LuxuryDateField({
   );
 }
 
-// function GuestSelector({
-//   adults,
-//   setAdults,
-//   children,
-//   setChildren,
-//   pets,
-//   setPets,
-// }: {
-//   adults: number;
-//   setAdults: (value: number) => void;
-//   children: number;
-//   setChildren: (value: number) => void;
-//   pets: number;
-//   setPets: (value: number) => void;
-// }) {
-//   const [open, setOpen] = useState(false);
-//   const guestButtonRef = useRef<HTMLButtonElement | null>(null);
-//   const guestPanelRef = useRef<HTMLDivElement | null>(null);
-//   const [panelPosition, setPanelPosition] = useState({ top: 0, left: 0 });
-
-//   const totalGuests = adults + children;
-
-//   const updateCount = (
-//     current: number,
-//     setter: (value: number) => void,
-//     delta: number,
-//     minimum = 0,
-//   ) => {
-//     setter(Math.max(minimum, current + delta));
-//   };
-
-//   const updatePanelPosition = () => {
-//     const anchor = guestButtonRef.current;
-//     if (!anchor) return;
-
-//     const rect = anchor.getBoundingClientRect();
-//     const panelWidth = 300;
-//     const panelHeight = 300;
-//     const gap = 12;
-
-//     let left = rect.left + rect.width / 2 - panelWidth / 2;
-//     let top = rect.bottom + gap;
-
-//     if (left < 16) left = 16;
-//     if (left + panelWidth > window.innerWidth - 16) {
-//       left = window.innerWidth - panelWidth - 16;
-//     }
-
-//     // Prefer opening downward, but move above the field when needed.
-//     if (top + panelHeight > window.innerHeight - 16) {
-//       top = rect.top - panelHeight - gap;
-//     }
-
-//     if (top < 16) top = 16;
-
-//     setPanelPosition({ top, left });
-//   };
-
-//   const toggleGuests = () => {
-//     updatePanelPosition();
-//     setOpen((current) => !current);
-//   };
-
-//   useEffect(() => {
-//     if (!open) return;
-
-//     const handleOutsideClick = (event: MouseEvent) => {
-//       const target = event.target as Node;
-
-//       if (
-//         guestButtonRef.current?.contains(target) ||
-//         guestPanelRef.current?.contains(target)
-//       ) {
-//         return;
-//       }
-
-//       setOpen(false);
-//     };
-
-//     const handleEscape = (event: KeyboardEvent) => {
-//       if (event.key === "Escape") setOpen(false);
-//     };
-
-//     const handleViewportChange = () => updatePanelPosition();
-
-//     document.addEventListener("mousedown", handleOutsideClick);
-//     document.addEventListener("keydown", handleEscape);
-//     window.addEventListener("resize", handleViewportChange);
-//     window.addEventListener("scroll", handleViewportChange, true);
-
-//     return () => {
-//       document.removeEventListener("mousedown", handleOutsideClick);
-//       document.removeEventListener("keydown", handleEscape);
-//       window.removeEventListener("resize", handleViewportChange);
-//       window.removeEventListener("scroll", handleViewportChange, true);
-//     };
-//   }, [open]);
-
-//   return (
-//     <div
-//       className="
-//         relative
-//         min-h-[160px]
-//         border-[#173321]/15
-//         px-5
-//         py-7
-//         md:border-r
-//       "
-//     >
-//       <span
-//         className="
-//           block
-//           font-jost
-//           text-[11px]
-//           font-medium
-//           uppercase
-//           tracking-[0.28em]
-//           text-[#7d875d]
-//         "
-//       >
-//         Guests
-//       </span>
-
-//       <button
-//         type="button"
-//         ref={guestButtonRef}
-//         onClick={toggleGuests}
-//         className="
-//           group/guest
-//           mt-6
-//           flex
-//           w-full
-//           items-center
-//           justify-between
-//           pb-4
-//           text-left
-//           outline-none
-//         "
-//       >
-//         <span
-//           className="
-//             font-cormorant
-//             text-[25px]
-//             font-normal
-//             leading-none
-//             text-[#24372b]
-//             transition-colors
-//             duration-300
-//             group-hover/guest:text-[#667238]
-//           "
-//         >
-//           {adults} Adult{adults !== 1 ? "s" : ""}
-//         </span>
-
-//         <svg
-//           width="14"
-//           height="14"
-//           viewBox="0 0 24 24"
-//           fill="none"
-//           className={`
-//             text-[#536151]
-//             transition-transform
-//             duration-300
-//             ${open ? "rotate-180" : ""}
-//           `}
-//         >
-//           <path
-//             d="M6 9L12 15L18 9"
-//             stroke="currentColor"
-//             strokeWidth="1.4"
-//             strokeLinecap="round"
-//             strokeLinejoin="round"
-//           />
-//         </svg>
-//       </button>
-
-//       <div className="mt-7 h-px w-full bg-[#173321]/20" />
-
-//       <button
-//         type="button"
-//         onClick={toggleGuests}
-//         className="
-//           mt-3
-//           block
-//           font-lora
-//           text-[12px]
-//           italic
-//           text-[#68735f]
-//         "
-//       >
-//         More Options
-//       </button>
-
-//       {open &&
-//         createPortal(
-//           <div
-//             ref={guestPanelRef}
-//             className="
-//               fixed
-//               z-[9998]
-//               w-[300px]
-//               overflow-hidden
-//               rounded-[18px]
-//               border
-//               border-[#a7ae80]/55
-//               bg-[#f2eee3]/[0.99]
-//               shadow-[0_30px_80px_rgba(23,51,33,0.24)]
-//               backdrop-blur-xl
-//             "
-//             style={{
-//               top: `${panelPosition.top}px`,
-//               left: `${panelPosition.left}px`,
-//             }}
-//             role="dialog"
-//             aria-label="Select guests"
-//           >
-//             <div className="relative px-5 pb-4 pt-5">
-//               <div className="absolute left-5 top-0 h-px w-14 bg-[#8e9a5b]" />
-
-//               <div className="flex items-end justify-between">
-//                 <div>
-//                   <p className="font-jost text-[8px] font-medium uppercase tracking-[0.28em] text-[#7d875d]">
-//                     Your party
-//                   </p>
-//                   <h3 className="mt-1 font-cormorant text-[28px] leading-none tracking-[-0.015em] text-[#173321]">
-//                     Guests
-//                   </h3>
-//                 </div>
-
-//                 <span className="font-lora text-[13px] italic text-[#7b846f]">
-//                   {totalGuests} guest{totalGuests !== 1 ? "s" : ""}
-//                 </span>
-//               </div>
-
-//               <div className="mt-5 divide-y divide-[#173321]/10 border-y border-[#173321]/10">
-//                 <GuestCounter
-//                   label="Adults"
-//                   value={adults}
-//                   minimum={1}
-//                   onDecrease={() => updateCount(adults, setAdults, -1, 1)}
-//                   onIncrease={() => updateCount(adults, setAdults, 1, 1)}
-//                 />
-
-//                 <GuestCounter
-//                   label="Children"
-//                   value={children}
-//                   minimum={0}
-//                   onDecrease={() => updateCount(children, setChildren, -1)}
-//                   onIncrease={() => updateCount(children, setChildren, 1)}
-//                 />
-
-//                 <GuestCounter
-//                   label="Pets"
-//                   value={pets}
-//                   minimum={0}
-//                   onDecrease={() => updateCount(pets, setPets, -1)}
-//                   onIncrease={() => updateCount(pets, setPets, 1)}
-//                 />
-//               </div>
-
-//               <div className="mt-3 flex items-center justify-between">
-//                 <span className="font-lora text-[11px] italic text-[#7a836e]">
-//                   Pets are optional
-//                 </span>
-
-//                 <button
-//                   type="button"
-//                   onClick={() => setOpen(false)}
-//                   className="
-//                     rounded-full
-//                     border
-//                     border-[#7d8b56]/45
-//                     px-5
-//                     py-2
-//                     font-jost
-//                     text-[10px]
-//                     font-medium
-//                     uppercase
-//                     tracking-[0.24em]
-//                     text-[#52623a]
-//                     transition-all
-//                     duration-300
-//                     hover:bg-[#dce2ca]
-//                   "
-//                 >
-//                   Done
-//                 </button>
-//               </div>
-//             </div>
-//           </div>,
-//           document.body,
-//         )}
-//     </div>
-//   );
-// }
-
 function GuestSelector({
   adults,
   setAdults,
@@ -3037,6 +2744,111 @@ function DateField({
   );
 }
 
+const EVENT_SUBMENU_LINKS = [
+  { label: "Corporate Events", href: toAppPath("/events/corporate-events") },
+  { label: "Weddings", href: toAppPath("/events/weddings") },
+];
+
+function DesktopEventsMenu({ active = false }: { active?: boolean }) {
+  return (
+    <div className="group relative">
+      {/* MAIN EVENTS PAGE LINK */}
+      <a
+        href={toAppPath("/events")}
+        aria-haspopup="true"
+        className={`
+          relative flex items-center gap-2 whitespace-nowrap py-2
+          font-jost text-[12px] font-normal uppercase leading-none
+          tracking-[0.14em] drop-shadow-[0_1px_5px_rgba(0,0,0,0.45)]
+          transition-colors duration-500
+          ${active ? "text-[#a9b85f]" : "text-white/85 hover:text-white"}
+        `}
+      >
+        Events
+        <svg
+          viewBox="0 0 16 16"
+          className="
+            h-3 w-3
+            transition-transform duration-300
+            group-hover:rotate-180
+            group-focus-within:rotate-180
+          "
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M3.5 6L8 10L12.5 6"
+            stroke="currentColor"
+            strokeWidth="1.2"
+          />
+        </svg>
+        {/* ACTIVE / HOVER UNDERLINE */}
+        <span
+          className={`
+            absolute -bottom-3 left-1/2 h-px -translate-x-1/2
+            bg-[#a4bd55] transition-all duration-500
+            ${
+              active
+                ? "w-[18px] opacity-100"
+                : "w-0 opacity-0 group-hover:w-full group-hover:opacity-100"
+            }
+          `}
+        />
+      </a>
+
+      {/* DROPDOWN */}
+      <div
+        className="
+          invisible absolute left-1/2 top-full z-[150]
+          w-[224px] -translate-x-1/2 translate-y-3 pt-5
+          opacity-0 transition-all duration-300
+          group-hover:visible group-hover:translate-y-0 group-hover:opacity-100
+          group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100
+        "
+      >
+        <div
+          className="
+          overflow-hidden
+          border border-[#a9b85f]/35
+          bg-[#eee8da]/[0.98]
+          py-2
+          shadow-[0_18px_45px_rgba(0,0,0,0.22)]
+          backdrop-blur-xl
+        "
+        >
+          {EVENT_SUBMENU_LINKS.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              className="
+                group/submenu flex items-center justify-between
+                px-5 py-4
+                font-jost text-[10px] font-medium uppercase
+                tracking-[0.17em] text-[#26392b]
+                transition-colors duration-300
+                hover:bg-[#e2e3d3] hover:text-[#718044]
+              "
+            >
+              <span>{item.label}</span>
+
+              <span
+                className="
+                translate-x-[-4px] text-[#84915d] opacity-0
+                transition-all duration-300
+                group-hover/submenu:translate-x-0
+                group-hover/submenu:opacity-100
+              "
+              >
+                →
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function NavItem({
   label,
   href,
@@ -3050,28 +2862,28 @@ function NavItem({
     <a
       href={href}
       className={`
-    group
-    relative
-    whitespace-nowrap
-    py-2
+        group
+        relative
+        whitespace-nowrap
+        py-2
 
-    font-jost
-    text-[12px]
-    font-normal
-    uppercase
-    leading-none
-    tracking-[0.14em]
-    text-white/85
+        font-jost
+        text-[12px]
+        font-normal
+        uppercase
+        leading-none
+        tracking-[0.14em]
+        text-white/85
 
-    text-white/85
-    drop-shadow-[0_1px_5px_rgba(0,0,0,0.45)]
+        text-white/85
+        drop-shadow-[0_1px_5px_rgba(0,0,0,0.45)]
 
-    transition-all
-    duration-500
-    ease-out
+        transition-all
+        duration-500
+        ease-out
 
-    ${active ? "text-[#a9b85f]" : "text-white/85 hover:text-white"}
-  `}
+        ${active ? "text-[#a9b85f]" : "text-white/85 hover:text-white"}
+      `}
     >
       {label}
 
@@ -3108,8 +2920,9 @@ function MobileMenu({
   open: boolean;
   onClose: () => void;
   onBooking: () => void;
-  activeNav?: "home" | "contact" | "stay" | "about" | "events";
+  activeNav?: "home" | "contact" | "stay" | "about" | "events" | "gallery";
 }) {
+  const [eventsExpanded, setEventsExpanded] = useState(activeNav === "events");
   return (
     <div
       className={`
@@ -3181,7 +2994,7 @@ function MobileMenu({
             onClick={onClose}
           />
 
-          {NAV_LINKS.map((item) => (
+          {/* {NAV_LINKS.map((item) => (
             <MobileNavItem
               key={item.label}
               label={item.label}
@@ -3199,7 +3012,136 @@ function MobileMenu({
               }
               onClick={onClose}
             />
-          ))}
+          ))} */}
+          {NAV_LINKS.map((item) => {
+            if (item.label === "Events") {
+              return (
+                <div key="events" className="border-b border-[#173321]/10">
+                  {/* EVENTS MAIN LINK + SUBMENU TOGGLE */}
+                  <div className="flex items-center justify-between">
+                    <a
+                      href={toAppPath("/events")}
+                      onClick={onClose}
+                      className={`
+                        flex-1 py-[17px]
+                        font-serif text-[24px]
+                        transition-colors duration-300
+                        hover:text-[#789f3b]
+                        ${activeNav === "events" ? "text-[#789f3b]" : "text-[#173321]"}
+                      `}
+                    >
+                      Events
+                    </a>
+
+                    <button
+                      type="button"
+                      onClick={() => setEventsExpanded((prev) => !prev)}
+                      aria-label="Toggle Events submenu"
+                      aria-expanded={eventsExpanded}
+                      className="flex h-12 w-12 items-center justify-center text-[#789f3b]"
+                    >
+                      <svg
+                        viewBox="0 0 16 16"
+                        className={`h-4 w-4 transition-transform duration-300 ${
+                          eventsExpanded ? "rotate-180" : ""
+                        }`}
+                        fill="none"
+                      >
+                        <path
+                          d="M3.5 6L8 10L12.5 6"
+                          stroke="currentColor"
+                          strokeWidth="1.3"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </button>
+                  </div>
+
+                  {/* EVENTS SUBMENU */}
+                  <div
+                    className={`grid transition-all duration-500 ease-in-out ${
+                      eventsExpanded
+                        ? "grid-rows-[1fr] opacity-100"
+                        : "grid-rows-[0fr] opacity-0"
+                    }`}
+                  >
+                    <div className="overflow-hidden">
+                      <div className="pb-4 pl-5 ml-1 border-l border-[#9ba96a]/40">
+                        <a
+                          href={toAppPath("/events/corporate-events")}
+                          onClick={onClose}
+                          className="
+                            group
+                            flex items-center justify-between
+                            py-3.5 pl-4 pr-2
+                            font-jost
+                            text-[12px]
+                            font-medium
+                            uppercase
+                            tracking-[0.18em]
+                            text-[#52633d]
+                            transition-all duration-300
+                            hover:text-[#789f3b]
+                            hover:translate-x-1
+                          "
+                        >
+                          <span>Corporate Events</span>
+                          <span className="pr-3 opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                            →
+                          </span>
+                        </a>
+
+                        <a
+                          href={toAppPath("/events/weddings")}
+                          onClick={onClose}
+                          className="
+                            group
+                            flex items-center justify-between
+                            py-3.5 pl-4 pr-2
+                            font-jost
+                            text-[12px]
+                            font-medium
+                            uppercase
+                            tracking-[0.18em]
+                            text-[#52633d]
+                            transition-all duration-300
+                            hover:text-[#789f3b]
+                            hover:translate-x-1
+                          "
+                        >
+                          <span>Weddings</span>
+                          <span className="pr-2 text-[#84915d] opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">
+                            →
+                          </span>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <MobileNavItem
+                key={item.label}
+                label={item.label}
+                href={item.href}
+                active={
+                  item.label === "Contact"
+                    ? activeNav === "contact"
+                    : item.label === "Stay"
+                      ? activeNav === "stay"
+                      : item.label === "Gallery"
+                        ? activeNav === "gallery"
+                        : item.label === "About Us"
+                          ? activeNav === "about"
+                          : false
+                }
+                onClick={onClose}
+              />
+            );
+          })}
         </nav>
 
         {/* BOOKING */}

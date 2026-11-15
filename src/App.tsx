@@ -5,6 +5,7 @@ import StayPage from "@/pages/StayPage";
 import { appPathname } from "@/lib/appBase";
 import AboutUsPage from "./pages/AboutUsPage";
 import EventsPage from "./pages/EventsPage";
+import EventCategoryPage from "./pages/EventCategoryPage";
 
 export default function App() {
   const [path, setPath] = useState(() => appPathname(window.location.pathname));
@@ -19,6 +20,10 @@ export default function App() {
 
   if (path === "/contact") {
     return <ContactPage />;
+  }
+
+  if (path === "/events/corporate-events" || path === "/events/weddings") {
+    return <EventCategoryPage path={path} />;
   }
 
   if (path === "/events") {
