@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import HomePage from "@/pages/HomePage";
 import ContactPage from "@/pages/ContactPage";
 import StayPage from "@/pages/StayPage";
+import GalleryPage from "@/pages/GalleryPage";
 import { appPathname } from "@/lib/appBase";
 import AboutUsPage from "./pages/AboutUsPage";
 import EventsPage from "./pages/EventsPage";
@@ -28,6 +29,10 @@ export default function App() {
 
   if (path === "/events") {
     return <EventsPage />;
+  }
+
+  if (path === "/gallery") {
+    return <GalleryPage />;
   }
 
   if (path === "/stay") {
