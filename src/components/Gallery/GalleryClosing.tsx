@@ -336,7 +336,7 @@ export default function GalleryClosing({ image }: MomentsClosingSectionProps) {
               viewport={{ once: true }}
               transition={{ duration: 1.2, delay: 0.8 }}
               className="
-                    mt-3 sm:mt-4
+                    mt-6 mb-8 sm:mt-6
                     flex w-[125px] sm:w-[155px]
                     items-center justify-center gap-3
                 "
