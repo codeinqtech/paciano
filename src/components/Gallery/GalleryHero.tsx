@@ -40,31 +40,6 @@ const textReveal = {
     },
   },
 };
-
-// function CreamJoinFromAbove() {
-//   return (
-//     <div
-//       className="pointer-events-none absolute bottom-0 left-0 z-20
-//         h-12 w-full sm:h-16 md:h-[72px]"
-//       aria-hidden="true"
-//     >
-//       <svg
-//         viewBox="0 0 1440 76"
-//         preserveAspectRatio="none"
-//         className="h-full w-full"
-//       >
-//         <path
-//           d="M0,76 L0,44 C120,62 210,18 360,28
-//           C510,38 620,68 780,52
-//           C940,36 1080,14 1260,32
-//           C1380,44 1440,38 1440,48 L1440,76 Z"
-//           fill={PARCHMENT}
-//         />
-//       </svg>
-//     </div>
-//   );
-// }
-
 function CreamJoinFromAbove() {
   return (
     <div
@@ -129,9 +104,8 @@ export default function GalleryHero() {
         pt-12
         sm:h-[clamp(460px,65svh,600px)]
         md:h-[clamp(480px,68svh,630px)]
-        lg:h-[clamp(450px,52svh,460px)]
-        xl:h-[clamp(450px,72svh,690px)]
-        
+        lg:h-[clamp(520px,68svh,590px)]
+        xl:h-[clamp(550px,72svh,690px)]
       "
       // sm:h-[clamp(390px,55svh,500px)]
       // lg:h-[clamp(390px,52svh,490px)]
@@ -152,126 +126,72 @@ export default function GalleryHero() {
       >
         <img
           src={galleryBanner}
-          alt="The natural surroundings and architecture of Paciano"
+          alt="Paciano surrounded by the Dooars mountains and river landscape"
           fetchPriority="high"
           className="
-            h-full w-full object-cover
-            object-[60%_70%]
-            sm:object-center
+            h-full w-full
+            object-cover
+            object-center
           "
-          // style={{
-          //   filter: "brightness(1.06) saturate(1.05) contrast(1.02)",
-          // }}
           style={{
-            filter:
-              "brightness(0.91) saturate(0.92) contrast(1.05) sepia(0.06)",
+            filter: `
+              brightness(0.82)
+              saturate(1.02)
+              contrast(1.08)
+              sepia(0.06)
+            `,
+            objectPosition: "50% 45%",
           }}
         />
       </motion.div>
 
-      {/* PREMIUM IVORY SPOTLIGHT BEHIND HERO CONTENT */}
-
-      {/* <div
-        className="
-            pointer-events-none absolute
-            left-1/2 top-[43%]
-            z-10
-            h-[210px] w-[85%]
-            max-w-[850px]
-            -translate-x-1/2 -translate-y-1/2
-            rounded-[50%]
-          "
-        style={{
-          background: `
-              radial-gradient(
-                ellipse 51% 103% at 37% 40%,
-                rgba(244,232,215,0.97) 0%,
-                rgba(244,232,215,0.94) 22%,
-                rgba(244,232,215,0.80) 38%,
-                rgba(244,232,215,0.55) 52%,
-                rgba(244,232,215,0.28) 66%,
-                rgba(244,232,215,0.10) 79%,
-                rgba(244,232,215,0.025) 89%,
-                rgba(244,232,215,0) 97%
-              )
-            `,
-        }}
-      /> */}
-      {/* CINEMATIC FOREST GREEN OVERLAY */}
-      {/* <div
-        className="pointer-events-none absolute inset-0 z-10"
-        style={{
-          background: `
-      linear-gradient(
-        180deg,
-        rgba(15, 32, 23, 0.48) 0%,
-        rgba(20, 39, 27, 0.40) 35%,
-        rgba(16, 34, 24, 0.58) 70%,
-        rgba(13, 29, 21, 0.72) 100%
-      )
-    `,
-        }}
-      /> */}
-
-      {/* SUBTLE CINEMATIC EDGE SHADING */}
-      {/* <div
-        className="pointer-events-none absolute inset-0 z-10"
-        style={{
-          background: `
-      linear-gradient(
-        90deg,
-        rgba(12, 27, 19, 0.22),
-        transparent 35%,
-        transparent 65%,
-        rgba(12, 27, 19, 0.22)
-      )
-    `,
-        }}
-      /> */}
-      {/* WARM PREMIUM FOREST OVERLAY */}
+      {/* DEEP WARM CINEMATIC OVERLAY */}
       <div
         className="pointer-events-none absolute inset-0 z-10"
         style={{
           background: `
-      linear-gradient(
-        180deg,
-        rgba(32, 43, 29, 0.24) 0%,
-        rgba(48, 48, 32, 0.12) 45%,
-        rgba(35, 45, 29, 0.25) 100%
-      ),
-      linear-gradient(
-        90deg,
-        rgba(65, 55, 36, 0.08),
-        transparent 50%,
-        rgba(65, 55, 36, 0.08)
-      )
-    `,
+            linear-gradient(
+              180deg,
+              rgba(19, 29, 23, 0.34) 0%,
+              rgba(24, 34, 26, 0.20) 30%,
+              rgba(22, 32, 23, 0.24) 60%,
+              rgba(17, 29, 21, 0.40) 100%
+            ),
+            linear-gradient(
+              90deg,
+              rgba(23, 30, 23, 0.16) 0%,
+              transparent 30%,
+              transparent 70%,
+              rgba(23, 30, 23, 0.16) 100%
+            )
+          `,
         }}
       />
-      {/* PREMIUM SOFT DARK SPOTLIGHT BEHIND HERO CONTENT */}
+
+      {/* PREMIUM DARK FOREST SPOTLIGHT */}
       <div
         aria-hidden="true"
         className="
           pointer-events-none absolute
           left-1/2 top-[39%]
           z-[15]
-          h-[210px] w-[94%]
-          max-w-[900px]
+          h-[300px] w-[96%]
+          max-w-[1150px]
           -translate-x-1/2 -translate-y-1/2
           rounded-full
         "
         style={{
           background: `
-          radial-gradient(
-            ellipse 55% 65% at 50% 50%,
-            rgba(12, 25, 17, 0.65) 0%,
-            rgba(17, 31, 21, 0.50) 38%,
-            rgba(22, 36, 25, 0.30) 65%,
-            rgba(25, 38, 27, 0.10) 85%,
-            transparent 100%
-          )
-        `,
-          filter: "blur(25px)",
+      radial-gradient(
+        ellipse 60% 65% at 50% 50%,
+        rgba(12, 24, 17, 0.72) 0%,
+        rgba(16, 29, 20, 0.62) 30%,
+        rgba(20, 33, 23, 0.43) 55%,
+        rgba(25, 36, 25, 0.20) 75%,
+        transparent 100%
+      )
+    `,
+          filter: "blur(28px)",
         }}
       />
 
@@ -281,32 +201,92 @@ export default function GalleryHero() {
         initial="hidden"
         animate="visible"
         className="
-            relative z-20 mx-auto flex w-full
-            max-w-[1000px] flex-col items-center
-            px-5 text-center
-            sm:px-8
-            -translate-y-5
-            sm:-translate-y-7
-            "
+          relative z-20 mx-auto flex w-full
+          max-w-[1100px] flex-col items-center
+          px-5 text-center
+          sm:px-8
+          -translate-y-16
+          sm:-translate-y-20
+          md:-translate-y-24
+        "
       >
+        {/* GALLERY EYEBROW */}
+        <motion.div
+          variants={textReveal}
+          className="mb-8 flex flex-col items-center sm:mb-2"
+        >
+          <svg
+            viewBox="0 0 32 32"
+            className="
+                h-[21px]
+                w-[21px]
+                shrink-0               
+                text-[#E5CB91]
+              "
+            fill="none"
+          >
+            <path
+              d="M16 27C16 19 18 12 23 5"
+              stroke="currentColor"
+              strokeWidth="1"
+            />
+
+            <path
+              d="
+                  M17 19
+                  C10 17 7 12 8 7
+                  C14 8 18 13 18 18
+                "
+              fill="currentColor"
+              opacity=".8"
+            />
+
+            <path
+              d="
+                  M19 14
+                  C20 8 25 5 29 7
+                  C27 12 24 15 19 16
+                "
+              fill="currentColor"
+              opacity=".5"
+            />
+          </svg>
+
+          <div className="flex items-center gap-4">
+            <span className="h-px w-8 bg-[#BDA36C]/80" />
+
+            <span
+              className="
+                font-sans
+                text-[11px] sm:text-xs
+                font-semibold uppercase
+                tracking-[0.48em]
+                text-[#E9D29D]
+              "
+            >
+              Gallery
+            </span>
+
+            <span className="h-px w-8 bg-[#BDA36C]/80" />
+          </div>
+        </motion.div>
+
         {/* MAIN HEADING */}
         <motion.h1
           variants={textReveal}
           className="
             font-['Cormorant_Garamond']
-            text-[clamp(2.5rem,6.2vw,4.1rem)]
-            font-medium leading-[1]
+            text-[clamp(3.2rem,7vw,6rem)]
+            font-medium italic
+            leading-[0.98]
             tracking-[-0.035em]
+            text-[#FFF9ED]
           "
-          // style={{
-          //   color: FOREST,
-          //   textShadow: "0 2px 18px rgba(255,250,235,.3)",
-          // }}
           style={{
-            color: "#FFFCF2",
             textShadow: `
-              0 2px 5px rgba(15, 28, 18, 0.45),
-              0 4px 18px rgba(15, 28, 18, 0.35)
+              0 2px 5px rgba(0,0,0,0.65),
+              0 5px 18px rgba(0,0,0,0.55),
+              0 10px 35px rgba(0,0,0,0.28)
             `,
           }}
         >
@@ -317,89 +297,25 @@ export default function GalleryHero() {
         <motion.p
           variants={textReveal}
           className="
-            mt-4
+            mt-4 sm:mt-5
+            max-w-[1000px]
+            px-3
             font-['Cormorant_Garamond']
-             text-[clamp(38px,4.15vw,61px)]        
-            leading-tight           
-            font-medium italic leading-[0.98]
-            tracking-[-0.035em]
+            text-[clamp(1.3rem,3vw,2.15rem)]
+            font-medium italic
+            leading-[1.2]
+            tracking-[-0.015em]
+            text-[#EED29A]
           "
-          // style={{
-          //   color: FOREST,
-          //   textShadow: "0 4px 28px rgba(0,0,0,.35)",
-          // }}
           style={{
-            color: "#E5CB91",
             textShadow: `
-              0 2px 5px rgba(15, 28, 18, 0.65),
-              0 3px 14px rgba(15, 28, 18, 0.45)
+              0 2px 5px rgba(0,0,0,0.75),
+              0 4px 16px rgba(0,0,0,0.55)
             `,
           }}
         >
-          Where Nature Becomes an Experience.
+          A Visual Journey of Stays, Celebrations and Experiences.
         </motion.p>
-
-        {/* LEAF DIVIDER */}
-        {/* PREMIUM GOLD LEAF DIVIDER */}
-        <motion.div
-          variants={textReveal}
-          className="
-            relative mt-6 flex w-full max-w-[210px]
-            items-center justify-center gap-4
-            sm:mt-7 sm:max-w-[250px]
-          "
-        >
-          {/* LEFT GREEN LINE */}
-          <span
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(90deg, transparent, #71875B 35%, #35543A 100%)",
-            }}
-          />
-
-          {/* BOTANICAL GREEN LEAF */}
-          <span
-            className="
-              relative flex h-10 w-10 shrink-0
-              items-center justify-center rounded-full
-            "
-            style={{
-              background:
-                "radial-gradient(circle, rgba(238,233,220,0.95) 0%, rgba(238,233,220,0.5) 58%, transparent 78%)",
-              boxShadow: "0 0 16px rgba(53,84,58,0.12)",
-            }}
-          >
-            <motion.img
-              src={contactLeafIcon}
-              alt=""
-              aria-hidden="true"
-              className="h-8 w-8 object-contain"
-              initial={
-                instant ? false : { opacity: 0, scale: 0.7, rotate: -10 }
-              }
-              animate={{ opacity: 1, scale: 1, rotate: 0 }}
-              transition={{
-                duration: instant ? 0 : 1,
-                delay: instant ? 0 : 1.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              style={{
-                filter:
-                  "brightness(0) saturate(100%) invert(27%) sepia(15%) saturate(1050%) hue-rotate(78deg) brightness(91%) contrast(90%) drop-shadow(0 2px 3px rgba(35,60,39,0.2))",
-              }}
-            />
-          </span>
-
-          {/* RIGHT GREEN LINE */}
-          <span
-            className="h-px flex-1"
-            style={{
-              background:
-                "linear-gradient(90deg, #35543A 0%, #71875B 65%, transparent)",
-            }}
-          />
-        </motion.div>
       </motion.div>
 
       {/* CIRCULAR SCROLL INDICATOR */}
