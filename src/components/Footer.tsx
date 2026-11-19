@@ -1659,7 +1659,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               "
               >
                 <a
-                  href="/privacy-policy"
+                  href="design/tmp_1/privacy-policy"
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Privacy Policy
@@ -1668,7 +1668,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 <span className="h-3 w-px bg-[#F4EFE4]/15" />
 
                 <a
-                  href="/terms-conditions"
+                  href="design/tmp_1/terms-conditions"
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Terms & Conditions
