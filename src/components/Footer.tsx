@@ -457,7 +457,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
           MAIN FOOTER CONTENT
       ========================================================== */}
 
-        <div          
+        <div
           className="
             relative
             z-20
@@ -1234,7 +1234,6 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 className="block
                 [@media(max-width:1024px)]:!leading-[1.5]
                 [@media(orientation:landscape)_and_(max-height:700px)_and_(max-width:900px)]:text-[25px]"
-                
               >
                 Slower Days.
               </motion.span>
@@ -1253,7 +1252,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                   duration: 1.4,
                   delay: 0.45,
                   ease: [0.16, 1, 0.3, 1],
-                }}               
+                }}
                 className="
                   mt-2
                   block
@@ -1499,16 +1498,16 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
 
               <span
                 className="
-      relative
-      z-30
-      flex-1
-      text-center
-      whitespace-nowrap
-      transition-transform
-      duration-700
-      ease-[cubic-bezier(.22,1,.36,1)]
-      group-hover:-translate-x-[2px]
-    "
+                  relative
+                  z-30
+                  flex-1
+                  text-center
+                  whitespace-nowrap
+                  transition-transform
+                  duration-700
+                  ease-[cubic-bezier(.22,1,.36,1)]
+                  group-hover:-translate-x-[2px]
+                "
               >
                 Book Your Stay
               </span>
@@ -1660,7 +1659,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               "
               >
                 <a
-                  href="#"
+                  href="/privacy-policy"
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Privacy Policy
@@ -1669,7 +1668,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 <span className="h-3 w-px bg-[#F4EFE4]/15" />
 
                 <a
-                  href="#"
+                  href="/terms-conditions"
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Terms & Conditions

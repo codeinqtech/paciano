@@ -7,6 +7,8 @@ import { appPathname } from "@/lib/appBase";
 import AboutUsPage from "./pages/AboutUsPage";
 import EventsPage from "./pages/EventsPage";
 import EventCategoryPage from "./pages/EventCategoryPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import TermsConditionsPage from "./pages/TermsConditionsPage";
 
 export default function App() {
   const [path, setPath] = useState(() => appPathname(window.location.pathname));
@@ -43,5 +45,12 @@ export default function App() {
     return <AboutUsPage />;
   }
 
+  if (path === "/privacy-policy") {
+    return <PrivacyPolicyPage />;
+  }
+
+  if (path === "/terms-conditions") {
+    return <TermsConditionsPage />;
+  }
   return <HomePage />;
 }
