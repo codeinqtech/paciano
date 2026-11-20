@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import logo from "@/images/paciano-logo.png";
 import ButtonLeaf from "@/images/footerbutton-leaf.png";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
+import { homeHref, toAppPath } from "@/lib/appBase";
 
 import {
   FaInstagram,
@@ -1659,7 +1660,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
               "
               >
                 <a
-                  href="/privacy-policy"
+                  href={toAppPath("/privacy-policy")}
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Privacy Policy
@@ -1668,7 +1669,7 @@ export default function Footer({ contactOverlap = false }: FooterProps) {
                 <span className="h-3 w-px bg-[#F4EFE4]/15" />
 
                 <a
-                  href="/terms-conditions"
+                  href={toAppPath("/terms-conditions")}
                   className="transition-colors duration-500 hover:text-[#F4EFE4]  text-[13px]"
                 >
                   Terms & Conditions
