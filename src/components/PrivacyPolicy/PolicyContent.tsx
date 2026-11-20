@@ -1,4 +1,5 @@
-import { motion, useReducedMotion } from "framer-motion";
+import { useRef } from "react";
+import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
   UsersRound,
   Laptop,
@@ -139,6 +140,13 @@ function PolicyIcon({ icon: Icon }: { icon: React.ElementType }) {
 ----------------------------------- */
 
 function PolicyIntroduction() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const reduceMotion = Boolean(useReducedMotion());
+
+  const isInView = useInView(sectionRef, {
+    once: true,
+    amount: 0.08,
+  });
   return (
     <motion.p
       variants={itemVariants}
@@ -161,6 +169,26 @@ function PolicyIntroduction() {
       At Paciano Hospitality, we are committed to protecting your personal
       information and respecting your privacy. This Privacy Policy explains how
       we collect, use and safeguard your data when you visit our website.
+      {/* GOLDEN DIVIDER */}
+      <div className="mt-4 flex items-center justify-center gap-3 sm:mt-5">
+        <span className="h-px w-12 bg-gradient-to-r from-transparent to-[#D9AD55]" />
+
+        <motion.span
+          animate={reduceMotion ? {} : { rotate: [45, 225, 405] }}
+          transition={{
+            duration: 9,
+            repeat: Infinity,
+            ease: "linear",
+          }}
+          className="
+                h-[8px] w-[8px]
+                rotate-45
+                border border-[#C58B26]
+              "
+        />
+
+        <span className="h-px w-12 bg-gradient-to-l from-transparent to-[#D9AD55]" />
+      </div>
     </motion.p>
   );
 }
@@ -236,15 +264,15 @@ function PolicyRow({
 
         <p
           className="
-            font-jost
-            text-[11.5px]
+            font-manrope
+            text-[13px]
+            leading-[1.8]
+            text-[#50584F]  
             min-[390px]:text-[12px]
             sm:text-[13px]
-            md:text-[14px]
-            font-normal
-            leading-[1.65]
-            tracking-[-0.01em]
-            text-[#242424]
+            md:text-[13px]
+            font-normal           
+            tracking-[-0.01em]            
           "
         >
           {item.description}
@@ -381,7 +409,7 @@ function PolicyUpdateCard() {
           <div className="mb-3 flex items-center gap-3">
             <span
               className="
-              font-['Parkinsans']
+              font-['Cormorant_Garamond']
               text-[9px] sm:text-[10px]
               uppercase
               tracking-[.24em]
@@ -417,10 +445,10 @@ function PolicyUpdateCard() {
             className="
               mt-3
               max-w-[540px]
-              font-['Parkinsans']
+              font-manrope
               text-[11px]
               sm:text-[12px]
-              md:text-[13px]
+              md:text-[12px]
               leading-[1.8]
               text-[#56564B]
             "

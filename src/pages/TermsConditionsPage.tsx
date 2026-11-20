@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import TermsHero from "@/components/TermsConditions/TermsHero";
-import PolicyContent from "@/components/PrivacyPolicy/PolicyContent";
+import TermsContent from "@/components/TermsConditions/TermsContent";
+import policyMountains from "@/images/privacy/privacy-mountain.png";
 
 export default function TermsConditionsPage() {
   const [scrolled, setScrolled] = useState(false);
@@ -19,7 +20,10 @@ export default function TermsConditionsPage() {
       <Navbar scrolled={scrolled} activeNav="stay" />
       <main className="overflow-hidden bg-[#F8F5EE]">
         <TermsHero />
-        <PolicyContent />
+        <TermsContent
+          landscapeSrc={policyMountains}
+          lastUpdated="19 November 2026"
+        />
         <Footer />
       </main>
     </>

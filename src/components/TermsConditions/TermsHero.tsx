@@ -7,9 +7,14 @@ import {
 } from "framer-motion";
 
 import termsBanner from "@/images/termsconditions/terms-banner.png";
+import termsEmblem from "@/images/termsconditions/terms-emblem.png";
 
 const PARCHMENT = "#F8F3E9";
-const GOLD = "#D9AD55";
+// const GOLD = "#D9AD55";
+
+const CREAM = "#F8F3E9";
+const GOLD = "#D9B66E";
+const LIGHT_GOLD = "#F8DFA5";
 
 const contentSequence = {
   hidden: {},
@@ -38,18 +43,109 @@ const reveal = {
   },
 };
 
-/* BOTTOM CREAM WAVE */
 function TermsCreamWave() {
   return (
     <div
       className="
         pointer-events-none absolute
-        bottom-0 left-0 z-30
-        h-[48px] w-full
-        sm:h-[58px]
-        md:h-[68px]
+        bottom-[-1px] left-0 z-30
+        h-[58px] w-full
+        sm:h-[65px]
+        md:h-[72px]
         lg:h-[78px]
       "
+      aria-hidden="true"
+    >
+      <svg
+        viewBox="0 0 1440 140"
+        preserveAspectRatio="none"
+        className="h-full w-full"
+      >
+        {/* FOREST GREEN UNDERLAYER */}
+        <path
+          d="
+            M0 35
+            C145 0 235 15 370 48
+            C510 83 600 75 735 43
+            C875 10 985 9 1110 40
+            C1250 76 1350 70 1440 31
+            L1440 140
+            L0 140
+            Z
+          "
+          fill="#102619"
+        />
+
+        {/* CREAM WAVE */}
+        <path
+          d="
+            M0 43
+            C145 8 235 23 370 56
+            C510 91 600 83 735 51
+            C875 18 985 17 1110 48
+            C1250 84 1350 78 1440 39
+            L1440 140
+            L0 140
+            Z
+          "
+          fill="#F8F3E9"
+        />
+
+        {/* GOLDEN EDGE */}
+        <path
+          d="
+            M0 43
+            C145 8 235 23 370 56
+            C510 91 600 83 735 51
+            C875 18 985 17 1110 48
+            C1250 84 1350 78 1440 39
+          "
+          fill="none"
+          stroke="#D9AD55"
+          strokeWidth="2.2"
+        />
+
+        {/* SOFT GOLD HIGHLIGHT */}
+        <path
+          d="
+            M0 47
+            C145 12 235 27 370 60
+            C510 95 600 87 735 55
+            C875 22 985 21 1110 52
+            C1250 88 1350 82 1440 43
+          "
+          fill="none"
+          stroke="#FFF1CF"
+          strokeWidth="1"
+          opacity=".8"
+        />
+      </svg>
+    </div>
+  );
+}
+
+/* ----------------------------------
+   GOLDEN BOTTOM WAVE
+----------------------------------- */
+
+function PolicyWave() {
+  return (
+    <motion.div
+      className="
+        pointer-events-none absolute
+        bottom-0 left-0 z-30
+        h-[48px] w-full
+        sm:h-[56px]
+        md:h-[65px]
+        lg:h-[72px]
+      "
+      initial={{ opacity: 0, y: 18 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 1.5,
+        delay: 0.5,
+        ease: [0.16, 1, 0.3, 1],
+      }}
       aria-hidden="true"
     >
       <svg
@@ -57,87 +153,118 @@ function TermsCreamWave() {
         preserveAspectRatio="none"
         className="h-full w-full"
       >
-        {/* Cream wave */}
+        {/* CREAM WAVE FILL */}
         <path
           d="
-            M0 36
-            C125 5 205 15 330 43
-            C475 76 575 67 720 39
-            C860 10 970 5 1100 35
-            C1235 66 1340 63 1440 30
+            M0 38
+            C115 5 190 5 300 34
+            C420 65 485 77 610 45
+            C745 10 820 10 940 39
+            C1065 70 1140 68 1250 35
+            C1330 12 1390 17 1440 33
             L1440 90
             L0 90
             Z
           "
-          fill={PARCHMENT}
+          fill={CREAM}
         />
 
-        {/* Fine golden edge */}
+        {/* GOLDEN OUTLINE */}
         <path
           d="
-            M0 36
-            C125 5 205 15 330 43
-            C475 76 575 67 720 39
-            C860 10 970 5 1100 35
-            C1235 66 1340 63 1440 30
+            M0 38
+            C115 5 190 5 300 34
+            C420 65 485 77 610 45
+            C745 10 820 10 940 39
+            C1065 70 1140 68 1250 35
+            C1330 12 1390 17 1440 33
           "
-          fill="none"
           stroke={GOLD}
-          strokeWidth="2"
+          strokeWidth="2.2"
+          fill="none"
         />
 
-        {/* Subtle inner highlight */}
+        {/* SUBTLE DARK GREEN EDGE */}
         <path
           d="
-            M0 40
-            C125 9 205 19 330 47
-            C475 80 575 71 720 43
-            C860 14 970 9 1100 39
-            C1235 70 1340 67 1440 34
+            M0 43
+            C115 10 190 10 300 39
+            C420 70 485 82 610 50
+            C745 15 820 15 940 44
+            C1065 75 1140 73 1250 40
+            C1330 17 1390 22 1440 38
           "
-          fill="none"
-          stroke="#FFF5DC"
+          stroke="#31442A"
           strokeWidth="1"
-          opacity=".65"
+          opacity=".7"
+          fill="none"
         />
       </svg>
-    </div>
+    </motion.div>
   );
 }
 
-/* ANIMATED DOCUMENT EMBLEM */
+/* PACIANO — ANIMATED GOLDEN TERMS SCROLL */
 
 function TermsDocumentEmblem({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <div
       className="
         relative flex items-center justify-center
-        h-[125px] w-[185px]
-        sm:h-[145px] sm:w-[205px]
-        md:h-[165px] md:w-[225px]
+        h-[175px] w-[270px]
+        sm:h-[190px] sm:w-[300px]
+        md:h-[205px] md:w-[330px]
       "
     >
-      {/* AMBIENT GOLDEN GLOW */}
+      {/* SOFT GOLDEN AMBIENT GLOW */}
       <div
         className="
-          absolute inset-0
+          absolute inset-[12%]
           rounded-full
-          bg-[#F6B94E]/10
-          blur-[32px]
+          bg-[#F9BC50]/15
+          blur-[38px]
         "
       />
 
-      {/* OUTER CIRCULAR ORBIT */}
+      {/* CIRCULAR GOLDEN HALO */}
       <motion.div
         className="
           absolute
-          h-[115px] w-[115px]
-          sm:h-[135px] sm:w-[135px]
-          md:h-[150px] md:w-[150px]
+          h-[145px] w-[145px]
+          sm:h-[165px] sm:w-[165px]
+          md:h-[180px] md:w-[180px]
           rounded-full
-          border border-[#E8B85F]/45
+          border border-[#E8BC6C]/40
         "
         animate={reduceMotion ? {} : { rotate: 360 }}
+        transition={{
+          duration: 65,
+          repeat: Infinity,
+          ease: "linear",
+        }}
+      >
+        <span
+          className="
+            absolute right-[13%] top-[15%]
+            h-[5px] w-[5px]
+            rounded-full bg-[#FFE8B0]
+            shadow-[0_0_10px_3px_rgba(255,204,100,.7)]
+          "
+        />
+      </motion.div>
+
+      {/* DIAGONAL GOLDEN ORBIT */}
+      <motion.div
+        className="
+          absolute
+          h-[48px] w-[245px]
+          sm:h-[55px] sm:w-[275px]
+          md:h-[58px] md:w-[305px]
+          rounded-[50%]
+          border border-[#F4C66F]
+        "
+        initial={{ rotate: -12 }}
+        animate={reduceMotion ? { rotate: -12 } : { rotate: 348 }}
         transition={{
           duration: 45,
           repeat: Infinity,
@@ -146,161 +273,43 @@ function TermsDocumentEmblem({ reduceMotion }: { reduceMotion: boolean }) {
       >
         <span
           className="
-            absolute right-[12%] top-[15%]
-            h-[4px] w-[4px]
-            rounded-full bg-[#FFE4A0]
-            shadow-[0_0_9px_3px_rgba(255,204,100,.7)]
+            absolute right-[4%] top-[38%]
+            h-[5px] w-[5px]
+            rounded-full bg-[#FFE7AD]
+            shadow-[0_0_10px_4px_rgba(255,198,91,.8)]
           "
         />
       </motion.div>
 
-      {/* HORIZONTAL GOLDEN ORBIT */}
-      <motion.svg
-        viewBox="0 0 240 120"
-        className="
-          absolute
-          h-[115px] w-[205px]
-          sm:h-[135px] sm:w-[225px]
-          overflow-visible
-        "
-        animate={reduceMotion ? {} : { rotate: 360 }}
-        transition={{
-          duration: 55,
-          repeat: Infinity,
-          ease: "linear",
-        }}
-      >
-        <ellipse
-          cx="120"
-          cy="60"
-          rx="111"
-          ry="25"
-          fill="none"
-          stroke="#F4C56D"
-          strokeWidth="1.5"
-          opacity=".9"
-        />
-
-        <circle
-          cx="230"
-          cy="60"
-          r="2.5"
-          fill="#FFE8AD"
-          style={{
-            filter: "drop-shadow(0 0 5px #FFC75E)",
-          }}
-        />
-      </motion.svg>
-
-      {/* DOCUMENT SCROLL */}
-      <motion.svg
-        viewBox="0 0 140 145"
+      {/* IMPORTED GOLDEN SCROLL EMBLEM */}
+      <motion.img
+        src={termsEmblem}
+        alt="Terms and conditions emblem"
         className="
           relative z-10
-          h-[100px] w-[91px]
-          sm:h-[115px] sm:w-[105px]
-          md:h-[125px] md:w-[115px]
+          h-[112px] w-[115px]
+          sm:h-[125px] sm:w-[130px]
+          md:h-[145px] md:w-[155px]
+          object-contain
         "
-        fill="none"
-        initial={reduceMotion ? false : { opacity: 0, y: 12, scale: 0.92 }}
+        initial={reduceMotion ? false : { opacity: 0, scale: 0.88, y: 10 }}
         animate={{
           opacity: 1,
-          y: 0,
           scale: 1,
+          y: 0,
         }}
         transition={{
-          duration: 1.3,
+          duration: 1.4,
           ease: [0.16, 1, 0.3, 1],
         }}
         style={{
           filter: `
-            drop-shadow(0 0 3px #FFD47B)
-            drop-shadow(0 0 9px rgba(255,181,62,.85))
-            drop-shadow(0 0 19px rgba(255,167,42,.35))
+            drop-shadow(0 0 3px #FFF0BD)
+            drop-shadow(0 0 8px rgba(255,195,91,.8))
+            drop-shadow(0 0 17px rgba(255,173,54,.35))
           `,
         }}
-      >
-        {/* MAIN PARCHMENT BODY */}
-        <path
-          d="
-            M29 13
-            H105
-            Q119 13 119 27
-            V105
-            Q119 118 106 118
-            H23
-            Q12 118 12 106
-            V30
-            Q12 13 29 13
-            Z
-          "
-          stroke="#FFE6AD"
-          strokeWidth="2.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        {/* ROLLED TOP RIGHT EDGE */}
-        <path
-          d="
-            M105 13
-            C119 9 130 13 126 25
-            C124 32 118 34 111 33
-            C119 28 119 20 105 13
-          "
-          stroke="#FFE6AD"
-          strokeWidth="2.7"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        {/* DOCUMENT TEXT LINES */}
-        <path
-          d="
-            M34 38 H100
-            M34 51 H100
-            M34 64 H100
-            M34 77 H83
-          "
-          stroke="#FFE8B8"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-        />
-
-        {/* BOTTOM ROLLED SCROLL */}
-        <path
-          d="
-            M12 105
-            C5 112 9 126 22 126
-            H104
-            C116 126 122 119 119 106
-            M22 118
-            H100
-          "
-          stroke="#FFE6AD"
-          strokeWidth="2.8"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-
-        {/* APPROVAL SEAL */}
-        <circle
-          cx="94"
-          cy="91"
-          r="14"
-          fill="#243A23"
-          stroke="#FFE6AD"
-          strokeWidth="2.5"
-        />
-
-        <path
-          d="M87 91 L92 96 L101 86"
-          stroke="#FFE8B5"
-          strokeWidth="2.4"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </motion.svg>
+      />
     </div>
   );
 }
@@ -323,17 +332,17 @@ export default function TermsHero() {
       ref={ref}
       className="
         relative isolate flex
-        min-h-[420px]
-        h-[clamp(440px,65svh,620px)]
+        min-h-[410px]
+        h-[clamp(430px,72svh,470px)]
         w-full items-center justify-center
         overflow-hidden
         bg-[#102619]
-        pt-[65px]
-        sm:h-[clamp(470px,67svh,640px)]
-        sm:pt-[75px]
-        md:h-[clamp(490px,68svh,660px)]
-        lg:h-[clamp(520px,70svh,690px)]
-        xl:h-[680px]
+        pt-[45px]
+        sm:h-[500px]
+        sm:pt-[55px]
+        md:h-[520px]
+        lg:h-[540px]
+        xl:h-[540px]
       "
     >
       {/* BACKGROUND IMAGE */}
@@ -350,7 +359,7 @@ export default function TermsHero() {
           scale: reduceMotion ? 1 : imageScale,
         }}
       >
-        <img
+        {/* <img
           src={termsBanner}
           alt="Golden sunset over the Paciano riverside"
           fetchPriority="high"
@@ -370,9 +379,27 @@ export default function TermsHero() {
               contrast(1.08)
             `,
           }}
+        /> */}
+
+        <img
+          src={termsBanner}
+          alt="Golden sunset over the Paciano riverside"
+          fetchPriority="high"
+          className="
+            absolute inset-0
+            h-full w-full
+            object-cover
+            object-center
+          "
+          style={{
+            filter: `
+              brightness(.79)
+              saturate(1.08)
+              contrast(1.08)
+            `,
+          }}
         />
       </motion.div>
-
       {/* CINEMATIC FOREST OVERLAY */}
       <div
         className="pointer-events-none absolute inset-0 z-[5]"
@@ -394,7 +421,6 @@ export default function TermsHero() {
           `,
         }}
       />
-
       {/* CENTER SPOTLIGHT */}
       <div
         aria-hidden="true"
@@ -419,7 +445,6 @@ export default function TermsHero() {
           filter: "blur(28px)",
         }}
       />
-
       {/* HERO CONTENT */}
       <motion.div
         variants={contentSequence}
@@ -432,9 +457,9 @@ export default function TermsHero() {
           flex-col items-center
           px-5
           text-center
-          pb-10
-          sm:pb-12
-          md:pb-14
+          pb-6
+          sm:pb-8
+          md:pb-10
         "
       >
         {/* DOCUMENT EMBLEM */}
@@ -446,7 +471,7 @@ export default function TermsHero() {
         <motion.h1
           variants={reveal}
           className="
-            mt-3
+            mt-1
             font-['Cormorant_Garamond']
             text-[clamp(2.45rem,6.5vw,5.4rem)]
             font-medium italic
@@ -506,9 +531,9 @@ export default function TermsHero() {
           />
         </motion.div>
       </motion.div>
-
       {/* BOTTOM WAVE */}
-      <TermsCreamWave />
+      {/* <TermsCreamWave /> */}
+      <PolicyWave />
     </section>
   );
 }

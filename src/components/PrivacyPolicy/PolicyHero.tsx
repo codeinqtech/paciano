@@ -535,30 +535,22 @@ export default function PolicyHero() {
           variants={sequence}
           initial="hidden"
           animate="visible"
-          //   className="
-          //     relative z-20 flex
-          //     w-[65%] max-w-[580px]
-          //     flex-col items-start
-          //     text-left
-          //     md:w-[60%]
-          //     lg:w-[58%]
-          //   "
           className="
-  relative z-20 flex
- w-[78%] max-w-[580px]
-        sm:w-[65%]
-        md:w-[60%]
-        lg:w-[58%]
-  flex-col items-start
-  text-left
+            relative z-20 flex
+            w-[78%] max-w-[580px]
+            sm:w-[65%]
+            md:w-[60%]
+            lg:w-[58%]
+            flex-col items-start
+            text-left
 
-  mt-8
-  min-[390px]:mt-6
-  sm:mt-0
+            mt-8
+            min-[390px]:mt-6
+            sm:mt-0
 
-  md:w-[60%]
-  lg:w-[58%]
-"
+            md:w-[60%]
+            lg:w-[58%]
+            "
         >
           {/* EYEBROW */}
           <motion.div
@@ -571,7 +563,7 @@ export default function PolicyHero() {
             <span
               className="
                 whitespace-nowrap
-                font-['Parkinsans']
+                font-['Cormorant_Garamond']
                 text-[9px]
                 min-[390px]:text-[10px]
                 sm:text-[11px]
